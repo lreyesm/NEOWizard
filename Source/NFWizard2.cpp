@@ -48,53 +48,73 @@ void NFWizard2::on_pushButton_Generate_clicked()
     QFileInfo fileCubeInfo(fileCube);
     QFileInfo fileuVisionInfo(fileuVision);
     if (fileCubeInfo.exists() && fileuVisionInfo.exists()) {
-        if (ui->checkBox_FolderStruct->isChecked()) {
-            QStringList projectFolderTree;
-            projectFolderTree << "Doc"
-                            << "Include"
-                            << "Lib"
-                            << "Source"
-                            << "Scripts"
-                            << "Tests";
-            FolderTreeGenerator::generateFileTree(directoryuVision.path(), projectFolderTree);
-        }
-        processCubeMainFile();
-
+        generateProjectFileTree();
+        processMainFiles();
+        processXmlFiles();
     }else{
         QMessageBox::warning(this, tr("NFWizard 2"),tr("Projects path not valid"));
     }
 }
 
-void NFWizard2::on_cubeMainFileProcessed(ParsedData parsedData)
+void NFWizard2::on_cubeMainFileProcessed()
 {
+    QFile file("main2.c");
+    if(!file.open(QFile::WriteOnly | QFile::Text)){
+        qDebug()<< "could not open the file";
+        return;
+    }
+    QTextStream fileWriter(&file);
+    ParsedData parsedData = fileParser.getParsedData();
     TokenTupleList_t tokens = parsedData.keys();
     foreach (const TokenTuple_t& token, tokens) {
-        qDebug() << token.first << endl
+         fileWriter << token.first << endl
                  << parsedData.value(token)
                  << token.second << endl
                  << endl;
     }
+    file.close();
 }
 
-void NFWizard2::processCubeMainFile()
+void NFWizard2::generateProjectFileTree()
+{
+    QStringList projectFolderTree;
+    if (ui->checkBox_FolderStruct->isChecked()) {
+        projectFolderTree << "Doc"
+                          << "Include"
+                          << "Lib"
+                          << "Scripts"
+                          << "Tests";
+    }
+    projectFolderTree << "Source"; // always generate Source folder
+    FolderTreeGenerator::generateFileTree(directoryuVision.path(), projectFolderTree);
+}
+
+void NFWizard2::processMainFiles()
 {
     QDir cubeMainDir(directoryCube);
-    if (cubeMainDir.exists("Src/main.c")) {
-        qDebug() << "main found";
-        TokenTupleList_t tokenList;
-        tokenList << TokenTuple_t("/* Includes ------------------------------------------------------------------*/",
-                                              "/* USER CODE BEGIN Includes */")
-                  << TokenTuple_t("  /* Initialize all configured peripherals */",
-                                              "  /* USER CODE BEGIN 2 */")
-                  << TokenTuple_t("void SystemClock_Config(void)",
-                                              "/* USER CODE BEGIN 4 */");
-        QDir::setCurrent(cubeMainDir.path());
-        fileParser.setFileName("Src/main.c");
-        fileParser.addTokenTupleList(tokenList);
-        connect(&fileParser, SIGNAL(parsingFinished(ParsedData)), this, SLOT(on_cubeMainFileProcessed(ParsedData)));
-        fileParser.startParsing();
-    }else {
-        QMessageBox::critical(this, tr("NFWizard 2"), tr("STM32CubeMx project not generated,"
-                                                         " main.c file not found"));
+    if (!cubeMainDir.exists("Src/main.c")) {
+        QMessageBox::warning(this, tr("NFWizard2"),tr("STM32CubeMx Src/main.c file not found, Generation aborted"));
     }
+    qDebug() << "main found";
+
+    TokenTupleList_t tokenList;
+    tokenList << TokenTuple_t("/* Includes ------------------------------------------------------------------*/",
+                              "/* USER CODE BEGIN Includes */")
+              << TokenTuple_t("  /* Initialize all configured peripherals */",
+                              "  /* USER CODE BEGIN 2 */")
+              << TokenTuple_t("void SystemClock_Config(void)",
+                              "/* USER CODE BEGIN 4 */");
+
+    QDir::setCurrent(cubeMainDir.path());
+    if (!fileParser.setFileName("Src/main.c")) {
+
+    }
+    fileParser.addTokenTupleList(tokenList);
+    connect(&fileParser, SIGNAL(parsingFinished()), this, SLOT(on_cubeMainFileProcessed()));
+    fileParser.startParsing();
+}
+
+void NFWizard2::processXmlFiles()
+{
+
 }

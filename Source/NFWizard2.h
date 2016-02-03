@@ -24,11 +24,12 @@ private slots:
 
     void on_pushButton_Generate_clicked();
 
-    void on_cubeMainFileProcessed(FileParserNamespace::ParsedData parsedData);
+    void on_cubeMainFileProcessed();
 
 private:
     void generateProjectFileTree();
-    void processCubeMainFile();
+    void processMainFiles();
+    void processXmlFiles();
 private:
     Ui::NFWizard2 *ui;
 

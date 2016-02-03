@@ -4,16 +4,16 @@
 using namespace FileParserNamespace;
 
 FileParser::FileParser(QString& fileName, QObject *parent) :
-    QObject(parent),
-    parsing_(false)
+    QObject(parent)
 {
+    parsing_ = false;
     setFileName(fileName);
 }
 
 FileParser::FileParser(QObject* parent):
     QObject(parent)
 {
-
+    parsing_ = false;
 }
 
 QString FileParser::getFileName() const
@@ -23,9 +23,11 @@ QString FileParser::getFileName() const
 
 bool FileParser::setFileName(const QString& fileName)
 {
+    if (isParsing()) {
+        return false;
+    }
     bool retval = false;
-    QFileInfo file(fileName);
-    if(file_.exists()){
+    if(QFile::exists(fileName)){
         retval = true;
         file_.setFileName(fileName);
     }
@@ -70,7 +72,7 @@ void FileParser::onParsingFinished()
 {
     parsedData_ = watcher_.result();
     parsing_ = false;
-    emit parsingFinished(parsedData_);
+    emit parsingFinished();
 }
 
 ParsedData FileParser::parseFile()
@@ -100,7 +102,7 @@ ParsedData FileParser::parseFile()
                 if (startPosition < endPosition ) { // check for consistency
                     if(file_.seek(startPosition)){ // rewind and start coping
                         while (file_.pos() < endPosition) {
-                            currentDataParsed.append(file_.readLine()).append("\n"); // append parse lines and new line
+                            currentDataParsed.append(file_.readLine()); // append parsed lines
                         }
                         break;
                     }

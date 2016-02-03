@@ -34,3 +34,4 @@ Objects/*
 STM32CubeProject/MDK-ARM/*
 doc/html/*
 
+*.autosave

@@ -30,7 +30,7 @@ public:
     bool clearParsedData();
 
 signals:
-    void parsingFinished(ParsedData parsedData_);
+    void parsingFinished();
 
 public slots:
     bool startParsing();
@@ -39,11 +39,9 @@ private slots:
     void onParsingFinished();
 private:
     ParsedData parseFile();
-
     QFile file_;
     bool parsing_;
     TokenTupleList_t tokenList_;
-
     ParsedData parsedData_;
     QFuture<ParsedData> future_;
     QFutureWatcher<ParsedData> watcher_;
