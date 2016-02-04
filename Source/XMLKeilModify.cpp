@@ -26,16 +26,23 @@ bool XMLKeilModify::updateXml(){
         return false;
     }
     file.close();
-    deleteFileCube(xmlDocument,"main.c");
-    QDir sourceDir(QFileInfo(cubeXmlFile).dir().absolutePath().append("/STCubeGenerated/Src/"),"*.c",QDir::Type,QDir::Files);
+    QDomNode node = deleteAllFilesCube(xmlDocument);
+    node.appendChild(xmlDocument.createElement("project_files"));
+    QDir sourceDir(QFileInfo(cubeXmlFile).dir().absolutePath().append("/STCubeGenerated/Src/"),
+                   "*.c",QDir::Type,QDir::Files);
     QStringList filesList = sourceDir.entryList();
     QString temp;
     for(int i=0; i<filesList.size(); i++){
         temp = filesList[i];
-        if((temp != "main.c") && (!temp.contains("_hal_msp.c")) && (!temp.contains("_it.c")) && (existsFileCube(xmlDocument,temp).isNull())){
+        if((!temp.contains("_hal_msp.c")) && (!temp.contains("main.c"))){
             addFileCube(xmlDocument,"source",temp.prepend("STCubeGenerated/Src/"));
         }
     }
+    sourceDir.cdUp();
+    sourceDir.cd("Inc");
+    addFileCube(xmlDocument,"header",sourceDir.entryInfoList(QStringList("*_it.h"),QDir::Files,QDir::Type)
+                .at(0).fileName().prepend("STCubeGenerated/Inc/"));
+
     file.open(QIODevice::WriteOnly);
     QTextStream outCube(&file);
     xmlDocument.save(outCube,2);
@@ -50,7 +57,7 @@ bool XMLKeilModify::updateXml(){
         return false;
     }
     file.close();
-    QDomNode node = getNodeWithText(xmlDocument,"GroupName","Source");
+    node = getNodeWithText(xmlDocument,"GroupName","Source");
     if(node.isNull()){
         node = getNodeWithText(xmlDocument,"GroupName","Source Group 1");
         if(node.isNull()){
@@ -63,11 +70,13 @@ bool XMLKeilModify::updateXml(){
     case NoFilesElement:
         node = getNodeWithText(xmlDocument,"GroupName","Source");
         node.parentNode().appendChild(xmlDocument.createElement("Files"));
-        node.nextSiblingElement("Files").appendChild(createFileUVision(xmlDocument,"main.cpp","8",".\\Source\\main.cpp"));
+        node.nextSiblingElement("Files").
+                appendChild(createFileUVision(xmlDocument,"main.cpp","8",".\\Source\\main.cpp"));
         break;
     case NoFileElement:
         node = getNodeWithText(xmlDocument,"GroupName","Source");
-        node.nextSiblingElement("Files").appendChild(createFileUVision(xmlDocument,"main.cpp","8",".\\Source\\main.cpp"));
+        node.nextSiblingElement("Files").
+                appendChild(createFileUVision(xmlDocument,"main.cpp","8",".\\Source\\main.cpp"));
         break;
     default:
         break;
@@ -197,6 +206,16 @@ QDomNode XMLKeilModify::existsFileCube(QDomDocument& doc,QString fileName){
         elemTemp = elemTemp.nextSiblingElement();
     }
     return QDomNode();
+}
+
+QDomNode XMLKeilModify::deleteAllFilesCube(QDomDocument& doc){
+    QDomNodeList list = doc.elementsByTagName("project_files");
+    if(list.size() > 1){
+        return QDomNode();
+    }
+    QDomNode parent = list.item(0).parentNode();
+    parent.removeChild(list.item(0));
+    return parent;
 }
 
 bool XMLKeilModify::deleteFileCube(QDomDocument& doc,QString fileName){

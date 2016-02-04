@@ -33,6 +33,7 @@ private:
     QDomNode createGroup(QDomDocument& doc,QString name);
     FilePresent existsFilesInGroup(QDomDocument& doc,QString group,QString file);
     QDomNode existsFileCube(QDomDocument& doc,QString fileName);
+    QDomNode deleteAllFilesCube(QDomDocument& doc);
     bool deleteFileCube(QDomDocument& doc,QString fileName);
     bool addFileCube(QDomDocument& doc,QString category,QString name);
 };//XMLKeilModify
