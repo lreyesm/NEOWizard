@@ -15,11 +15,13 @@ TEMPLATE = app
 SOURCES += Source/main.cpp\
         Source/NFWizard2.cpp \
     Source/FileParser.cpp \
-    Source/FolderTreeGenerator.cpp
+    Source/FolderTreeGenerator.cpp \
+    Source/XMLKeilModify.cpp
 
 HEADERS  += Source/NFWizard2.h \
     Source/FileParser.h \
-    Source/FolderTreeGenerator.h
+    Source/FolderTreeGenerator.h \
+    Source/XMLKeilModify.h
 
 FORMS    += Source/NFWizard2.ui
 

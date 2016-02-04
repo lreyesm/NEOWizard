@@ -4,6 +4,7 @@
 #include <QWidget>
 #include <QtCore>
 #include "FileParser.h"
+#include "XMLKeilModify.h"
 
 namespace Ui {
 class NFWizard2;
