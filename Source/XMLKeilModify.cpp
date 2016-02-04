@@ -13,8 +13,52 @@ XMLKeilModify::XMLKeilModify(const QString &uvisionFile, const QString &cubeFile
     setUvisionXmlFile(uvisionFile);
 }
 
-bool XMLKeilModify::updateXml(){
-    if(cubeXmlFile.isEmpty() || uvisionXmlFile.isEmpty()){
+bool XMLKeilModify::updateUvisionXml(){
+    if(uvisionXmlFile.isEmpty()){
+        return false;
+    }
+    QFile file(uvisionXmlFile);
+    if(!file.open(QIODevice::ReadOnly)){
+        return false;
+    }
+    if (!xmlDocument.setContent(&file)) {
+        file.close();
+        return false;
+    }
+    file.close();
+    QDomNode node = getNodeWithText(xmlDocument,"GroupName","Source");
+    if(node.isNull()){
+        node = getNodeWithText(xmlDocument,"GroupName","Source Group 1");
+        if(node.isNull()){
+            node = createGroup(xmlDocument,"Source");
+        }else{
+            node.firstChild().toText().setData("Source");
+        }
+    }
+    switch(existsFilesInGroup(xmlDocument,"Source","main.cpp")){
+    case NoFilesElement:
+        node = getNodeWithText(xmlDocument,"GroupName","Source");
+        node.parentNode().appendChild(xmlDocument.createElement("Files"));
+        node.nextSiblingElement("Files").
+                appendChild(createFileUVision(xmlDocument,"main.cpp","8",".\\Source\\main.cpp"));
+        break;
+    case NoFileElement:
+        node = getNodeWithText(xmlDocument,"GroupName","Source");
+        node.nextSiblingElement("Files").
+                appendChild(createFileUVision(xmlDocument,"main.cpp","8",".\\Source\\main.cpp"));
+        break;
+    default:
+        break;
+    }
+    file.open(QIODevice::WriteOnly);
+    QTextStream outUvision(&file);
+    xmlDocument.save(outUvision,2);
+    file.close();
+    return true;
+}
+
+bool XMLKeilModify::updateCubeXml(){
+    if(cubeXmlFile.isEmpty()){
         return false;
     }
     QFile file(cubeXmlFile);
@@ -46,44 +90,6 @@ bool XMLKeilModify::updateXml(){
     file.open(QIODevice::WriteOnly);
     QTextStream outCube(&file);
     xmlDocument.save(outCube,2);
-    file.close();
-
-    file.setFileName(uvisionXmlFile);
-    if(!file.open(QIODevice::ReadOnly)){
-        return false;
-    }
-    if (!xmlDocument.setContent(&file)) {
-        file.close();
-        return false;
-    }
-    file.close();
-    node = getNodeWithText(xmlDocument,"GroupName","Source");
-    if(node.isNull()){
-        node = getNodeWithText(xmlDocument,"GroupName","Source Group 1");
-        if(node.isNull()){
-            node = createGroup(xmlDocument,"Source");
-        }else{
-            node.firstChild().toText().setData("Source");
-        }
-    }
-    switch(existsFilesInGroup(xmlDocument,"Source","main.cpp")){
-    case NoFilesElement:
-        node = getNodeWithText(xmlDocument,"GroupName","Source");
-        node.parentNode().appendChild(xmlDocument.createElement("Files"));
-        node.nextSiblingElement("Files").
-                appendChild(createFileUVision(xmlDocument,"main.cpp","8",".\\Source\\main.cpp"));
-        break;
-    case NoFileElement:
-        node = getNodeWithText(xmlDocument,"GroupName","Source");
-        node.nextSiblingElement("Files").
-                appendChild(createFileUVision(xmlDocument,"main.cpp","8",".\\Source\\main.cpp"));
-        break;
-    default:
-        break;
-    }
-    file.open(QIODevice::WriteOnly);
-    QTextStream outUvision(&file);
-    xmlDocument.save(outUvision,2);
     file.close();
     return true;
 }

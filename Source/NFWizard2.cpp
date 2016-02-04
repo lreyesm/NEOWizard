@@ -123,5 +123,6 @@ void NFWizard2::processXmlFiles()
         return;
     }
     XMLModifyNamespace::XMLKeilModify XmlDoc(fileuVision,fileList[0].absoluteFilePath());
-    XmlDoc.updateXml();
+    XmlDoc.updateCubeXml();
+    XmlDoc.updateUvisionXml();
 }

@@ -19,7 +19,8 @@ public:
     XMLKeilModify(const QString& uvisionFile, const QString& cubeFile);
     void setUvisionXmlFile(const QString& dir);
     void setCubeXmlFile(const QString& dir);
-    bool updateXml();
+    bool updateUvisionXml();
+    bool updateCubeXml();
 
 private:
     QString uvisionXmlFile;
