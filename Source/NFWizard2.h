@@ -3,7 +3,6 @@
 
 #include <QWidget>
 #include <QtCore>
-#include "TextFileParser.h"
 
 namespace Ui {
 class NFWizard2;
@@ -26,6 +25,7 @@ private slots:
 
 private:
     void generateProjectFileTree();
+    void processInterrupFile();
     void processMainFiles();
     void processXmlFiles();
 private:

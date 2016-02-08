@@ -5,7 +5,7 @@
 class FolderTreeGenerator
 {
 public:
-    static bool generateFileTree(const QString& pathRef, const QStringList& folderTreeRef);
+    static void generateFileTree(const QString& pathRef, const QStringList& folderTreeRef);
 private:
     FolderTreeGenerator();
     Q_DISABLE_COPY(FolderTreeGenerator)

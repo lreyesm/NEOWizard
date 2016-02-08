@@ -1,8 +1,10 @@
 #include "NFWizard2.h"
 #include "ui_NFWizard2.h"
+#include "FolderTreeGenerator.h"
+#include "CubeInterruptFileProcessor.h"
+
 #include <QtCore>
 #include <QFileDialog>
-#include <FolderTreeGenerator.h>
 #include <QMessageBox>
 
 
@@ -49,6 +51,7 @@ void NFWizard2::on_pushButton_Generate_clicked()
     QFileInfo fileuVisionInfo(fileuVision);
     if (fileCubeInfo.exists() && fileuVisionInfo.exists()) {
         generateProjectFileTree();
+        processInterrupFile();
         processMainFiles();
         processXmlFiles();
     }else{
@@ -68,34 +71,52 @@ void NFWizard2::generateProjectFileTree()
                           << "Tests";
     }
     projectFolderTree << "Source"; // always generate Source folder
-    FolderTreeGenerator::generateFileTree(fileuVision, projectFolderTree);
+    QFileInfo fileInfo(fileuVision);
+    FolderTreeGenerator::generateFileTree(fileInfo.dir().path(), projectFolderTree);
+}
+
+void NFWizard2::processInterrupFile()
+{
+    QFileInfo fileInfo(fileCube);
+    QDir cubeInterrupDir(fileInfo.dir());
+    cubeInterrupDir.cd("Src");
+    QStringList fileList = cubeInterrupDir.entryList(QStringList("*_it.c"));
+    if (!cubeInterrupDir.exists(fileList.first())) { // Should be only one file
+        QMessageBox::warning(this, tr("NFWizard2"),tr("ErSTM32CubeMx Src/%1 file not found").arg(fileList.first()));
+        return;
+    }
+    QDir::setCurrent(cubeInterrupDir.path());
+    if (!CubeInterruptFileProcessor::processFile(fileList.first())) {
+        QMessageBox::warning(this, tr("NFWizard2"),tr("Error processing STM32CubeMx Src/%1 file").arg(fileList.first()));
+    }
+    QDir::setCurrent(fileuVision);
 }
 
 void NFWizard2::processMainFiles()
 {
-    QDir cubeMainDir(fileCube);
-    if (!cubeMainDir.exists("Src/main.c")) {
-        QMessageBox::warning(this, tr("NFWizard2"),tr("STM32CubeMx Src/main.c file not found, Generation aborted"));
-        return;
-    }
-    qDebug() << "main found";
+    //    QDir cubeMainDir(fileCube);
+    //    if (!cubeMainDir.exists("Src/main.c")) {
+    //        QMessageBox::warning(this, tr("NFWizard2"),tr("STM32CubeMx Src/main.c file not found, Generation aborted"));
+    //        return;
+    //    }
+    //    qDebug() << "main found";
 
-    TextFileParser::TextLineList_t tokenList;
-    tokenList << TextFileParser::TextLinePair_t("/* Includes ------------------------------------------------------------------*/",
-                                                "/* USER CODE BEGIN Includes */")
-              << TextFileParser::TextLinePair_t("  /* Initialize all configured peripherals */",
-                                                "  /* USER CODE BEGIN 2 */")
-              << TextFileParser::TextLinePair_t("void SystemClock_Config(void)",
-                                                "/* USER CODE BEGIN 4 */");
+    //    TextFileParser::TextLineList_t tokenList;
+    //    tokenList << TextFileParser::TextLinePair_t("/* Includes ------------------------------------------------------------------*/",
+    //                                                "/* USER CODE BEGIN Includes */")
+    //              << TextFileParser::TextLinePair_t("  /* Initialize all configured peripherals */",
+    //                                                "  /* USER CODE BEGIN 2 */")
+    //              << TextFileParser::TextLinePair_t("void SystemClock_Config(void)",
+    //                                                "/* USER CODE BEGIN 4 */");
 
-    QDir::setCurrent(cubeMainDir.path());
-    TextFileParser fileParser;
-    if (!fileParser.setFileName("Src/main.c")) {
-        QMessageBox::warning(this, tr("NFWizard2"),tr("STM32CubeMx Src/main.c could no be opened, Generation aborted"));
-        return;
-    }
-    fileParser.addTextLinePairList(tokenList);
-    fileParser.startParsing();
+    //    QDir::setCurrent(cubeMainDir.path());
+    //    TextFileParser fileParser;
+    //    if (!fileParser.setFileName("Src/main.c")) {
+    //        QMessageBox::warning(this, tr("NFWizard2"),tr("STM32CubeMx Src/main.c could no be opened, Generation aborted"));
+    //        return;
+    //    }
+    //    fileParser.addTextLinePairList(tokenList);
+    //    fileParser.startParsing();
 }
 
 void NFWizard2::processXmlFiles()
