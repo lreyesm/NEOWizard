@@ -2,6 +2,7 @@
 #include "ui_NFWizard2.h"
 #include "FolderTreeGenerator.h"
 #include "CubeInterruptFileProcessor.h"
+#include "MainFilesProcessor.h"
 
 #include <QtCore>
 #include <QFileDialog>
@@ -82,7 +83,7 @@ void NFWizard2::processInterrupFile()
     cubeInterrupDir.cd("Src");
     QStringList fileList = cubeInterrupDir.entryList(QStringList("*_it.c"));
     if (!cubeInterrupDir.exists(fileList.first())) { // Should be only one file
-        QMessageBox::warning(this, tr("NFWizard2"),tr("ErSTM32CubeMx Src/%1 file not found").arg(fileList.first()));
+        QMessageBox::warning(this, tr("NFWizard2"),tr("Error STM32CubeMx Src/%1 file not found").arg(fileList.first()));
         return;
     }
     QDir::setCurrent(cubeInterrupDir.path());
@@ -92,31 +93,34 @@ void NFWizard2::processInterrupFile()
     QDir::setCurrent(fileuVision);
 }
 
+QString NFWizard2::generateMaincpp()
+{
+    QFileInfo fileInfo(fileuVision);
+    QDir uVisionDir(fileInfo.dir());
+    uVisionDir.cd("Source");
+    if (!uVisionDir.exists("main.cpp")) {
+        //TODO: copy main.cpp template to Source/
+    }
+    return uVisionDir.filePath("main.cpp");
+}
+
 void NFWizard2::processMainFiles()
 {
-    //    QDir cubeMainDir(fileCube);
-    //    if (!cubeMainDir.exists("Src/main.c")) {
-    //        QMessageBox::warning(this, tr("NFWizard2"),tr("STM32CubeMx Src/main.c file not found, Generation aborted"));
-    //        return;
-    //    }
-    //    qDebug() << "main found";
+    QFileInfo fileInfo(fileCube);
+    QDir fileDir(fileInfo.dir());
+    fileDir.cd("Src");
 
-    //    TextFileParser::TextLineList_t tokenList;
-    //    tokenList << TextFileParser::TextLinePair_t("/* Includes ------------------------------------------------------------------*/",
-    //                                                "/* USER CODE BEGIN Includes */")
-    //              << TextFileParser::TextLinePair_t("  /* Initialize all configured peripherals */",
-    //                                                "  /* USER CODE BEGIN 2 */")
-    //              << TextFileParser::TextLinePair_t("void SystemClock_Config(void)",
-    //                                                "/* USER CODE BEGIN 4 */");
+    if (!fileDir.exists("main.c")) {
+        QMessageBox::warning(this, tr("NFWizard2"),tr("Error STM32CubeMx Src/%1 file not found").arg("main.c"));
+        return;
+    }
+    QString cubeMainFile = fileDir.filePath("main.c");
+    QString maincppFile = generateMaincpp();
 
-    //    QDir::setCurrent(cubeMainDir.path());
-    //    TextFileParser fileParser;
-    //    if (!fileParser.setFileName("Src/main.c")) {
-    //        QMessageBox::warning(this, tr("NFWizard2"),tr("STM32CubeMx Src/main.c could no be opened, Generation aborted"));
-    //        return;
-    //    }
-    //    fileParser.addTextLinePairList(tokenList);
-    //    fileParser.startParsing();
+    if (!MainFilesProcessor::processFiles(cubeMainFile, maincppFile)) {
+        QMessageBox::warning(this, tr("NFWizard2"),tr("Error processing STM32CubeMx Src/%1 file and"
+                                                      " Source/%2").arg("main.c").arg("main.cpp"));
+    }
 }
 
 void NFWizard2::processXmlFiles()

@@ -1,7 +1,7 @@
 #ifndef CUBEINTERRUPTFILEPROCESSOR_H
 #define CUBEINTERRUPTFILEPROCESSOR_H
 
-#include <QString>
+#include <QtCore>
 
 class CubeInterruptFileProcessor
 {

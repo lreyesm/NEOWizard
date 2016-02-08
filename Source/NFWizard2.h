@@ -26,6 +26,7 @@ private slots:
 private:
     void generateProjectFileTree();
     void processInterrupFile();
+    QString generateMaincpp();
     void processMainFiles();
     void processXmlFiles();
 private:
