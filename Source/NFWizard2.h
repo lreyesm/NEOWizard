@@ -3,7 +3,7 @@
 
 #include <QWidget>
 #include <QtCore>
-#include "FileParser.h"
+#include "TextFileParser.h"
 
 namespace Ui {
 class NFWizard2;
@@ -24,8 +24,6 @@ private slots:
 
     void on_pushButton_Generate_clicked();
 
-    void on_cubeMainFileProcessed();
-
 private:
     void generateProjectFileTree();
     void processMainFiles();
@@ -35,12 +33,7 @@ private:
 
     QString fileuVision;
     QString fileCube;
-    QDir directoryuVision;
-    QDir directoryCube;
-
-    FileParserNamespace::FileParser fileParser;
-    QFile fileHandler;
-
+    QString lastPath;
 };
 
 #endif // NFWIZARD2_H

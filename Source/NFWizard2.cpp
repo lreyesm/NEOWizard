@@ -5,7 +5,6 @@
 #include <FolderTreeGenerator.h>
 #include <QMessageBox>
 
-using namespace FileParserNamespace;
 
 NFWizard2::NFWizard2(QWidget *parent) :
     QWidget(parent),
@@ -14,6 +13,7 @@ NFWizard2::NFWizard2(QWidget *parent) :
     ui->setupUi(this);
     fileCube = "";
     fileuVision = "";
+    lastPath = QDir::homePath();
 }
 
 NFWizard2::~NFWizard2()
@@ -24,22 +24,22 @@ NFWizard2::~NFWizard2()
 void NFWizard2::on_pushButton_uVisionBrowse_clicked()
 {
     fileuVision = QFileDialog::getOpenFileName(this, tr("Open Keil uVision Project"),
-                                               QDir::homePath(),
+                                               lastPath,
                                                tr("uVision Project Files (*.uvprojx)"));
     if (QFile::exists(fileuVision)) {
         ui->lineEdit_uVisionPath->setText(fileuVision);
-        directoryuVision = QFileInfo(fileuVision).dir();
+        lastPath = QFileInfo(fileuVision).dir().path();
     }
 }
 
 void NFWizard2::on_pushButton_CubeBrowse_clicked()
 {
     fileCube = QFileDialog::getOpenFileName(this, tr("Open STM32CubeMx Project"),
-                                            QDir::homePath(),
+                                            lastPath,
                                             tr("STM32CubeMx Project Project Files (*.ioc)"));
     if (QFile::exists(fileCube)) {
         ui->lineEdit_CubePath->setText(fileCube);
-        directoryCube = QFileInfo(fileCube).dir();
+        lastPath = QFileInfo(fileCube).dir().path();
     }
 }
 
@@ -56,24 +56,6 @@ void NFWizard2::on_pushButton_Generate_clicked()
     }
 }
 
-void NFWizard2::on_cubeMainFileProcessed()
-{
-    QFile file("main2.c");
-    if(!file.open(QFile::WriteOnly | QFile::Text)){
-        qDebug()<< "could not open the file";
-        return;
-    }
-    QTextStream fileWriter(&file);
-    ParsedData parsedData = fileParser.getParsedData();
-    TokenTupleList_t tokens = parsedData.keys();
-    foreach (const TokenTuple_t& token, tokens) {
-         fileWriter << token.first << endl
-                 << parsedData.value(token)
-                 << token.second << endl
-                 << endl;
-    }
-    file.close();
-}
 
 void NFWizard2::generateProjectFileTree()
 {
@@ -86,31 +68,33 @@ void NFWizard2::generateProjectFileTree()
                           << "Tests";
     }
     projectFolderTree << "Source"; // always generate Source folder
-    FolderTreeGenerator::generateFileTree(directoryuVision.path(), projectFolderTree);
+    FolderTreeGenerator::generateFileTree(fileuVision, projectFolderTree);
 }
 
 void NFWizard2::processMainFiles()
 {
-    QDir cubeMainDir(directoryCube);
+    QDir cubeMainDir(fileCube);
     if (!cubeMainDir.exists("Src/main.c")) {
         QMessageBox::warning(this, tr("NFWizard2"),tr("STM32CubeMx Src/main.c file not found, Generation aborted"));
+        return;
     }
     qDebug() << "main found";
 
-    TokenTupleList_t tokenList;
-    tokenList << TokenTuple_t("/* Includes ------------------------------------------------------------------*/",
-                              "/* USER CODE BEGIN Includes */")
-              << TokenTuple_t("  /* Initialize all configured peripherals */",
-                              "  /* USER CODE BEGIN 2 */")
-              << TokenTuple_t("void SystemClock_Config(void)",
-                              "/* USER CODE BEGIN 4 */");
+    TextFileParser::TextLineList_t tokenList;
+    tokenList << TextFileParser::TextLinePair_t("/* Includes ------------------------------------------------------------------*/",
+                                                "/* USER CODE BEGIN Includes */")
+              << TextFileParser::TextLinePair_t("  /* Initialize all configured peripherals */",
+                                                "  /* USER CODE BEGIN 2 */")
+              << TextFileParser::TextLinePair_t("void SystemClock_Config(void)",
+                                                "/* USER CODE BEGIN 4 */");
 
     QDir::setCurrent(cubeMainDir.path());
+    TextFileParser fileParser;
     if (!fileParser.setFileName("Src/main.c")) {
-
+        QMessageBox::warning(this, tr("NFWizard2"),tr("STM32CubeMx Src/main.c could no be opened, Generation aborted"));
+        return;
     }
-    fileParser.addTokenTupleList(tokenList);
-    connect(&fileParser, SIGNAL(parsingFinished()), this, SLOT(on_cubeMainFileProcessed()));
+    fileParser.addTextLinePairList(tokenList);
     fileParser.startParsing();
 }
 

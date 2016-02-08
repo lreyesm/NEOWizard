@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui concurrent xml
+QT       += core gui xml
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -14,12 +14,14 @@ TEMPLATE = app
 
 SOURCES += Source/main.cpp\
         Source/NFWizard2.cpp \
-    Source/FileParser.cpp \
-    Source/FolderTreeGenerator.cpp
+    Source/FolderTreeGenerator.cpp \
+    Source/TextFileParser.cpp \
+    Source/TextFileCopier.cpp
 
 HEADERS  += Source/NFWizard2.h \
-    Source/FileParser.h \
-    Source/FolderTreeGenerator.h
+    Source/FolderTreeGenerator.h \
+    Source/TextFileParser.h \
+    Source/TextFileCopier.h
 
 FORMS    += Source/NFWizard2.ui
 
