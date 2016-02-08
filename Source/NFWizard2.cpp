@@ -125,5 +125,13 @@ void NFWizard2::processMainFiles()
 
 void NFWizard2::processXmlFiles()
 {
-
+    QDir cubeDir = QFileInfo(fileCube).dir();
+    cubeDir.cdUp();
+    QFileInfoList fileList = cubeDir.entryInfoList(QStringList("*.gpdsc"),QDir::Files,QDir::Type);
+    if(fileList.size() > 1){
+        return;
+    }
+    XMLModifyNamespace::XMLKeilModify XmlDoc(fileuVision,fileList[0].absoluteFilePath());
+    XmlDoc.updateCubeXml();
+    XmlDoc.updateUvisionXml();
 }

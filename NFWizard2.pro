@@ -16,12 +16,14 @@ SOURCES += Source/main.cpp\
         Source/NFWizard2.cpp \
     Source/FolderTreeGenerator.cpp \
     Source/CubeInterruptFileProcessor.cpp \
-    Source/MainFilesProcessor.cpp
+    Source/MainFilesProcessor.cpp \
+    Source/XMLKeilModify.cpp
 
 HEADERS  += Source/NFWizard2.h \
     Source/FolderTreeGenerator.h \
     Source/CubeInterruptFileProcessor.h \
-    Source/MainFilesProcessor.h
+    Source/MainFilesProcessor.h \
+    Source/XMLKeilModify.h
 
 FORMS    += Source/NFWizard2.ui
 

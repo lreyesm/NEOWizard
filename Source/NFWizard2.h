@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include <QtCore>
+#include "XMLKeilModify.h"
 
 namespace Ui {
 class NFWizard2;
@@ -35,6 +36,7 @@ private:
     QString fileuVision;
     QString fileCube;
     QString lastPath;
+    FileParserNamespace::FileParser fileParser;
 };
 
 #endif // NFWIZARD2_H
