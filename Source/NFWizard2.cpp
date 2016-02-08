@@ -57,7 +57,9 @@ void NFWizard2::on_pushButton_Generate_clicked()
         processXmlFiles();
     }else{
         QMessageBox::warning(this, tr("NFWizard 2"),tr("Projects path not valid"));
+        return;
     }
+    QMessageBox::information(this, tr("NFWizard 2"),tr("Project Generation complete"));
 }
 
 

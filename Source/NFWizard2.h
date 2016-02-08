@@ -36,7 +36,6 @@ private:
     QString fileuVision;
     QString fileCube;
     QString lastPath;
-    FileParserNamespace::FileParser fileParser;
 };
 
 #endif // NFWIZARD2_H
