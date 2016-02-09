@@ -32,3 +32,5 @@ INCLUDEPATH += Source
 RESOURCES += \
     assets.qrc \
     templates.qrc
+
+RC_ICONS = Assets/icon.ico
