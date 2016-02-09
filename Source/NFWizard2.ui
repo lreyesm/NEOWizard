@@ -30,7 +30,7 @@
   </property>
   <property name="windowIcon">
    <iconset resource="../assets.qrc">
-    <normaloff>:/Assets/icon.jpg</normaloff>:/Assets/icon.jpg</iconset>
+    <normaloff>:/Assets/icon.ico</normaloff>:/Assets/icon.ico</iconset>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <property name="sizeConstraint">
