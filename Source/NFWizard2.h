@@ -26,6 +26,7 @@ private slots:
 
 private:
     void generateProjectFileTree();
+    void generateTemplates(const QString& projectRootRef);
     void processInterrupFile();
     QString generateMaincpp();
     void processMainFiles();

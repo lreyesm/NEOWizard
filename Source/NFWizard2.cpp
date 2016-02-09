@@ -76,25 +76,7 @@ void NFWizard2::generateProjectFileTree()
     projectFolderTree << "Source"; // always generate Source folder
     QFileInfo fileInfo(fileuVision);
     FolderTreeGenerator::generateFileTree(fileInfo.dir().path(), projectFolderTree);
-
-    if (!QDir::setCurrent(fileInfo.dir().path())) {
-        qDebug() << "could not switch to " << fileInfo.dir().path();
-    }
-    qDebug() << "Current path: " << QDir::currentPath();
-
-
-    if (!QFile::copy("://Templates/main.cpp", "Source/main.cpp")) {
-        qDebug() << "error coping main.cpp template";
-    }
-    if (!QFile::copy("://Templates/.gitignore", ".gitignore")) {
-        qDebug() << "error coping gitignore template";
-    }
-    if (!QFile::copy("://Templates/README.md", "README.md")) {
-        qDebug() << "error coping README template";
-    }
-    if (!QFile::copy("://Templates/KeilCopyLib.bat", "Scripts/KeilCopyLib.bat")) {
-        qDebug() << "error coping KeilCopyLib template";
-    }
+    generateTemplates(fileInfo.dir().path());
 }
 
 void NFWizard2::processInterrupFile()
@@ -155,4 +137,31 @@ void NFWizard2::processXmlFiles()
     XMLModifyNamespace::XMLKeilModify XmlDoc(fileuVision,fileList[0].absoluteFilePath());
     XmlDoc.updateCubeXml();
     XmlDoc.updateUvisionXml();
+}
+
+void NFWizard2::generateTemplates(const QString &projectRootRef)
+{
+
+    if (!QDir::setCurrent(projectRootRef)) {
+        qDebug() << "could not switch to " << projectRootRef;
+    }
+    qDebug() << "Current path: " << QDir::currentPath();
+
+    typedef QPair<QString, QString> FilePair;
+    typedef QList<FilePair> FilePairList;
+    FilePairList fileList;
+    fileList << FilePair("://Templates/main.cpp", "Source/main.cpp")
+             << FilePair("://Templates/.gitignore", ".gitignore")
+             << FilePair("://Templates/README.md", "README.md")
+             << FilePair("://Templates/KeilCopyLib.bat", "Scripts/KeilCopyLib.bat");
+    FilePair filePair;
+    bool retval = false;
+    foreach (filePair, fileList) {
+        retval = QFile::copy(filePair.first, filePair.second);
+        if (retval) {
+            QFile::setPermissions(filePair.second, QFileDevice::WriteOther);
+        }else {
+            qDebug() << "error coping " << filePair.second << " template";
+        }
+    }
 }
