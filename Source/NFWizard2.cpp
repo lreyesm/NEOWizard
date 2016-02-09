@@ -80,7 +80,8 @@ void NFWizard2::generateProjectFileTree()
     if (!QDir::setCurrent(fileInfo.dir().path())) {
         qDebug() << "could not switch to " << fileInfo.dir().path();
     }
-        qDebug() << "Current path: " << QDir::currentPath();
+    qDebug() << "Current path: " << QDir::currentPath();
+
 
     if (!QFile::copy("://Templates/main.cpp", "Source/main.cpp")) {
         qDebug() << "error coping main.cpp template";
