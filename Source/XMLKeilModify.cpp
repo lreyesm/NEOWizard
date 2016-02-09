@@ -35,6 +35,7 @@ bool XMLKeilModify::updateUvisionXml(){
             node.firstChild().toText().setData("Source");
         }
     }
+
     switch(existsFilesInGroup(xmlDocument,"Source","main.cpp")){
     case NoFilesElement:
         node = getNodeWithText(xmlDocument,"GroupName","Source");
@@ -52,7 +53,7 @@ bool XMLKeilModify::updateUvisionXml(){
     }
     file.open(QIODevice::WriteOnly);
     QTextStream outUvision(&file);
-    xmlDocument.save(outUvision,2);
+    xmlDocument.save(outUvision,QDomNode::EncodingFromTextStream);
     file.close();
     return true;
 }

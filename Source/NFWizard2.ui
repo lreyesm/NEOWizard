@@ -28,6 +28,10 @@
   <property name="windowTitle">
    <string>NFWizard2</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="../assets.qrc">
+    <normaloff>:/Assets/icon.jpg</normaloff>:/Assets/icon.jpg</iconset>
+  </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <property name="sizeConstraint">
     <enum>QLayout::SetDefaultConstraint</enum>
@@ -171,7 +175,9 @@
   </layout>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources/>
+ <resources>
+  <include location="../assets.qrc"/>
+ </resources>
  <connections>
   <connection>
    <sender>pushButton_Quit</sender>

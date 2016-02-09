@@ -76,6 +76,24 @@ void NFWizard2::generateProjectFileTree()
     projectFolderTree << "Source"; // always generate Source folder
     QFileInfo fileInfo(fileuVision);
     FolderTreeGenerator::generateFileTree(fileInfo.dir().path(), projectFolderTree);
+
+    if (!QDir::setCurrent(fileInfo.dir().path())) {
+        qDebug() << "could not switch to " << fileInfo.dir().path();
+    }
+        qDebug() << "Current path: " << QDir::currentPath();
+
+    if (!QFile::copy("://Templates/main.cpp", "Source/main.cpp")) {
+        qDebug() << "error coping main.cpp template";
+    }
+    if (!QFile::copy("://Templates/.gitignore", ".gitignore")) {
+        qDebug() << "error coping gitignore template";
+    }
+    if (!QFile::copy("://Templates/README.md", "README.md")) {
+        qDebug() << "error coping README template";
+    }
+    if (!QFile::copy("://Templates/KeilCopyLib.bat", "Scripts/KeilCopyLib.bat")) {
+        qDebug() << "error coping KeilCopyLib template";
+    }
 }
 
 void NFWizard2::processInterrupFile()

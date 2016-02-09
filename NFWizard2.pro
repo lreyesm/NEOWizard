@@ -28,3 +28,7 @@ HEADERS  += Source/NFWizard2.h \
 FORMS    += Source/NFWizard2.ui
 
 INCLUDEPATH += Source
+
+RESOURCES += \
+    assets.qrc \
+    templates.qrc

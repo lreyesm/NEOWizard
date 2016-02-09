@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/">
+        <file>Templates/.gitignore</file>
+        <file>Templates/KeilCopyLib.bat</file>
+        <file>Templates/main.cpp</file>
+        <file>Templates/README.md</file>
+    </qresource>
+</RCC>

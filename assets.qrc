@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/">
+        <file>Assets/icon.jpg</file>
+        <file>Assets/keilEditorOptions.PNG</file>
+        <file>Assets/Stm32CubeMxProjectOptions.PNG</file>
+    </qresource>
+</RCC>
