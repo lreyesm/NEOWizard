@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>640</width>
-    <height>298</height>
+    <height>271</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -29,7 +29,7 @@
    <string>NFWizard2</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="../assets.qrc">
+   <iconset>
     <normaloff>:/Assets/icon.ico</normaloff>:/Assets/icon.ico</iconset>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
@@ -175,9 +175,7 @@
   </layout>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources>
-  <include location="../assets.qrc"/>
- </resources>
+ <resources/>
  <connections>
   <connection>
    <sender>pushButton_Quit</sender>
