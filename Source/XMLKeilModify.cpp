@@ -51,6 +51,25 @@ bool XMLKeilModify::updateUvisionXml(){
     default:
         break;
     }
+    QDomNodeList list = xmlDocument.elementsByTagName("TargetName");
+    if(list.item(0).firstChild().toText().data() == "Target 1"){
+        list.item(0).firstChild().toText().setData("Debug");
+    }
+    list = xmlDocument.elementsByTagName("targetInfo");
+    for(int i=0; i<list.size(); i++){
+        if(list.item(i).toElement().attributeNode("name").value() == "Target 1"){
+            list.item(i).toElement().attributeNode("name").setValue("Debug");
+        }
+    }
+    list = xmlDocument.elementsByTagName("Cads");
+    QDomElement elem = list.item(0).firstChildElement("VariousControls");
+    elem = elem.firstChildElement("Define");
+    if(elem.text().isEmpty()){
+        elem.appendChild(xmlDocument.createTextNode("DEBUG"));
+    }else if (!elem.text().contains("DEBUG")) {
+        elem.firstChild().toText().setData(elem.text().append(", DEBUG"));
+    }
+
     file.open(QIODevice::WriteOnly);
     QTextStream outUvision(&file);
     xmlDocument.save(outUvision,QDomNode::EncodingFromTextStream);

@@ -126,9 +126,13 @@ void NFWizard2::processMainFiles()
 void NFWizard2::processXmlFiles()
 {
     QDir cubeDir = QFileInfo(fileCube).dir();
-    cubeDir.cdUp();
+    if(!cubeDir.cdUp()){
+        QMessageBox::critical(this,tr("NFWizard2"),tr("Error. File not founnd."));
+        return;
+    }
     QFileInfoList fileList = cubeDir.entryInfoList(QStringList("*.gpdsc"),QDir::Files,QDir::Type);
-    if(fileList.size() > 1){
+    if(fileList.size() != 1){
+        QMessageBox::critical(this,tr("NFWizard2"),tr("Error. File not founnd."));
         return;
     }
     XMLModifyNamespace::XMLKeilModify XmlDoc(fileuVision,fileList[0].absoluteFilePath());
