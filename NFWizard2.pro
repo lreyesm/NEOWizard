@@ -17,15 +17,18 @@ SOURCES += Source/main.cpp\
     Source/FolderTreeGenerator.cpp \
     Source/CubeInterruptFileProcessor.cpp \
     Source/MainFilesProcessor.cpp \
-    Source/XMLKeilModify.cpp
+    Source/XMLKeilModify.cpp \
+    Source/DialogConfigurationHelp.cpp
 
 HEADERS  += Source/NFWizard2.h \
     Source/FolderTreeGenerator.h \
     Source/CubeInterruptFileProcessor.h \
     Source/MainFilesProcessor.h \
-    Source/XMLKeilModify.h
+    Source/XMLKeilModify.h \
+    Source/DialogConfigurationHelp.h
 
-FORMS    += Source/NFWizard2.ui
+FORMS    += Source/NFWizard2.ui \
+    Source/DialogConfigurationHelp.ui
 
 INCLUDEPATH += Source
 

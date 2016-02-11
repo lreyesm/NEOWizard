@@ -3,6 +3,7 @@
 #include "FolderTreeGenerator.h"
 #include "CubeInterruptFileProcessor.h"
 #include "MainFilesProcessor.h"
+#include "XMLKeilModify.h"
 
 #include <QtCore>
 #include <QFileDialog>
@@ -10,10 +11,12 @@
 
 
 NFWizard2::NFWizard2(QWidget *parent) :
-    QWidget(parent),
+    QMainWindow(parent),
     ui(new Ui::NFWizard2)
 {
     ui->setupUi(this);
+    dialogConfigHelp = new DialogConfigurationHelp(this);
+    dialogConfigHelp->layout()->setSizeConstraint(QLayout::SetFixedSize);
     fileCube = "";
     fileuVision = "";
     lastPath = QDir::homePath();
@@ -96,17 +99,6 @@ void NFWizard2::processInterrupFile()
     QDir::setCurrent(fileuVision);
 }
 
-QString NFWizard2::generateMaincpp()
-{
-    QFileInfo fileInfo(fileuVision);
-    QDir uVisionDir(fileInfo.dir());
-    uVisionDir.cd("Source");
-    if (!uVisionDir.exists("main.cpp")) {
-        //TODO: copy main.cpp template to Source/
-    }
-    return uVisionDir.filePath("main.cpp");
-}
-
 void NFWizard2::processMainFiles()
 {
     QFileInfo fileInfo(fileCube);
@@ -118,7 +110,12 @@ void NFWizard2::processMainFiles()
         return;
     }
     QString cubeMainFile = fileDir.filePath("main.c");
-    QString maincppFile = generateMaincpp();
+
+    fileInfo.setFile(fileuVision);
+    fileDir = fileInfo.dir();
+    fileDir.cd("Source");
+    QString maincppFile = fileDir.filePath("main.cpp");
+    //QString maincppFile = generateMaincpp();
 
     if (!MainFilesProcessor::processFiles(cubeMainFile, maincppFile)) {
         QMessageBox::warning(this, tr("NFWizard2"),tr("Error processing STM32CubeMx Src/%1 file and"
@@ -141,7 +138,6 @@ void NFWizard2::processXmlFiles()
 
 void NFWizard2::generateTemplates(const QString &projectRootRef)
 {
-
     if (!QDir::setCurrent(projectRootRef)) {
         qDebug() << "could not switch to " << projectRootRef;
     }
@@ -161,7 +157,41 @@ void NFWizard2::generateTemplates(const QString &projectRootRef)
         if (retval) {
             QFile::setPermissions(filePair.second, QFileDevice::WriteOther);
         }else {
-            qDebug() << "error coping " << filePair.second << " template";
+            qDebug() << "error coping " << filePair.second << " template" << "all ready copied?";
         }
     }
+}
+
+void NFWizard2::on_actionAbout_Qt_triggered()
+{
+    QApplication::aboutQt();
+}
+
+void NFWizard2::on_actionAbout_triggered()
+{
+    QString info;
+    QTextStream infoWriter(&info);
+    infoWriter << QStringLiteral("Released under Beerware license") << endl
+               << QStringLiteral("Contact:") << endl
+               << QStringLiteral("Ernesto Cruz Olivera: ecruzolivera@gmail.com") << endl
+               << QStringLiteral("Manuel A. Linarez Páez: manuel.linares@cneuro.edu.cu") << endl;
+    QMessageBox::information(this, "NFWizard 2", info);
+}
+
+void NFWizard2::on_actionUVision_Configuration_triggered()
+{
+    dialogConfigHelp->setWindowTitle("Keil uVision recomended Text Editor Options");
+    dialogConfigHelp->setHelpImage(":/Assets/keilEditorOptions.PNG");
+    dialogConfigHelp->setHelpText("Edit > Configuration > Editor");
+    dialogConfigHelp->adjustSize();
+    dialogConfigHelp->show();
+}
+
+void NFWizard2::on_actionSTM32CubeMx_Configuration_triggered()
+{
+    dialogConfigHelp->setWindowTitle("STM32CubeMx Projects Options");
+    dialogConfigHelp->setHelpImage(":/Assets/Stm32CubeMxProjectOptions.PNG");
+    dialogConfigHelp->setHelpText("Project > Settings > Code Generator");
+    dialogConfigHelp->adjustSize();
+    dialogConfigHelp->show();
 }
