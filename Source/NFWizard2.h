@@ -37,6 +37,8 @@ private:
     void processInterrupFile();
     void processMainFiles();
     void processXmlFiles();
+    void saveSettings();
+    void loadSettings();
 private:
     Ui::NFWizard2 *ui;
     DialogConfigurationHelp *dialogConfigHelp;

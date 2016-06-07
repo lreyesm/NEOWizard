@@ -17,13 +17,12 @@ NFWizard2::NFWizard2(QWidget *parent) :
     ui->setupUi(this);
     dialogConfigHelp = new DialogConfigurationHelp(this);
     dialogConfigHelp->layout()->setSizeConstraint(QLayout::SetFixedSize);
-    fileCube = "";
-    fileuVision = "";
-    lastPath = QDir::homePath();
+    loadSettings();
 }
 
 NFWizard2::~NFWizard2()
 {
+    saveSettings();
     delete ui;
 }
 
@@ -126,14 +125,42 @@ void NFWizard2::processMainFiles()
 void NFWizard2::processXmlFiles()
 {
     QDir cubeDir = QFileInfo(fileCube).dir();
-    cubeDir.cdUp();
+    if(!cubeDir.cdUp()){
+        QMessageBox::critical(this,tr("NFWizard2"),tr("Error. File not founnd."));
+        return;
+    }
     QFileInfoList fileList = cubeDir.entryInfoList(QStringList("*.gpdsc"),QDir::Files,QDir::Type);
-    if(fileList.size() > 1){
+    if(fileList.size() != 1){
+        QMessageBox::critical(this,tr("NFWizard2"),tr("Error. File not founnd."));
         return;
     }
     XMLModifyNamespace::XMLKeilModify XmlDoc(fileuVision,fileList[0].absoluteFilePath());
     XmlDoc.updateCubeXml();
     XmlDoc.updateUvisionXml();
+}
+
+void NFWizard2::saveSettings()
+{
+    QSettings settings("CNEURO", "NFWizard2");
+    settings.setValue("App/FileuVision", fileuVision);
+    settings.setValue("App/FileCube", fileCube);
+    settings.setValue("App/LastPath", lastPath);
+}
+
+void NFWizard2::loadSettings()
+{
+    QSettings settings("CNEURO", "NFWizard2");
+    fileuVision = settings.value("App/FileuVision", "").toString();
+    fileCube = settings.value("App/FileCube","").toString();
+    lastPath = settings.value("App/LastPath", QDir::homePath()).toString();
+
+    if (!fileuVision.isEmpty()) {
+        ui->lineEdit_uVisionPath->setText(fileuVision);
+    }
+    if (!fileCube.isEmpty()) {
+        ui->lineEdit_CubePath->setText(fileCube);
+    }
+
 }
 
 void NFWizard2::generateTemplates(const QString &projectRootRef)
