@@ -17,8 +17,6 @@ NFWizard2::NFWizard2(QWidget *parent) :
     ui->setupUi(this);
     dialogConfigHelp = new DialogConfigurationHelp(this);
     dialogConfigHelp->layout()->setSizeConstraint(QLayout::SetFixedSize);
-    fileCube = "";
-    fileuVision = "";
     loadSettings();
 }
 
@@ -144,13 +142,25 @@ void NFWizard2::processXmlFiles()
 void NFWizard2::saveSettings()
 {
     QSettings settings("CNEURO", "NFWizard2");
+    settings.setValue("App/FileuVision", fileuVision);
+    settings.setValue("App/FileCube", fileCube);
     settings.setValue("App/LastPath", lastPath);
 }
 
 void NFWizard2::loadSettings()
 {
     QSettings settings("CNEURO", "NFWizard2");
+    fileuVision = settings.value("App/FileuVision", "").toString();
+    fileCube = settings.value("App/FileCube","").toString();
     lastPath = settings.value("App/LastPath", QDir::homePath()).toString();
+
+    if (!fileuVision.isEmpty()) {
+        ui->lineEdit_uVisionPath->setText(fileuVision);
+    }
+    if (!fileCube.isEmpty()) {
+        ui->lineEdit_CubePath->setText(fileCube);
+    }
+
 }
 
 void NFWizard2::generateTemplates(const QString &projectRootRef)
