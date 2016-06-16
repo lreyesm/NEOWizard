@@ -118,9 +118,6 @@ void NFWizard2::processInterrupFile()
         itFileProcessor.setMssg(delimiter.mssg);
         itFileProcessor.processFile();
     }
-    //    if (!CubeInterruptFileProcessor::processFile(fileList.first())) {
-    //        QMessageBox::warning(this, tr("NFWizard2"),tr("Error processing STM32CubeMx Src/%1 file").arg(fileList.first()));
-    //    }
     QDir::setCurrent(fileuVision);
 }
 
