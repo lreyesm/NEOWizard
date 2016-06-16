@@ -13,6 +13,11 @@ class NFWizard2 : public QMainWindow
 {
     Q_OBJECT
 
+    struct FunctionDelimiters{
+        QString startLine;
+        QString endLine;
+        QString mssg;
+    };
 public:
     explicit NFWizard2(QWidget *parent = 0);
     ~NFWizard2();

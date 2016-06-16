@@ -15,17 +15,17 @@ DESTDIR = $$PWD/NFWizard2
 SOURCES += Source/main.cpp\
         Source/NFWizard2.cpp \
     Source/FolderTreeGenerator.cpp \
-    Source/CubeInterruptFileProcessor.cpp \
     Source/MainFilesProcessor.cpp \
     Source/XMLKeilModify.cpp \
-    Source/DialogConfigurationHelp.cpp
+    Source/DialogConfigurationHelp.cpp \
+    Source/TextFromFileDeleter.cpp
 
 HEADERS  += Source/NFWizard2.h \
     Source/FolderTreeGenerator.h \
-    Source/CubeInterruptFileProcessor.h \
     Source/MainFilesProcessor.h \
     Source/XMLKeilModify.h \
-    Source/DialogConfigurationHelp.h
+    Source/DialogConfigurationHelp.h \
+    Source/TextFromFileDeleter.h
 
 FORMS    += Source/NFWizard2.ui \
     Source/DialogConfigurationHelp.ui

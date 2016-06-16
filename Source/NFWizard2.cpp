@@ -1,9 +1,10 @@
 #include "NFWizard2.h"
 #include "ui_NFWizard2.h"
 #include "FolderTreeGenerator.h"
-#include "CubeInterruptFileProcessor.h"
+//#include "CubeInterruptFileProcessor.h"
 #include "MainFilesProcessor.h"
 #include "XMLKeilModify.h"
+#include "TextFromFileDeleter.h"
 
 #include <QtCore>
 #include <QFileDialog>
@@ -83,6 +84,23 @@ void NFWizard2::generateProjectFileTree()
 
 void NFWizard2::processInterrupFile()
 {
+    QList<FunctionDelimiters> delimiters;
+    FunctionDelimiters systickHandler = {"void SysTick_Handler(void)",
+                                         "/* USER CODE END SysTick_IRQn 1 */",
+                                         "\n/* Deleted by NFWizard 2 */\n\n"};
+    delimiters << systickHandler;
+
+    FunctionDelimiters svcHandler = {"void SVC_Handler(void)",
+                                     "/* USER CODE END SVCall_IRQn 1 */",
+                                     "\n/* Deleted by NFWizard 2 */\n\n"};
+    delimiters << svcHandler;
+
+    FunctionDelimiters pendsvhandler = {"void PendSV_Handler(void)",
+                                        "/* USER CODE END PendSV_IRQn 1 */",
+                                        "\n/* Deleted by NFWizard 2 */\n\n"};
+
+    delimiters << pendsvhandler;
+
     QFileInfo fileInfo(fileCube);
     QDir cubeInterrupDir(fileInfo.dir());
     cubeInterrupDir.cd("Src");
@@ -92,9 +110,17 @@ void NFWizard2::processInterrupFile()
         return;
     }
     QDir::setCurrent(cubeInterrupDir.path());
-    if (!CubeInterruptFileProcessor::processFile(fileList.first())) {
-        QMessageBox::warning(this, tr("NFWizard2"),tr("Error processing STM32CubeMx Src/%1 file").arg(fileList.first()));
+    TextFromFileDeleter itFileProcessor;
+    itFileProcessor.setFilename(fileList.first());
+    foreach (const FunctionDelimiters &delimiter, delimiters) {
+        itFileProcessor.setStartLine(delimiter.startLine);
+        itFileProcessor.setEndLine(delimiter.endLine);
+        itFileProcessor.setMssg(delimiter.mssg);
+        itFileProcessor.processFile();
     }
+    //    if (!CubeInterruptFileProcessor::processFile(fileList.first())) {
+    //        QMessageBox::warning(this, tr("NFWizard2"),tr("Error processing STM32CubeMx Src/%1 file").arg(fileList.first()));
+    //    }
     QDir::setCurrent(fileuVision);
 }
 
