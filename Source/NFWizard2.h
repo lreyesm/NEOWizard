@@ -42,6 +42,7 @@ private:
     void processInterrupFile();
     void processMainFiles();
     void processXmlFiles();
+    void processHalConfigFile();
     void saveSettings();
     void loadSettings();
 private:

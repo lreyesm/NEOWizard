@@ -3,28 +3,29 @@
 
 #include <QtCore>
 
-class TextFromFileDeleter
+class TextFileProcessor
 {
 public:
     QString startLine() const;
-    void setStartLine(const QString &startLine);
+    void setStartLine(const QString &value);
 
     QString endLine() const;
     void setEndLine(const QString &endLine);
 
-    QString mssg() const;
-    void setMssg(const QString &mssg);
+    QString replacementString() const;
+    void setReplacementString(const QString &value);
 
 
     QString filename() const;
     void setFilename(const QString &filename);
 
-    void processFile();
+    void processTextBlock();
+    void processMethod();
 private:
     QString filename_;
     QString startLine_;
     QString endLine_;
-    QString mssg_;
+    QString replacementStr_;
 };
 
 #endif // TEXTFROMFILEDELETER_H

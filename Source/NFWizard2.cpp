@@ -4,7 +4,7 @@
 //#include "CubeInterruptFileProcessor.h"
 #include "MainFilesProcessor.h"
 #include "XMLKeilModify.h"
-#include "TextFromFileDeleter.h"
+#include "TextFileProcessor.h"
 
 #include <QtCore>
 #include <QFileDialog>
@@ -57,6 +57,7 @@ void NFWizard2::on_pushButton_Generate_clicked()
         generateProjectFileTree();
         processInterrupFile();
         processMainFiles();
+        processHalConfigFile();
         processXmlFiles();
     }else{
         QMessageBox::warning(this, tr("NFWizard 2"),tr("Projects path not valid"));
@@ -85,19 +86,19 @@ void NFWizard2::generateProjectFileTree()
 void NFWizard2::processInterrupFile()
 {
     QList<FunctionDelimiters> delimiters;
-    FunctionDelimiters systickHandler = {"void SysTick_Handler(void)",
-                                         "/* USER CODE END SysTick_IRQn 1 */",
-                                         "\n/* Deleted by NFWizard 2 */\n\n"};
+    FunctionDelimiters systickHandler = {QStringLiteral("void SysTick_Handler(void)"),
+                                         QStringLiteral("/* USER CODE END SysTick_IRQn 1 */"),
+                                         QStringLiteral("\n/* Deleted by NFWizard 2 */\n\n")};
     delimiters << systickHandler;
 
-    FunctionDelimiters svcHandler = {"void SVC_Handler(void)",
-                                     "/* USER CODE END SVCall_IRQn 1 */",
-                                     "\n/* Deleted by NFWizard 2 */\n\n"};
+    FunctionDelimiters svcHandler = {QStringLiteral("void SVC_Handler(void)"),
+                                     QStringLiteral("/* USER CODE END SVCall_IRQn 1 */"),
+                                     QStringLiteral("\n/* Deleted by NFWizard 2 */\n\n")};
     delimiters << svcHandler;
 
-    FunctionDelimiters pendsvhandler = {"void PendSV_Handler(void)",
-                                        "/* USER CODE END PendSV_IRQn 1 */",
-                                        "\n/* Deleted by NFWizard 2 */\n\n"};
+    FunctionDelimiters pendsvhandler = {QStringLiteral("void PendSV_Handler(void)"),
+                                        QStringLiteral("/* USER CODE END PendSV_IRQn 1 */"),
+                                        QStringLiteral("\n/* Deleted by NFWizard 2 */\n\n")};
 
     delimiters << pendsvhandler;
 
@@ -110,13 +111,13 @@ void NFWizard2::processInterrupFile()
         return;
     }
     QDir::setCurrent(cubeInterrupDir.path());
-    TextFromFileDeleter itFileProcessor;
+    TextFileProcessor itFileProcessor;
     itFileProcessor.setFilename(fileList.first());
     foreach (const FunctionDelimiters &delimiter, delimiters) {
         itFileProcessor.setStartLine(delimiter.startLine);
         itFileProcessor.setEndLine(delimiter.endLine);
-        itFileProcessor.setMssg(delimiter.mssg);
-        itFileProcessor.processFile();
+        itFileProcessor.setReplacementString(delimiter.mssg);
+        itFileProcessor.processMethod();
     }
     QDir::setCurrent(fileuVision);
 }
@@ -160,6 +161,25 @@ void NFWizard2::processXmlFiles()
     XMLModifyNamespace::XMLKeilModify XmlDoc(fileuVision,fileList[0].absoluteFilePath());
     XmlDoc.updateCubeXml();
     XmlDoc.updateUvisionXml();
+}
+
+void NFWizard2::processHalConfigFile()
+{
+    QFileInfo fileInfo(fileCube);
+    QDir fileDir(fileInfo.dir());
+    fileDir.cd("Inc");
+    QStringList fileList = fileDir.entryList(QStringList("*_hal_conf.h"));
+    if (!fileDir.exists(fileList.first())) { // Should be only one file
+        QMessageBox::warning(this, tr("NFWizard2"),tr("Error STM32CubeMx Src/%1 file not found").arg(fileList.first()));
+        return;
+    }
+    QDir::setCurrent(fileDir.path());
+    TextFileProcessor halConfigFileProcessor;
+    halConfigFileProcessor.setFilename(fileList.first());
+    halConfigFileProcessor.setStartLine("#define  TICK_INT_PRIORITY");
+    halConfigFileProcessor.setEndLine("/*!< tick interrupt priority */");
+    halConfigFileProcessor.setReplacementString("#define  TICK_INT_PRIORITY            ((uint32_t)0x0fU)   /*!< tick interrupt priority */");
+    halConfigFileProcessor.processTextBlock();
 }
 
 void NFWizard2::saveSettings()

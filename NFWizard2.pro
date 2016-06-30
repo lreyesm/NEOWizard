@@ -18,14 +18,14 @@ SOURCES += Source/main.cpp\
     Source/MainFilesProcessor.cpp \
     Source/XMLKeilModify.cpp \
     Source/DialogConfigurationHelp.cpp \
-    Source/TextFromFileDeleter.cpp
+    Source/TextFileProcessor.cpp
 
 HEADERS  += Source/NFWizard2.h \
     Source/FolderTreeGenerator.h \
     Source/MainFilesProcessor.h \
     Source/XMLKeilModify.h \
     Source/DialogConfigurationHelp.h \
-    Source/TextFromFileDeleter.h
+    Source/TextFileProcessor.h
 
 FORMS    += Source/NFWizard2.ui \
     Source/DialogConfigurationHelp.ui
