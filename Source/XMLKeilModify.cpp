@@ -98,7 +98,7 @@ bool XMLKeilModify::updateCubeXml(){
     QString temp;
     for(int i=0; i<filesList.size(); i++){
         temp = filesList[i];
-        if((!temp.contains("_hal_msp.c")) && (!temp.contains("main.c"))){
+        if((!temp.contains("_hal_msp.c")) && (!temp.contains("main.c")) && (!temp.contains("system_"))){
             addFileCube(xmlDocument,"source",temp.prepend("STCubeGenerated/Src/"));
         }
     }
