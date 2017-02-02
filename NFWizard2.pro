@@ -13,7 +13,7 @@ TEMPLATE = app
 DESTDIR = $$PWD/NFWizard2
 
 SOURCES += Source/main.cpp\
-        Source/NFWizard2.cpp \
+    Source/NFWizard2.cpp \
     Source/FolderTreeGenerator.cpp \
     Source/MainFilesProcessor.cpp \
     Source/XMLKeilModify.cpp \

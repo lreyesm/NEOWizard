@@ -31,8 +31,8 @@ void SystemClock_Config(void);
 void Error_Handler(void);
 
 /* USER CODE BEGIN 1 */
-//Sustituir el identificador del namespace por uno de su selección
-using namespace Test;
+
+
 /* USER CODE END 1 */
 
 int main(void)
