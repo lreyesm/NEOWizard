@@ -1,7 +1,7 @@
 #include "FolderTreeGenerator.h"
 
 
-void FolderTreeGenerator::generateFileTree(const QString &pathRef, const QStringList &folderTreeRef)
+void FolderTreeGenerator::generateFileTree(const QString &pathRef, const QStringList &folderTreeRef) //Clase encargada de crear directorios de archivos
 {
     QDir projectDir(pathRef);
     foreach (const QString &dir, folderTreeRef) {

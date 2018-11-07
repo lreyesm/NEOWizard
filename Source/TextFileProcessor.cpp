@@ -36,15 +36,15 @@ void TextFileProcessor::setReplacementString(const QString &value)
     replacementStr_ = value;
 }
 
-void TextFileProcessor::processTextBlock()
-{
-    QFile file(filename());
+void TextFileProcessor::processTextBlock() //esta funcion es muy parecida a processMethod
+{                                          //la diferencia es la inclucion de un if
+    QFile file(filename());   // almacena en file el archivo
     if (!file.exists()) {
         qWarning() << "file: " << filename() << " not found!";
 
         return;
     }
-    if (!file.open(QFile::ReadOnly | QFile::Text)) {
+    if (!file.open(QFile::ReadOnly | QFile::Text)) { //lo abre como lectura
         qWarning() << "file: " << filename() << " could not be opened for read!";
 
         return;

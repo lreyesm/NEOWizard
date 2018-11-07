@@ -54,11 +54,12 @@ void NFWizard2::on_pushButton_Generate_clicked()
     QFileInfo fileCubeInfo(fileCube);
     QFileInfo fileuVisionInfo(fileuVision);
     if (fileCubeInfo.exists() && fileuVisionInfo.exists()) {
-        generateProjectFileTree();
-        processInterrupFile();
-        processMainFiles();
-        processHalConfigFile();
-        processXmlFiles();
+        generateProjectFileTree(); //Genera las carpetas necesarias y copia los templates (main.cpp)
+        processInterrupFile();     //borra las funciones de interrupcion incompatibles con keil
+        processMainFiles();        // Copia el texto de "includes", inicializacion y configuracion de perifericos y relojes del Main.c al Main.cpp
+        processHalConfigFile();    // Cambia el #define TICK_INT_PRIORITY ((uint32_t)0x00U) a #define TICK_INT_PRIORITY ((uint32_t)0x0fU)
+        processXmlFiles();         //Modifica el archivo *.gpdsc para añadirle el *_it.h y *_it.c modificados
+                                   //Modifica el archivo *.uvprojx para añadirle direccion del main.cpp
     }else{
         QMessageBox::warning(this, tr("NFWizard 2"),tr("Projects path not valid"));
         return;
@@ -70,7 +71,7 @@ void NFWizard2::on_pushButton_Generate_clicked()
 void NFWizard2::generateProjectFileTree()
 {
     QStringList projectFolderTree;
-    if (ui->checkBox_FolderStruct->isChecked()) {
+    if (ui->checkBox_FolderStruct->isChecked()) { //genera las carpetas necesarias
         projectFolderTree << "Doc"
                           << "Include"
                           << "Lib"
@@ -80,12 +81,12 @@ void NFWizard2::generateProjectFileTree()
     projectFolderTree << "Source"; // always generate Source folder
     QFileInfo fileInfo(fileuVision);
     FolderTreeGenerator::generateFileTree(fileInfo.dir().path(), projectFolderTree);
-    generateTemplates(fileInfo.dir().path());
+    generateTemplates(fileInfo.dir().path()); //genera los templates en la direccion del proyecto
 }
 
 void NFWizard2::processInterrupFile()
 {
-    QList<FunctionDelimiters> delimiters;
+    QList<FunctionDelimiters> delimiters; // inicio y fin de funciones a eliminar almacenadas en esta lista de estructuras
     FunctionDelimiters systickHandler = {QStringLiteral("void SysTick_Handler(void)"),
                                          QStringLiteral("/* USER CODE END SysTick_IRQn 1 */"),
                                          QStringLiteral("\n/* Deleted by NFWizard 2 */\n\n")};
@@ -113,8 +114,8 @@ void NFWizard2::processInterrupFile()
     QDir::setCurrent(cubeInterrupDir.path());
     TextFileProcessor itFileProcessor;
     itFileProcessor.setFilename(fileList.first());
-    foreach (const FunctionDelimiters &delimiter, delimiters) {
-        itFileProcessor.setStartLine(delimiter.startLine);
+    foreach (const FunctionDelimiters &delimiter, delimiters) {  //estos son los delimitadores
+        itFileProcessor.setStartLine(delimiter.startLine);       //del contenido a eliminar
         itFileProcessor.setEndLine(delimiter.endLine);
         itFileProcessor.setReplacementString(delimiter.mssg);
         itFileProcessor.processMethod();
@@ -126,21 +127,21 @@ void NFWizard2::processMainFiles()
 {
     QFileInfo fileInfo(fileCube);
     QDir fileDir(fileInfo.dir());
-    fileDir.cd("Src");
+    fileDir.cd("Src");   // pone la direccion de Src como ruta actual para comprobar q existe main.c
 
     if (!fileDir.exists("main.c")) {
         QMessageBox::warning(this, tr("NFWizard2"),tr("Error STM32CubeMx Src/%1 file not found").arg("main.c"));
         return;
     }
-    QString cubeMainFile = fileDir.filePath("main.c");
+    QString cubeMainFile = fileDir.filePath("main.c");  //almacena la direccion del main.c en cubeMainFile
 
-    fileInfo.setFile(fileuVision);
-    fileDir = fileInfo.dir();
-    fileDir.cd("Source");
-    QString maincppFile = fileDir.filePath("main.cpp");
+    fileInfo.setFile(fileuVision); //almacena la direccion de proyecto keil
+    fileDir = fileInfo.dir();  // guarda su direccion de keil en un QDir
+    fileDir.cd("Source");  //se situa en la carpeta Source de proyecto keil
+    QString maincppFile = fileDir.filePath("main.cpp"); //guarda la direccion del main.cpp de la carpeta source en mainCppFile
     //QString maincppFile = generateMaincpp();
 
-    if (!MainFilesProcessor::processFiles(cubeMainFile, maincppFile)) {
+    if (!MainFilesProcessor::processFiles(cubeMainFile, maincppFile)) {  //llama a la funcion processFiles para modificar el main.cpp
         QMessageBox::warning(this, tr("NFWizard2"),tr("Error processing STM32CubeMx Src/%1 file and"
                                                       " Source/%2").arg("main.c").arg("main.cpp"));
     }
@@ -148,19 +149,24 @@ void NFWizard2::processMainFiles()
 
 void NFWizard2::processXmlFiles()
 {
-    QDir cubeDir = QFileInfo(fileCube).dir();
-    if(!cubeDir.cdUp()){
+    //fileCube tiene la direccion asignada al proyecto STCubeMX
+    QDir cubeDir = QFileInfo(fileCube).dir();  //Guarda la direccion de cubeDir (".../STCubeGenerated")
+    if(!cubeDir.cdUp()){   //Sube a la direccion (".../STM32F429ZITx")
         QMessageBox::critical(this,tr("NFWizard2"),tr("Error. File not founnd."));
         return;
     }
-    QFileInfoList fileList = cubeDir.entryInfoList(QStringList("*.gpdsc"),QDir::Files,QDir::Type);
-    if(fileList.size() != 1){
+    QFileInfoList fileList = cubeDir.entryInfoList(QStringList("*.gpdsc"),QDir::Files,QDir::Type);  //Busca archivos *.gpdsc (1 solo)
+    if(fileList.size() != 1){   //Solo debe haber un archivo *.gpdsc
         QMessageBox::critical(this,tr("NFWizard2"),tr("Error. File not founnd."));
         return;
     }
-    XMLModifyNamespace::XMLKeilModify XmlDoc(fileuVision,fileList[0].absoluteFilePath());
-    XmlDoc.updateCubeXml();
-    XmlDoc.updateUvisionXml();
+    XMLModifyNamespace::XMLKeilModify XmlDoc(fileuVision,fileList[0].absoluteFilePath());  //Contructor de XMLKeilModify le pasa como parametros
+
+    XmlDoc.updateCubeXml();    //modifica el *.gpdsc (XML) y le añade al nodo <project_files> del XML los archivos *.c y *.h
+                               //la direccion de *.uvprojx y la direccion de *.gpdsc
+
+    XmlDoc.updateUvisionXml();  //modifica el archivo *.uvprojx de Keil, añade nodes con la direccion del archivo main.cpp
+                                //y cambia intancias de "Target 1" por "DEBUG"
 }
 
 void NFWizard2::processHalConfigFile()
@@ -222,9 +228,9 @@ void NFWizard2::generateTemplates(const QString &projectRootRef)
              << FilePair("://Templates/KeilCopyLib.bat", "Scripts/KeilCopyLib.bat");
     FilePair filePair;
     bool retval = false;
-    foreach (filePair, fileList) {
+    foreach (filePair, fileList) {  //copia los templates (main.ccp) donde en la carpeta "Source"
         retval = QFile::copy(filePair.first, filePair.second);
-        if (retval) {
+        if (retval) {   //le da permisos de escritura a los templates
             QFile::setPermissions(filePair.second, QFileDevice::WriteOther);
         }else {
             qDebug() << "error coping " << filePair.second << " template" << "all ready copied?";
@@ -244,7 +250,8 @@ void NFWizard2::on_actionAbout_triggered()
     infoWriter << QStringLiteral("Released under Beerware license") << endl
                << QStringLiteral("Contact:") << endl
                << QStringLiteral("Ernesto Cruz Olivera: ecruzolivera@gmail.com") << endl
-               << QStringLiteral("Manuel A. Linarez Páez: manuel.linares@cneuro.edu.cu") << endl;
+               << QStringLiteral("Manuel A. Linarez Páez: manuel.linares@cneuro.edu.cu") << endl
+               << QStringLiteral("Luis A. Reyes Morales: luis.reyes@cneuro.edu.cu") << endl;
     QMessageBox::information(this, "NFWizard 2", info);
 }
 

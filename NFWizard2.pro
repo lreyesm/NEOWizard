@@ -10,7 +10,6 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = NFWizard2
 TEMPLATE = app
-DESTDIR = $$PWD/NFWizard2
 
 SOURCES += Source/main.cpp\
     Source/NFWizard2.cpp \

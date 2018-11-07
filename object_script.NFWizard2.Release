@@ -1,0 +1,13 @@
+INPUT(
+./release\main.o
+./release\NFWizard2.o
+./release\FolderTreeGenerator.o
+./release\MainFilesProcessor.o
+./release\XMLKeilModify.o
+./release\DialogConfigurationHelp.o
+./release\TextFileProcessor.o
+./release\qrc_assets.o
+./release\qrc_templates.o
+./release\moc_NFWizard2.o
+./release\moc_DialogConfigurationHelp.o
+);

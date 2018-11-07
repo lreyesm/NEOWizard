@@ -1,7 +1,7 @@
 #include "DialogConfigurationHelp.h"
 #include "ui_DialogConfigurationHelp.h"
 
-DialogConfigurationHelp::DialogConfigurationHelp(QWidget *parent) :
+DialogConfigurationHelp::DialogConfigurationHelp(QWidget *parent) :   //Clase encargada de generar ventanas Dialagos
     QDialog(parent),
     ui(new Ui::DialogConfigurationHelp)
 {

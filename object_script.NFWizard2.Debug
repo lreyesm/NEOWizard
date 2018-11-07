@@ -1,0 +1,13 @@
+INPUT(
+./debug\main.o
+./debug\NFWizard2.o
+./debug\FolderTreeGenerator.o
+./debug\MainFilesProcessor.o
+./debug\XMLKeilModify.o
+./debug\DialogConfigurationHelp.o
+./debug\TextFileProcessor.o
+./debug\qrc_assets.o
+./debug\qrc_templates.o
+./debug\moc_NFWizard2.o
+./debug\moc_DialogConfigurationHelp.o
+);

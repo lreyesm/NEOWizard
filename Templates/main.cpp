@@ -9,11 +9,13 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f4xx_hal.h"
+#include "stm32f7xx_hal.h"
+
 #include "gpio.h"
 
 /* USER CODE BEGIN Includes */
 //Sustituir el nombre de la clase por el que usted asignó
-#include "Application.h"
+//#include "Application.h"
 /* USER CODE END Includes */
 
 /* USER CODE BEGIN PV */
@@ -48,10 +50,10 @@ int main(void)
 
     /* USER CODE BEGIN 2 */
     //Sustituir por el nombre de la clase asignado
-    Application app;
+    //Application app;
 
     //Sustituir por el nombre de la clase asignado
-    app.exec();
+    //app.exec();
     /* USER CODE END 2 */
 
     while (1)
