@@ -200,6 +200,7 @@ void NFWizard2::loadSettings()
 {
     QSettings settings("CNEURO", "NFWizard2");
     fileuVision = settings.value("App/FileuVision", "").toString();
+    fileuVision_Path = settings.value("App/FileuVision_Path", "").toString();
     fileCube = settings.value("App/FileCube","").toString();
     lastPath = settings.value("App/LastPath", QDir::homePath()).toString();
 

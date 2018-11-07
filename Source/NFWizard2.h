@@ -50,6 +50,7 @@ private:
     DialogConfigurationHelp *dialogConfigHelp;
 
     QString fileuVision;
+    QString fileuVision_Path;
     QString fileCube;
     QString lastPath;
 };
