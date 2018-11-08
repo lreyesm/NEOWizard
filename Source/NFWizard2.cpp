@@ -61,10 +61,10 @@ void NFWizard2::on_pushButton_Generate_clicked()
         processXmlFiles();         //Modifica el archivo *.gpdsc para añadirle el *_it.h y *_it.c modificados
                                    //Modifica el archivo *.uvprojx para añadirle direccion del main.cpp
     }else{
-        QMessageBox::warning(this, tr("NFWizard 2"),tr("Projects path not valid"));
+        QMessageBox::warning(this, tr("NEOWizard"),tr("Projects path not valid"));
         return;
     }
-    QMessageBox::information(this, tr("NFWizard 2"),tr("Project Generation complete"));
+    QMessageBox::information(this, tr("NEOWizard"),tr("Project Generation complete"));
 }
 
 
@@ -89,17 +89,17 @@ void NFWizard2::processInterrupFile()
     QList<FunctionDelimiters> delimiters; // inicio y fin de funciones a eliminar almacenadas en esta lista de estructuras
     FunctionDelimiters systickHandler = {QStringLiteral("void SysTick_Handler(void)"),
                                          QStringLiteral("/* USER CODE END SysTick_IRQn 1 */"),
-                                         QStringLiteral("\n/* Deleted by NFWizard 2 */\n\n")};
+                                         QStringLiteral("\n/* Deleted by NEOWizard */\n\n")};
     delimiters << systickHandler;
 
     FunctionDelimiters svcHandler = {QStringLiteral("void SVC_Handler(void)"),
                                      QStringLiteral("/* USER CODE END SVCall_IRQn 1 */"),
-                                     QStringLiteral("\n/* Deleted by NFWizard 2 */\n\n")};
+                                     QStringLiteral("\n/* Deleted by NEOWizard */\n\n")};
     delimiters << svcHandler;
 
     FunctionDelimiters pendsvhandler = {QStringLiteral("void PendSV_Handler(void)"),
                                         QStringLiteral("/* USER CODE END PendSV_IRQn 1 */"),
-                                        QStringLiteral("\n/* Deleted by NFWizard 2 */\n\n")};
+                                        QStringLiteral("\n/* Deleted by NEOWizard */\n\n")};
 
     delimiters << pendsvhandler;
 
@@ -254,7 +254,7 @@ void NFWizard2::on_actionAbout_triggered()
                << QStringLiteral("Ernesto Cruz Olivera: ecruzolivera@gmail.com") << endl
                << QStringLiteral("Manuel A. Linarez Páez: manuel.linares@cneuro.edu.cu") << endl
                << QStringLiteral("Luis A. Reyes Morales: luis.reyes@cneuro.edu.cu") << endl;
-    QMessageBox::information(this, "NFWizard 2", info);
+    QMessageBox::information(this, "NEOWizard", info);
 }
 
 void NFWizard2::on_actionUVision_Configuration_triggered()
@@ -273,4 +273,9 @@ void NFWizard2::on_actionSTM32CubeMx_Configuration_triggered()
     dialogConfigHelp->setHelpText("Project > Settings > Code Generator");
     dialogConfigHelp->adjustSize();
     dialogConfigHelp->show();
+}
+
+void NFWizard2::on_comboBox_currentIndexChanged(const QString &arg1)
+{
+
 }

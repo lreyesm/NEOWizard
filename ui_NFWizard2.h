@@ -14,6 +14,7 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QCheckBox>
+#include <QtWidgets/QComboBox>
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QGroupBox>
 #include <QtWidgets/QHBoxLayout>
@@ -39,11 +40,13 @@ public:
     QAction *actionAbout;
     QAction *actionAbout_Qt;
     QWidget *centralWidget;
-    QVBoxLayout *verticalLayout;
+    QVBoxLayout *verticalLayout_2;
     QGroupBox *groupBox_uVision;
     QHBoxLayout *horizontalLayout;
     QLineEdit *lineEdit_uVisionPath;
     QPushButton *pushButton_uVisionBrowse;
+    QVBoxLayout *verticalLayout;
+    QComboBox *comboBox;
     QGroupBox *groupBox_STM32CubeMx;
     QHBoxLayout *horizontalLayout_3;
     QLineEdit *lineEdit_CubePath;
@@ -86,11 +89,10 @@ public:
         actionAbout_Qt->setObjectName(QStringLiteral("actionAbout_Qt"));
         centralWidget = new QWidget(NFWizard2);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
-        verticalLayout = new QVBoxLayout(centralWidget);
-        verticalLayout->setSpacing(6);
-        verticalLayout->setContentsMargins(11, 11, 11, 11);
-        verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
-        verticalLayout->setSizeConstraint(QLayout::SetDefaultConstraint);
+        verticalLayout_2 = new QVBoxLayout(centralWidget);
+        verticalLayout_2->setSpacing(6);
+        verticalLayout_2->setContentsMargins(11, 11, 11, 11);
+        verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
         groupBox_uVision = new QGroupBox(centralWidget);
         groupBox_uVision->setObjectName(QStringLiteral("groupBox_uVision"));
         horizontalLayout = new QHBoxLayout(groupBox_uVision);
@@ -112,7 +114,15 @@ public:
         horizontalLayout->addWidget(pushButton_uVisionBrowse);
 
 
-        verticalLayout->addWidget(groupBox_uVision);
+        verticalLayout_2->addWidget(groupBox_uVision);
+
+        verticalLayout = new QVBoxLayout();
+        verticalLayout->setSpacing(6);
+        verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
+        comboBox = new QComboBox(centralWidget);
+        comboBox->setObjectName(QStringLiteral("comboBox"));
+
+        verticalLayout->addWidget(comboBox);
 
         groupBox_STM32CubeMx = new QGroupBox(centralWidget);
         groupBox_STM32CubeMx->setObjectName(QStringLiteral("groupBox_STM32CubeMx"));
@@ -136,6 +146,9 @@ public:
 
         verticalLayout->addWidget(groupBox_STM32CubeMx);
 
+
+        verticalLayout_2->addLayout(verticalLayout);
+
         groupBox_options = new QGroupBox(centralWidget);
         groupBox_options->setObjectName(QStringLiteral("groupBox_options"));
         gridLayout = new QGridLayout(groupBox_options);
@@ -149,7 +162,7 @@ public:
         gridLayout->addWidget(checkBox_FolderStruct, 0, 0, 1, 1);
 
 
-        verticalLayout->addWidget(groupBox_options);
+        verticalLayout_2->addWidget(groupBox_options);
 
         horizontalLayout_2 = new QHBoxLayout();
         horizontalLayout_2->setSpacing(6);
@@ -170,11 +183,11 @@ public:
         horizontalLayout_2->addWidget(pushButton_Quit);
 
 
-        verticalLayout->addLayout(horizontalLayout_2);
+        verticalLayout_2->addLayout(horizontalLayout_2);
 
         verticalSpacer = new QSpacerItem(20, 20, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
-        verticalLayout->addItem(verticalSpacer);
+        verticalLayout_2->addItem(verticalSpacer);
 
         NFWizard2->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(NFWizard2);
@@ -212,6 +225,11 @@ public:
         groupBox_uVision->setTitle(QApplication::translate("NFWizard2", "uVision Project", Q_NULLPTR));
         lineEdit_uVisionPath->setPlaceholderText(QApplication::translate("NFWizard2", "Keil uVision Project path", Q_NULLPTR));
         pushButton_uVisionBrowse->setText(QApplication::translate("NFWizard2", "Browse", Q_NULLPTR));
+        comboBox->clear();
+        comboBox->insertItems(0, QStringList()
+         << QApplication::translate("NFWizard2", "Used STM32CubeMx Version 4.26 ", Q_NULLPTR)
+         << QApplication::translate("NFWizard2", "Used STM32CubeMx Version 4.20 or previous previous", Q_NULLPTR)
+        );
         groupBox_STM32CubeMx->setTitle(QApplication::translate("NFWizard2", "STM32CubeMx Project", Q_NULLPTR));
         lineEdit_CubePath->setPlaceholderText(QApplication::translate("NFWizard2", "STM32CubeMx Project path", Q_NULLPTR));
         pushButton_CubeBrowse->setText(QApplication::translate("NFWizard2", "Browse", Q_NULLPTR));

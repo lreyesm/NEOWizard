@@ -64,6 +64,10 @@ int main(void)
 
 /** System Clock Configuration
 */
+/**
+  * @brief System Clock Configuration
+  * @retval None
+  */
 void SystemClock_Config(void)
 {
 
