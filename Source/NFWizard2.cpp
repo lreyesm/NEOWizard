@@ -30,11 +30,11 @@ NFWizard2::~NFWizard2()
 void NFWizard2::on_pushButton_uVisionBrowse_clicked()
 {
     fileuVision = QFileDialog::getOpenFileName(this, tr("Open Keil uVision Project"),
-                                               FileuVision_Path,
+                                               fileuVision_Path,
                                                tr("uVision Project Files (*.uvprojx)"));
     if (QFile::exists(fileuVision)) {
         ui->lineEdit_uVisionPath->setText(fileuVision);
-        FileuVision_Path = QFileInfo(fileuVision).dir().path();
+        fileuVision_Path = QFileInfo(fileuVision).dir().path();
     }
 }
 
@@ -192,7 +192,7 @@ void NFWizard2::saveSettings()
 {
     QSettings settings("CNEURO", "NFWizard2");
     settings.setValue("App/FileuVision", fileuVision);
-    settings.setValue("App/FileuVision_Path", FileuVision_Path);
+    settings.setValue("App/FileuVision_Path", fileuVision_Path);
     settings.setValue("App/FileCube", fileCube);
     settings.setValue("App/LastPath", lastPath);
 }
