@@ -217,18 +217,18 @@ public:
 
     void retranslateUi(QMainWindow *NFWizard2)
     {
-        NFWizard2->setWindowTitle(QApplication::translate("NFWizard2", "NFWizard2", Q_NULLPTR));
+        NFWizard2->setWindowTitle(QApplication::translate("NFWizard2", "NEOWizard", Q_NULLPTR));
         actionUVision_Configuration->setText(QApplication::translate("NFWizard2", "uVision Configuration", Q_NULLPTR));
         actionSTM32CubeMx_Configuration->setText(QApplication::translate("NFWizard2", "STM32CubeMx Configuration", Q_NULLPTR));
-        actionAbout->setText(QApplication::translate("NFWizard2", "About NFWizard 2", Q_NULLPTR));
+        actionAbout->setText(QApplication::translate("NFWizard2", "About NEOWizard", Q_NULLPTR));
         actionAbout_Qt->setText(QApplication::translate("NFWizard2", "About Qt", Q_NULLPTR));
         groupBox_uVision->setTitle(QApplication::translate("NFWizard2", "uVision Project", Q_NULLPTR));
         lineEdit_uVisionPath->setPlaceholderText(QApplication::translate("NFWizard2", "Keil uVision Project path", Q_NULLPTR));
         pushButton_uVisionBrowse->setText(QApplication::translate("NFWizard2", "Browse", Q_NULLPTR));
         comboBox->clear();
         comboBox->insertItems(0, QStringList()
-         << QApplication::translate("NFWizard2", "Used STM32CubeMx Version 4.26 ", Q_NULLPTR)
-         << QApplication::translate("NFWizard2", "Used STM32CubeMx Version 4.20 or previous previous", Q_NULLPTR)
+         << QApplication::translate("NFWizard2", "Used STM32CubeMx Version 4.26 (for ARM Cortex M7)", Q_NULLPTR)
+         << QApplication::translate("NFWizard2", "Used STM32CubeMx Version 4.20 or previous previous (for ARM Cortex M4)", Q_NULLPTR)
         );
         groupBox_STM32CubeMx->setTitle(QApplication::translate("NFWizard2", "STM32CubeMx Project", Q_NULLPTR));
         lineEdit_CubePath->setPlaceholderText(QApplication::translate("NFWizard2", "STM32CubeMx Project path", Q_NULLPTR));

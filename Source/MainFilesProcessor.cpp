@@ -10,8 +10,9 @@ const QString MainFilesProcessor::INCLUDES_START_LINE = "/* Includes -----------
 const QString MainFilesProcessor::INCLUDES_END_LINE = "/* USER CODE BEGIN Includes */";
 const QString MainFilesProcessor::PERIP_CONFIG_START_LINE = "  /* Initialize all configured peripherals */";
 const QString MainFilesProcessor::PERIP_CONFIG_END_LINE = "  /* USER CODE BEGIN 2 */";
-const QString MainFilesProcessor::SYSCLOCK_CONFIG_START_LINE_STCUBEMX_VERSION_4_20 = "/** System Clock Configuration";
-const QString MainFilesProcessor::SYSCLOCK_CONFIG_START_LINE_STCUBEMX_VERSION_4_26 = "  * @brief System Clock Configuration";
+///*const*/ QString MainFilesProcessor::SYSCLOCK_CONFIG_START_LINE_STCUBEMX_VERSION_4_20 = "/** System Clock Configuration";
+///*const*/ QString MainFilesProcessor::SYSCLOCK_CONFIG_START_LINE_STCUBEMX_VERSION_4_26 = "  * @brief System Clock Configuration";
+QString MainFilesProcessor::SYSCLOCK_CONFIG_START_LINE = "  * @brief System Clock Configuration";
 const QString MainFilesProcessor::SYSCLOCK_CONFIG_END_LINE = "/* USER CODE BEGIN 4 */";
 
 
@@ -62,7 +63,7 @@ bool MainFilesProcessor::processFiles(const QString& cubemaincFileName, const QS
     }
 
     // cursores para guardar configuracion de relojes del sistema generado por STCubeMX
-    QTextCursor cursorSysClockConfigStart = cubeMainDoc.find(SYSCLOCK_CONFIG_START_LINE_STCUBEMX_VERSION_4_26);
+    QTextCursor cursorSysClockConfigStart = cubeMainDoc.find(SYSCLOCK_CONFIG_START_LINE);
     QTextCursor cursorSysClockConfigEnd = cubeMainDoc.find(SYSCLOCK_CONFIG_END_LINE);
 
     if (cursorSysClockConfigStart.hasSelection() && cursorSysClockConfigEnd.hasSelection()) {
@@ -105,7 +106,7 @@ bool MainFilesProcessor::processFiles(const QString& cubemaincFileName, const QS
     maincppCursorEnd.clearSelection();
 
     // Selecciona el texto de config de relojes e implementacion de MX_XX_Init en el main.cpp
-    maincppCursorStart = maincppDoc.find(SYSCLOCK_CONFIG_START_LINE_STCUBEMX_VERSION_4_26);
+    maincppCursorStart = maincppDoc.find(SYSCLOCK_CONFIG_START_LINE);
     maincppCursorEnd = maincppDoc.find(SYSCLOCK_CONFIG_END_LINE);
 
     // Remplaza el texto de config de relojes e implementacion de MX_XX_Init del main.cpp por el de main.c generado en STCubeMX
