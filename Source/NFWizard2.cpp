@@ -51,6 +51,16 @@ void NFWizard2::on_pushButton_CubeBrowse_clicked()
 
 void NFWizard2::on_pushButton_Generate_clicked()
 {
+    if(fileCube.contains(QString("F4"))){
+
+        MainFilesProcessor::SYSCLOCK_CONFIG_START_LINE = "/** System Clock Configuration";
+        QMessageBox::information(this, "NEOWizard", "Selected Version 4.26 of STCubeMx \n\nIf you do not correctly select the file \nmain.cpp it is not correctly generated"/*+MainFilesProcessor::SYSCLOCK_CONFIG_START_LINE*/);
+    }
+    else if (fileCube.contains(QString("F7"))){
+
+        MainFilesProcessor::SYSCLOCK_CONFIG_START_LINE = "  * @brief System Clock Configuration";
+        QMessageBox::information(this, "NEOWizard", "Selected Version 4.26 of STCubeMx \n\nIf you do not correctly select the file \nmain.cpp it is not correctly generated"/*+MainFilesProcessor::SYSCLOCK_CONFIG_START_LINE*/);
+    }
     QFileInfo fileCubeInfo(fileCube);
     QFileInfo fileuVisionInfo(fileuVision);
     if (fileCubeInfo.exists() && fileuVisionInfo.exists()) {
@@ -275,6 +285,7 @@ void NFWizard2::on_actionSTM32CubeMx_Configuration_triggered()
     dialogConfigHelp->adjustSize();
     dialogConfigHelp->show();
 }
+
 
 void NFWizard2::on_comboBox_currentIndexChanged(const QString &arg1)
 {
