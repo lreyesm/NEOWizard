@@ -70,15 +70,10 @@ void NFWizard2::processMain_cpp_Error_function(const QString &main_cpp_path){
 
     TextFileProcessor main_cpp_FileProcessor;
     main_cpp_FileProcessor.setFilename(main_cpp_path);
-                                        //// ignora espacios en blanco antes de la linea de codigo
-    main_cpp_FileProcessor.setStartLine("if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)");       ////inicio del contenido a eliminar
-    main_cpp_FileProcessor.setEndLine("_Error_Handler(__FILE__, __LINE__);"); ////fin del contenido a eliminar
-    main_cpp_FileProcessor.setReplacementString("\n  /*Start of replace by NEOWizard*/\n  if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)\n  {\n    Error_Handler();\n  }\n  /*End of replace by NEOWizard*/\n");
-    main_cpp_FileProcessor.processMethod();
-                                       //// ignora espacios en blanco antes de la linea de codigo
-    main_cpp_FileProcessor.setStartLine("if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_5) != HAL_OK)");       ////inicio del contenido a eliminar
-    main_cpp_FileProcessor.setEndLine("_Error_Handler(__FILE__, __LINE__);"); ////fin del contenido a eliminar
-    main_cpp_FileProcessor.setReplacementString(" /*Start of replace by NEOWizard*/\n  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_5) != HAL_OK)\n  {\n    Error_Handler();\n  }\n  /*End of replace by NEOWizard*/\n");
+
+    main_cpp_FileProcessor.setStartLine("  {\n    _Error_Handler(__FILE__, __LINE__);");       ////inicio del contenido a eliminar
+    main_cpp_FileProcessor.setEndLine("  }"); ////fin del contenido a eliminar
+    main_cpp_FileProcessor.setReplacementString("\n/*Replace by NEOWizard*/\n\n  {\n    Error_Handler();\n  }\n\n");
     main_cpp_FileProcessor.processMethod();
 }
 
@@ -140,7 +135,8 @@ void NFWizard2::on_pushButton_Generate_clicked()
             //fileDir.cdUp();
             processMain_H_file(fileDir.path()+QString("/Inc/main.h"));      ////Modifica el archivo main.h, para version de Cube 4.26, el cual da error al compilar en keil
 
-            processMain_cpp_Error_function(fileuVisionInfo.dir().path()+QString("/Source/main.cpp"));
+            fileDir.setPath(fileuVisionInfo.dir());
+            processMain_cpp_Error_function(fileDir.path()+QString("/Source/main.cpp"));
         }
 
         processHalConfigFile();    //// Cambia el #define TICK_INT_PRIORITY ((uint32_t)0x00U) a #define TICK_INT_PRIORITY ((uint32_t)0x0fU)

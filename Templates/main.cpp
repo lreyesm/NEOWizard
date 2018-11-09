@@ -49,6 +49,7 @@ int main(void)
     MX_GPIO_Init();
 
     /* USER CODE BEGIN 2 */
+
     //Sustituir por el nombre de la clase asignado
     //Application app;
 
