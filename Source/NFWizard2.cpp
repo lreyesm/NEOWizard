@@ -234,11 +234,14 @@ void NFWizard2::generateTemplates(const QString &projectRootRef)
     }
     qDebug() << "Current path: " << QDir::currentPath();
 
-    if(!(QFile::remove((projectRootRef)+QString("/Source/main.cpp")))){
+    if(QFile::exists((projectRootRef)+QString("/Source/main.cpp"))){
 
-       qDebug() << "Could not remove previous main.cpp file";
+       qDebug() << "main.cpp file exist";
+
+       if(!(QFile::remove((projectRootRef)+QString("/Source/main.cpp")))){
+           qDebug() << "Could not remove previous main.cpp file";
     }
-
+    }
     typedef QPair<QString, QString> FilePair;
     typedef QList<FilePair> FilePairList;
     FilePairList fileList;
