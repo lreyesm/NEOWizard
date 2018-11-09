@@ -49,6 +49,9 @@ private:
     void saveSettings();
     void loadSettings();
     void checkCubeVersion();
+    void processMain_H_file(const QString& main_h_path);
+    void processMain_cpp_Error_function(const QString& main_cpp_path);
+
 private:
     Ui::NFWizard2 *ui;
     DialogConfigurationHelp *dialogConfigHelp;
@@ -57,6 +60,7 @@ private:
     QString fileuVision_Path;
     QString fileCube;
     QString lastPath;
+    QString cubeVersion;
 };
 
 #endif // NFWIZARD2_H

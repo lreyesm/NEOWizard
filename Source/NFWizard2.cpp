@@ -16,6 +16,9 @@ NFWizard2::NFWizard2(QWidget *parent) :
     ui(new Ui::NFWizard2)
 {
     ui->setupUi(this);
+
+    //cubeVersion=QString("4.26");
+
     dialogConfigHelp = new DialogConfigurationHelp(this);
     dialogConfigHelp->layout()->setSizeConstraint(QLayout::SetFixedSize);
     loadSettings();
@@ -47,6 +50,25 @@ void NFWizard2::on_pushButton_CubeBrowse_clicked()
         ui->lineEdit_CubePath->setText(fileCube);
         lastPath = QFileInfo(fileCube).dir().path();
     }
+}
+
+void NFWizard2::processMain_H_file(const QString& main_h_path){
+
+    TextFileProcessor main_h_FileProcessor;
+    main_h_FileProcessor.setFilename(main_h_path);
+
+    main_h_FileProcessor.setStartLine("#ifdef __cplusplus");       ////inicio del contenido a eliminar
+    main_h_FileProcessor.setEndLine("#endif /* __MAIN_H__ */"); ////fin del contenido a eliminar
+    main_h_FileProcessor.setReplacementString("\n/*Delete by NEOWizard*/\n\n #endif /* __MAIN_H__ */\n\n");
+    main_h_FileProcessor.processMethod();
+
+
+
+}
+
+void NFWizard2::processMain_cpp_Error_function(const QString &main_cpp_path){
+
+
 }
 
 void NFWizard2::checkCubeVersion(){
@@ -81,10 +103,12 @@ void NFWizard2::checkCubeVersion(){
         MainFilesProcessor::SYSCLOCK_CONFIG_START_LINE = "  * @brief System Clock Configuration";
         //QMessageBox::information(this, "NEOWizard", "Selected Version 4.26 of STCubeMx \n\nIf you do not correctly select the file \nmain.cpp it is not correctly generated"/*+MainFilesProcessor::SYSCLOCK_CONFIG_START_LINE*/);
         qDebug() << "Selected Version 4.26 of STCubeMx (  \"* @brief System Clock Configuration\" en main.c) ";
+        cubeVersion = QString("4.26");
     }else {
         MainFilesProcessor::SYSCLOCK_CONFIG_START_LINE = "/** System Clock Configuration";
         //QMessageBox::information(this, "NEOWizard", "Selected Version 4.20 of STCubeMx \n\nIf you do not correctly select the file \nmain.cpp it is not correctly generated"/*+MainFilesProcessor::SYSCLOCK_CONFIG_START_LINE*/);
         qDebug() << "Selected Version 4.20 of STCubeMx ( \"/** System Clock Configuration\" en main.c)";
+        cubeVersion = QString("4.20");
     }
 
 }
@@ -95,12 +119,23 @@ void NFWizard2::on_pushButton_Generate_clicked()
     QFileInfo fileCubeInfo(fileCube);
     QFileInfo fileuVisionInfo(fileuVision);
     if (fileCubeInfo.exists() && fileuVisionInfo.exists()) {
-        generateProjectFileTree(); //Genera las carpetas necesarias y copia los templates (main.cpp)
-        processInterrupFile();     //borra las funciones de interrupcion incompatibles con keil
-        processMainFiles();        // Copia el texto de "includes", inicializacion y configuracion de perifericos y relojes del Main.c al Main.cpp
-        processHalConfigFile();    // Cambia el #define TICK_INT_PRIORITY ((uint32_t)0x00U) a #define TICK_INT_PRIORITY ((uint32_t)0x0fU)
-        processXmlFiles();         //Modifica el archivo *.gpdsc para añadirle el *_it.h y *_it.c modificados
-                                   //Modifica el archivo *.uvprojx para añadirle direccion del main.cpp
+        generateProjectFileTree(); ////Genera las carpetas necesarias y copia los templates (main.cpp)
+        processInterrupFile();     ////borra las funciones de interrupcion incompatibles con keil
+        processMainFiles();        //// Copia el texto de "includes", inicializacion y configuracion de perifericos y relojes del Main.c al Main.cpp
+
+        if( cubeVersion == QString("4.26")){
+
+            QDir fileDir(fileCubeInfo.dir());
+            //fileDir.cdUp();
+            processMain_H_file(fileDir.path()+QString("/Inc/main.h"));      ////Modifica el archivo main.h, para version de Cube 4.26, el cual da error al compilar en keil
+
+            fileDir.setPath(fileuVisionInfo.dir());
+            processMain_cpp_Error_function(fileDir.path()+QString("/Source/main.cpp"));
+        }
+
+        processHalConfigFile();    //// Cambia el #define TICK_INT_PRIORITY ((uint32_t)0x00U) a #define TICK_INT_PRIORITY ((uint32_t)0x0fU)
+        processXmlFiles();         ////Modifica el archivo *.gpdsc para añadirle el *_it.h y *_it.c modificados
+                                   ////Modifica el archivo *.uvprojx para añadirle direccion del main.cpp
     }else{
         QMessageBox::warning(this, tr("NEOWizard"),tr("Projects path not valid"));
         return;

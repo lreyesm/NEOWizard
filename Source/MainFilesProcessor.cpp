@@ -1,6 +1,8 @@
 #include "MainFilesProcessor.h"
 
 
+//const QString MainFilesProcessor::MAIN_H_DEFINE_START_LINE = "#ifdef __cplusplus";
+//const QString MainFilesProcessor::MAIN_H_DEFINE_END_LINE = "#endif /* __MAIN_H__ */";
 
 const QString MainFilesProcessor::INCLUDES_START_LINE = "/* Includes ------------------------------------------------------------------*/";
 const QString MainFilesProcessor::INCLUDES_END_LINE = "/* USER CODE BEGIN Includes */";
@@ -11,6 +13,21 @@ const QString MainFilesProcessor::PERIP_CONFIG_END_LINE = "  /* USER CODE BEGIN 
 QString MainFilesProcessor::SYSCLOCK_CONFIG_START_LINE = "  * @brief System Clock Configuration";
 const QString MainFilesProcessor::SYSCLOCK_CONFIG_END_LINE = "/* USER CODE BEGIN 4 */";
 
+//bool MainFilesProcessor::process_main_h_File(const QString &main_h_FileName){
+
+//    QFile file(main_h_FileName);  ////comprueba q existe el archivo main.h generado por STCubeMx
+//    if (!file.exists()) {
+//        qDebug() << "file: " << file.fileName() << " not found!";
+//        return false;
+//    }
+//    if (!file.open(QFile::ReadOnly | QFile::Text)) {  //// abre el main.h generado por STCubeMX como lectura
+//        qDebug() << "file: " << file.fileName() << " could not be opened for read!";
+//        return false;
+//    }
+//    QTextDocument cubeMain_h_Doc;  ////variable para guardar texto del main.h
+//    cubeMain_h_Doc.setPlainText(file.readAll());  //// guarda el contenido del main.c en cubeMainDoc
+//    file.close();
+//}
 
 bool MainFilesProcessor::processFiles(const QString& cubemaincFileName, const QString& maincppFileName)
 {
