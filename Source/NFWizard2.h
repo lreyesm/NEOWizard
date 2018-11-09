@@ -36,7 +36,8 @@ private slots:
 
     void on_actionSTM32CubeMx_Configuration_triggered();
 
-    void on_comboBox_currentIndexChanged(const QString &arg1);
+    ////funcion slot de combobox de seleccion version cube
+    //void on_comboBox_currentIndexChanged(const QString &arg1);
 
 private:
     void generateProjectFileTree();

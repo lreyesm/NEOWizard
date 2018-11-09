@@ -14,7 +14,6 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QCheckBox>
-#include <QtWidgets/QComboBox>
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QGroupBox>
 #include <QtWidgets/QHBoxLayout>
@@ -46,7 +45,6 @@ public:
     QLineEdit *lineEdit_uVisionPath;
     QPushButton *pushButton_uVisionBrowse;
     QVBoxLayout *verticalLayout;
-    QComboBox *comboBox;
     QGroupBox *groupBox_STM32CubeMx;
     QHBoxLayout *horizontalLayout_3;
     QLineEdit *lineEdit_CubePath;
@@ -119,11 +117,6 @@ public:
         verticalLayout = new QVBoxLayout();
         verticalLayout->setSpacing(6);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
-        comboBox = new QComboBox(centralWidget);
-        comboBox->setObjectName(QStringLiteral("comboBox"));
-
-        verticalLayout->addWidget(comboBox);
-
         groupBox_STM32CubeMx = new QGroupBox(centralWidget);
         groupBox_STM32CubeMx->setObjectName(QStringLiteral("groupBox_STM32CubeMx"));
         horizontalLayout_3 = new QHBoxLayout(groupBox_STM32CubeMx);
@@ -225,11 +218,6 @@ public:
         groupBox_uVision->setTitle(QApplication::translate("NFWizard2", "uVision Project", Q_NULLPTR));
         lineEdit_uVisionPath->setPlaceholderText(QApplication::translate("NFWizard2", "Keil uVision Project path", Q_NULLPTR));
         pushButton_uVisionBrowse->setText(QApplication::translate("NFWizard2", "Browse", Q_NULLPTR));
-        comboBox->clear();
-        comboBox->insertItems(0, QStringList()
-         << QApplication::translate("NFWizard2", "Used STM32CubeMx Version 4.26 (for ARM Cortex M7)", Q_NULLPTR)
-         << QApplication::translate("NFWizard2", "Used STM32CubeMx Version 4.20 or previous previous (for ARM Cortex M4)", Q_NULLPTR)
-        );
         groupBox_STM32CubeMx->setTitle(QApplication::translate("NFWizard2", "STM32CubeMx Project", Q_NULLPTR));
         lineEdit_CubePath->setPlaceholderText(QApplication::translate("NFWizard2", "STM32CubeMx Project path", Q_NULLPTR));
         pushButton_CubeBrowse->setText(QApplication::translate("NFWizard2", "Browse", Q_NULLPTR));

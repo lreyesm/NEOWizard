@@ -54,14 +54,12 @@ void NFWizard2::on_pushButton_Generate_clicked()
     if(fileCube.contains(QString("F4"))){
 
         MainFilesProcessor::SYSCLOCK_CONFIG_START_LINE = "/** System Clock Configuration";
-        //QMessageBox::information(this, "NEOWizard", "Selected Version 4.20 of STCubeMx \n\nIf you do not correctly select the file \nmain.cpp it is not correctly generated"/*+MainFilesProcessor::SYSCLOCK_CONFIG_START_LINE*/);
-        qDebug() << "Selected Version 4.20 of STCubeMx ";
+        QMessageBox::information(this, "NEOWizard", "Selected Version 4.26 of STCubeMx \n\nIf you do not correctly select the file \nmain.cpp it is not correctly generated"/*+MainFilesProcessor::SYSCLOCK_CONFIG_START_LINE*/);
     }
     else if (fileCube.contains(QString("F7"))){
 
         MainFilesProcessor::SYSCLOCK_CONFIG_START_LINE = "  * @brief System Clock Configuration";
-        //QMessageBox::information(this, "NEOWizard", "Selected Version 4.26 of STCubeMx \n\nIf you do not correctly select the file \nmain.cpp it is not correctly generated"/*+MainFilesProcessor::SYSCLOCK_CONFIG_START_LINE*/);
-        qDebug() << "Selected Version 4.26 of STCubeMx ";
+        QMessageBox::information(this, "NEOWizard", "Selected Version 4.26 of STCubeMx \n\nIf you do not correctly select the file \nmain.cpp it is not correctly generated"/*+MainFilesProcessor::SYSCLOCK_CONFIG_START_LINE*/);
     }
     QFileInfo fileCubeInfo(fileCube);
     QFileInfo fileuVisionInfo(fileuVision);
@@ -249,9 +247,9 @@ void NFWizard2::generateTemplates(const QString &projectRootRef)
              << FilePair("://Templates/KeilCopyLib.bat", "Scripts/KeilCopyLib.bat");
     FilePair filePair;
     bool retval = false;
-    foreach (filePair, fileList) {  ////copia los templates (main.ccp) donde en la carpeta "Source"
+    foreach (filePair, fileList) {  //copia los templates (main.ccp) donde en la carpeta "Source"
         retval = QFile::copy(filePair.first, filePair.second);
-        if (retval) {   ////le da permisos de escritura a los templates
+        if (retval) {   //le da permisos de escritura a los templates
             QFile::setPermissions(filePair.second, QFileDevice::WriteOther);
         }else {
             qDebug() << "error coping " << filePair.second << " template" << "all ready copied?";
@@ -295,19 +293,17 @@ void NFWizard2::on_actionSTM32CubeMx_Configuration_triggered()
 }
 
 
-////Este es el slot para la version de seleccion de version de Cube, posteriormente esta automatica la seleccion
-//void NFWizard2::on_comboBox_currentIndexChanged(const QString &arg1)
-//{
-//    if(arg1.contains(QString("4.20"))){
+void NFWizard2::on_comboBox_currentIndexChanged(const QString &arg1)
+{
+    if(arg1.contains(QString("4.20"))){
 
-//        MainFilesProcessor::SYSCLOCK_CONFIG_START_LINE = "/** System Clock Configuration";
-//        QMessageBox::information(this, "NEOWizard", "Selected Version 4.26 of STCubeMx \n\nIf you do not correctly select the file \nmain.cpp it is not correctly generated"/*+MainFilesProcessor::SYSCLOCK_CONFIG_START_LINE*/);
-//    }
-//    else if (arg1.contains(QString("4.26"))){
+        MainFilesProcessor::SYSCLOCK_CONFIG_START_LINE = "/** System Clock Configuration";
+        QMessageBox::information(this, "NEOWizard", "Selected Version 4.26 of STCubeMx \n\nIf you do not correctly select the file \nmain.cpp it is not correctly generated"/*+MainFilesProcessor::SYSCLOCK_CONFIG_START_LINE*/);
+    }
+    else if (arg1.contains(QString("4.26"))){
 
-//        MainFilesProcessor::SYSCLOCK_CONFIG_START_LINE = "  * @brief System Clock Configuration";
-//        QMessageBox::information(this, "NEOWizard", "Selected Version 4.26 of STCubeMx \n\nIf you do not correctly select the file \nmain.cpp it is not correctly generated"/*+MainFilesProcessor::SYSCLOCK_CONFIG_START_LINE*/);
-//    }
+        MainFilesProcessor::SYSCLOCK_CONFIG_START_LINE = "  * @brief System Clock Configuration";
+        QMessageBox::information(this, "NEOWizard", "Selected Version 4.26 of STCubeMx \n\nIf you do not correctly select the file \nmain.cpp it is not correctly generated"/*+MainFilesProcessor::SYSCLOCK_CONFIG_START_LINE*/);
+    }
 
-//}
-
+}

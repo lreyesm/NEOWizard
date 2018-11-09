@@ -75,20 +75,6 @@
     <item>
      <layout class="QVBoxLayout" name="verticalLayout">
       <item>
-       <widget class="QComboBox" name="comboBox">
-        <item>
-         <property name="text">
-          <string>Used STM32CubeMx Version 4.26 (for ARM Cortex M7)</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Used STM32CubeMx Version 4.20 or previous previous (for ARM Cortex M4)</string>
-         </property>
-        </item>
-       </widget>
-      </item>
-      <item>
        <widget class="QGroupBox" name="groupBox_STM32CubeMx">
         <property name="title">
          <string>STM32CubeMx Project</string>
