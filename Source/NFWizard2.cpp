@@ -49,20 +49,49 @@ void NFWizard2::on_pushButton_CubeBrowse_clicked()
     }
 }
 
-void NFWizard2::on_pushButton_Generate_clicked()
-{
-    if(fileCube.contains(QString("F4"))){
+void NFWizard2::checkCubeVersion(){
 
-        MainFilesProcessor::SYSCLOCK_CONFIG_START_LINE = "/** System Clock Configuration";
-        //QMessageBox::information(this, "NEOWizard", "Selected Version 4.20 of STCubeMx \n\nIf you do not correctly select the file \nmain.cpp it is not correctly generated"/*+MainFilesProcessor::SYSCLOCK_CONFIG_START_LINE*/);
-        qDebug() << "Selected Version 4.20 of STCubeMx ";
+    QFileInfo fileInfo(fileCube);
+    QDir fileDir(fileInfo.dir());
+    fileDir.cd("Src");   // pone la direccion de Src como ruta actual para comprobar q existe main.c
+
+    if (!fileDir.exists("main.c")) {
+        QMessageBox::warning(this, tr("NFWizard2"),tr("Error STM32CubeMx Src/%1 file not found").arg("main.c"));
+        return;
     }
-    else if (fileCube.contains(QString("F7"))){
+    QString cubeMainFile = fileDir.filePath("main.c");  //almacena la direccion del main.c en cubeMainFile
 
+    QFile file(cubeMainFile);  //comprueba q existe el archivo main.c generado por STCubeMx
+    if (!file.exists()) {
+        qDebug() << "file: " << file.fileName() << " not found!";
+        return;
+    }
+    if (!file.open(QFile::ReadOnly | QFile::Text)) {  // abre el main.c generado por STCubeMX como lectura
+        qDebug() << "file: " << file.fileName() << " could not be opened for read!";
+        return;
+    }
+    QTextDocument cubeMainDoc;  //variable para guardar texto del main.c
+    cubeMainDoc.setPlainText(file.readAll());  // guarda el contenido del main.c en cubeMainDoc
+    file.close();
+
+    QTextCursor cursorSysClockConfigStart = cubeMainDoc.find(QString("  * @brief System Clock Configuration"));
+    QTextCursor cursorSysClockConfigEnd = cubeMainDoc.find(MainFilesProcessor::SYSCLOCK_CONFIG_END_LINE);
+
+    if (cursorSysClockConfigStart.hasSelection() && cursorSysClockConfigEnd.hasSelection()) {
         MainFilesProcessor::SYSCLOCK_CONFIG_START_LINE = "  * @brief System Clock Configuration";
         //QMessageBox::information(this, "NEOWizard", "Selected Version 4.26 of STCubeMx \n\nIf you do not correctly select the file \nmain.cpp it is not correctly generated"/*+MainFilesProcessor::SYSCLOCK_CONFIG_START_LINE*/);
-        qDebug() << "Selected Version 4.26 of STCubeMx ";
+        qDebug() << "Selected Version 4.26 of STCubeMx (  \"* @brief System Clock Configuration\" en main.c) ";
+    }else {
+        MainFilesProcessor::SYSCLOCK_CONFIG_START_LINE = "/** System Clock Configuration";
+        //QMessageBox::information(this, "NEOWizard", "Selected Version 4.20 of STCubeMx \n\nIf you do not correctly select the file \nmain.cpp it is not correctly generated"/*+MainFilesProcessor::SYSCLOCK_CONFIG_START_LINE*/);
+        qDebug() << "Selected Version 4.20 of STCubeMx ( \"/** System Clock Configuration\" en main.c)";
     }
+
+}
+void NFWizard2::on_pushButton_Generate_clicked()
+{
+    this->checkCubeVersion();
+
     QFileInfo fileCubeInfo(fileCube);
     QFileInfo fileuVisionInfo(fileuVision);
     if (fileCubeInfo.exists() && fileuVisionInfo.exists()) {
@@ -236,7 +265,7 @@ void NFWizard2::generateTemplates(const QString &projectRootRef)
 
     if(QFile::exists((projectRootRef)+QString("/Source/main.cpp"))){
 
-       qDebug() << "main.cpp file exist";
+       qDebug() << "main.cpp file exist, proceeding to erase it";
 
        if(!(QFile::remove((projectRootRef)+QString("/Source/main.cpp")))){
            qDebug() << "Could not remove previous main.cpp file";

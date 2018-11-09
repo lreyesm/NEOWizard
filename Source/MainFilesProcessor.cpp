@@ -1,10 +1,6 @@
 #include "MainFilesProcessor.h"
 
-#include <QTextDocument>
-#include <QTextDocumentWriter>
-#include <QTextCursor>
-#include <QFile>
-#include <QDebug>
+
 
 const QString MainFilesProcessor::INCLUDES_START_LINE = "/* Includes ------------------------------------------------------------------*/";
 const QString MainFilesProcessor::INCLUDES_END_LINE = "/* USER CODE BEGIN Includes */";

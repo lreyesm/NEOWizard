@@ -48,6 +48,7 @@ private:
     void processHalConfigFile();
     void saveSettings();
     void loadSettings();
+    void checkCubeVersion();
 private:
     Ui::NFWizard2 *ui;
     DialogConfigurationHelp *dialogConfigHelp;

@@ -90,7 +90,8 @@ void TextFileProcessor::processMethod()
     if (!cursorStart.hasSelection() || !cursorEnd.hasSelection()) {
         //QTextCursor cursorReplacement = document.find(replacementStr_);
         QTextCursor cursorReplacement = document.find(QString("/* Deleted by NEOWizard */"));
-        if(cursorReplacement.hasSelection()){
+        QTextCursor cursorReplacement_2 = document.find(QString("/* Deleted by NFWizard 2 */"));
+        if(cursorReplacement.hasSelection() || cursorReplacement_2.hasSelection()){
             qWarning() <<"Function  "<< startLine_ <<"  Already deleted by NEOWizard ";
             return;
         }

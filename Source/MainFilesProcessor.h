@@ -2,6 +2,11 @@
 #define MAINFILESPROCESSOR_H
 
 #include <QtCore>
+#include <QTextDocument>
+#include <QTextDocumentWriter>
+#include <QTextCursor>
+#include <QFile>
+#include <QDebug>
 
 class MainFilesProcessor
 {
