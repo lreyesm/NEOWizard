@@ -14,21 +14,21 @@ XMLKeilModify::XMLKeilModify(const QString &uvisionFile, const QString &cubeFile
 }
 
 bool XMLKeilModify::updateUvisionXml(){
-    if(uvisionXmlFile.isEmpty()){  //Si no esta vacio el String del camino del XML de Keil (*.uvprojx)
+    if(uvisionXmlFile.isEmpty()){  ////Si no esta vacio el String del camino del XML de Keil (*.uvprojx)
         return false;
     }
-    QFile file(uvisionXmlFile); //lo abre como lectura
+    QFile file(uvisionXmlFile); ////lo abre como lectura
     if(!file.open(QIODevice::ReadOnly)){
         return false;
     }
-    if (!xmlDocument.setContent(&file)) { //pone el contenido de este XML en xmlDocument
+    if (!xmlDocument.setContent(&file)) { ////pone el contenido de este XML en xmlDocument
         file.close();
         return false;
     }
     file.close();
-    QDomNode node = getNodeWithText(xmlDocument,"GroupName","Source"); //busca un nodo <GroupName> con elemento "Source"
-    if(node.isNull()){  //si retorna un nodo vacio
-        node = getNodeWithText(xmlDocument,"GroupName","Source Group 1"); //Busca el nodo <GroupName> con nombre "Source Group 1"
+    QDomNode node = getNodeWithText(xmlDocument,"GroupName","Source"); ////busca un nodo <GroupName> con elemento "Source"
+    if(node.isNull()){  ////si retorna un nodo vacio
+        node = getNodeWithText(xmlDocument,"GroupName","Source Group 1"); ////Busca el nodo <GroupName> con nombre "Source Group 1"
         if(node.isNull()){
             node = createGroup(xmlDocument,"Source");
         }else{
@@ -98,8 +98,8 @@ bool XMLKeilModify::updateCubeXml(){
     QString temp;
     for(int i=0; i<filesList.size(); i++){
         temp = filesList[i];  ////Si es uno de los archivos en el if, no los agrega en el <project_files> del XML de Cube (*.gpdsc)
-        if((!temp.contains("_hal_msp.c")) && (!temp.contains("main.c"))/* && (!temp.contains("system_"))*/){  ////Manuel no habia añadido el archivo system_, yo si lo añado
-            addFileCube(xmlDocument,"source",temp.prepend("STCubeGenerated/Src/"));
+        if((!temp.contains("_hal_msp.c")) && (!temp.contains("main.c")) && (!temp.contains("system_"))){  ////Manuel no habia añadido el archivo system_,
+            addFileCube(xmlDocument,"source",temp.prepend("STCubeGenerated/Src/"));                       ////esto da error (si lo añades) de compilacion en Keil
         }    ////Si existen se añade al nodo <project_files> en un nodo <file> con atributo "source" y "name" la direccion del archivo "*_it.c"
     }        ////aqui se añaden al XML la direccion del "*_it.c"
     sourceDir.cdUp();    //
