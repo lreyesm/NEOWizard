@@ -40,7 +40,7 @@ bool XMLKeilModify::updateUvisionXml(){
     case NoFilesElement:
         node = getNodeWithText(xmlDocument,"GroupName","Source"); //Busca el nodo <GroupName> con nombre "Source"
         node.parentNode().appendChild(xmlDocument.createElement("Files"));
-        node.nextSiblingElement("Files").  //busca el siguiente nodo <Files> y le añade
+        node.nextSiblingElement("Files").  ////busca el siguiente nodo <Files> y le añade
                 appendChild(createFileUVision(xmlDocument,"main.cpp","8",".\\Source\\main.cpp"));
         break;
     case NoFileElement:
@@ -81,32 +81,32 @@ bool XMLKeilModify::updateCubeXml(){
     if(cubeXmlFile.isEmpty()){  // Chequea si hay algo en el QString
         return false;
     }
-    QFile file(cubeXmlFile); // Abre el archivo como lectura
+    QFile file(cubeXmlFile); //// Abre el archivo como lectura
     if(!file.open(QIODevice::ReadOnly)){
         return false;
     }
-    if (!xmlDocument.setContent(&file)){ // analiza el documento XML de los datos en bytes y lo pone como contenido del documento (variable)
-        file.close();   //xmlDocument ahora tiene el XML de *.gpdsc
+    if (!xmlDocument.setContent(&file)){ //// analiza el documento XML de los datos en bytes y lo pone como contenido del documento (variable)
+        file.close();   ////xmlDocument ahora tiene el XML de *.gpdsc
         return false;
     }
     file.close();
     QDomNode node = deleteAllFilesCube(xmlDocument);
-    node.appendChild(xmlDocument.createElement("project_files")); // le agrega al nodo <generator> un nodo hijo <project_files>
+    node.appendChild(xmlDocument.createElement("project_files")); //// le agrega al nodo <generator> un nodo hijo <project_files>
     QDir sourceDir(QFileInfo(cubeXmlFile).dir().absolutePath().append("/STCubeGenerated/Src/"),
-                   "*.c",QDir::Type,QDir::Files);  //Almacena la direccion de "/STCubeGenerated/Src/"
-    QStringList filesList = sourceDir.entryList(); //Almacena una lista de los archivos *.c en "/STCubeGenerated/Src/"
+                   "*.c",QDir::Type,QDir::Files);  ////Almacena la direccion de "/STCubeGenerated/Src/"
+    QStringList filesList = sourceDir.entryList(); ////Almacena una lista de los archivos *.c en "/STCubeGenerated/Src/"
     QString temp;
     for(int i=0; i<filesList.size(); i++){
-        temp = filesList[i];  //Comprueba si en la lista de archivos existen los encuestados en el if
-        if((!temp.contains("_hal_msp.c")) && (!temp.contains("main.c")) && (!temp.contains("system_"))){
+        temp = filesList[i];  ////Si es uno de los archivos en el if, no los agrega en el <project_files> del XML de Cube (*.gpdsc)
+        if((!temp.contains("_hal_msp.c")) && (!temp.contains("main.c"))/* && (!temp.contains("system_"))*/){  ////Manuel no habia añadido el archivo system_, yo si lo añado
             addFileCube(xmlDocument,"source",temp.prepend("STCubeGenerated/Src/"));
-        }    //Si existen se añade al nodo <project_files> en un nodo <file> con atributo "source" y "name" la direccion del archivo "*_it.c"
-    }        //aqui se añaden al XML la direccion del "*_it.c"
+        }    ////Si existen se añade al nodo <project_files> en un nodo <file> con atributo "source" y "name" la direccion del archivo "*_it.c"
+    }        ////aqui se añaden al XML la direccion del "*_it.c"
     sourceDir.cdUp();    //
     sourceDir.cd("Inc"); //
     addFileCube(xmlDocument,"header",sourceDir.entryInfoList(QStringList("*_it.h"),QDir::Files,QDir::Type)
                 .at(0).fileName().prepend("STCubeGenerated/Inc/"));
-                //Añade al nodo <project_files> un nodo <file category="header" name="STCubeGenerated/Inc/stm32f4xx_it.h"/>
+                ////Añade al nodo <project_files> un nodo <file category="header" name="STCubeGenerated/Inc/stm32f4xx_it.h"/>
     file.open(QIODevice::WriteOnly);
     QTextStream outCube(&file);
     xmlDocument.save(outCube,2);
@@ -235,7 +235,7 @@ QDomNode XMLKeilModify::existsFileCube(QDomDocument& doc,QString fileName){
 }
 
 QDomNode XMLKeilModify::deleteAllFilesCube(QDomDocument& doc){
-    QDomNodeList list = doc.elementsByTagName("project_files"); // devuelve un QDomList q tiene todos los nodos "project_files" en el XML
+    QDomNodeList list = doc.elementsByTagName("project_files"); // devuelve un QDomList q tiene todos los nodos <project_files> en el XML
     if(list.size() > 1){                                        //(<project_files> dentro del XML)
         return QDomNode(); //si la lista es mayor q uno devuelve in QDomNode vacio (solo debe haber un <project_files>)
     }

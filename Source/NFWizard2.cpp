@@ -74,7 +74,7 @@ void NFWizard2::checkCubeVersion(){
     cubeMainDoc.setPlainText(file.readAll());  // guarda el contenido del main.c en cubeMainDoc
     file.close();
 
-    QTextCursor cursorSysClockConfigStart = cubeMainDoc.find(QString("  * @brief System Clock Configuration"));
+    QTextCursor cursorSysClockConfigStart = cubeMainDoc.find(QString("  * @brief System Clock Configuration")); ////si contiene este codigo es version 4.26
     QTextCursor cursorSysClockConfigEnd = cubeMainDoc.find(MainFilesProcessor::SYSCLOCK_CONFIG_END_LINE);
 
     if (cursorSysClockConfigStart.hasSelection() && cursorSysClockConfigEnd.hasSelection()) {
@@ -90,7 +90,7 @@ void NFWizard2::checkCubeVersion(){
 }
 void NFWizard2::on_pushButton_Generate_clicked()
 {
-    this->checkCubeVersion();
+    this->checkCubeVersion();  ////chequea la version de cube a utilizar para obtener funcion sys_clock_config
 
     QFileInfo fileCubeInfo(fileCube);
     QFileInfo fileuVisionInfo(fileuVision);
@@ -177,13 +177,13 @@ void NFWizard2::processMainFiles()
     }
     QString cubeMainFile = fileDir.filePath("main.c");  //almacena la direccion del main.c en cubeMainFile
 
-    fileInfo.setFile(fileuVision); //almacena la direccion de proyecto keil
-    fileDir = fileInfo.dir();  // guarda su direccion de keil en un QDir
-    fileDir.cd("Source");  //se situa en la carpeta Source de proyecto keil
+    fileInfo.setFile(fileuVision); ////almacena la direccion de proyecto keil
+    fileDir = fileInfo.dir();  //// guarda su direccion de keil en un QDir
+    fileDir.cd("Source");  ////se situa en la carpeta Source de proyecto keil
     QString maincppFile = fileDir.filePath("main.cpp"); //guarda la direccion del main.cpp de la carpeta source en mainCppFile
     //QString maincppFile = generateMaincpp();
 
-    if (!MainFilesProcessor::processFiles(cubeMainFile, maincppFile)) {  //llama a la funcion processFiles para modificar el main.cpp
+    if (!MainFilesProcessor::processFiles(cubeMainFile, maincppFile)) {  ////llama a la funcion processFiles para modificar el main.cpp
         QMessageBox::warning(this, tr("NFWizard2"),tr("Error processing STM32CubeMx Src/%1 file and"
                                                       " Source/%2").arg("main.c").arg("main.cpp"));
     }
@@ -191,24 +191,24 @@ void NFWizard2::processMainFiles()
 
 void NFWizard2::processXmlFiles()
 {
-    //fileCube tiene la direccion asignada al proyecto STCubeMX
-    QDir cubeDir = QFileInfo(fileCube).dir();  //Guarda la direccion de cubeDir (".../STCubeGenerated")
-    if(!cubeDir.cdUp()){   //Sube a la direccion (".../STM32F429ZITx")
+    ////fileCube tiene la direccion asignada al proyecto STCubeMX
+    QDir cubeDir = QFileInfo(fileCube).dir();  ////Guarda la direccion de cubeDir (".../STCubeGenerated")
+    if(!cubeDir.cdUp()){   ////Sube a la direccion (".../STM32F429ZITx")
         QMessageBox::critical(this,tr("NFWizard2"),tr("Error. File not founnd."));
         return;
     }
     QFileInfoList fileList = cubeDir.entryInfoList(QStringList("*.gpdsc"),QDir::Files,QDir::Type);  //Busca archivos *.gpdsc (1 solo)
-    if(fileList.size() != 1){   //Solo debe haber un archivo *.gpdsc
+    if(fileList.size() != 1){   ////Solo debe haber un archivo *.gpdsc
         QMessageBox::critical(this,tr("NFWizard2"),tr("Error. File not founnd."));
         return;
     }
     XMLModifyNamespace::XMLKeilModify XmlDoc(fileuVision,fileList[0].absoluteFilePath());  //Contructor de XMLKeilModify le pasa como parametros
 
-    XmlDoc.updateCubeXml();    //modifica el *.gpdsc (XML) y le añade al nodo <project_files> del XML los archivos *.c y *.h
-                               //la direccion de *.uvprojx y la direccion de *.gpdsc
+    XmlDoc.updateCubeXml();    ////modifica el *.gpdsc (XML) y le añade al nodo <project_files> del XML los archivos *.c y *.h
+                               ////la direccion de *.uvprojx y la direccion de *.gpdsc
 
-    XmlDoc.updateUvisionXml();  //modifica el archivo *.uvprojx de Keil, añade nodes con la direccion del archivo main.cpp
-                                //y cambia intancias de "Target 1" por "DEBUG"
+    XmlDoc.updateUvisionXml();  ////modifica el archivo *.uvprojx de Keil, añade nodes con la direccion del archivo main.cpp
+                                ////y cambia intancias de "Target 1" por "DEBUG"
 }
 
 void NFWizard2::processHalConfigFile()
