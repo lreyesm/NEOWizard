@@ -68,6 +68,56 @@ void TextFileProcessor::processTextBlock() //esta funcion es muy parecida a proc
     }
 }
 
+void TextFileProcessor::replace_all_lines_code_instances(){
+
+    while(true){
+
+        QFile file(filename());
+        if (!file.exists()) {
+            qWarning() << "file: " << filename() << " not found!";
+
+            return;
+        }
+        if (!file.open(QFile::ReadOnly | QFile::Text)) {
+            qWarning() << "file: " << filename() << " could not be opened for read!";
+
+            return;
+        }
+        QTextDocument document;
+        document.setPlainText(file.readAll());
+        file.close();
+
+
+        QTextCursor cursorStart = document.find(startLine_);
+        QTextCursor cursorEnd = document.find(endLine_);
+
+        if (!cursorStart.hasSelection() || !cursorEnd.hasSelection()) {
+            //QTextCursor cursorReplacement = document.find(replacementStr_);
+            QTextCursor cursorReplacement = document.find(QString("/*Start of replaced code of NEOWizard*/"));
+            if(cursorReplacement.hasSelection() ){
+                qWarning() <<"Function  "<< startLine_ <<"  Already deleted by NEOWizard ";
+
+            }
+            else{
+            qWarning() << "The text between: " << startLine_ << " and " << endLine_ << "not found" << endLine();
+            return;
+            }
+        }
+        if (!cursorEnd.movePosition(QTextCursor::Down, QTextCursor::KeepAnchor, 2)) { // WARNING: magic number, to select the "}"
+            qWarning() << "file: " << filename() << " not found!";
+            return;
+        }
+        cursorStart.setPosition(cursorEnd.position(),QTextCursor::KeepAnchor);
+        cursorStart.removeSelectedText(); // delete the function
+        cursorStart.insertText(replacementString());
+        QTextDocumentWriter docWriter(filename(), "plaintext");
+        if (! docWriter.write(&document)) { // to select the "}"
+            qWarning() << "file: " << filename() << " could not be written!";
+            return;
+        }
+     }
+}
+
 void TextFileProcessor::processMethod()
 {
     QFile file(filename());

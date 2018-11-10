@@ -70,19 +70,12 @@ void NFWizard2::processMain_cpp_Error_function(const QString &main_cpp_path){
 
     TextFileProcessor main_cpp_FileProcessor;
     main_cpp_FileProcessor.setFilename(main_cpp_path);
-
-    for(int i=0;i<5;i++){
                                         //// ignora espacios en blanco antes de la linea de codigo
     main_cpp_FileProcessor.setStartLine("_Error_Handler(__FILE__, __LINE__);");       ////inicio del contenido a eliminar
     main_cpp_FileProcessor.setEndLine("_Error_Handler(__FILE__, __LINE__);"); ////fin del contenido a eliminar
-    main_cpp_FileProcessor.setReplacementString("/*Start of replace by NEOWizard*/\n     Error_Handler();\n    /*End of replace by NEOWizard*/\n  }\n");
-    main_cpp_FileProcessor.processMethod();
-    }
-//    //// ignora espacios en blanco antes de la linea de codigo
-//    main_cpp_FileProcessor.setStartLine("_Error_Handler(__FILE__, __LINE__);");// FLASH_LATENCY_5) != HAL_OK)");       ////inicio del contenido a eliminar
-//    main_cpp_FileProcessor.setEndLine("_Error_Handler(__FILE__, __LINE__);"); ////fin del contenido a eliminar
-//    main_cpp_FileProcessor.setReplacementString(" /*Start of replace by NEOWizard*/\n  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_5) != HAL_OK)\n  {\n    Error_Handler();\n  }\n  /*End of replace by NEOWizard*/\n");
-//    main_cpp_FileProcessor.processMethod();
+    main_cpp_FileProcessor.setReplacementString("/*Start of replaced code of NEOWizard*/\n     Error_Handler();\n    /*End of replaced code of NEOWizard*/\n  }\n");
+    main_cpp_FileProcessor.replace_all_lines_code_instances();
+
 }
 
 void NFWizard2::checkCubeVersion(){

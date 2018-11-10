@@ -21,6 +21,7 @@ public:
 
     void processTextBlock();
     void processMethod();
+    void replace_all_lines_code_instances();
 private:
     QString filename_;
     QString startLine_;
