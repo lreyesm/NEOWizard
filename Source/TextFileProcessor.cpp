@@ -70,7 +70,7 @@ void TextFileProcessor::processTextBlock() //esta funcion es muy parecida a proc
 
 void TextFileProcessor::replace_all_lines_code_instances(){
 
-    while(true){
+
 
         QFile file(filename());
         if (!file.exists()) {
@@ -87,6 +87,7 @@ void TextFileProcessor::replace_all_lines_code_instances(){
         document.setPlainText(file.readAll());
         file.close();
 
+     while(true){
 
         QTextCursor cursorStart = document.find(startLine_);
         QTextCursor cursorEnd = document.find(endLine_);

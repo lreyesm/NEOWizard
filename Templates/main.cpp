@@ -39,28 +39,33 @@ void Error_Handler(void);
 
 int main(void)
 {
-    /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
-    HAL_Init();
+  /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
 
-    /* Configure the system clock */
-    SystemClock_Config();
+  HAL_Init();
 
-    /* Initialize all configured peripherals */
-    MX_GPIO_Init();
+  /* Configure the system clock */
 
-    /* USER CODE BEGIN 2 */
+  SystemClock_Config();
 
-    //Sustituir por el nombre de la clase asignado
-    //Application app;
+  /* Initialize all configured peripherals */
 
-    //Sustituir por el nombre de la clase asignado
-    //app.exec();
-    /* USER CODE END 2 */
+  MX_GPIO_Init();
 
-    while (1)
-    {
+
+  /* USER CODE BEGIN 2 */
+
+  //Sustituir por el nombre de la clase asignado
+  //Application app;
+
+  //Sustituir por el nombre de la clase asignado
+  //app.exec();
+
+  /* USER CODE END 2 */
+
+  while (1)
+  {
         // error
-    }
+  }
 }
 
 /** System Clock Configuration
