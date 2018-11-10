@@ -119,13 +119,16 @@ void NFWizard2::checkCubeVersion(){
     }
 
 }
+
 void NFWizard2::on_pushButton_Generate_clicked()
 {
     this->checkCubeVersion();  ////chequea la version de cube a utilizar para obtener funcion sys_clock_config
 
     QFileInfo fileCubeInfo(fileCube);
     QFileInfo fileuVisionInfo(fileuVision);
+
     if (fileCubeInfo.exists() && fileuVisionInfo.exists()) {
+
         generateProjectFileTree(); ////Genera las carpetas necesarias y copia los templates (main.cpp)
         processInterrupFile();     ////borra las funciones de interrupcion incompatibles con keil
         processMainFiles();        //// Copia el texto de "includes", inicializacion y configuracion de perifericos y relojes del Main.c al Main.cpp

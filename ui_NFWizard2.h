@@ -66,7 +66,7 @@ public:
     {
         if (NFWizard2->objectName().isEmpty())
             NFWizard2->setObjectName(QStringLiteral("NFWizard2"));
-        NFWizard2->resize(640, 315);
+        NFWizard2->resize(1021, 315);
         QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
@@ -185,7 +185,7 @@ public:
         NFWizard2->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(NFWizard2);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 640, 20));
+        menuBar->setGeometry(QRect(0, 0, 1021, 25));
         menuHelp = new QMenu(menuBar);
         menuHelp->setObjectName(QStringLiteral("menuHelp"));
         NFWizard2->setMenuBar(menuBar);

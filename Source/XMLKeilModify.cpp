@@ -14,13 +14,17 @@ XMLKeilModify::XMLKeilModify(const QString &uvisionFile, const QString &cubeFile
 }
 
 bool XMLKeilModify::updateUvisionXml(){
+
     if(uvisionXmlFile.isEmpty()){  ////Si no esta vacio el String del camino del XML de Keil (*.uvprojx)
         return false;
     }
+
     QFile file(uvisionXmlFile); ////lo abre como lectura
+
     if(!file.open(QIODevice::ReadOnly)){
         return false;
     }
+
     if (!xmlDocument.setContent(&file)) { ////pone el contenido de este XML en xmlDocument
         file.close();
         return false;
@@ -127,6 +131,7 @@ void XMLKeilModify::setUvisionXmlFile(const QString &dir){
 }
 
 QDomNode XMLKeilModify::getNodeWithText(QDomDocument& doc,QString tag,QString text){
+
     QDomNodeList list = doc.elementsByTagName(tag);  //devuelve una lista de los nodos <"tag">
     for(int i=0; i<list.size(); i++){
         if(list.item(i).toElement().text() == text){ //busca dentro del nodo <"tag"> con nombre "text"
@@ -137,6 +142,7 @@ QDomNode XMLKeilModify::getNodeWithText(QDomDocument& doc,QString tag,QString te
 }
 
 void XMLKeilModify::changeGroupName(QDomDocument& doc,QString oldGroupName,QString newGroupName){
+
     QDomNode group = getNodeWithText(doc,"GroupName",oldGroupName);
     if(!group.isNull()){
         group.firstChild().toText().setData(newGroupName);
@@ -144,31 +150,33 @@ void XMLKeilModify::changeGroupName(QDomDocument& doc,QString oldGroupName,QStri
 }
 
 QDomElement XMLKeilModify::createFileUVision(QDomDocument& doc,QString name,QString type,QString path){
+
     QDomElement temp;
     QDomText textTemp;
     QDomElement newFile;
-    //Create File element.
+    //Create File element (NODE a añadir en XML).
     newFile = doc.createElement("File");
-    //Create FileName element.
+    //Create FileName element(NODE a añadir en XML).
     temp = doc.createElement("FileName");
     newFile.appendChild(temp);
-    //Create FileType element.
+    //Create FileType element (NODE a añadir en XML).
     temp = doc.createElement("FileType");
     newFile.appendChild(temp);
-    //Create FilePath element.
+    //Create FilePath element (NODE a añadir en XML).
     temp = doc.createElement("FilePath");
-    newFile.appendChild(temp);
+    newFile.appendChild(temp);////añade  a nodo temp como hijo de newFile
+
     //Create text element for the file name
-    temp = newFile.firstChildElement();
-    textTemp = doc.createTextNode(name);
-    temp.appendChild(textTemp);
+    temp = newFile.firstChildElement();  ////temp igual al primer nodo hijo de newFile
+    textTemp = doc.createTextNode(name);//// texto de nodo con nombre "name"
+    temp.appendChild(textTemp); ////se añade al nodo temp
     //Create text element for the file type
     temp = temp.nextSiblingElement();
-    textTemp = doc.createTextNode(type);
+    textTemp = doc.createTextNode(type);//// texto de nodo con nombre "type"
     temp.appendChild(textTemp);
     //Create text element for the file path
     temp = temp.nextSiblingElement();
-    textTemp = doc.createTextNode(path);
+    textTemp = doc.createTextNode(path);//// texto de nodo con nombre "path"
     temp.appendChild(textTemp);
     return newFile;
 }
