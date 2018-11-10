@@ -57,13 +57,31 @@ void NFWizard2::processMain_H_file(const QString& main_h_path){
     TextFileProcessor main_h_FileProcessor;
     main_h_FileProcessor.setFilename(main_h_path);
 
-    main_h_FileProcessor.setStartLine("#ifdef __cplusplus");       ////inicio del contenido a eliminar
-    main_h_FileProcessor.setEndLine("#endif /* __MAIN_H__ */"); ////fin del contenido a eliminar
-    main_h_FileProcessor.setReplacementString("\n/*Delete by NEOWizard*/\n\n #endif /* __MAIN_H__ */\n\n");
-    main_h_FileProcessor.processMethod();
+    if(cubeVersion == QString("4.26")){
+
+        QString microcontroller_used;
+
+        if(fileCube.contains("STM32F4")){
+
+            microcontroller_used = QString("STM32F4_SELECTED  0");
+        }
+        else if(fileCube.contains("STM32F7")){
+
+            microcontroller_used = QString("STM32F7_SELECTED  1");
+        }
+
+        main_h_FileProcessor.setStartLine("#ifdef __cplusplus");       ////inicio del contenido a eliminar
+        main_h_FileProcessor.setEndLine("#endif /* __MAIN_H__ */"); ////fin del contenido a eliminar
+        main_h_FileProcessor.setReplacementString(QString("\n/*Delete by NEOWizard*/\n\nDefine by NEOWizard\n #define ")+microcontroller_used+QString("\n\n#endif /* __MAIN_H__ */\n\n"));
+        main_h_FileProcessor.processMethod();
+
+        return;
+    }
+
+    if(cubeVersion == QString("4.20")){
 
 
-
+    }
 }
 
 void NFWizard2::processMain_cpp_Error_function(const QString &main_cpp_path){
