@@ -72,7 +72,7 @@ void NFWizard2::processMain_H_file(const QString& main_h_path){
 
         main_h_FileProcessor.setStartLine("#ifdef __cplusplus");       ////inicio del contenido a eliminar
         main_h_FileProcessor.setEndLine("#endif /* __MAIN_H__ */"); ////fin del contenido a eliminar
-        main_h_FileProcessor.setReplacementString(QString("\n/*Delete by NEOWizard*/\n\nDefine by NEOWizard\n #define ")+microcontroller_used+QString("\n\n#endif /* __MAIN_H__ */\n\n"));
+        main_h_FileProcessor.setReplacementString(QString("\n/*Delete by NEOWizard*/\n\n/*Define by NEOWizard*/\n #define ")+microcontroller_used+QString("\n/*End of Define by NEOWizard*/\n\n#endif /* __MAIN_H__ */\n\n"));
         main_h_FileProcessor.processMethod();
 
         return;
