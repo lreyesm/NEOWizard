@@ -39,6 +39,10 @@ private slots:
     ////funcion slot de combobox de seleccion version cube
     //void on_comboBox_currentIndexChanged(const QString &arg1);
 
+    void on_pushButton_generate_folders_clicked();
+
+    void on_pushButton_Quit_clicked();
+
 private:
     void generateProjectFileTree();
     void generateTemplates(const QString& projectRootRef);
@@ -51,6 +55,7 @@ private:
     void checkCubeVersion();
     void processMain_H_file(const QString& main_h_path);
     void processMain_cpp_Error_function(const QString& main_cpp_path);
+    void windows_appearence();
 
 private:
     Ui::NFWizard2 *ui;
@@ -61,6 +66,9 @@ private:
     QString fileCube;
     QString lastPath;
     QString cubeVersion;
+
+    QString folder_photos;
+    bool generate_project_folders;
 };
 
 #endif // NFWIZARD2_H

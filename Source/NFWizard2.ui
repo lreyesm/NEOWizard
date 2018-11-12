@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1021</width>
+    <width>640</width>
     <height>315</height>
    </rect>
   </property>
@@ -36,50 +36,157 @@
     <normaloff>:/Assets/icon.ico</normaloff>:/Assets/icon.ico</iconset>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <layout class="QVBoxLayout" name="verticalLayout_2">
-    <item>
-     <widget class="QGroupBox" name="groupBox_uVision">
-      <property name="title">
-       <string>uVision Project</string>
-      </property>
-      <layout class="QHBoxLayout" name="horizontalLayout">
+   <widget class="QLabel" name="label_bar_selection">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>30</y>
+      <width>47</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>TextLabel</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_Generate_tag">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>80</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_Options_tag">
+    <property name="geometry">
+     <rect>
+      <x>190</x>
+      <y>0</y>
+      <width>80</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_Help_tag">
+    <property name="geometry">
+     <rect>
+      <x>100</x>
+      <y>0</y>
+      <width>80</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_bar_background">
+    <property name="geometry">
+     <rect>
+      <x>290</x>
+      <y>10</y>
+      <width>47</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>TextLabel</string>
+    </property>
+   </widget>
+   <widget class="QWidget" name="widget_dirs" native="true">
+    <property name="geometry">
+     <rect>
+      <x>80</x>
+      <y>50</y>
+      <width>152</width>
+      <height>98</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout_3">
+     <property name="spacing">
+      <number>20</number>
+     </property>
+     <property name="sizeConstraint">
+      <enum>QLayout::SetFixedSize</enum>
+     </property>
+     <item>
+      <layout class="QVBoxLayout" name="verticalLayout_2">
+       <property name="sizeConstraint">
+        <enum>QLayout::SetFixedSize</enum>
+       </property>
        <item>
-        <widget class="QLineEdit" name="lineEdit_uVisionPath">
-         <property name="enabled">
-          <bool>false</bool>
-         </property>
-         <property name="autoFillBackground">
-          <bool>false</bool>
-         </property>
-         <property name="echoMode">
-          <enum>QLineEdit::Normal</enum>
-         </property>
-         <property name="readOnly">
-          <bool>true</bool>
-         </property>
-         <property name="placeholderText">
-          <string>Keil uVision Project path</string>
+        <widget class="QLabel" name="label_uVision">
+         <property name="text">
+          <string>TextLabel</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="pushButton_uVisionBrowse">
-         <property name="text">
-          <string>Browse</string>
+        <layout class="QHBoxLayout" name="horizontalLayout_2">
+         <property name="spacing">
+          <number>0</number>
          </property>
-        </widget>
+         <property name="sizeConstraint">
+          <enum>QLayout::SetFixedSize</enum>
+         </property>
+         <item>
+          <widget class="QLineEdit" name="lineEdit_uVisionPath">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="autoFillBackground">
+            <bool>false</bool>
+           </property>
+           <property name="echoMode">
+            <enum>QLineEdit::Normal</enum>
+           </property>
+           <property name="readOnly">
+            <bool>true</bool>
+           </property>
+           <property name="placeholderText">
+            <string>Keil uVision Project path</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pushButton_uVisionBrowse">
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+        </layout>
        </item>
       </layout>
-     </widget>
-    </item>
-    <item>
-     <layout class="QVBoxLayout" name="verticalLayout">
-      <item>
-       <widget class="QGroupBox" name="groupBox_STM32CubeMx">
-        <property name="title">
-         <string>STM32CubeMx Project</string>
-        </property>
-        <layout class="QHBoxLayout" name="horizontalLayout_3">
+     </item>
+     <item>
+      <layout class="QVBoxLayout" name="verticalLayout">
+       <property name="sizeConstraint">
+        <enum>QLayout::SetFixedSize</enum>
+       </property>
+       <item>
+        <widget class="QLabel" name="label_Cube">
+         <property name="text">
+          <string>TextLabel</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout">
+         <property name="spacing">
+          <number>0</number>
+         </property>
+         <property name="sizeConstraint">
+          <enum>QLayout::SetFixedSize</enum>
+         </property>
          <item>
           <widget class="QLineEdit" name="lineEdit_CubePath">
            <property name="enabled">
@@ -99,93 +206,102 @@
          <item>
           <widget class="QPushButton" name="pushButton_CubeBrowse">
            <property name="text">
-            <string>Browse</string>
+            <string/>
            </property>
           </widget>
          </item>
         </layout>
-       </widget>
-      </item>
-     </layout>
-    </item>
-    <item>
-     <widget class="QGroupBox" name="groupBox_options">
-      <property name="title">
-       <string>Generation Options</string>
-      </property>
-      <layout class="QGridLayout" name="gridLayout">
-       <item row="0" column="0">
-        <widget class="QCheckBox" name="checkBox_FolderStruct">
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="widget_generate_options" native="true">
+    <property name="geometry">
+     <rect>
+      <x>90</x>
+      <y>160</y>
+      <width>47</width>
+      <height>42</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout_4">
+     <property name="sizeConstraint">
+      <enum>QLayout::SetFixedSize</enum>
+     </property>
+     <item>
+      <widget class="QLabel" name="label_generate_options">
+       <property name="text">
+        <string>textLabel</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton_generate_folders">
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="widget_buttons_quit" native="true">
+    <property name="geometry">
+     <rect>
+      <x>304</x>
+      <y>190</y>
+      <width>120</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout_4">
+     <property name="sizeConstraint">
+      <enum>QLayout::SetFixedSize</enum>
+     </property>
+     <item>
+      <spacer name="horizontalSpacer">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_3">
+       <property name="sizeConstraint">
+        <enum>QLayout::SetFixedSize</enum>
+       </property>
+       <item>
+        <widget class="QPushButton" name="pushButton_Generate">
          <property name="text">
-          <string>Generate Project Folders</string>
+          <string/>
          </property>
-         <property name="checked">
-          <bool>false</bool>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pushButton_Quit">
+         <property name="text">
+          <string/>
          </property>
         </widget>
        </item>
       </layout>
-     </widget>
-    </item>
-    <item>
-     <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="0,0,0">
-      <property name="sizeConstraint">
-       <enum>QLayout::SetDefaultConstraint</enum>
-      </property>
-      <item>
-       <spacer name="horizontalSpacer">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>40</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-      <item>
-       <widget class="QPushButton" name="pushButton_Generate">
-        <property name="text">
-         <string>Generate Project</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="pushButton_Quit">
-        <property name="text">
-         <string>Quit</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </item>
-    <item>
-     <spacer name="verticalSpacer">
-      <property name="orientation">
-       <enum>Qt::Vertical</enum>
-      </property>
-      <property name="sizeType">
-       <enum>QSizePolicy::Expanding</enum>
-      </property>
-      <property name="sizeHint" stdset="0">
-       <size>
-        <width>20</width>
-        <height>20</height>
-       </size>
-      </property>
-     </spacer>
-    </item>
-   </layout>
+     </item>
+    </layout>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1021</width>
-     <height>25</height>
+     <width>640</width>
+     <height>20</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuHelp">
@@ -233,22 +349,5 @@
  <resources>
   <include location="../assets.qrc"/>
  </resources>
- <connections>
-  <connection>
-   <sender>pushButton_Quit</sender>
-   <signal>clicked()</signal>
-   <receiver>NFWizard2</receiver>
-   <slot>close()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>589</x>
-     <y>224</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>319</x>
-     <y>149</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+ <connections/>
 </ui>
