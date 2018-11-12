@@ -64,6 +64,12 @@ public:
     QHBoxLayout *horizontalLayout_3;
     QPushButton *pushButton_Generate;
     QPushButton *pushButton_Quit;
+    QWidget *widget_help_buttons;
+    QVBoxLayout *verticalLayout_5;
+    QPushButton *pb_uVision_Config;
+    QPushButton *pb_Stcube_Config;
+    QPushButton *pb_about_NEOW;
+    QPushButton *pb_about_QT;
     QMenuBar *menuBar;
     QMenu *menuHelp;
     QToolBar *mainToolBar;
@@ -229,6 +235,34 @@ public:
 
         horizontalLayout_4->addLayout(horizontalLayout_3);
 
+        widget_help_buttons = new QWidget(centralWidget);
+        widget_help_buttons->setObjectName(QStringLiteral("widget_help_buttons"));
+        widget_help_buttons->setGeometry(QRect(380, 30, 149, 104));
+        verticalLayout_5 = new QVBoxLayout(widget_help_buttons);
+        verticalLayout_5->setSpacing(6);
+        verticalLayout_5->setContentsMargins(11, 11, 11, 11);
+        verticalLayout_5->setObjectName(QStringLiteral("verticalLayout_5"));
+        verticalLayout_5->setSizeConstraint(QLayout::SetFixedSize);
+        pb_uVision_Config = new QPushButton(widget_help_buttons);
+        pb_uVision_Config->setObjectName(QStringLiteral("pb_uVision_Config"));
+
+        verticalLayout_5->addWidget(pb_uVision_Config);
+
+        pb_Stcube_Config = new QPushButton(widget_help_buttons);
+        pb_Stcube_Config->setObjectName(QStringLiteral("pb_Stcube_Config"));
+
+        verticalLayout_5->addWidget(pb_Stcube_Config);
+
+        pb_about_NEOW = new QPushButton(widget_help_buttons);
+        pb_about_NEOW->setObjectName(QStringLiteral("pb_about_NEOW"));
+
+        verticalLayout_5->addWidget(pb_about_NEOW);
+
+        pb_about_QT = new QPushButton(widget_help_buttons);
+        pb_about_QT->setObjectName(QStringLiteral("pb_about_QT"));
+
+        verticalLayout_5->addWidget(pb_about_QT);
+
         NFWizard2->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(NFWizard2);
         menuBar->setObjectName(QStringLiteral("menuBar"));
@@ -276,6 +310,10 @@ public:
         pushButton_generate_folders->setText(QString());
         pushButton_Generate->setText(QString());
         pushButton_Quit->setText(QString());
+        pb_uVision_Config->setText(QApplication::translate("NFWizard2", "uVision Configuration", Q_NULLPTR));
+        pb_Stcube_Config->setText(QApplication::translate("NFWizard2", "STM32CubeMx Configuration", Q_NULLPTR));
+        pb_about_NEOW->setText(QApplication::translate("NFWizard2", "About NEOWizard", Q_NULLPTR));
+        pb_about_QT->setText(QApplication::translate("NFWizard2", "About Qt", Q_NULLPTR));
         menuHelp->setTitle(QApplication::translate("NFWizard2", "Help", Q_NULLPTR));
     } // retranslateUi
 

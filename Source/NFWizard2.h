@@ -43,6 +43,20 @@ private slots:
 
     void on_pushButton_Quit_clicked();
 
+    void on_pushButton_Help_tag_clicked();
+
+    void on_pushButton_Options_tag_clicked();
+
+    void on_pushButton_Generate_tag_clicked();
+
+    void on_pb_uVision_Config_clicked();
+
+    void on_pb_Stcube_Config_clicked();
+
+    void on_pb_about_NEOW_clicked();
+
+    void on_pb_about_QT_clicked();
+
 private:
     void generateProjectFileTree();
     void generateTemplates(const QString& projectRootRef);
@@ -56,6 +70,10 @@ private:
     void processMain_H_file(const QString& main_h_path);
     void processMain_cpp_Error_function(const QString& main_cpp_path);
     void windows_appearence();
+    void hide_all_objects();
+    void show_help();
+    void show_generate();
+    void show_options();
 
 private:
     Ui::NFWizard2 *ui;

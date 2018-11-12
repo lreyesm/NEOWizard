@@ -20,10 +20,12 @@ NFWizard2::NFWizard2(QWidget *parent) :
     folder_photos = "NFWizard_icons/";
 
     ui->mainToolBar->hide();
-    //ui->menuBar->hide();
-    //ui->statusBar->hide();
+    ui->menuBar->hide();
+    ui->statusBar->hide();
 
     this->windows_appearence();
+    this->hide_all_objects();
+    this->show_generate();
 
 
     dialogConfigHelp = new DialogConfigurationHelp(this);
@@ -87,19 +89,39 @@ void NFWizard2::windows_appearence(){
     ui->pushButton_Generate_tag->setIcon((QIcon("NFWizard_icons/label_generate.png")));
     ui->pushButton_Generate_tag->setIconSize(QSize(80,27));
     ui->pushButton_Generate_tag->setFixedSize(75,27);
-    ui->pushButton_Generate_tag->move(0,0);
+    ui->pushButton_Generate_tag->move(0,1);
 
     ui->pushButton_Help_tag->setFlat(true);
     ui->pushButton_Help_tag->setIcon((QIcon("NFWizard_icons/label_help.png")));
     ui->pushButton_Help_tag->setIconSize(QSize(23,27));
     ui->pushButton_Help_tag->setFixedSize(75,27);
-    ui->pushButton_Help_tag->move(150,1);
+    ui->pushButton_Help_tag->move(150,2);
 
     ui->pushButton_Options_tag->setFlat(true);
     ui->pushButton_Options_tag->setIcon((QIcon("NFWizard_icons/label_options.png")));
     ui->pushButton_Options_tag->setIconSize(QSize(75,27));
     ui->pushButton_Options_tag->setFixedSize(75,27);
-    ui->pushButton_Options_tag->move(75,1);
+    ui->pushButton_Options_tag->move(75,2);
+
+    ui->pb_uVision_Config->setFlat(true);
+    ui->pb_uVision_Config->setStyleSheet(QStringLiteral("color: #DDDDDD; font: 11pt Segoe  UI;"));
+    //ui->pb_uVision_Config->setIconSize(QSize(75,27));
+    //ui->pb_uVision_Config->setFixedSize(75,27);
+
+    ui->pb_Stcube_Config->setFlat(true);
+    ui->pb_Stcube_Config->setStyleSheet(QStringLiteral("color: #DDDDDD; font: 11pt Segoe  UI;"));
+    //ui->pb_Stcube_Config->setIconSize(QSize(75,27));
+    //ui->pb_Stcube_Config->setFixedSize(75,27);
+
+    ui->pb_about_NEOW->setFlat(true);
+    ui->pb_about_NEOW->setStyleSheet(QStringLiteral("color: #DDDDDD; font: 11pt Segoe  UI;"));
+    //ui->pb_about_NEOW->setIconSize(QSize(75,27));
+    //ui->pb_about_NEOW->setFixedSize(75,27);
+
+    ui->pb_about_QT->setFlat(true);
+    ui->pb_about_QT->setStyleSheet(QStringLiteral("color: #DDDDDD; font: 11pt Segoe  UI;"));
+    //ui->pb_about_QT->setIconSize(QSize(75,27));
+    //ui->pb_about_QT->setFixedSize(75,27);
 
     /// ------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -114,8 +136,8 @@ void NFWizard2::windows_appearence(){
     ui->label_bar_background->lower();
 
     ui->label_bar_selection->setPixmap(QPixmap("NFWizard_icons/label_selection.png"));
-    ui->label_bar_selection->setFixedSize(QSize(640,27));
-    ui->label_bar_selection->move(0,13);
+    ui->label_bar_selection->setFixedSize(QSize(77,2));
+    ui->label_bar_selection->move(0,25);
 
     ui->label_Cube->setPixmap(QPixmap("NFWizard_icons/label_cube.png"));
     ui->label_Cube->setFixedSize(QSize(174,19));
@@ -140,6 +162,10 @@ void NFWizard2::windows_appearence(){
     ui->widget_generate_options->move(90,180);
 
     ui->widget_buttons_quit->move(310,230);
+
+    ui->widget_help_buttons->move(150,27);
+
+    ui->widget_help_buttons->setStyleSheet(QStringLiteral("background: #15AC70; color: #DDDDDD; font: 11pt Segoe  UI;"));
 
     /// ------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -538,4 +564,68 @@ void NFWizard2::on_pushButton_generate_folders_clicked()
 void NFWizard2::on_pushButton_Quit_clicked()
 {
      this->close();
+}
+
+void NFWizard2::on_pushButton_Help_tag_clicked()
+{
+    ui->label_bar_selection->move(150,25);
+    this->hide_all_objects();
+    this->show_help();
+}
+
+void NFWizard2::on_pushButton_Options_tag_clicked()
+{
+     ui->label_bar_selection->move(75,25);
+     this->hide_all_objects();
+     this->show_options();
+}
+
+void NFWizard2::on_pushButton_Generate_tag_clicked()
+{
+     ui->label_bar_selection->move(0,25);
+     this->hide_all_objects();
+     this->show_generate();
+}
+
+void NFWizard2::hide_all_objects(){
+
+    ui->widget_help_buttons->hide();
+
+    ui->widget_buttons_quit->hide();
+    ui->widget_dirs->hide();
+    ui->widget_generate_options->hide();
+}
+
+void NFWizard2::show_generate(){
+
+    ui->widget_buttons_quit->show();
+    ui->widget_dirs->show();
+    ui->widget_generate_options->show();
+}
+
+void NFWizard2::show_help(){
+
+    ui->widget_help_buttons->show();
+}
+
+void NFWizard2::show_options(){}
+
+void NFWizard2::on_pb_uVision_Config_clicked()
+{
+    on_actionUVision_Configuration_triggered();
+}
+
+void NFWizard2::on_pb_Stcube_Config_clicked()
+{
+    on_actionSTM32CubeMx_Configuration_triggered();
+}
+
+void NFWizard2::on_pb_about_NEOW_clicked()
+{
+    on_actionAbout_triggered();
+}
+
+void NFWizard2::on_pb_about_QT_clicked()
+{
+    on_actionAbout_Qt_triggered();
 }

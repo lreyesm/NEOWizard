@@ -294,6 +294,49 @@
      </item>
     </layout>
    </widget>
+   <widget class="QWidget" name="widget_help_buttons" native="true">
+    <property name="geometry">
+     <rect>
+      <x>380</x>
+      <y>30</y>
+      <width>149</width>
+      <height>104</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout_5">
+     <property name="sizeConstraint">
+      <enum>QLayout::SetFixedSize</enum>
+     </property>
+     <item>
+      <widget class="QPushButton" name="pb_uVision_Config">
+       <property name="text">
+        <string>uVision Configuration</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pb_Stcube_Config">
+       <property name="text">
+        <string>STM32CubeMx Configuration</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pb_about_NEOW">
+       <property name="text">
+        <string>About NEOWizard</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pb_about_QT">
+       <property name="text">
+        <string>About Qt</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
