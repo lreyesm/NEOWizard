@@ -17,13 +17,13 @@ NFWizard2::NFWizard2(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    folder_photos = "NFWizard_icons/";
 
+    generate_project_folders = false;
     ui->mainToolBar->hide();
     ui->menuBar->hide();
     ui->statusBar->hide();
 
-    this->windows_appearence();
+    //this->windows_appearence();
     this->hide_all_objects();
     this->show_generate();
 
@@ -41,6 +41,7 @@ NFWizard2::~NFWizard2()
 
 void NFWizard2::windows_appearence(){
 
+    /*
     ui->centralWidget->setPalette(QPalette(QColor(48,60,77)));
     ui->centralWidget->setAutoFillBackground(true);
 
@@ -153,6 +154,7 @@ void NFWizard2::windows_appearence(){
 
     /// ------------------------------------------------------------------------------------------------------------------------------------------------
 
+    */
 
     ////Configuracion de Widgets de posicion de la app--------------------------------------------------------------------------------------------------------------
     /// ------------------------------------------------------------------------------------------------------------------------------------------------
@@ -165,7 +167,7 @@ void NFWizard2::windows_appearence(){
 
     ui->widget_help_buttons->move(150,27);
 
-    ui->widget_help_buttons->setStyleSheet(QStringLiteral("background: #15AC70; color: #DDDDDD; font: 11pt Segoe  UI;"));
+    //ui->widget_help_buttons->setStyleSheet(QStringLiteral("background: #15AC70; color: #DDDDDD; font: 11pt Segoe  UI;"));
 
     /// ------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -552,12 +554,14 @@ void NFWizard2::on_pushButton_generate_folders_clicked()
     if(generate_project_folders == false){
 
          generate_project_folders = true;
-         ui->lineEdit_CubePath->setText("true");
+         //ui->lineEdit_CubePath->setText("true");
+         ui->pushButton_generate_folders->setStyleSheet( QStringLiteral("background-color: rgb(89, 99, 113);") + "background-image: url(:/Assets/check_box_on.png);");
     }
     else{
 
          generate_project_folders = false;
-         ui->lineEdit_CubePath->setText("false");
+         //ui->lineEdit_CubePath->setText("false");
+         ui->pushButton_generate_folders->setStyleSheet( QStringLiteral("background-color: rgb(89, 99, 113);") + "background-image: url(:/Assets/check_box_off.png);");
     }
 }
 
@@ -568,26 +572,33 @@ void NFWizard2::on_pushButton_Quit_clicked()
 
 void NFWizard2::on_pushButton_Help_tag_clicked()
 {
-    ui->label_bar_selection->move(150,25);
     this->hide_all_objects();
     this->show_help();
 }
 
 void NFWizard2::on_pushButton_Options_tag_clicked()
 {
-     ui->label_bar_selection->move(75,25);
-     this->hide_all_objects();
-     this->show_options();
+    this->hide_all_objects();
+    this->show_options();
 }
 
 void NFWizard2::on_pushButton_Generate_tag_clicked()
 {
-     ui->label_bar_selection->move(0,25);
      this->hide_all_objects();
      this->show_generate();
 }
 
 void NFWizard2::hide_all_objects(){
+
+    ui->pushButton_Generate_tag->setStyleSheet( QStringLiteral("background-color: rgb(89, 99, 113);") + "border-image: url(:/Assets/generate_tag_off.png);");
+    ui->pushButton_Generate_tag->setFixedSize(56,18);
+    ui->pushButton_Generate_tag->move(10,8);
+    ui->pushButton_Help_tag->setStyleSheet( QStringLiteral("background-color: rgb(89, 99, 113);") + "border-image: url(:/Assets/help_tag_off.png);");
+    ui->pushButton_Help_tag->setFixedSize(29,19);
+    ui->pushButton_Help_tag->move(200,8);
+    ui->pushButton_Options_tag->setStyleSheet( QStringLiteral("background-color: rgb(89, 99, 113);") + "border-image: url(:/Assets/options_tag_off.png);");
+    ui->pushButton_Options_tag->setFixedSize(49,19);
+    ui->pushButton_Options_tag->move(110,8);
 
     ui->widget_help_buttons->hide();
 
@@ -601,14 +612,27 @@ void NFWizard2::show_generate(){
     ui->widget_buttons_quit->show();
     ui->widget_dirs->show();
     ui->widget_generate_options->show();
+
+    ui->pushButton_Generate_tag->setStyleSheet( QStringLiteral("background-color: rgb(89, 99, 113);") + "border-image: url(:/Assets/generate_tag_on.png);");
+    ui->pushButton_Generate_tag->setFixedSize(92,24);
+    ui->pushButton_Generate_tag->move(0,10);
 }
 
 void NFWizard2::show_help(){
 
     ui->widget_help_buttons->show();
+
+    ui->pushButton_Help_tag->setStyleSheet( QStringLiteral("background-color: rgb(89, 99, 113);") + "border-image: url(:/Assets/help_tag_on.png);");
+    ui->pushButton_Help_tag->setFixedSize(67,25);
+    ui->pushButton_Help_tag->move(180,9);
 }
 
-void NFWizard2::show_options(){}
+void NFWizard2::show_options(){
+
+    ui->pushButton_Options_tag->setStyleSheet( QStringLiteral("background-color: rgb(89, 99, 113);") + "border-image: url(:/Assets/options_tag_on.png);");
+    ui->pushButton_Options_tag->setFixedSize(103,25);
+    ui->pushButton_Options_tag->move(80,9);
+}
 
 void NFWizard2::on_pb_uVision_Config_clicked()
 {

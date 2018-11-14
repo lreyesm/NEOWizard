@@ -37,7 +37,6 @@ public:
     QAction *actionAbout;
     QAction *actionAbout_Qt;
     QWidget *centralWidget;
-    QLabel *label_bar_selection;
     QPushButton *pushButton_Generate_tag;
     QPushButton *pushButton_Options_tag;
     QPushButton *pushButton_Help_tag;
@@ -54,22 +53,24 @@ public:
     QHBoxLayout *horizontalLayout;
     QLineEdit *lineEdit_CubePath;
     QPushButton *pushButton_CubeBrowse;
-    QWidget *widget_generate_options;
-    QVBoxLayout *verticalLayout_4;
-    QLabel *label_generate_options;
-    QPushButton *pushButton_generate_folders;
     QWidget *widget_buttons_quit;
     QHBoxLayout *horizontalLayout_4;
     QSpacerItem *horizontalSpacer;
     QHBoxLayout *horizontalLayout_3;
-    QPushButton *pushButton_Generate;
     QPushButton *pushButton_Quit;
+    QPushButton *pushButton_Generate;
     QWidget *widget_help_buttons;
     QVBoxLayout *verticalLayout_5;
     QPushButton *pb_uVision_Config;
     QPushButton *pb_Stcube_Config;
     QPushButton *pb_about_NEOW;
     QPushButton *pb_about_QT;
+    QWidget *widget_generate_options;
+    QVBoxLayout *verticalLayout_4;
+    QLabel *label_generate_options;
+    QHBoxLayout *horizontalLayout_5;
+    QPushButton *pushButton_generate_folders;
+    QLabel *label_generate_options_2;
     QMenuBar *menuBar;
     QMenu *menuHelp;
     QToolBar *mainToolBar;
@@ -79,17 +80,19 @@ public:
     {
         if (NFWizard2->objectName().isEmpty())
             NFWizard2->setObjectName(QStringLiteral("NFWizard2"));
-        NFWizard2->resize(640, 315);
+        NFWizard2->resize(793, 389);
         QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
         sizePolicy.setHeightForWidth(NFWizard2->sizePolicy().hasHeightForWidth());
         NFWizard2->setSizePolicy(sizePolicy);
-        NFWizard2->setMinimumSize(QSize(640, 315));
-        NFWizard2->setMaximumSize(QSize(1024, 315));
+        NFWizard2->setMinimumSize(QSize(793, 389));
+        NFWizard2->setMaximumSize(QSize(793, 389));
+        NFWizard2->setFocusPolicy(Qt::StrongFocus);
         QIcon icon;
         icon.addFile(QStringLiteral(":/Assets/icon.ico"), QSize(), QIcon::Normal, QIcon::Off);
         NFWizard2->setWindowIcon(icon);
+        NFWizard2->setStyleSheet(QStringLiteral("background-color: rgb(48, 60, 77);"));
         actionUVision_Configuration = new QAction(NFWizard2);
         actionUVision_Configuration->setObjectName(QStringLiteral("actionUVision_Configuration"));
         actionSTM32CubeMx_Configuration = new QAction(NFWizard2);
@@ -100,35 +103,61 @@ public:
         actionAbout_Qt->setObjectName(QStringLiteral("actionAbout_Qt"));
         centralWidget = new QWidget(NFWizard2);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
-        label_bar_selection = new QLabel(centralWidget);
-        label_bar_selection->setObjectName(QStringLiteral("label_bar_selection"));
-        label_bar_selection->setGeometry(QRect(0, 30, 47, 13));
         pushButton_Generate_tag = new QPushButton(centralWidget);
         pushButton_Generate_tag->setObjectName(QStringLiteral("pushButton_Generate_tag"));
-        pushButton_Generate_tag->setGeometry(QRect(0, 0, 80, 21));
+        pushButton_Generate_tag->setGeometry(QRect(0, 10, 92, 24));
+        QSizePolicy sizePolicy1(QSizePolicy::Minimum, QSizePolicy::Fixed);
+        sizePolicy1.setHorizontalStretch(0);
+        sizePolicy1.setVerticalStretch(0);
+        sizePolicy1.setHeightForWidth(pushButton_Generate_tag->sizePolicy().hasHeightForWidth());
+        pushButton_Generate_tag->setSizePolicy(sizePolicy1);
+        pushButton_Generate_tag->setMinimumSize(QSize(0, 0));
+        pushButton_Generate_tag->setMaximumSize(QSize(104, 25));
+        pushButton_Generate_tag->setStyleSheet(QLatin1String("background-color: rgb(89, 99, 113);\n"
+"border-image: url(:/Assets/generate_tag_on.png);\n"
+""));
+        pushButton_Generate_tag->setFlat(true);
         pushButton_Options_tag = new QPushButton(centralWidget);
         pushButton_Options_tag->setObjectName(QStringLiteral("pushButton_Options_tag"));
-        pushButton_Options_tag->setGeometry(QRect(190, 0, 80, 21));
+        pushButton_Options_tag->setGeometry(QRect(110, 8, 49, 19));
+        pushButton_Options_tag->setMinimumSize(QSize(49, 19));
+        pushButton_Options_tag->setMaximumSize(QSize(103, 25));
+        pushButton_Options_tag->setStyleSheet(QLatin1String("border-image: url(:/Assets/options_tag_off.png);\n"
+"background-color: rgb(89, 99, 113);"));
+        pushButton_Options_tag->setFlat(true);
         pushButton_Help_tag = new QPushButton(centralWidget);
         pushButton_Help_tag->setObjectName(QStringLiteral("pushButton_Help_tag"));
-        pushButton_Help_tag->setGeometry(QRect(100, 0, 80, 21));
+        pushButton_Help_tag->setGeometry(QRect(200, 8, 29, 19));
+        sizePolicy1.setHeightForWidth(pushButton_Help_tag->sizePolicy().hasHeightForWidth());
+        pushButton_Help_tag->setSizePolicy(sizePolicy1);
+        pushButton_Help_tag->setMinimumSize(QSize(29, 19));
+        pushButton_Help_tag->setMaximumSize(QSize(67, 25));
+        pushButton_Help_tag->setStyleSheet(QLatin1String("background-color: rgb(89, 99, 113);\n"
+"border-image: url(:/Assets/help_tag_off.png);"));
+        pushButton_Help_tag->setFlat(true);
         label_bar_background = new QLabel(centralWidget);
         label_bar_background->setObjectName(QStringLiteral("label_bar_background"));
-        label_bar_background->setGeometry(QRect(290, 10, 47, 13));
+        label_bar_background->setGeometry(QRect(0, 0, 793, 36));
+        label_bar_background->setMinimumSize(QSize(793, 36));
+        label_bar_background->setMaximumSize(QSize(793, 36));
+        label_bar_background->setStyleSheet(QStringLiteral("background-image: url(:/Assets/background.png);"));
         widget_dirs = new QWidget(centralWidget);
         widget_dirs->setObjectName(QStringLiteral("widget_dirs"));
-        widget_dirs->setGeometry(QRect(80, 50, 152, 98));
+        widget_dirs->setGeometry(QRect(110, 70, 571, 181));
         verticalLayout_3 = new QVBoxLayout(widget_dirs);
-        verticalLayout_3->setSpacing(20);
+        verticalLayout_3->setSpacing(23);
         verticalLayout_3->setContentsMargins(11, 11, 11, 11);
         verticalLayout_3->setObjectName(QStringLiteral("verticalLayout_3"));
         verticalLayout_3->setSizeConstraint(QLayout::SetFixedSize);
         verticalLayout_2 = new QVBoxLayout();
-        verticalLayout_2->setSpacing(6);
+        verticalLayout_2->setSpacing(4);
         verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
         verticalLayout_2->setSizeConstraint(QLayout::SetFixedSize);
         label_uVision = new QLabel(widget_dirs);
         label_uVision->setObjectName(QStringLiteral("label_uVision"));
+        label_uVision->setMinimumSize(QSize(127, 24));
+        label_uVision->setMaximumSize(QSize(127, 24));
+        label_uVision->setStyleSheet(QStringLiteral("background-image: url(:/Assets/label_uVision.png);"));
 
         verticalLayout_2->addWidget(label_uVision);
 
@@ -139,7 +168,12 @@ public:
         lineEdit_uVisionPath = new QLineEdit(widget_dirs);
         lineEdit_uVisionPath->setObjectName(QStringLiteral("lineEdit_uVisionPath"));
         lineEdit_uVisionPath->setEnabled(false);
+        lineEdit_uVisionPath->setMinimumSize(QSize(437, 26));
+        lineEdit_uVisionPath->setMaximumSize(QSize(437, 26));
         lineEdit_uVisionPath->setAutoFillBackground(false);
+        lineEdit_uVisionPath->setStyleSheet(QLatin1String("border-image: url(:/Assets/line_edit.png);\n"
+"color: rgb(240, 240, 240);\n"
+"font: 12pt \"Segoe UI\";"));
         lineEdit_uVisionPath->setEchoMode(QLineEdit::Normal);
         lineEdit_uVisionPath->setReadOnly(true);
 
@@ -147,6 +181,11 @@ public:
 
         pushButton_uVisionBrowse = new QPushButton(widget_dirs);
         pushButton_uVisionBrowse->setObjectName(QStringLiteral("pushButton_uVisionBrowse"));
+        pushButton_uVisionBrowse->setEnabled(true);
+        pushButton_uVisionBrowse->setMinimumSize(QSize(106, 25));
+        pushButton_uVisionBrowse->setMaximumSize(QSize(106, 25));
+        pushButton_uVisionBrowse->setStyleSheet(QStringLiteral("background-image: url(:/Assets/button_browse.png);"));
+        pushButton_uVisionBrowse->setFlat(true);
 
         horizontalLayout_2->addWidget(pushButton_uVisionBrowse);
 
@@ -157,11 +196,14 @@ public:
         verticalLayout_3->addLayout(verticalLayout_2);
 
         verticalLayout = new QVBoxLayout();
-        verticalLayout->setSpacing(6);
+        verticalLayout->setSpacing(4);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         verticalLayout->setSizeConstraint(QLayout::SetFixedSize);
         label_Cube = new QLabel(widget_dirs);
         label_Cube->setObjectName(QStringLiteral("label_Cube"));
+        label_Cube->setMinimumSize(QSize(231, 24));
+        label_Cube->setMaximumSize(QSize(231, 24));
+        label_Cube->setStyleSheet(QStringLiteral("background-image: url(:/Assets/label_cube.png);"));
 
         verticalLayout->addWidget(label_Cube);
 
@@ -172,6 +214,11 @@ public:
         lineEdit_CubePath = new QLineEdit(widget_dirs);
         lineEdit_CubePath->setObjectName(QStringLiteral("lineEdit_CubePath"));
         lineEdit_CubePath->setEnabled(false);
+        lineEdit_CubePath->setMinimumSize(QSize(437, 26));
+        lineEdit_CubePath->setMaximumSize(QSize(437, 26));
+        lineEdit_CubePath->setStyleSheet(QLatin1String("border-image: url(:/Assets/line_edit.png);\n"
+"color: rgb(230, 230, 230);\n"
+"font: 12pt \"Segoe UI\";"));
         lineEdit_CubePath->setDragEnabled(false);
         lineEdit_CubePath->setReadOnly(true);
 
@@ -179,6 +226,10 @@ public:
 
         pushButton_CubeBrowse = new QPushButton(widget_dirs);
         pushButton_CubeBrowse->setObjectName(QStringLiteral("pushButton_CubeBrowse"));
+        pushButton_CubeBrowse->setMinimumSize(QSize(106, 25));
+        pushButton_CubeBrowse->setMaximumSize(QSize(106, 25));
+        pushButton_CubeBrowse->setStyleSheet(QStringLiteral("background-image: url(:/Assets/button_browse.png);"));
+        pushButton_CubeBrowse->setFlat(true);
 
         horizontalLayout->addWidget(pushButton_CubeBrowse);
 
@@ -188,27 +239,9 @@ public:
 
         verticalLayout_3->addLayout(verticalLayout);
 
-        widget_generate_options = new QWidget(centralWidget);
-        widget_generate_options->setObjectName(QStringLiteral("widget_generate_options"));
-        widget_generate_options->setGeometry(QRect(90, 160, 47, 42));
-        verticalLayout_4 = new QVBoxLayout(widget_generate_options);
-        verticalLayout_4->setSpacing(6);
-        verticalLayout_4->setContentsMargins(11, 11, 11, 11);
-        verticalLayout_4->setObjectName(QStringLiteral("verticalLayout_4"));
-        verticalLayout_4->setSizeConstraint(QLayout::SetFixedSize);
-        label_generate_options = new QLabel(widget_generate_options);
-        label_generate_options->setObjectName(QStringLiteral("label_generate_options"));
-
-        verticalLayout_4->addWidget(label_generate_options);
-
-        pushButton_generate_folders = new QPushButton(widget_generate_options);
-        pushButton_generate_folders->setObjectName(QStringLiteral("pushButton_generate_folders"));
-
-        verticalLayout_4->addWidget(pushButton_generate_folders);
-
         widget_buttons_quit = new QWidget(centralWidget);
         widget_buttons_quit->setObjectName(QStringLiteral("widget_buttons_quit"));
-        widget_buttons_quit->setGeometry(QRect(304, 190, 120, 25));
+        widget_buttons_quit->setGeometry(QRect(400, 300, 271, 61));
         horizontalLayout_4 = new QHBoxLayout(widget_buttons_quit);
         horizontalLayout_4->setSpacing(6);
         horizontalLayout_4->setContentsMargins(11, 11, 11, 11);
@@ -222,22 +255,31 @@ public:
         horizontalLayout_3->setSpacing(6);
         horizontalLayout_3->setObjectName(QStringLiteral("horizontalLayout_3"));
         horizontalLayout_3->setSizeConstraint(QLayout::SetFixedSize);
-        pushButton_Generate = new QPushButton(widget_buttons_quit);
-        pushButton_Generate->setObjectName(QStringLiteral("pushButton_Generate"));
-
-        horizontalLayout_3->addWidget(pushButton_Generate);
-
         pushButton_Quit = new QPushButton(widget_buttons_quit);
         pushButton_Quit->setObjectName(QStringLiteral("pushButton_Quit"));
+        pushButton_Quit->setMinimumSize(QSize(105, 29));
+        pushButton_Quit->setMaximumSize(QSize(103, 27));
+        pushButton_Quit->setStyleSheet(QStringLiteral("background-image: url(:/Assets/button_quit.png);"));
+        pushButton_Quit->setFlat(true);
 
         horizontalLayout_3->addWidget(pushButton_Quit);
 
 
         horizontalLayout_4->addLayout(horizontalLayout_3);
 
+        pushButton_Generate = new QPushButton(widget_buttons_quit);
+        pushButton_Generate->setObjectName(QStringLiteral("pushButton_Generate"));
+        pushButton_Generate->setMinimumSize(QSize(106, 29));
+        pushButton_Generate->setMaximumSize(QSize(104, 27));
+        pushButton_Generate->setStyleSheet(QStringLiteral("background-image: url(:/Assets/generate_botom.png);"));
+        pushButton_Generate->setFlat(true);
+
+        horizontalLayout_4->addWidget(pushButton_Generate);
+
         widget_help_buttons = new QWidget(centralWidget);
         widget_help_buttons->setObjectName(QStringLiteral("widget_help_buttons"));
-        widget_help_buttons->setGeometry(QRect(380, 30, 149, 104));
+        widget_help_buttons->setGeometry(QRect(180, 40, 191, 141));
+        widget_help_buttons->setStyleSheet(QStringLiteral("background-color: rgb(21, 172, 112);"));
         verticalLayout_5 = new QVBoxLayout(widget_help_buttons);
         verticalLayout_5->setSpacing(6);
         verticalLayout_5->setContentsMargins(11, 11, 11, 11);
@@ -245,28 +287,93 @@ public:
         verticalLayout_5->setSizeConstraint(QLayout::SetFixedSize);
         pb_uVision_Config = new QPushButton(widget_help_buttons);
         pb_uVision_Config->setObjectName(QStringLiteral("pb_uVision_Config"));
+        pb_uVision_Config->setStyleSheet(QLatin1String("font: 12pt \"Segoe UI\";\n"
+"color: rgb(255, 245, 242);"));
+        pb_uVision_Config->setFlat(true);
 
         verticalLayout_5->addWidget(pb_uVision_Config);
 
         pb_Stcube_Config = new QPushButton(widget_help_buttons);
         pb_Stcube_Config->setObjectName(QStringLiteral("pb_Stcube_Config"));
+        pb_Stcube_Config->setStyleSheet(QLatin1String("font: 12pt \"Segoe UI\";\n"
+"color: rgb(255, 245, 242);"));
+        pb_Stcube_Config->setFlat(true);
 
         verticalLayout_5->addWidget(pb_Stcube_Config);
 
         pb_about_NEOW = new QPushButton(widget_help_buttons);
         pb_about_NEOW->setObjectName(QStringLiteral("pb_about_NEOW"));
+        pb_about_NEOW->setStyleSheet(QLatin1String("font: 12pt \"Segoe UI\";\n"
+"color: rgb(255, 245, 242);"));
+        pb_about_NEOW->setFlat(true);
 
         verticalLayout_5->addWidget(pb_about_NEOW);
 
         pb_about_QT = new QPushButton(widget_help_buttons);
         pb_about_QT->setObjectName(QStringLiteral("pb_about_QT"));
+        pb_about_QT->setStyleSheet(QLatin1String("font: 12pt \"Segoe UI\";\n"
+"color: rgb(255, 245, 242);"));
+        pb_about_QT->setFlat(true);
 
         verticalLayout_5->addWidget(pb_about_QT);
 
+        widget_generate_options = new QWidget(centralWidget);
+        widget_generate_options->setObjectName(QStringLiteral("widget_generate_options"));
+        widget_generate_options->setGeometry(QRect(115, 245, 231, 51));
+        verticalLayout_4 = new QVBoxLayout(widget_generate_options);
+        verticalLayout_4->setSpacing(6);
+        verticalLayout_4->setContentsMargins(11, 11, 11, 11);
+        verticalLayout_4->setObjectName(QStringLiteral("verticalLayout_4"));
+        verticalLayout_4->setSizeConstraint(QLayout::SetFixedSize);
+        label_generate_options = new QLabel(widget_generate_options);
+        label_generate_options->setObjectName(QStringLiteral("label_generate_options"));
+        label_generate_options->setMinimumSize(QSize(148, 23));
+        label_generate_options->setMaximumSize(QSize(148, 23));
+        label_generate_options->setStyleSheet(QStringLiteral("background-image: url(:/Assets/label_generate_options.png);"));
+
+        verticalLayout_4->addWidget(label_generate_options);
+
+        horizontalLayout_5 = new QHBoxLayout();
+        horizontalLayout_5->setSpacing(6);
+        horizontalLayout_5->setObjectName(QStringLiteral("horizontalLayout_5"));
+        horizontalLayout_5->setSizeConstraint(QLayout::SetFixedSize);
+        pushButton_generate_folders = new QPushButton(widget_generate_options);
+        pushButton_generate_folders->setObjectName(QStringLiteral("pushButton_generate_folders"));
+        QSizePolicy sizePolicy2(QSizePolicy::Minimum, QSizePolicy::Fixed);
+        sizePolicy2.setHorizontalStretch(16);
+        sizePolicy2.setVerticalStretch(16);
+        sizePolicy2.setHeightForWidth(pushButton_generate_folders->sizePolicy().hasHeightForWidth());
+        pushButton_generate_folders->setSizePolicy(sizePolicy2);
+        pushButton_generate_folders->setMinimumSize(QSize(16, 16));
+        pushButton_generate_folders->setMaximumSize(QSize(16, 16));
+        pushButton_generate_folders->setStyleSheet(QStringLiteral("background-image: url(:/Assets/check_box_off.png);"));
+        pushButton_generate_folders->setFlat(true);
+
+        horizontalLayout_5->addWidget(pushButton_generate_folders);
+
+        label_generate_options_2 = new QLabel(widget_generate_options);
+        label_generate_options_2->setObjectName(QStringLiteral("label_generate_options_2"));
+        label_generate_options_2->setMinimumSize(QSize(197, 24));
+        label_generate_options_2->setMaximumSize(QSize(197, 24));
+        label_generate_options_2->setStyleSheet(QStringLiteral("background-image: url(:/Assets/generate_folder_text.png);"));
+
+        horizontalLayout_5->addWidget(label_generate_options_2);
+
+
+        verticalLayout_4->addLayout(horizontalLayout_5);
+
         NFWizard2->setCentralWidget(centralWidget);
+        label_bar_background->raise();
+        pushButton_Generate_tag->raise();
+        pushButton_Options_tag->raise();
+        pushButton_Help_tag->raise();
+        widget_dirs->raise();
+        widget_buttons_quit->raise();
+        widget_help_buttons->raise();
+        widget_generate_options->raise();
         menuBar = new QMenuBar(NFWizard2);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 640, 20));
+        menuBar->setGeometry(QRect(0, 0, 793, 20));
         menuHelp = new QMenu(menuBar);
         menuHelp->setObjectName(QStringLiteral("menuHelp"));
         NFWizard2->setMenuBar(menuBar);
@@ -285,6 +392,9 @@ public:
 
         retranslateUi(NFWizard2);
 
+        pb_about_QT->setDefault(false);
+
+
         QMetaObject::connectSlotsByName(NFWizard2);
     } // setupUi
 
@@ -295,25 +405,58 @@ public:
         actionSTM32CubeMx_Configuration->setText(QApplication::translate("NFWizard2", "STM32CubeMx Configuration", Q_NULLPTR));
         actionAbout->setText(QApplication::translate("NFWizard2", "About NEOWizard", Q_NULLPTR));
         actionAbout_Qt->setText(QApplication::translate("NFWizard2", "About Qt", Q_NULLPTR));
-        label_bar_selection->setText(QApplication::translate("NFWizard2", "TextLabel", Q_NULLPTR));
         pushButton_Generate_tag->setText(QString());
         pushButton_Options_tag->setText(QString());
         pushButton_Help_tag->setText(QString());
-        label_bar_background->setText(QApplication::translate("NFWizard2", "TextLabel", Q_NULLPTR));
-        label_uVision->setText(QApplication::translate("NFWizard2", "TextLabel", Q_NULLPTR));
-        lineEdit_uVisionPath->setPlaceholderText(QApplication::translate("NFWizard2", "Keil uVision Project path", Q_NULLPTR));
+        label_bar_background->setText(QString());
+#ifndef QT_NO_TOOLTIP
+        label_uVision->setToolTip(QApplication::translate("NFWizard2", "Keil uVision project path on your PC (*.uvprojx file)", Q_NULLPTR));
+#endif // QT_NO_TOOLTIP
+        label_uVision->setText(QString());
+#ifndef QT_NO_TOOLTIP
+        lineEdit_uVisionPath->setToolTip(QApplication::translate("NFWizard2", "Keil uVision project path on your PC", Q_NULLPTR));
+#endif // QT_NO_TOOLTIP
+        lineEdit_uVisionPath->setPlaceholderText(QString());
+#ifndef QT_NO_TOOLTIP
+        pushButton_uVisionBrowse->setToolTip(QApplication::translate("NFWizard2", "Look for uVision project path in your PC", Q_NULLPTR));
+#endif // QT_NO_TOOLTIP
         pushButton_uVisionBrowse->setText(QString());
-        label_Cube->setText(QApplication::translate("NFWizard2", "TextLabel", Q_NULLPTR));
-        lineEdit_CubePath->setPlaceholderText(QApplication::translate("NFWizard2", "STM32CubeMx Project path", Q_NULLPTR));
+#ifndef QT_NO_TOOLTIP
+        label_Cube->setToolTip(QApplication::translate("NFWizard2", "STCubeMX generated project path on your PC (*.ioc file)", Q_NULLPTR));
+#endif // QT_NO_TOOLTIP
+        label_Cube->setText(QString());
+#ifndef QT_NO_TOOLTIP
+        lineEdit_CubePath->setToolTip(QApplication::translate("NFWizard2", "STCube generated project path on your PC", Q_NULLPTR));
+#endif // QT_NO_TOOLTIP
+        lineEdit_CubePath->setPlaceholderText(QString());
+#ifndef QT_NO_TOOLTIP
+        pushButton_CubeBrowse->setToolTip(QApplication::translate("NFWizard2", "Look for STCubeMX generated project path in your PC", Q_NULLPTR));
+#endif // QT_NO_TOOLTIP
         pushButton_CubeBrowse->setText(QString());
-        label_generate_options->setText(QApplication::translate("NFWizard2", "textLabel", Q_NULLPTR));
-        pushButton_generate_folders->setText(QString());
-        pushButton_Generate->setText(QString());
+#ifndef QT_NO_TOOLTIP
+        pushButton_Quit->setToolTip(QApplication::translate("NFWizard2", "Close application", Q_NULLPTR));
+#endif // QT_NO_TOOLTIP
         pushButton_Quit->setText(QString());
+#ifndef QT_NO_TOOLTIP
+        pushButton_Generate->setToolTip(QApplication::translate("NFWizard2", "Generate the files and modifies files needed to become compatible both projects", Q_NULLPTR));
+#endif // QT_NO_TOOLTIP
+        pushButton_Generate->setText(QString());
         pb_uVision_Config->setText(QApplication::translate("NFWizard2", "uVision Configuration", Q_NULLPTR));
         pb_Stcube_Config->setText(QApplication::translate("NFWizard2", "STM32CubeMx Configuration", Q_NULLPTR));
         pb_about_NEOW->setText(QApplication::translate("NFWizard2", "About NEOWizard", Q_NULLPTR));
         pb_about_QT->setText(QApplication::translate("NFWizard2", "About Qt", Q_NULLPTR));
+#ifndef QT_NO_TOOLTIP
+        label_generate_options->setToolTip(QApplication::translate("NFWizard2", "Generates files needed. If they are generated already you don't need to mark this option", Q_NULLPTR));
+#endif // QT_NO_TOOLTIP
+        label_generate_options->setText(QString());
+#ifndef QT_NO_TOOLTIP
+        pushButton_generate_folders->setToolTip(QApplication::translate("NFWizard2", "Generates files needed. If they are generated already you don't need to mark this option", Q_NULLPTR));
+#endif // QT_NO_TOOLTIP
+        pushButton_generate_folders->setText(QString());
+#ifndef QT_NO_TOOLTIP
+        label_generate_options_2->setToolTip(QApplication::translate("NFWizard2", "Generates files needed. If they are generated already you don't need to mark this option", Q_NULLPTR));
+#endif // QT_NO_TOOLTIP
+        label_generate_options_2->setText(QString());
         menuHelp->setTitle(QApplication::translate("NFWizard2", "Help", Q_NULLPTR));
     } // retranslateUi
 
