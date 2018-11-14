@@ -37,11 +37,15 @@ public:
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         label_HelpTextHolder = new QLabel(DialogConfigurationHelp);
         label_HelpTextHolder->setObjectName(QStringLiteral("label_HelpTextHolder"));
+        label_HelpTextHolder->setStyleSheet(QLatin1String("font: 12pt \"Segoe UI\";\n"
+"color: rgb(255, 255, 255);"));
 
         verticalLayout->addWidget(label_HelpTextHolder);
 
         label_HelpContentHolder = new QLabel(DialogConfigurationHelp);
         label_HelpContentHolder->setObjectName(QStringLiteral("label_HelpContentHolder"));
+        label_HelpContentHolder->setStyleSheet(QLatin1String("font: 12pt \"Segoe UI\";\n"
+"color: rgb(255, 255, 255);"));
 
         verticalLayout->addWidget(label_HelpContentHolder);
 

@@ -113,6 +113,7 @@ public:
         pushButton_Generate_tag->setSizePolicy(sizePolicy1);
         pushButton_Generate_tag->setMinimumSize(QSize(0, 0));
         pushButton_Generate_tag->setMaximumSize(QSize(104, 25));
+        pushButton_Generate_tag->setCursor(QCursor(Qt::PointingHandCursor));
         pushButton_Generate_tag->setStyleSheet(QLatin1String("background-color: rgb(89, 99, 113);\n"
 "border-image: url(:/Assets/generate_tag_on.png);\n"
 ""));
@@ -122,16 +123,18 @@ public:
         pushButton_Options_tag->setGeometry(QRect(110, 8, 49, 19));
         pushButton_Options_tag->setMinimumSize(QSize(49, 19));
         pushButton_Options_tag->setMaximumSize(QSize(103, 25));
+        pushButton_Options_tag->setCursor(QCursor(Qt::PointingHandCursor));
         pushButton_Options_tag->setStyleSheet(QLatin1String("border-image: url(:/Assets/options_tag_off.png);\n"
 "background-color: rgb(89, 99, 113);"));
         pushButton_Options_tag->setFlat(true);
         pushButton_Help_tag = new QPushButton(centralWidget);
         pushButton_Help_tag->setObjectName(QStringLiteral("pushButton_Help_tag"));
-        pushButton_Help_tag->setGeometry(QRect(200, 8, 29, 19));
+        pushButton_Help_tag->setGeometry(QRect(210, 8, 29, 19));
         sizePolicy1.setHeightForWidth(pushButton_Help_tag->sizePolicy().hasHeightForWidth());
         pushButton_Help_tag->setSizePolicy(sizePolicy1);
         pushButton_Help_tag->setMinimumSize(QSize(29, 19));
         pushButton_Help_tag->setMaximumSize(QSize(67, 25));
+        pushButton_Help_tag->setCursor(QCursor(Qt::PointingHandCursor));
         pushButton_Help_tag->setStyleSheet(QLatin1String("background-color: rgb(89, 99, 113);\n"
 "border-image: url(:/Assets/help_tag_off.png);"));
         pushButton_Help_tag->setFlat(true);
@@ -145,7 +148,7 @@ public:
         widget_dirs->setObjectName(QStringLiteral("widget_dirs"));
         widget_dirs->setGeometry(QRect(110, 70, 571, 181));
         verticalLayout_3 = new QVBoxLayout(widget_dirs);
-        verticalLayout_3->setSpacing(23);
+        verticalLayout_3->setSpacing(25);
         verticalLayout_3->setContentsMargins(11, 11, 11, 11);
         verticalLayout_3->setObjectName(QStringLiteral("verticalLayout_3"));
         verticalLayout_3->setSizeConstraint(QLayout::SetFixedSize);
@@ -170,10 +173,11 @@ public:
         lineEdit_uVisionPath->setEnabled(false);
         lineEdit_uVisionPath->setMinimumSize(QSize(437, 26));
         lineEdit_uVisionPath->setMaximumSize(QSize(437, 26));
+        lineEdit_uVisionPath->setCursor(QCursor(Qt::ForbiddenCursor));
         lineEdit_uVisionPath->setAutoFillBackground(false);
         lineEdit_uVisionPath->setStyleSheet(QLatin1String("border-image: url(:/Assets/line_edit.png);\n"
-"color: rgb(240, 240, 240);\n"
-"font: 12pt \"Segoe UI\";"));
+"color: rgb(150, 150, 150);\n"
+"font: 11pt \"Segoe UI\";"));
         lineEdit_uVisionPath->setEchoMode(QLineEdit::Normal);
         lineEdit_uVisionPath->setReadOnly(true);
 
@@ -184,6 +188,7 @@ public:
         pushButton_uVisionBrowse->setEnabled(true);
         pushButton_uVisionBrowse->setMinimumSize(QSize(106, 25));
         pushButton_uVisionBrowse->setMaximumSize(QSize(106, 25));
+        pushButton_uVisionBrowse->setCursor(QCursor(Qt::PointingHandCursor));
         pushButton_uVisionBrowse->setStyleSheet(QStringLiteral("background-image: url(:/Assets/button_browse.png);"));
         pushButton_uVisionBrowse->setFlat(true);
 
@@ -216,9 +221,10 @@ public:
         lineEdit_CubePath->setEnabled(false);
         lineEdit_CubePath->setMinimumSize(QSize(437, 26));
         lineEdit_CubePath->setMaximumSize(QSize(437, 26));
+        lineEdit_CubePath->setCursor(QCursor(Qt::ForbiddenCursor));
         lineEdit_CubePath->setStyleSheet(QLatin1String("border-image: url(:/Assets/line_edit.png);\n"
-"color: rgb(230, 230, 230);\n"
-"font: 12pt \"Segoe UI\";"));
+"font: 11pt \"Segoe UI\";\n"
+"color: rgb(150, 150, 150);"));
         lineEdit_CubePath->setDragEnabled(false);
         lineEdit_CubePath->setReadOnly(true);
 
@@ -228,6 +234,7 @@ public:
         pushButton_CubeBrowse->setObjectName(QStringLiteral("pushButton_CubeBrowse"));
         pushButton_CubeBrowse->setMinimumSize(QSize(106, 25));
         pushButton_CubeBrowse->setMaximumSize(QSize(106, 25));
+        pushButton_CubeBrowse->setCursor(QCursor(Qt::PointingHandCursor));
         pushButton_CubeBrowse->setStyleSheet(QStringLiteral("background-image: url(:/Assets/button_browse.png);"));
         pushButton_CubeBrowse->setFlat(true);
 
@@ -259,6 +266,7 @@ public:
         pushButton_Quit->setObjectName(QStringLiteral("pushButton_Quit"));
         pushButton_Quit->setMinimumSize(QSize(105, 29));
         pushButton_Quit->setMaximumSize(QSize(103, 27));
+        pushButton_Quit->setCursor(QCursor(Qt::PointingHandCursor));
         pushButton_Quit->setStyleSheet(QStringLiteral("background-image: url(:/Assets/button_quit.png);"));
         pushButton_Quit->setFlat(true);
 
@@ -271,6 +279,7 @@ public:
         pushButton_Generate->setObjectName(QStringLiteral("pushButton_Generate"));
         pushButton_Generate->setMinimumSize(QSize(106, 29));
         pushButton_Generate->setMaximumSize(QSize(104, 27));
+        pushButton_Generate->setCursor(QCursor(Qt::PointingHandCursor));
         pushButton_Generate->setStyleSheet(QStringLiteral("background-image: url(:/Assets/generate_botom.png);"));
         pushButton_Generate->setFlat(true);
 
@@ -287,39 +296,47 @@ public:
         verticalLayout_5->setSizeConstraint(QLayout::SetFixedSize);
         pb_uVision_Config = new QPushButton(widget_help_buttons);
         pb_uVision_Config->setObjectName(QStringLiteral("pb_uVision_Config"));
+        pb_uVision_Config->setCursor(QCursor(Qt::PointingHandCursor));
         pb_uVision_Config->setStyleSheet(QLatin1String("font: 12pt \"Segoe UI\";\n"
-"color: rgb(255, 245, 242);"));
+"color: rgb(255, 245, 242);\n"
+"background-color: rgb(21, 172, 112);"));
         pb_uVision_Config->setFlat(true);
 
         verticalLayout_5->addWidget(pb_uVision_Config);
 
         pb_Stcube_Config = new QPushButton(widget_help_buttons);
         pb_Stcube_Config->setObjectName(QStringLiteral("pb_Stcube_Config"));
+        pb_Stcube_Config->setCursor(QCursor(Qt::PointingHandCursor));
         pb_Stcube_Config->setStyleSheet(QLatin1String("font: 12pt \"Segoe UI\";\n"
-"color: rgb(255, 245, 242);"));
+"color: rgb(255, 245, 242);\n"
+"border-color: rgb(21, 172, 112);"));
         pb_Stcube_Config->setFlat(true);
 
         verticalLayout_5->addWidget(pb_Stcube_Config);
 
         pb_about_NEOW = new QPushButton(widget_help_buttons);
         pb_about_NEOW->setObjectName(QStringLiteral("pb_about_NEOW"));
+        pb_about_NEOW->setCursor(QCursor(Qt::PointingHandCursor));
         pb_about_NEOW->setStyleSheet(QLatin1String("font: 12pt \"Segoe UI\";\n"
-"color: rgb(255, 245, 242);"));
+"color: rgb(255, 245, 242);\n"
+"background-color: rgb(21, 172, 112);"));
         pb_about_NEOW->setFlat(true);
 
         verticalLayout_5->addWidget(pb_about_NEOW);
 
         pb_about_QT = new QPushButton(widget_help_buttons);
         pb_about_QT->setObjectName(QStringLiteral("pb_about_QT"));
+        pb_about_QT->setCursor(QCursor(Qt::PointingHandCursor));
         pb_about_QT->setStyleSheet(QLatin1String("font: 12pt \"Segoe UI\";\n"
-"color: rgb(255, 245, 242);"));
+"color: rgb(255, 245, 242);\n"
+"background-color: rgb(21, 172, 112);"));
         pb_about_QT->setFlat(true);
 
         verticalLayout_5->addWidget(pb_about_QT);
 
         widget_generate_options = new QWidget(centralWidget);
         widget_generate_options->setObjectName(QStringLiteral("widget_generate_options"));
-        widget_generate_options->setGeometry(QRect(115, 245, 231, 51));
+        widget_generate_options->setGeometry(QRect(115, 240, 251, 91));
         verticalLayout_4 = new QVBoxLayout(widget_generate_options);
         verticalLayout_4->setSpacing(6);
         verticalLayout_4->setContentsMargins(11, 11, 11, 11);
@@ -346,7 +363,8 @@ public:
         pushButton_generate_folders->setSizePolicy(sizePolicy2);
         pushButton_generate_folders->setMinimumSize(QSize(16, 16));
         pushButton_generate_folders->setMaximumSize(QSize(16, 16));
-        pushButton_generate_folders->setStyleSheet(QStringLiteral("background-image: url(:/Assets/check_box_off.png);"));
+        pushButton_generate_folders->setCursor(QCursor(Qt::PointingHandCursor));
+        pushButton_generate_folders->setStyleSheet(QStringLiteral("border-image: url(:/Assets/check_box_off.png);"));
         pushButton_generate_folders->setFlat(true);
 
         horizontalLayout_5->addWidget(pushButton_generate_folders);
@@ -441,9 +459,21 @@ public:
         pushButton_Generate->setToolTip(QApplication::translate("NFWizard2", "Generate the files and modifies files needed to become compatible both projects", Q_NULLPTR));
 #endif // QT_NO_TOOLTIP
         pushButton_Generate->setText(QString());
+#ifndef QT_NO_TOOLTIP
+        pb_uVision_Config->setToolTip(QString());
+#endif // QT_NO_TOOLTIP
         pb_uVision_Config->setText(QApplication::translate("NFWizard2", "uVision Configuration", Q_NULLPTR));
+#ifndef QT_NO_TOOLTIP
+        pb_Stcube_Config->setToolTip(QString());
+#endif // QT_NO_TOOLTIP
         pb_Stcube_Config->setText(QApplication::translate("NFWizard2", "STM32CubeMx Configuration", Q_NULLPTR));
+#ifndef QT_NO_TOOLTIP
+        pb_about_NEOW->setToolTip(QString());
+#endif // QT_NO_TOOLTIP
         pb_about_NEOW->setText(QApplication::translate("NFWizard2", "About NEOWizard", Q_NULLPTR));
+#ifndef QT_NO_TOOLTIP
+        pb_about_QT->setToolTip(QString());
+#endif // QT_NO_TOOLTIP
         pb_about_QT->setText(QApplication::translate("NFWizard2", "About Qt", Q_NULLPTR));
 #ifndef QT_NO_TOOLTIP
         label_generate_options->setToolTip(QApplication::translate("NFWizard2", "Generates files needed. If they are generated already you don't need to mark this option", Q_NULLPTR));

@@ -69,6 +69,9 @@
       <height>25</height>
      </size>
     </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
     <property name="styleSheet">
      <string notr="true">background-color: rgb(89, 99, 113);
 border-image: url(:/Assets/generate_tag_on.png);
@@ -102,6 +105,9 @@ border-image: url(:/Assets/generate_tag_on.png);
       <height>25</height>
      </size>
     </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
     <property name="styleSheet">
      <string notr="true">border-image: url(:/Assets/options_tag_off.png);
 background-color: rgb(89, 99, 113);</string>
@@ -116,7 +122,7 @@ background-color: rgb(89, 99, 113);</string>
    <widget class="QPushButton" name="pushButton_Help_tag">
     <property name="geometry">
      <rect>
-      <x>200</x>
+      <x>210</x>
       <y>8</y>
       <width>29</width>
       <height>19</height>
@@ -139,6 +145,9 @@ background-color: rgb(89, 99, 113);</string>
       <width>67</width>
       <height>25</height>
      </size>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
     </property>
     <property name="styleSheet">
      <string notr="true">background-color: rgb(89, 99, 113);
@@ -190,7 +199,7 @@ border-image: url(:/Assets/help_tag_off.png);</string>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout_3">
      <property name="spacing">
-      <number>23</number>
+      <number>25</number>
      </property>
      <property name="sizeConstraint">
       <enum>QLayout::SetFixedSize</enum>
@@ -253,6 +262,9 @@ border-image: url(:/Assets/help_tag_off.png);</string>
              <height>26</height>
             </size>
            </property>
+           <property name="cursor">
+            <cursorShape>ForbiddenCursor</cursorShape>
+           </property>
            <property name="toolTip">
             <string>Keil uVision project path on your PC</string>
            </property>
@@ -261,8 +273,8 @@ border-image: url(:/Assets/help_tag_off.png);</string>
            </property>
            <property name="styleSheet">
             <string notr="true">border-image: url(:/Assets/line_edit.png);
-color: rgb(240, 240, 240);
-font: 12pt &quot;Segoe UI&quot;;</string>
+color: rgb(150, 150, 150);
+font: 11pt &quot;Segoe UI&quot;;</string>
            </property>
            <property name="echoMode">
             <enum>QLineEdit::Normal</enum>
@@ -291,6 +303,9 @@ font: 12pt &quot;Segoe UI&quot;;</string>
              <width>106</width>
              <height>25</height>
             </size>
+           </property>
+           <property name="cursor">
+            <cursorShape>PointingHandCursor</cursorShape>
            </property>
            <property name="toolTip">
             <string>Look for uVision project path in your PC</string>
@@ -368,13 +383,16 @@ font: 12pt &quot;Segoe UI&quot;;</string>
              <height>26</height>
             </size>
            </property>
+           <property name="cursor">
+            <cursorShape>ForbiddenCursor</cursorShape>
+           </property>
            <property name="toolTip">
             <string>STCube generated project path on your PC</string>
            </property>
            <property name="styleSheet">
             <string notr="true">border-image: url(:/Assets/line_edit.png);
-color: rgb(230, 230, 230);
-font: 12pt &quot;Segoe UI&quot;;</string>
+font: 11pt &quot;Segoe UI&quot;;
+color: rgb(150, 150, 150);</string>
            </property>
            <property name="dragEnabled">
             <bool>false</bool>
@@ -400,6 +418,9 @@ font: 12pt &quot;Segoe UI&quot;;</string>
              <width>106</width>
              <height>25</height>
             </size>
+           </property>
+           <property name="cursor">
+            <cursorShape>PointingHandCursor</cursorShape>
            </property>
            <property name="toolTip">
             <string>Look for STCubeMX generated project path in your PC</string>
@@ -466,6 +487,9 @@ font: 12pt &quot;Segoe UI&quot;;</string>
            <height>27</height>
           </size>
          </property>
+         <property name="cursor">
+          <cursorShape>PointingHandCursor</cursorShape>
+         </property>
          <property name="toolTip">
           <string>Close application</string>
          </property>
@@ -495,6 +519,9 @@ font: 12pt &quot;Segoe UI&quot;;</string>
          <width>104</width>
          <height>27</height>
         </size>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
        </property>
        <property name="toolTip">
         <string>Generate the files and modifies files needed to become compatible both projects</string>
@@ -530,9 +557,16 @@ font: 12pt &quot;Segoe UI&quot;;</string>
      </property>
      <item>
       <widget class="QPushButton" name="pb_uVision_Config">
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="toolTip">
+        <string/>
+       </property>
        <property name="styleSheet">
         <string notr="true">font: 12pt &quot;Segoe UI&quot;;
-color: rgb(255, 245, 242);</string>
+color: rgb(255, 245, 242);
+background-color: rgb(21, 172, 112);</string>
        </property>
        <property name="text">
         <string>uVision Configuration</string>
@@ -544,9 +578,16 @@ color: rgb(255, 245, 242);</string>
      </item>
      <item>
       <widget class="QPushButton" name="pb_Stcube_Config">
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="toolTip">
+        <string/>
+       </property>
        <property name="styleSheet">
         <string notr="true">font: 12pt &quot;Segoe UI&quot;;
-color: rgb(255, 245, 242);</string>
+color: rgb(255, 245, 242);
+border-color: rgb(21, 172, 112);</string>
        </property>
        <property name="text">
         <string>STM32CubeMx Configuration</string>
@@ -558,9 +599,16 @@ color: rgb(255, 245, 242);</string>
      </item>
      <item>
       <widget class="QPushButton" name="pb_about_NEOW">
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="toolTip">
+        <string> </string>
+       </property>
        <property name="styleSheet">
         <string notr="true">font: 12pt &quot;Segoe UI&quot;;
-color: rgb(255, 245, 242);</string>
+color: rgb(255, 245, 242);
+background-color: rgb(21, 172, 112);</string>
        </property>
        <property name="text">
         <string>About NEOWizard</string>
@@ -572,9 +620,16 @@ color: rgb(255, 245, 242);</string>
      </item>
      <item>
       <widget class="QPushButton" name="pb_about_QT">
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="toolTip">
+        <string/>
+       </property>
        <property name="styleSheet">
         <string notr="true">font: 12pt &quot;Segoe UI&quot;;
-color: rgb(255, 245, 242);</string>
+color: rgb(255, 245, 242);
+background-color: rgb(21, 172, 112);</string>
        </property>
        <property name="text">
         <string>About Qt</string>
@@ -593,9 +648,9 @@ color: rgb(255, 245, 242);</string>
     <property name="geometry">
      <rect>
       <x>115</x>
-      <y>245</y>
-      <width>231</width>
-      <height>51</height>
+      <y>240</y>
+      <width>251</width>
+      <height>91</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout_4">
@@ -652,11 +707,14 @@ color: rgb(255, 245, 242);</string>
            <height>16</height>
           </size>
          </property>
+         <property name="cursor">
+          <cursorShape>PointingHandCursor</cursorShape>
+         </property>
          <property name="toolTip">
           <string>Generates files needed. If they are generated already you don't need to mark this option</string>
          </property>
          <property name="styleSheet">
-          <string notr="true">background-image: url(:/Assets/check_box_off.png);</string>
+          <string notr="true">border-image: url(:/Assets/check_box_off.png);</string>
          </property>
          <property name="text">
           <string/>

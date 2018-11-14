@@ -19,6 +19,10 @@
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
     <widget class="QLabel" name="label_HelpTextHolder">
+     <property name="styleSheet">
+      <string notr="true">font: 12pt &quot;Segoe UI&quot;;
+color: rgb(255, 255, 255);</string>
+     </property>
      <property name="text">
       <string>TextLabel</string>
      </property>
@@ -26,6 +30,10 @@
    </item>
    <item>
     <widget class="QLabel" name="label_HelpContentHolder">
+     <property name="styleSheet">
+      <string notr="true">font: 12pt &quot;Segoe UI&quot;;
+color: rgb(255, 255, 255);</string>
+     </property>
      <property name="text">
       <string>TextLabel</string>
      </property>
