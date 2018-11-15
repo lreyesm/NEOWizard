@@ -55,7 +55,7 @@ void TextFileProcessor::processTextBlock() //esta funcion es muy parecida a proc
     QTextCursor cursorStart = document.find(startLine_);
     QTextCursor cursorEnd = document.find(endLine_);
     if (!cursorStart.hasSelection() || !cursorEnd.hasSelection()) {
-        qWarning() << "The text between: " << startLine_ << " and " << endLine_ << "not found" << endLine();
+        qWarning() << "The text between: " << startLine_ << " and " << endLine_ << "not found";
         return;
     }
     cursorStart.setPosition(cursorEnd.position(),QTextCursor::KeepAnchor);
@@ -100,12 +100,14 @@ void TextFileProcessor::replace_all_lines_code_instances(){
 
             }
             else{
-            qWarning() << "The text between: " << startLine_ << " and " << endLine_ << "not found" << endLine();
+            qWarning() << "The text between: " << startLine_ << " and " << endLine_ << "not found";
             return;
             }
         }
         if (!cursorEnd.movePosition(QTextCursor::Down, QTextCursor::KeepAnchor, 2)) { // WARNING: magic number, to select the "}"
-            qWarning() << "file: " << filename() << " not found!";
+            if(startLine_!= QString("_Error_Handler(__FILE__, __LINE__);")){
+                qWarning() << "file: " << filename() << " not found!";
+            }
             return;
         }
         cursorStart.setPosition(cursorEnd.position(),QTextCursor::KeepAnchor);
@@ -147,7 +149,7 @@ void TextFileProcessor::processMethod()
             return;
         }
         else{
-        qWarning() << "The text between: " << startLine_ << " and " << endLine_ << "not found" << endLine();
+        qWarning() << "The text between: " << startLine_ << " and " << endLine_ << "not found";
         return;
         }
     }
