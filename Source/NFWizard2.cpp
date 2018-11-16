@@ -309,12 +309,13 @@ void NFWizard2::on_pushButton_Generate_clicked()
         if( cubeVersion == QString("4.26")){
 
             QDir fileDir(fileCubeInfo.dir());
-            //fileDir.cdUp();
+
             processMain_H_file(fileDir.path()+QString("/Inc/main.h"));      ////Modifica el archivo main.h, para version de Cube 4.26, el cual da error al compilar en keil
 
             processMain_cpp_Error_function(fileuVisionInfo.dir().path()+QString("/Source/main.cpp"));
-            processMain_cpp_Clock_erro_code(fileuVisionInfo.dir().path()+QString("/Source/main.cpp"));
+
         }
+        processMain_cpp_Clock_erro_code(fileuVisionInfo.dir().path()+QString("/Source/main.cpp"));
 
         processHalConfigFile();    //// Cambia el #define TICK_INT_PRIORITY ((uint32_t)0x00U) a #define TICK_INT_PRIORITY ((uint32_t)0x0fU)
         processXmlFiles();         ////Modifica el archivo *.gpdsc para añadirle el *_it.h y *_it.c modificados

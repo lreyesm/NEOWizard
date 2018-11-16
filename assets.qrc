@@ -5,7 +5,6 @@
         <file>Assets/icon.ico</file>
         <file>Assets/button_browse.png</file>
         <file>Assets/button_quit.png</file>
-        <file>Assets/check_box_off.png</file>
         <file>Assets/check_box_on.png</file>
         <file>Assets/generate_botom.png</file>
         <file>Assets/generate_folder_text.png</file>
@@ -21,5 +20,6 @@
         <file>Assets/options_tag_off.png</file>
         <file>Assets/options_tag_on.png</file>
         <file>Assets/background.png</file>
+        <file>Assets/check_box_off.png</file>
     </qresource>
 </RCC>
