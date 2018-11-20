@@ -39,140 +39,6 @@ NFWizard2::~NFWizard2()
     delete ui;
 }
 
-//void NFWizard2::windows_appearence(){
-
-//    /*
-//    ui->centralWidget->setPalette(QPalette(QColor(48,60,77)));
-//    ui->centralWidget->setAutoFillBackground(true);
-
-//    ui->statusBar->hide();
-
-//    ////Configuracion de line edits de la app--------------------------------------------------------------------------------------------------------------
-//    /// ------------------------------------------------------------------------------------------------------------------------------------------------
-//    ui->lineEdit_uVisionPath->setStyleSheet(QStringLiteral("color: #555555; font: 11pt Myriad  Web;") + "border-image: url(NFWizard_icons/line_edit.png);");
-//    ui->lineEdit_uVisionPath->setFixedSize(QSize(353,21));
-
-//    ui->lineEdit_CubePath->setStyleSheet(QStringLiteral("color: #555555; font: 11pt Myriad  Web;") + "border-image: url(NFWizard_icons/line_edit.png);");
-//    ui->lineEdit_CubePath->setFixedSize(QSize(353,21));
-
-//    /// ------------------------------------------------------------------------------------------------------------------------------------------------
-
-
-
-//    ////Configuracion de botones de la app--------------------------------------------------------------------------------------------------------------
-//    /// ------------------------------------------------------------------------------------------------------------------------------------------------
-//    ui->pushButton_CubeBrowse->setFlat(true);
-//    ui->pushButton_CubeBrowse->setIcon((QIcon("NFWizard_icons/button_browse.png")));
-//    ui->pushButton_CubeBrowse->setIconSize(QSize(85,21));
-//    ui->pushButton_CubeBrowse->setFixedSize(85,21);
-
-//    ui->pushButton_uVisionBrowse->setFlat(true);
-//    ui->pushButton_uVisionBrowse->setIcon((QIcon("NFWizard_icons/button_browse.png")));
-//    ui->pushButton_uVisionBrowse->setIconSize(QSize(85,21));
-//    ui->pushButton_uVisionBrowse->setFixedSize(85,21);
-
-//    ui->pushButton_Generate->setFlat(true);
-//    ui->pushButton_Generate->setIcon((QIcon("NFWizard_icons/button_generate.png")));
-//    ui->pushButton_Generate->setIconSize(QSize(84,22));
-//    ui->pushButton_Generate->setFixedSize(84,22);
-
-//    ui->pushButton_Quit->setFlat(true);
-//    ui->pushButton_Quit->setIcon((QIcon("NFWizard_icons/button_quit.png")));
-//    ui->pushButton_Quit->setIconSize(QSize(85,21));
-//    ui->pushButton_Quit->setFixedSize(84,22);
-
-//    ui->pushButton_generate_folders->setFlat(true);
-//    ui->pushButton_generate_folders->setIcon((QIcon("NFWizard_icons/check_box_generate_project_folders.png")));
-//    ui->pushButton_generate_folders->setIconSize(QSize(170,18));
-//    ui->pushButton_generate_folders->setFixedSize(170,18);
-
-//    ui->pushButton_Generate_tag->setFlat(true);
-//    ui->pushButton_Generate_tag->setIcon((QIcon("NFWizard_icons/label_generate.png")));
-//    ui->pushButton_Generate_tag->setIconSize(QSize(80,27));
-//    ui->pushButton_Generate_tag->setFixedSize(75,27);
-//    ui->pushButton_Generate_tag->move(0,1);
-
-//    ui->pushButton_Help_tag->setFlat(true);
-//    ui->pushButton_Help_tag->setIcon((QIcon("NFWizard_icons/label_help.png")));
-//    ui->pushButton_Help_tag->setIconSize(QSize(23,27));
-//    ui->pushButton_Help_tag->setFixedSize(75,27);
-//    ui->pushButton_Help_tag->move(150,2);
-
-//    ui->pushButton_Options_tag->setFlat(true);
-//    ui->pushButton_Options_tag->setIcon((QIcon("NFWizard_icons/label_options.png")));
-//    ui->pushButton_Options_tag->setIconSize(QSize(75,27));
-//    ui->pushButton_Options_tag->setFixedSize(75,27);
-//    ui->pushButton_Options_tag->move(75,2);
-
-//    ui->pb_uVision_Config->setFlat(true);
-//    ui->pb_uVision_Config->setStyleSheet(QStringLiteral("color: #DDDDDD; font: 11pt Segoe  UI;"));
-//    //ui->pb_uVision_Config->setIconSize(QSize(75,27));
-//    //ui->pb_uVision_Config->setFixedSize(75,27);
-
-//    ui->pb_Stcube_Config->setFlat(true);
-//    ui->pb_Stcube_Config->setStyleSheet(QStringLiteral("color: #DDDDDD; font: 11pt Segoe  UI;"));
-//    //ui->pb_Stcube_Config->setIconSize(QSize(75,27));
-//    //ui->pb_Stcube_Config->setFixedSize(75,27);
-
-//    ui->pb_about_NEOW->setFlat(true);
-//    ui->pb_about_NEOW->setStyleSheet(QStringLiteral("color: #DDDDDD; font: 11pt Segoe  UI;"));
-//    //ui->pb_about_NEOW->setIconSize(QSize(75,27));
-//    //ui->pb_about_NEOW->setFixedSize(75,27);
-
-//    ui->pb_about_QT->setFlat(true);
-//    ui->pb_about_QT->setStyleSheet(QStringLiteral("color: #DDDDDD; font: 11pt Segoe  UI;"));
-//    //ui->pb_about_QT->setIconSize(QSize(75,27));
-//    //ui->pb_about_QT->setFixedSize(75,27);
-
-//    /// ------------------------------------------------------------------------------------------------------------------------------------------------
-
-
-
-//    ////Configuracion de labels de la app--------------------------------------------------------------------------------------------------------------
-//    /// ------------------------------------------------------------------------------------------------------------------------------------------------
-
-//    ui->label_bar_background->setPixmap(QPixmap("NFWizard_icons/label_background_line.png"));
-//    ui->label_bar_background->setFixedSize(QSize(640,27));
-//    ui->label_bar_background->move(0,0);
-//    ui->label_bar_background->lower();
-
-//    ui->label_bar_selection->setPixmap(QPixmap("NFWizard_icons/label_selection.png"));
-//    ui->label_bar_selection->setFixedSize(QSize(77,2));
-//    ui->label_bar_selection->move(0,25);
-
-//    ui->label_Cube->setPixmap(QPixmap("NFWizard_icons/label_cube.png"));
-//    ui->label_Cube->setFixedSize(QSize(174,19));
-//    //ui->label_Cube->move(387,192);
-
-//    ui->label_uVision->setPixmap(QPixmap("NFWizard_icons/label_uVision.png"));
-//    ui->label_uVision->setFixedSize(QSize(96,18));
-//    //ui->label_uVision->move(387,192);
-
-//    ui->label_generate_options->setPixmap(QPixmap("NFWizard_icons/label_generate_options.png"));
-//    ui->label_generate_options->setFixedSize(QSize(120,19));
-//    //ui->label_generate_options->move(387,192);
-
-//    /// ------------------------------------------------------------------------------------------------------------------------------------------------
-
-//    */
-
-//    ////Configuracion de Widgets de posicion de la app--------------------------------------------------------------------------------------------------------------
-//    /// ------------------------------------------------------------------------------------------------------------------------------------------------
-
-//    ui->widget_dirs->move(90,40);
-
-//    ui->widget_generate_options->move(90,180);
-
-//    ui->widget_buttons_quit->move(310,230);
-
-//    ui->widget_help_buttons->move(150,27);
-
-//    //ui->widget_help_buttons->setStyleSheet(QStringLiteral("background: #15AC70; color: #DDDDDD; font: 11pt Segoe  UI;"));
-
-//    /// ------------------------------------------------------------------------------------------------------------------------------------------------
-
-//}
-
 void NFWizard2::on_pushButton_uVisionBrowse_clicked()
 {
     fileuVision = QFileDialog::getOpenFileName(this, tr("Open Keil uVision Project"),
@@ -310,7 +176,7 @@ void NFWizard2::on_pushButton_Generate_clicked()
 
             QDir fileDir(fileCubeInfo.dir());
 
-            processMain_H_file(fileDir.path()+QString("/Inc/main.h"));      ////Modifica el archivo main.h, para version de Cube 4.26, el cual da error al compilar en keil
+            processMain_H_file(fileuVisionInfo.dir().path()+QString("/Inc/main.h"));      ////Modifica el archivo main.h, para version de Cube 4.26, el cual da error al compilar en keil
 
             processMain_cpp_Error_function(fileuVisionInfo.dir().path()+QString("/Source/main.cpp"));
 
