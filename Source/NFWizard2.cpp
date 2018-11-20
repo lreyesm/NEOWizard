@@ -98,14 +98,19 @@ void NFWizard2::processMain_cpp_Error_function(const QString &main_cpp_path){
     TextFileProcessor main_cpp_FileProcessor;
     main_cpp_FileProcessor.setFilename(main_cpp_path);
                                         //// ignora espacios en blanco antes de la linea de codigo
-    main_cpp_FileProcessor.setStartLine("_Error_Handler(__FILE__, __LINE__);");       ////inicio del contenido a eliminar
-    main_cpp_FileProcessor.setEndLine("_Error_Handler(__FILE__, __LINE__);"); ////fin del contenido a eliminar
-    main_cpp_FileProcessor.setReplacementString("/*Start of replaced code of NEOWizard*/\n     Error_Handler();\n    /*End of replaced code of NEOWizard*/\n  }\n");
+    main_cpp_FileProcessor.setStartLine("void SystemClock_Config(void);");       ////inicio del contenido a eliminar
+    main_cpp_FileProcessor.setEndLine("void Error_Handler(void);"); ////fin del contenido a eliminar
+    main_cpp_FileProcessor.setReplacementString("/*Start of replaced code of NEOWizard*/\nvoid SystemClock_Config(void);\n/*End of replaced code of NEOWizard*/\n\n");
+    main_cpp_FileProcessor.replace_all_lines_code_instances();
+
+    main_cpp_FileProcessor.setStartLine("void Error_Handler(void)");       ////inicio del contenido a eliminar
+    main_cpp_FileProcessor.setEndLine("void Error_Handler(void)"); ////fin del contenido a eliminar
+    main_cpp_FileProcessor.setReplacementString("/*Start of replaced code of NEOWizard*/\nvoid _Error_Handler(char *file, int line)\n/*End of replaced code of NEOWizard*/\n{\n");
     main_cpp_FileProcessor.replace_all_lines_code_instances();
 
 }
 
-void NFWizard2::processMain_cpp_Clock_erro_code(const QString &main_cpp_path){
+void NFWizard2::processMain_cpp_Clock_error_code(const QString &main_cpp_path){
 
     TextFileProcessor main_cpp_FileProcessor;
     main_cpp_FileProcessor.setFilename(main_cpp_path);
@@ -174,14 +179,14 @@ void NFWizard2::on_pushButton_Generate_clicked()
 
         if( cubeVersion == QString("4.26")){
 
-            QDir fileDir(fileCubeInfo.dir());
+            //QDir fileDir(fileCubeInfo.dir());
 
-            processMain_H_file(fileuVisionInfo.dir().path()+QString("/Inc/main.h"));      ////Modifica el archivo main.h, para version de Cube 4.26, el cual da error al compilar en keil
+            //processMain_H_file(fileCubeInfo.dir().path()+QString("/Inc/main.h"));      ////Modifica el archivo main.h, para version de Cube 4.26, el cual da error al compilar en keil
 
             processMain_cpp_Error_function(fileuVisionInfo.dir().path()+QString("/Source/main.cpp"));
 
         }
-        processMain_cpp_Clock_erro_code(fileuVisionInfo.dir().path()+QString("/Source/main.cpp"));
+        processMain_cpp_Clock_error_code(fileuVisionInfo.dir().path()+QString("/Source/main.cpp"));
 
         processHalConfigFile();    //// Cambia el #define TICK_INT_PRIORITY ((uint32_t)0x00U) a #define TICK_INT_PRIORITY ((uint32_t)0x0fU)
         processXmlFiles();         ////Modifica el archivo *.gpdsc para añadirle el *_it.h y *_it.c modificados

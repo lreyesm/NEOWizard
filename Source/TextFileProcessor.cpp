@@ -105,7 +105,7 @@ void TextFileProcessor::replace_all_lines_code_instances(){
             }
         }
         if (!cursorEnd.movePosition(QTextCursor::Down, QTextCursor::KeepAnchor, 2)) { // WARNING: magic number, to select the "}"
-            if(startLine_!= QString("_Error_Handler(__FILE__, __LINE__);")){
+            if(startLine_!= QString("void Error_Handler()") && startLine_!= QString("void SystemClock_Config(void);") && startLine_!= QString("RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI|RCC_OSCILLATORTYPE_HSE;")){
                 qWarning() << "file: " << filename() << " not found!";
             }
             return;
