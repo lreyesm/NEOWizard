@@ -64,6 +64,7 @@ private slots:
 private:
     void generateProjectFileTree();
     void generateTemplates(const QString& projectRootRef);
+    void generateTemplates_for_Thread(const QString& projectRootRef);
     void processInterrupFile();
     void processMainFiles();
     void processXmlFiles();

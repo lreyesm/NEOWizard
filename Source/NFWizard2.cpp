@@ -128,6 +128,7 @@ void NFWizard2::processMain_cpp_Clock_error_code(const QString &main_cpp_path){
     main_cpp_FileProcessor.replace_all_lines_code_instances();
 
 }
+
 void NFWizard2::checkCubeVersion(){
 
     QFileInfo fileInfo(fileCube);
@@ -353,6 +354,33 @@ void NFWizard2::loadSettings()
 
 }
 
+void NFWizard2::generateTemplates_for_Thread(const QString &projectRootRef){ ////Copia los templates thread.h y cpp en /Source/
+
+    if (!QDir::setCurrent(projectRootRef)) {
+        qDebug() << "could not switch to " << projectRootRef;
+    }
+    qDebug() << "Current path: " << QDir::currentPath();
+
+    typedef QPair<QString, QString> FilePair;
+    typedef QList<FilePair> FilePairList;
+    FilePairList fileList;
+
+    fileList << FilePair("://Templates/thread_template.cpp", "Source/thread_template.cpp")
+             << FilePair("://Templates/thread_template.h", "Source/thread_template.h");
+
+    FilePair filePair;
+    bool retval = false;
+
+    foreach (filePair, fileList) {  ////copia los templates (main.ccp) donde en la carpeta "Source"
+        retval = QFile::copy(filePair.first, filePair.second);
+        if (retval) {   ////le da permisos de escritura a los templates
+            QFile::setPermissions(filePair.second, QFileDevice::WriteOther);
+        }else {
+            qDebug() << "error coping " << filePair.second << " template" << "all ready copied?";
+        }
+    }
+}
+
 void NFWizard2::generateTemplates(const QString &projectRootRef)
 {
     if (!QDir::setCurrent(projectRootRef)) {
@@ -564,4 +592,7 @@ void NFWizard2::on_pb_configure_thread_clicked()
 void NFWizard2::on_pb_add_thread_clicked()
 {
     ui->widget_options_thread_options->hide();
+
+    QFileInfo fileInfo(fileuVision);
+    generateTemplates_for_Thread(fileInfo.dir().path());
 }

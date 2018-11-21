@@ -14,7 +14,7 @@ public:
 
 private:
 
-    eObject::eThread Thread_Name;
+    eObject::eThread Thread_Name_object;
 
     static void Thread_Name_Run(eObject::eThread &threadInstance);
 };
