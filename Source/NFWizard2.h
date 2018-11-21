@@ -57,6 +57,10 @@ private slots:
 
     void on_pb_about_QT_clicked();
 
+    void on_pb_configure_thread_clicked();
+
+    void on_pb_add_thread_clicked();
+
 private:
     void generateProjectFileTree();
     void generateTemplates(const QString& projectRootRef);
@@ -70,11 +74,12 @@ private:
     void processMain_H_file(const QString& main_h_path);
     void processMain_cpp_Error_function(const QString& main_cpp_path);
     void processMain_cpp_Clock_error_code(const QString &main_cpp_path);
-    //void windows_appearence();
+    void windows_widget_position();
     void hide_all_objects();
     void show_help();
     void show_generate();
     void show_options();
+
 
 private:
     Ui::NFWizard2 *ui;

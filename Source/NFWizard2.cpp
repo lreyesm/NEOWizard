@@ -23,7 +23,7 @@ NFWizard2::NFWizard2(QWidget *parent) :
     ui->menuBar->hide();
     ui->statusBar->hide();
 
-    //this->windows_appearence();
+    this->windows_widget_position();
     this->hide_all_objects();
     this->show_generate();
 
@@ -37,6 +37,13 @@ NFWizard2::~NFWizard2()
 {
     saveSettings();
     delete ui;
+}
+
+void NFWizard2::windows_widget_position(){
+
+    ui->widget_options_buttons->move(90,80);
+    ui->widget_options_thread_options->move(300,80);
+
 }
 
 void NFWizard2::on_pushButton_uVisionBrowse_clicked()
@@ -490,11 +497,15 @@ void NFWizard2::hide_all_objects(){
     ui->pushButton_Options_tag->setFixedSize(49,19);
     ui->pushButton_Options_tag->move(115,8);
 
+
     ui->widget_help_buttons->hide();
 
     ui->widget_buttons_quit->hide();
     ui->widget_dirs->hide();
     ui->widget_generate_options->hide();
+
+    ui->widget_options_buttons->hide();
+    ui->widget_options_thread_options->hide();
 }
 
 void NFWizard2::show_generate(){
@@ -522,6 +533,7 @@ void NFWizard2::show_options(){
     ui->pushButton_Options_tag->setStyleSheet( QStringLiteral("background-color: rgb(89, 99, 113);") + "border-image: url(:/Assets/options_tag_on.png);");
     ui->pushButton_Options_tag->setFixedSize(103,25);
     ui->pushButton_Options_tag->move(90,8);
+    ui->widget_options_buttons->show();
 }
 
 void NFWizard2::on_pb_uVision_Config_clicked()
@@ -542,4 +554,14 @@ void NFWizard2::on_pb_about_NEOW_clicked()
 void NFWizard2::on_pb_about_QT_clicked()
 {
     on_actionAbout_Qt_triggered();
+}
+
+void NFWizard2::on_pb_configure_thread_clicked()
+{
+    ui->widget_options_thread_options->show();
+}
+
+void NFWizard2::on_pb_add_thread_clicked()
+{
+    ui->widget_options_thread_options->hide();
 }

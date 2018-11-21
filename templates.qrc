@@ -4,5 +4,6 @@
         <file>Templates/KeilCopyLib.bat</file>
         <file>Templates/main.cpp</file>
         <file>Templates/README.md</file>
+        <file>Templates/thread_template.h</file>
     </qresource>
 </RCC>

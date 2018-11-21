@@ -13,6 +13,7 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
+#include <QtWidgets/QComboBox>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
@@ -22,6 +23,7 @@
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QSpacerItem>
+#include <QtWidgets/QSpinBox>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QToolBar>
 #include <QtWidgets/QVBoxLayout>
@@ -71,6 +73,23 @@ public:
     QHBoxLayout *horizontalLayout_5;
     QPushButton *pushButton_generate_folders;
     QLabel *label_generate_options_2;
+    QWidget *widget_options_thread_options;
+    QVBoxLayout *verticalLayout_9;
+    QVBoxLayout *verticalLayout_6;
+    QLabel *l_thread_name;
+    QLineEdit *le_thread_name;
+    QVBoxLayout *verticalLayout_8;
+    QLabel *l_thread_priority;
+    QComboBox *cb_thread_priority;
+    QVBoxLayout *verticalLayout_7;
+    QLabel *l_thread_stack_size;
+    QSpinBox *sb_thread_stack_size;
+    QPushButton *pb_add_thread;
+    QWidget *widget_options_buttons;
+    QVBoxLayout *verticalLayout_10;
+    QPushButton *pb_configure_Main_thread;
+    QPushButton *pb_configure_thread;
+    QPushButton *pushButton_uVisionBrowse_3;
     QMenuBar *menuBar;
     QMenu *menuHelp;
     QToolBar *mainToolBar;
@@ -170,7 +189,7 @@ public:
         horizontalLayout_2->setSizeConstraint(QLayout::SetFixedSize);
         lineEdit_uVisionPath = new QLineEdit(widget_dirs);
         lineEdit_uVisionPath->setObjectName(QStringLiteral("lineEdit_uVisionPath"));
-        lineEdit_uVisionPath->setEnabled(false);
+        lineEdit_uVisionPath->setEnabled(true);
         lineEdit_uVisionPath->setMinimumSize(QSize(437, 26));
         lineEdit_uVisionPath->setMaximumSize(QSize(437, 26));
         lineEdit_uVisionPath->setCursor(QCursor(Qt::ForbiddenCursor));
@@ -218,7 +237,7 @@ public:
         horizontalLayout->setSizeConstraint(QLayout::SetFixedSize);
         lineEdit_CubePath = new QLineEdit(widget_dirs);
         lineEdit_CubePath->setObjectName(QStringLiteral("lineEdit_CubePath"));
-        lineEdit_CubePath->setEnabled(false);
+        lineEdit_CubePath->setEnabled(true);
         lineEdit_CubePath->setMinimumSize(QSize(437, 26));
         lineEdit_CubePath->setMaximumSize(QSize(437, 26));
         lineEdit_CubePath->setCursor(QCursor(Qt::ForbiddenCursor));
@@ -380,6 +399,139 @@ public:
 
         verticalLayout_4->addLayout(horizontalLayout_5);
 
+        widget_options_thread_options = new QWidget(centralWidget);
+        widget_options_thread_options->setObjectName(QStringLiteral("widget_options_thread_options"));
+        widget_options_thread_options->setGeometry(QRect(670, 60, 132, 209));
+        verticalLayout_9 = new QVBoxLayout(widget_options_thread_options);
+        verticalLayout_9->setSpacing(20);
+        verticalLayout_9->setContentsMargins(11, 11, 11, 11);
+        verticalLayout_9->setObjectName(QStringLiteral("verticalLayout_9"));
+        verticalLayout_9->setSizeConstraint(QLayout::SetFixedSize);
+        verticalLayout_6 = new QVBoxLayout();
+        verticalLayout_6->setSpacing(6);
+        verticalLayout_6->setObjectName(QStringLiteral("verticalLayout_6"));
+        verticalLayout_6->setSizeConstraint(QLayout::SetFixedSize);
+        l_thread_name = new QLabel(widget_options_thread_options);
+        l_thread_name->setObjectName(QStringLiteral("l_thread_name"));
+        l_thread_name->setStyleSheet(QLatin1String("font: 12pt \"Segoe UI\";\n"
+"color: rgb(255, 245, 242);\n"
+"border-color: rgb(21, 172, 112);"));
+
+        verticalLayout_6->addWidget(l_thread_name);
+
+        le_thread_name = new QLineEdit(widget_options_thread_options);
+        le_thread_name->setObjectName(QStringLiteral("le_thread_name"));
+        le_thread_name->setStyleSheet(QLatin1String("font: 12pt \"Segoe UI\";\n"
+"color: rgb(255, 245, 242);\n"
+"border-color: rgb(21, 172, 112);"));
+
+        verticalLayout_6->addWidget(le_thread_name);
+
+
+        verticalLayout_9->addLayout(verticalLayout_6);
+
+        verticalLayout_8 = new QVBoxLayout();
+        verticalLayout_8->setSpacing(6);
+        verticalLayout_8->setObjectName(QStringLiteral("verticalLayout_8"));
+        verticalLayout_8->setSizeConstraint(QLayout::SetFixedSize);
+        l_thread_priority = new QLabel(widget_options_thread_options);
+        l_thread_priority->setObjectName(QStringLiteral("l_thread_priority"));
+        l_thread_priority->setStyleSheet(QLatin1String("font: 12pt \"Segoe UI\";\n"
+"color: rgb(255, 245, 242);\n"
+"border-color: rgb(21, 172, 112);"));
+
+        verticalLayout_8->addWidget(l_thread_priority);
+
+        cb_thread_priority = new QComboBox(widget_options_thread_options);
+        cb_thread_priority->setObjectName(QStringLiteral("cb_thread_priority"));
+        cb_thread_priority->setStyleSheet(QLatin1String("font: 12pt \"Segoe UI\";\n"
+"color: rgb(255, 245, 242);\n"
+"border-color: rgb(21, 172, 112);"));
+
+        verticalLayout_8->addWidget(cb_thread_priority);
+
+
+        verticalLayout_9->addLayout(verticalLayout_8);
+
+        verticalLayout_7 = new QVBoxLayout();
+        verticalLayout_7->setSpacing(6);
+        verticalLayout_7->setObjectName(QStringLiteral("verticalLayout_7"));
+        verticalLayout_7->setSizeConstraint(QLayout::SetFixedSize);
+        l_thread_stack_size = new QLabel(widget_options_thread_options);
+        l_thread_stack_size->setObjectName(QStringLiteral("l_thread_stack_size"));
+        l_thread_stack_size->setStyleSheet(QLatin1String("font: 12pt \"Segoe UI\";\n"
+"color: rgb(255, 245, 242);\n"
+"border-color: rgb(21, 172, 112);"));
+
+        verticalLayout_7->addWidget(l_thread_stack_size);
+
+        sb_thread_stack_size = new QSpinBox(widget_options_thread_options);
+        sb_thread_stack_size->setObjectName(QStringLiteral("sb_thread_stack_size"));
+        sb_thread_stack_size->setStyleSheet(QLatin1String("font: 12pt \"Segoe UI\";\n"
+"color: rgb(255, 245, 242);\n"
+"border-color: rgb(21, 172, 112);"));
+        sb_thread_stack_size->setMaximum(4096);
+
+        verticalLayout_7->addWidget(sb_thread_stack_size);
+
+
+        verticalLayout_9->addLayout(verticalLayout_7);
+
+        pb_add_thread = new QPushButton(widget_options_thread_options);
+        pb_add_thread->setObjectName(QStringLiteral("pb_add_thread"));
+        pb_add_thread->setStyleSheet(QLatin1String("font: 12pt \"Segoe UI\";\n"
+"color: rgb(255, 245, 242);\n"
+"border-color: rgb(21, 172, 112);"));
+
+        verticalLayout_9->addWidget(pb_add_thread);
+
+        widget_options_buttons = new QWidget(centralWidget);
+        widget_options_buttons->setObjectName(QStringLiteral("widget_options_buttons"));
+        widget_options_buttons->setGeometry(QRect(10, 110, 129, 117));
+        verticalLayout_10 = new QVBoxLayout(widget_options_buttons);
+        verticalLayout_10->setSpacing(20);
+        verticalLayout_10->setContentsMargins(11, 11, 11, 11);
+        verticalLayout_10->setObjectName(QStringLiteral("verticalLayout_10"));
+        verticalLayout_10->setSizeConstraint(QLayout::SetFixedSize);
+        pb_configure_Main_thread = new QPushButton(widget_options_buttons);
+        pb_configure_Main_thread->setObjectName(QStringLiteral("pb_configure_Main_thread"));
+        pb_configure_Main_thread->setEnabled(true);
+        pb_configure_Main_thread->setMinimumSize(QSize(106, 25));
+        pb_configure_Main_thread->setMaximumSize(QSize(200, 50));
+        pb_configure_Main_thread->setCursor(QCursor(Qt::PointingHandCursor));
+        pb_configure_Main_thread->setStyleSheet(QLatin1String("font: 12pt \"Segoe UI\";\n"
+"color: rgb(255, 245, 242);\n"
+"border-color: rgb(21, 172, 112);"));
+        pb_configure_Main_thread->setFlat(false);
+
+        verticalLayout_10->addWidget(pb_configure_Main_thread);
+
+        pb_configure_thread = new QPushButton(widget_options_buttons);
+        pb_configure_thread->setObjectName(QStringLiteral("pb_configure_thread"));
+        pb_configure_thread->setEnabled(true);
+        pb_configure_thread->setMinimumSize(QSize(106, 25));
+        pb_configure_thread->setMaximumSize(QSize(200, 50));
+        pb_configure_thread->setCursor(QCursor(Qt::PointingHandCursor));
+        pb_configure_thread->setStyleSheet(QLatin1String("font: 12pt \"Segoe UI\";\n"
+"color: rgb(255, 245, 242);\n"
+"border-color: rgb(21, 172, 112);"));
+        pb_configure_thread->setFlat(false);
+
+        verticalLayout_10->addWidget(pb_configure_thread);
+
+        pushButton_uVisionBrowse_3 = new QPushButton(widget_options_buttons);
+        pushButton_uVisionBrowse_3->setObjectName(QStringLiteral("pushButton_uVisionBrowse_3"));
+        pushButton_uVisionBrowse_3->setEnabled(true);
+        pushButton_uVisionBrowse_3->setMinimumSize(QSize(106, 25));
+        pushButton_uVisionBrowse_3->setMaximumSize(QSize(200, 50));
+        pushButton_uVisionBrowse_3->setCursor(QCursor(Qt::PointingHandCursor));
+        pushButton_uVisionBrowse_3->setStyleSheet(QLatin1String("font: 12pt \"Segoe UI\";\n"
+"color: rgb(255, 245, 242);\n"
+"border-color: rgb(21, 172, 112);"));
+        pushButton_uVisionBrowse_3->setFlat(false);
+
+        verticalLayout_10->addWidget(pushButton_uVisionBrowse_3);
+
         NFWizard2->setCentralWidget(centralWidget);
         label_bar_background->raise();
         pushButton_Generate_tag->raise();
@@ -389,6 +541,15 @@ public:
         widget_buttons_quit->raise();
         widget_help_buttons->raise();
         widget_generate_options->raise();
+        pb_configure_thread->raise();
+        pushButton_uVisionBrowse_3->raise();
+        pb_configure_Main_thread->raise();
+        cb_thread_priority->raise();
+        sb_thread_stack_size->raise();
+        le_thread_name->raise();
+        l_thread_name->raise();
+        l_thread_stack_size->raise();
+        l_thread_priority->raise();
         menuBar = new QMenuBar(NFWizard2);
         menuBar->setObjectName(QStringLiteral("menuBar"));
         menuBar->setGeometry(QRect(0, 0, 793, 20));
@@ -487,6 +648,33 @@ public:
         label_generate_options_2->setToolTip(QApplication::translate("NFWizard2", "Generates files needed. If they are generated already you don't need to mark this option", Q_NULLPTR));
 #endif // QT_NO_TOOLTIP
         label_generate_options_2->setText(QString());
+        l_thread_name->setText(QApplication::translate("NFWizard2", "Thread Name", Q_NULLPTR));
+        l_thread_priority->setText(QApplication::translate("NFWizard2", "Thread Priority", Q_NULLPTR));
+        cb_thread_priority->clear();
+        cb_thread_priority->insertItems(0, QStringList()
+         << QApplication::translate("NFWizard2", "Idle ", Q_NULLPTR)
+         << QApplication::translate("NFWizard2", "Low ", Q_NULLPTR)
+         << QApplication::translate("NFWizard2", "BelowNormal ", Q_NULLPTR)
+         << QApplication::translate("NFWizard2", "Normal ", Q_NULLPTR)
+         << QApplication::translate("NFWizard2", "AboveNormal ", Q_NULLPTR)
+         << QApplication::translate("NFWizard2", "High ", Q_NULLPTR)
+         << QApplication::translate("NFWizard2", "Realtime ", Q_NULLPTR)
+         << QApplication::translate("NFWizard2", "Error ", Q_NULLPTR)
+        );
+        l_thread_stack_size->setText(QApplication::translate("NFWizard2", "Thread Stack Size ", Q_NULLPTR));
+        pb_add_thread->setText(QApplication::translate("NFWizard2", "Add Thread", Q_NULLPTR));
+#ifndef QT_NO_TOOLTIP
+        pb_configure_Main_thread->setToolTip(QApplication::translate("NFWizard2", "Look for uVision project path in your PC", Q_NULLPTR));
+#endif // QT_NO_TOOLTIP
+        pb_configure_Main_thread->setText(QApplication::translate("NFWizard2", "Configure Main Thread", Q_NULLPTR));
+#ifndef QT_NO_TOOLTIP
+        pb_configure_thread->setToolTip(QApplication::translate("NFWizard2", "Look for uVision project path in your PC", Q_NULLPTR));
+#endif // QT_NO_TOOLTIP
+        pb_configure_thread->setText(QApplication::translate("NFWizard2", "Configure a Thread", Q_NULLPTR));
+#ifndef QT_NO_TOOLTIP
+        pushButton_uVisionBrowse_3->setToolTip(QApplication::translate("NFWizard2", "Look for uVision project path in your PC", Q_NULLPTR));
+#endif // QT_NO_TOOLTIP
+        pushButton_uVisionBrowse_3->setText(QApplication::translate("NFWizard2", "Configure State Machine", Q_NULLPTR));
         menuHelp->setTitle(QApplication::translate("NFWizard2", "Help", Q_NULLPTR));
     } // retranslateUi
 
