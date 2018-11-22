@@ -20,7 +20,9 @@ public:
     void setUvisionXmlFile(const QString& dir);
     void setCubeXmlFile(const QString& dir);
     bool updateUvisionXml();
+    bool updateUvisionXml_for_Threads(const QString thread_name);
     bool updateCubeXml();
+
 
 private:
     QString uvisionXmlFile;

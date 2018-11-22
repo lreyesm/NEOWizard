@@ -72,11 +72,95 @@ bool XMLKeilModify::updateUvisionXml(){
         elem.appendChild(xmlDocument.createTextNode("DEBUG"));//Añade al nodo <Define> un hijo con texto DEBUG
     }else if (!elem.text().contains("DEBUG")) {  //si no contiene el texto "DEBUG" lo añade
         elem.firstChild().toText().setData(elem.text().append(", DEBUG")); //añade el texto "DEBUG"
-    }
 
+    }
     file.open(QIODevice::WriteOnly); //abre el archivo como escritura (archivo *.uvprojx)
     QTextStream outUvision(&file);   //crea un doc de texto con la direccion de archivo *.uvprojx
     xmlDocument.save(outUvision,QDomNode::EncodingFromTextStream); //Salva los cambios en el archivo *.uvprojx)
+    file.close();
+    return true;
+}
+
+bool XMLKeilModify::updateUvisionXml_for_Threads(const QString thread_name){
+
+    if(uvisionXmlFile.isEmpty()){  ////Si no esta vacio el String del camino del XML de Keil (*.uvprojx)
+        return false;
+    }
+
+    QFile file(uvisionXmlFile); ////lo abre como lectura
+
+    if(!file.open(QIODevice::ReadOnly)){
+        return false;
+    }
+
+    if (!xmlDocument.setContent(&file)) { ////pone el contenido de este XML en xmlDocument
+        file.close();
+        return false;
+    }
+    file.close();
+
+    ////inclusion del .cpp del hilo
+    QDomNode node = getNodeWithText(xmlDocument,"GroupName","Source"); ////busca un nodo <GroupName> con elemento "Source"
+    if(node.isNull()){  ////si retorna un nodo vacio
+        node = getNodeWithText(xmlDocument,"GroupName","Source Group 1"); ////Busca el nodo <GroupName> con nombre "Source Group 1"
+        if(node.isNull()){
+            node = createGroup(xmlDocument,"Source"); ////si no lo encuentra lo crea
+        }else{
+            node.firstChild().toText().setData("Source"); ////si lo encuentra le cambia el nombre
+        }
+    }
+    switch(existsFilesInGroup(xmlDocument,"Source",thread_name+QString(".cpp"))){
+    case NoFilesElement:
+        node = getNodeWithText(xmlDocument,"GroupName","Source"); ////Busca el nodo <GroupName> con nombre "Source"
+        node.parentNode().appendChild(xmlDocument.createElement("Files"));
+        node.nextSiblingElement("Files").  ////busca el siguiente nodo <Files> y le añade
+                appendChild(createFileUVision(xmlDocument,thread_name+QString(".cpp"),"8",QString(".\\Source\\")+thread_name+QString(".cpp")));
+        break;
+    case NoFileElement:
+        node = getNodeWithText(xmlDocument,"GroupName","Source"); ////Busca el nodo <GroupName> con nombre "Source"
+        node.nextSiblingElement("Files").  //crea un nodo <File> con hijo: info de thread_name.cpp
+                appendChild(createFileUVision(xmlDocument,thread_name+QString(".cpp"),"8",QString(".\\Source\\")+thread_name+QString(".cpp")));
+        break;
+    default:
+        break;
+    }
+    ////inclusion del .h del hilo
+    node = getNodeWithText(xmlDocument,"GroupName","Include"); ////busca un nodo <GroupName> con elemento "Include"
+    if(node.isNull()){
+        node = createGroup(xmlDocument,"Include"); ////si no lo encuentra lo crea
+    }
+    switch(existsFilesInGroup(xmlDocument,"Include",thread_name+QString(".h"))){
+    case NoFilesElement:
+        node = getNodeWithText(xmlDocument,"GroupName","Include"); //Busca el nodo <GroupName> con nombre "Include"
+        node.parentNode().appendChild(xmlDocument.createElement("Files"));
+        node.nextSiblingElement("Files").  ////busca el siguiente nodo <Files> y le añade
+                appendChild(createFileUVision(xmlDocument,thread_name+QString(".h"),"5",QString(".\\Include\\")+thread_name+QString(".h")));
+        break;
+    case NoFileElement:
+        node = getNodeWithText(xmlDocument,"GroupName","Include"); //Busca el nodo <GroupName> con nombre "Include"
+        node.nextSiblingElement("Files").  //crea un nodo <File> con hijo: info de thread_name,h
+                appendChild(createFileUVision(xmlDocument,thread_name+QString(".h"),"5",QString(".\\Include\\")+thread_name+QString(".h")));
+        break;
+    default:
+        break;
+    }
+
+    QDomNodeList list = xmlDocument.elementsByTagName("Cads");  ////Busca nodos <Cads>
+    QDomElement elem = list.item(0).firstChildElement("VariousControls"); ////Busca primer nodo <VariousControls>
+    elem = elem.firstChildElement("IncludePath"); ////Busca primer nodo <IncludePath>
+    if(elem.text().isEmpty()){  //si no tiene texto el nodo
+        elem.appendChild(xmlDocument.createTextNode(".\\Source;.\\Include"));//Añade al nodo <Define> un hijo con texto DEBUG
+    }else{
+        if (!elem.text().contains(".\\Source")) {  //si no contiene el texto "Source" lo añade
+            elem.firstChild().toText().setData(elem.text().append("; .\\Source")); ////añade el texto "Source"
+        }
+        if (!elem.text().contains(".\\Include")) {  //si no contiene el texto "Include" lo añade
+            elem.firstChild().toText().setData(elem.text().append(";.\\Include")); ////añade el texto "Include"
+        }
+    }
+    file.open(QIODevice::WriteOnly); ////abre el archivo como escritura (archivo *.uvprojx)
+    QTextStream outUvision(&file);   ////crea un doc de texto con la direccion de archivo *.uvprojx
+    xmlDocument.save(outUvision,QDomNode::EncodingFromTextStream); ////Salva los cambios en el archivo *.uvprojx)
     file.close();
     return true;
 }

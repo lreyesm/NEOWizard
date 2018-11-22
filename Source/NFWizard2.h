@@ -68,6 +68,7 @@ private:
     void processInterrupFile();
     void processMainFiles();
     void processXmlFiles();
+    void processXmlFiles_for_Threads();
     void processHalConfigFile();
     void saveSettings();
     void loadSettings();

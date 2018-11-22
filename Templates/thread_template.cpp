@@ -10,23 +10,25 @@ Thread_Name::Thread_Name() : eSingletonStaticBase(this),sender(Thread_Name_Run, 
 void Thread_Name::Thread_Name_Run(eThread &threadInstance)
 {
 
+//    std::int32_t signal = 0;
+
     while (true)
     {
-        threadInstance.eventWaitAny(signal);
+//        threadInstance.eventWaitAny(signal);
 
-        switch (signal) {
+//        switch (signal) {
 
-        case SIGNAL_0:
+//        case SIGNAL_0:
 
-            break;
+//            break;
 
-        case SIGNAL_N:
+//        case SIGNAL_N:
 
-            break;
+//            break;
 
-        default:
-            break;
-        }
+//        default:
+//            break;
+//        }
     }
 }
 

@@ -194,7 +194,7 @@ void NFWizard2::on_pushButton_Generate_clicked()
             processMain_cpp_Error_function(fileuVisionInfo.dir().path()+QString("/Source/main.cpp"));
 
         }
-        processMain_cpp_Clock_error_code(fileuVisionInfo.dir().path()+QString("/Source/main.cpp"));
+        processMain_cpp_Clock_error_code(fileuVisionInfo.dir().path()+QString("/Source/main.cpp")); ////borra codigo de Error HSI\HSE generado por StCubeMx
 
         processHalConfigFile();    //// Cambia el #define TICK_INT_PRIORITY ((uint32_t)0x00U) a #define TICK_INT_PRIORITY ((uint32_t)0x0fU)
         processXmlFiles();         ////Modifica el archivo *.gpdsc para añadirle el *_it.h y *_it.c modificados
@@ -287,6 +287,25 @@ void NFWizard2::processMainFiles()
     }
 }
 
+void NFWizard2::processXmlFiles_for_Threads(){
+
+    QDir cubeDir = QFileInfo(fileCube).dir();  ////Guarda la direccion de cubeDir (".../STCubeGenerated")
+    if(!cubeDir.cdUp()){   ////Sube a la direccion (".../STM32F429ZITx")
+        QMessageBox::critical(this,tr("NFWizard2"),tr("<font color = white >Error. File not founnd."));
+        return;
+    }
+    QFileInfoList fileList = cubeDir.entryInfoList(QStringList("*.gpdsc"),QDir::Files,QDir::Type);  ////Busca archivos *.gpdsc (1 solo)
+    if(fileList.size() != 1){   ////Solo debe haber un archivo *.gpdsc
+        QMessageBox::critical(this,tr("NFWizard2"),tr("<font color = white >Error. File not founnd."));
+        return;
+    }
+    XMLModifyNamespace::XMLKeilModify XmlDoc(fileuVision,fileList[0].absoluteFilePath());  ////Contructor de XMLKeilModify le pasa como parametros
+
+    XmlDoc.updateUvisionXml_for_Threads("thread_template");  ////modifica el archivo *.uvprojx de Keil, añade nodes con la direccion del archivo main.cpp
+                                ////y cambia intancias de "Target 1" por "DEBUG"
+}
+
+
 void NFWizard2::processXmlFiles()
 {
     ////fileCube tiene la direccion asignada al proyecto STCubeMX
@@ -295,12 +314,12 @@ void NFWizard2::processXmlFiles()
         QMessageBox::critical(this,tr("NFWizard2"),tr("<font color = white >Error. File not founnd."));
         return;
     }
-    QFileInfoList fileList = cubeDir.entryInfoList(QStringList("*.gpdsc"),QDir::Files,QDir::Type);  //Busca archivos *.gpdsc (1 solo)
+    QFileInfoList fileList = cubeDir.entryInfoList(QStringList("*.gpdsc"),QDir::Files,QDir::Type);  ////Busca archivos *.gpdsc (1 solo)
     if(fileList.size() != 1){   ////Solo debe haber un archivo *.gpdsc
         QMessageBox::critical(this,tr("NFWizard2"),tr("<font color = white >Error. File not founnd."));
         return;
     }
-    XMLModifyNamespace::XMLKeilModify XmlDoc(fileuVision,fileList[0].absoluteFilePath());  //Contructor de XMLKeilModify le pasa como parametros
+    XMLModifyNamespace::XMLKeilModify XmlDoc(fileuVision,fileList[0].absoluteFilePath());  ////Contructor de XMLKeilModify le pasa como parametros
 
     XmlDoc.updateCubeXml();    ////modifica el *.gpdsc (XML) y le añade al nodo <project_files> del XML los archivos *.c y *.h
                                ////la direccion de *.uvprojx y la direccion de *.gpdsc
@@ -366,7 +385,7 @@ void NFWizard2::generateTemplates_for_Thread(const QString &projectRootRef){ ///
     FilePairList fileList;
 
     fileList << FilePair("://Templates/thread_template.cpp", "Source/thread_template.cpp")
-             << FilePair("://Templates/thread_template.h", "Source/thread_template.h");
+             << FilePair("://Templates/thread_template.h", "Include/thread_template.h");
 
     FilePair filePair;
     bool retval = false;
@@ -594,5 +613,9 @@ void NFWizard2::on_pb_add_thread_clicked()
     ui->widget_options_thread_options->hide();
 
     QFileInfo fileInfo(fileuVision);
-    generateTemplates_for_Thread(fileInfo.dir().path());
+    this->generateTemplates_for_Thread(fileInfo.dir().path());////copia los templates para las carpetas del projecto
+
+    this->processXmlFiles_for_Threads(); ////modifica XML de keil
+    QMessageBox::information(this, "NEOWizard", QString("<font color = white >Thread generated correctly\nPlease save changes in uVision project"));
+
 }
