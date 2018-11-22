@@ -14,14 +14,14 @@ public:
 
 private:
 
-    eObject::eThread Thread_Name_object;
+    eObject::eThread Thread_Name_Instance;
 
     static void Thread_Name_Run(eObject::eThread &threadInstance);
 };
 
 inline eObject::eThread& Thread_Name::getThreadInstance(void)
 {
-    return this->Thread_Name_object;
+    return this->Thread_Name_Instance;
 }
 
 #endif // THREAD_NAME_H

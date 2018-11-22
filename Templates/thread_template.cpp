@@ -2,7 +2,7 @@
 
 using namespace eObject;
 
-Thread_Name::Thread_Name() : eSingletonStaticBase(this),sender(Thread_Name_Run, eThread::PriorityNormal)
+Thread_Name::Thread_Name() : eSingletonStaticBase(this),Thread_Name_Instance(Thread_Name_Run, eThread::PriorityNormal)
 {
     Thread_Name.start();
 }

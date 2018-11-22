@@ -308,8 +308,8 @@ void NFWizard2::process_Thread_Files(const QString thread_name){
 
     main_cpp_FileProcessor.setFilename(fileuVision_Path+QString("/Source/")+thread_name+QString(".cpp"));
 
-    main_cpp_FileProcessor.setStartLine("#include \"Thread_Name.h\"");       ////inicio del contenido a eliminar
-    main_cpp_FileProcessor.setEndLine("#include \"Thread_Name.h\""); ////fin del contenido a eliminar
+    main_cpp_FileProcessor.setStartLine("#include \"thread_template.h\"");       ////inicio del contenido a eliminar
+    main_cpp_FileProcessor.setEndLine("#include \"thread_template.h\""); ////fin del contenido a eliminar
     main_cpp_FileProcessor.setReplacementString(QString("#include \"")+thread_name+QString(".h\""));
     main_cpp_FileProcessor.processTextBlock();
 

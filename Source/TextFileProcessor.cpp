@@ -70,8 +70,6 @@ void TextFileProcessor::processTextBlock() //esta funcion es muy parecida a proc
 
 void TextFileProcessor::replace_all_lines_code_instances(){
 
-
-
         QFile file(filename());
         if (!file.exists()) {
             qWarning() << "file: " << filename() << " not found!";

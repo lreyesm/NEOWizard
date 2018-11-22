@@ -67,6 +67,7 @@ private:
     void generateTemplates_for_Thread(const QString& projectRootRef);
     void processInterrupFile();
     void processMainFiles();
+    void process_Thread_Files(const QString thread_name);
     void processXmlFiles();
     void processXmlFiles_for_Threads();
     void processHalConfigFile();
