@@ -69,6 +69,10 @@ private slots:
 
     void on_pb_configure_state_machine_clicked();
 
+    void on_pb_add_state_clicked();
+
+    void on_state_clicked(QString state_name);
+
 private:
     void generateProjectFileTree();
     void generateTemplates(const QString& projectRootRef);
@@ -92,6 +96,7 @@ private:
     void show_help();
     void show_generate();
     void show_options();
+    void set_points();
 
 
 private:
@@ -107,6 +112,8 @@ private:
     bool generate_project_folders;
     int add_thread_state;
     QList<QHierarchy_State*> hierarchy_states;
+    QList<QPoint> points[8];
+
 };
 
 #endif // NFWIZARD2_H

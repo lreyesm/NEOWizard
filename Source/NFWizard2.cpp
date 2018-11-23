@@ -26,6 +26,7 @@ NFWizard2::NFWizard2(QWidget *parent) :
     this->windows_widget_position();
     this->hide_all_objects();
     this->show_generate();
+    this->set_points();
 
 
     dialogConfigHelp = new DialogConfigurationHelp(this);
@@ -36,6 +37,12 @@ NFWizard2::NFWizard2(QWidget *parent) :
 NFWizard2::~NFWizard2()
 {
     saveSettings();
+    QHierarchy_State* hierarchy_state;
+    foreach (hierarchy_state, hierarchy_states) {
+
+        delete hierarchy_state;
+    }
+
     delete ui;
 }
 
@@ -43,6 +50,7 @@ void NFWizard2::windows_widget_position(){
 
     this->setGeometry(200,200,793,389);
 
+    ui->widget_layout_state_machine->move(300,0);
     ui->widget_options_buttons->move(90,80);
     ui->widget_options_thread_options->move(300,80);
 
@@ -727,6 +735,7 @@ void NFWizard2::hide_all_objects(){
 
     ui->widget_options_buttons->hide();
     ui->widget_options_thread_options->hide();
+    ui->widget_layout_state_machine->hide();
 }
 
 void NFWizard2::show_generate(){
@@ -813,6 +822,7 @@ void NFWizard2::on_pb_configure_thread_in_class_clicked()
   ui->widget_options_thread_options->show();
   ui->l_thread_priority->show();
   ui->cb_thread_priority->show();
+  ui->widget_layout_state_machine->hide();
 }
 
 void NFWizard2::on_pb_configure_thread_in_main_clicked()
@@ -821,6 +831,7 @@ void NFWizard2::on_pb_configure_thread_in_main_clicked()
    ui->widget_options_thread_options->show();
    ui->l_thread_priority->show();
    ui->cb_thread_priority->show();
+   ui->widget_layout_state_machine->hide();
 }
 
 void NFWizard2::on_pb_configure_Main_thread_clicked()
@@ -829,14 +840,82 @@ void NFWizard2::on_pb_configure_Main_thread_clicked()
     ui->widget_options_thread_options->show();
     ui->l_thread_priority->hide();
     ui->cb_thread_priority->hide();
+    ui->widget_layout_state_machine->hide();
 
 }
 
 void NFWizard2::on_pb_configure_state_machine_clicked()
 {
-    QHierarchy_State *state = new QHierarchy_State(this);
-    state->show();
-    hierarchy_states.append(state);
-    hierarchy_states[0]->move(20,20);
-    qDebug()<<"tam :"<<QString::number(hierarchy_states.size());
+    ui->widget_layout_state_machine->show();
+    ui->widget_options_thread_options->hide();
 }
+
+void NFWizard2::on_pb_add_state_clicked()
+{
+    if(!ui->le_state_name->text().isEmpty()){
+
+        QHierarchy_State *state = new QHierarchy_State(ui->widget_states, ui->le_state_name->text());
+        state->show();
+        connect(state,SIGNAL(signal_clicked(QString)),this,SLOT(on_state_clicked(QString)));
+        hierarchy_states.append(state);
+
+        for(int i=0; i < hierarchy_states.size(); i++){
+
+            hierarchy_states[i]->move(points[hierarchy_states.size()-1][i]);
+
+        }
+        qDebug()<<"tam :"<<QString::number(hierarchy_states.size());
+
+    }
+    else{
+        QMessageBox::information(this, "NEOWizard", QString("<font color = white >Please add name to the state"));
+    }
+}
+
+void NFWizard2::on_state_clicked(QString state_name){
+
+    ui->l_name_current_state->setText(state_name);
+
+}
+
+void NFWizard2::set_points(){
+
+    int x = ui->widget_states->size().rwidth();
+    int y = ui->widget_states->size().rheight();
+    int hieratic_state_circle_radius = 40;
+
+    points[0].append(QPoint((int)(x/2)-hieratic_state_circle_radius,(int)(y/2)-hieratic_state_circle_radius));
+
+    points[1].append(QPoint((int)(x/4)-hieratic_state_circle_radius,(int)(y/2)-hieratic_state_circle_radius));
+    points[1].append(QPoint((int)(x/4)*3-hieratic_state_circle_radius,(int)(y/2)-hieratic_state_circle_radius));
+
+    points[2].append(QPoint((int)(x/4)-hieratic_state_circle_radius,(int)(y/3)-hieratic_state_circle_radius));
+    points[2].append(QPoint((int)(x/4)*3-hieratic_state_circle_radius,(int)(y/3)-hieratic_state_circle_radius));
+    points[2].append(QPoint((int)(x/2)-hieratic_state_circle_radius,(int)(y/3)*2-hieratic_state_circle_radius));
+
+    points[3].append(QPoint((int)(x/3)-hieratic_state_circle_radius,(int)(y/3)-hieratic_state_circle_radius));
+    points[3].append(QPoint((int)(x/3)*2-hieratic_state_circle_radius,(int)(y/3)-hieratic_state_circle_radius));
+    points[3].append(QPoint((int)(x/3)-hieratic_state_circle_radius,(int)(y/3)*2-hieratic_state_circle_radius));
+    points[3].append(QPoint((int)(x/3)*2-hieratic_state_circle_radius,(int)(y/3)*2-hieratic_state_circle_radius));
+
+    points[4].append(QPoint((int)(x/3)-hieratic_state_circle_radius,(int)(y/5)-hieratic_state_circle_radius));
+    points[4].append(QPoint((int)(x/3)*2-hieratic_state_circle_radius,(int)(y/5)-hieratic_state_circle_radius));
+    points[4].append(QPoint((int)(x/4)-hieratic_state_circle_radius,(int)(y/2)-hieratic_state_circle_radius));
+    points[4].append(QPoint((int)(x/4)*3-hieratic_state_circle_radius,(int)(y/2)-hieratic_state_circle_radius));
+    points[4].append(QPoint((int)(x/2)-hieratic_state_circle_radius,(int)(y/4)*3-hieratic_state_circle_radius));
+
+    points[5].append(QPoint((int)(x/3)-hieratic_state_circle_radius,(int)(y/5)-hieratic_state_circle_radius));
+    points[5].append(QPoint((int)(x/3)*2-hieratic_state_circle_radius,(int)(y/5)-hieratic_state_circle_radius));
+    points[5].append(QPoint((int)(x/4)-hieratic_state_circle_radius,(int)(y/2)-hieratic_state_circle_radius));
+    points[5].append(QPoint((int)(x/4)*3-hieratic_state_circle_radius,(int)(y/2)-hieratic_state_circle_radius));
+    points[5].append(QPoint((int)(x/3)-hieratic_state_circle_radius,(int)(y/5)*4-hieratic_state_circle_radius));
+    points[5].append(QPoint((int)(x/3)*2-hieratic_state_circle_radius,(int)(y/5)*4-hieratic_state_circle_radius));
+}
+
+
+
+
+
+
+
+

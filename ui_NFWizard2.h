@@ -92,7 +92,16 @@ public:
     QPushButton *pb_configure_thread_in_class;
     QSpacerItem *verticalSpacer;
     QPushButton *pb_configure_state_machine;
+    QWidget *widget_layout_state_machine;
+    QVBoxLayout *verticalLayout_12;
+    QVBoxLayout *verticalLayout_11;
+    QHBoxLayout *horizontalLayout_7;
+    QLabel *l_state_parent_tag;
+    QLabel *l_name_current_state;
     QWidget *widget_states;
+    QHBoxLayout *horizontalLayout_6;
+    QPushButton *pb_add_state;
+    QLineEdit *le_state_name;
     QMenuBar *menuBar;
     QMenu *menuHelp;
     QToolBar *mainToolBar;
@@ -556,9 +565,72 @@ public:
 
         verticalLayout_10->addWidget(pb_configure_state_machine);
 
-        widget_states = new QWidget(centralWidget);
+        widget_layout_state_machine = new QWidget(centralWidget);
+        widget_layout_state_machine->setObjectName(QStringLiteral("widget_layout_state_machine"));
+        widget_layout_state_machine->setGeometry(QRect(830, 40, 425, 378));
+        verticalLayout_12 = new QVBoxLayout(widget_layout_state_machine);
+        verticalLayout_12->setSpacing(6);
+        verticalLayout_12->setContentsMargins(11, 11, 11, 11);
+        verticalLayout_12->setObjectName(QStringLiteral("verticalLayout_12"));
+        verticalLayout_11 = new QVBoxLayout();
+        verticalLayout_11->setSpacing(6);
+        verticalLayout_11->setObjectName(QStringLiteral("verticalLayout_11"));
+        verticalLayout_11->setSizeConstraint(QLayout::SetFixedSize);
+        horizontalLayout_7 = new QHBoxLayout();
+        horizontalLayout_7->setSpacing(6);
+        horizontalLayout_7->setObjectName(QStringLiteral("horizontalLayout_7"));
+        horizontalLayout_7->setSizeConstraint(QLayout::SetFixedSize);
+        l_state_parent_tag = new QLabel(widget_layout_state_machine);
+        l_state_parent_tag->setObjectName(QStringLiteral("l_state_parent_tag"));
+        l_state_parent_tag->setStyleSheet(QLatin1String("font: 11pt \"Segoe UI\";\n"
+"color: rgb(255, 245, 242);"));
+
+        horizontalLayout_7->addWidget(l_state_parent_tag);
+
+        l_name_current_state = new QLabel(widget_layout_state_machine);
+        l_name_current_state->setObjectName(QStringLiteral("l_name_current_state"));
+        l_name_current_state->setStyleSheet(QLatin1String("font: 11pt \"Segoe UI\";\n"
+"color: rgb(255, 245, 242);"));
+
+        horizontalLayout_7->addWidget(l_name_current_state);
+
+
+        verticalLayout_11->addLayout(horizontalLayout_7);
+
+        widget_states = new QWidget(widget_layout_state_machine);
         widget_states->setObjectName(QStringLiteral("widget_states"));
-        widget_states->setGeometry(QRect(330, 230, 341, 91));
+        widget_states->setEnabled(true);
+        widget_states->setMinimumSize(QSize(405, 300));
+        widget_states->setMaximumSize(QSize(407, 300));
+        widget_states->setStyleSheet(QStringLiteral("background-color: rgb(96, 120, 154);"));
+
+        verticalLayout_11->addWidget(widget_states);
+
+        horizontalLayout_6 = new QHBoxLayout();
+        horizontalLayout_6->setSpacing(6);
+        horizontalLayout_6->setObjectName(QStringLiteral("horizontalLayout_6"));
+        pb_add_state = new QPushButton(widget_layout_state_machine);
+        pb_add_state->setObjectName(QStringLiteral("pb_add_state"));
+        pb_add_state->setMaximumSize(QSize(150, 16777215));
+        pb_add_state->setStyleSheet(QLatin1String("font: 12pt \"Segoe UI\";\n"
+"border-color: rgb(21, 172, 112);\n"
+"color: rgb(255, 245, 242);\n"
+""));
+
+        horizontalLayout_6->addWidget(pb_add_state);
+
+        le_state_name = new QLineEdit(widget_layout_state_machine);
+        le_state_name->setObjectName(QStringLiteral("le_state_name"));
+        le_state_name->setMaximumSize(QSize(150, 16777215));
+
+        horizontalLayout_6->addWidget(le_state_name);
+
+
+        verticalLayout_11->addLayout(horizontalLayout_6);
+
+
+        verticalLayout_12->addLayout(verticalLayout_11);
+
         NFWizard2->setCentralWidget(centralWidget);
         widget_options_thread_options->raise();
         widget_options_buttons->raise();
@@ -570,7 +642,7 @@ public:
         widget_buttons_quit->raise();
         widget_help_buttons->raise();
         widget_generate_options->raise();
-        widget_states->raise();
+        widget_layout_state_machine->raise();
         menuBar = new QMenuBar(NFWizard2);
         menuBar->setObjectName(QStringLiteral("menuBar"));
         menuBar->setGeometry(QRect(0, 0, 1280, 20));
@@ -700,6 +772,9 @@ public:
         pb_configure_state_machine->setToolTip(QApplication::translate("NFWizard2", "Look for uVision project path in your PC", Q_NULLPTR));
 #endif // QT_NO_TOOLTIP
         pb_configure_state_machine->setText(QApplication::translate("NFWizard2", "Configure State Machine", Q_NULLPTR));
+        l_state_parent_tag->setText(QApplication::translate("NFWizard2", "                         State Parent   :", Q_NULLPTR));
+        l_name_current_state->setText(QApplication::translate("NFWizard2", "No Parent", Q_NULLPTR));
+        pb_add_state->setText(QApplication::translate("NFWizard2", "Add State", Q_NULLPTR));
         menuHelp->setTitle(QApplication::translate("NFWizard2", "Help", Q_NULLPTR));
     } // retranslateUi
 

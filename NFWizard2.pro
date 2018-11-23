@@ -18,7 +18,7 @@ SOURCES += Source/main.cpp\
     Source/XMLKeilModify.cpp \
     Source/DialogConfigurationHelp.cpp \
     Source/TextFileProcessor.cpp \
-    Source/qhierarchy_state.cpp
+    Source/qhierarchy_state.cpp \
 
 HEADERS  += Source/NFWizard2.h \
     Source/FolderTreeGenerator.h \
@@ -26,7 +26,7 @@ HEADERS  += Source/NFWizard2.h \
     Source/XMLKeilModify.h \
     Source/DialogConfigurationHelp.h \
     Source/TextFileProcessor.h \
-    Source/qhierarchy_state.h
+    Source/qhierarchy_state.h \
 
 FORMS    += Source/NFWizard2.ui \
     Source/DialogConfigurationHelp.ui
