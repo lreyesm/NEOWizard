@@ -61,3 +61,38 @@ const QStringList QHierarchy_State::get_state_actions(){
 
     return state_actions;
 }
+
+void QHierarchy_State::set_state_name(const QString name){
+
+    state_name = name;
+}
+
+void QHierarchy_State::set_state_parent(const QString parent){
+
+    state_parent = parent;
+}
+
+void QHierarchy_State::set_state_initial(const QString initial){
+
+    state_initial = initial;
+}
+
+void QHierarchy_State::set_state_default(const QString defaults){
+
+    state_default = defaults;
+}
+
+void QHierarchy_State::add_state_event(const QString event){
+
+    events.append(event);
+}
+
+void QHierarchy_State::add_state_action(const QString action){
+
+    state_actions.append(action);
+}
+
+void QHierarchy_State::add_next_state(const QString next){
+
+    next_states.append(next);
+}

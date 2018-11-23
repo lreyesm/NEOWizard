@@ -24,6 +24,9 @@ public:
     void set_state_parent(const QString parent);
     void set_state_initial(const QString initial);
     void set_state_default(const QString defaults);
+    void add_state_event(const QString event);
+    void add_next_state(const QString next);
+    void add_state_action(const QString action);
 
 signals:
     void signal_clicked(QString clicked_state_name = "unknow");
