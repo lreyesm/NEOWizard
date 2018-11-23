@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QtCore>
 #include "DialogConfigurationHelp.h"
+#include <qhierarchy_state.h>
 
 namespace Ui {
 class NFWizard2;
@@ -66,12 +67,15 @@ private slots:
 
     void on_pb_configure_Main_thread_clicked();
 
+    void on_pb_configure_state_machine_clicked();
+
 private:
     void generateProjectFileTree();
     void generateTemplates(const QString& projectRootRef);
     void generateTemplates_for_Thread(const QString& projectRootRef, const QString thread_name);
     void processInterrupFile();
     void processMainFiles();
+    void processMainFile_add_Main_Thread_Exec(const QString thread_name, const QString main_cpp_dir);
     void process_Main_Thread_Files(const QString thread_name);
     void process_Thread_Files(const QString thread_name);
     void processXmlFiles();
@@ -102,6 +106,7 @@ private:
 
     bool generate_project_folders;
     int add_thread_state;
+    QList<QHierarchy_State*> hierarchy_states;
 };
 
 #endif // NFWIZARD2_H

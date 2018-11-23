@@ -41,8 +41,23 @@ NFWizard2::~NFWizard2()
 
 void NFWizard2::windows_widget_position(){
 
+    this->setGeometry(200,200,793,389);
+
     ui->widget_options_buttons->move(90,80);
     ui->widget_options_thread_options->move(300,80);
+
+    ui->pb_configure_state_machine->setStyleSheet(QStringLiteral("color: rgb(255, 245, 242); background-color: rgb(21, 172, 112); font: 11pt \"Segoe UI\"; border-color: rgb(255, 172, 112);"));
+    ui->pb_configure_Main_thread->setStyleSheet(QStringLiteral("color: rgb(255, 245, 242); background-color: rgb(21, 172, 112); font: 11pt \"Segoe UI\"; border-color: rgb(255, 172, 112);"));
+    ui->pb_configure_thread_in_class->setStyleSheet(QStringLiteral("color: rgb(255, 245, 242); background-color: rgb(21, 172, 112); font: 11pt \"Segoe UI\"; border-color: rgb(255, 172, 112);"));
+    ui->pb_configure_thread_in_main->setStyleSheet(QStringLiteral("color: rgb(255, 245, 242); background-color: rgb(21, 172, 112); font: 11pt \"Segoe UI\"; border-color: rgb(255, 172, 112);"));
+
+    ui->pb_add_thread->setStyleSheet(QStringLiteral("color: rgb(255, 245, 242); background-color: rgb(21, 172, 112); font: 11pt \"Segoe UI\"; border-color: rgb(255, 172, 112);"));
+    ui->cb_thread_priority->setStyleSheet(QStringLiteral("color: rgb(255, 245, 242); background-color: rgb(21, 172, 112); font: 11pt \"Segoe UI\"; border-color: rgb(255, 172, 112);"));
+
+//font: 12pt "Segoe UI";
+//color: rgb(255, 245, 242);
+//border-color: rgb(21, 172, 112);
+
 
 }
 
@@ -318,6 +333,29 @@ void NFWizard2::process_Main_Thread_Files(const QString thread_name){
     main_cpp_FileProcessor.processTextBlock();
     ////-------------------------------------------------------------------------------------------------------------------------------------------
 
+    this->processMainFile_add_Main_Thread_Exec(thread_name,fileuVision_Path+QString("/Source/main.cpp"));
+}
+
+void NFWizard2::processMainFile_add_Main_Thread_Exec(const QString thread_name, const QString main_cpp_dir){
+
+    TextFileProcessor main_cpp_FileProcessor;
+    main_cpp_FileProcessor.setFilename(main_cpp_dir);
+                                        //// ignora espacios en blanco antes de la linea de codigo
+                                        ///
+    main_cpp_FileProcessor.setStartLine("/* USER CODE BEGIN Includes */");       ////inicio del contenido a eliminar
+    main_cpp_FileProcessor.setEndLine("/* USER CODE BEGIN Includes */"); ////fin del contenido a eliminar
+    main_cpp_FileProcessor.setReplacementString(QString("/* USER CODE BEGIN Includes */\n#include \"")+thread_name+QString(".h\"\n"));
+    main_cpp_FileProcessor.processTextBlock();
+
+    main_cpp_FileProcessor.setStartLine("//Sustituir por el nombre de la clase asignado");       ////inicio del contenido a eliminar
+    main_cpp_FileProcessor.setEndLine("//Application app;"); ////fin del contenido a eliminar
+    main_cpp_FileProcessor.setReplacementString(QString("//Sustituir por el nombre de la clase asignado\n  ")+thread_name+QString(" app;\n"));
+    main_cpp_FileProcessor.processTextBlock();
+
+    main_cpp_FileProcessor.setStartLine("//app.exec();");       ////inicio del contenido a eliminar
+    main_cpp_FileProcessor.setEndLine("//app.exec();"); ////fin del contenido a eliminar
+    main_cpp_FileProcessor.setReplacementString(QString("//Funcion de ejecucion de hilo principal\n  ")+QString("app.exec();\n"));
+    main_cpp_FileProcessor.processTextBlock();
 }
 
 void NFWizard2::process_Thread_Files(const QString thread_name){
@@ -760,6 +798,13 @@ void NFWizard2::on_pb_add_thread_clicked()
         this->processXmlFiles_for_Threads(ui->le_thread_name->text()); ////modifica XML de keil
         QMessageBox::information(this, "NEOWizard", QString("<font color = white >Main Thread generated correctly\nPlease save changes in uVision project"));
     }
+    if(add_thread_state==Thread_in_Main){
+
+//        this->generateTemplates_for_Thread(fileInfo.dir().path(), ui->le_thread_name->text());////copia los templates para las carpetas del projecto
+//        this->process_Main_Thread_Files(ui->le_thread_name->text());
+//        this->processXmlFiles_for_Threads(ui->le_thread_name->text()); ////modifica XML de keil
+//        QMessageBox::information(this, "NEOWizard", QString("<font color = white >Main Thread generated correctly\nPlease save changes in uVision project"));
+    }
 }
 
 void NFWizard2::on_pb_configure_thread_in_class_clicked()
@@ -785,4 +830,13 @@ void NFWizard2::on_pb_configure_Main_thread_clicked()
     ui->l_thread_priority->hide();
     ui->cb_thread_priority->hide();
 
+}
+
+void NFWizard2::on_pb_configure_state_machine_clicked()
+{
+    QHierarchy_State *state = new QHierarchy_State(this);
+    state->show();
+    hierarchy_states.append(state);
+    hierarchy_states[0]->move(20,20);
+    qDebug()<<"tam :"<<QString::number(hierarchy_states.size());
 }

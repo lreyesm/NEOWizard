@@ -6,8 +6,10 @@ INPUT(
 ./debug\XMLKeilModify.o
 ./debug\DialogConfigurationHelp.o
 ./debug\TextFileProcessor.o
+./debug\qhierarchy_state.o
 ./debug\qrc_assets.o
 ./debug\qrc_templates.o
 ./debug\moc_NFWizard2.o
 ./debug\moc_DialogConfigurationHelp.o
+./debug\moc_qhierarchy_state.o
 );

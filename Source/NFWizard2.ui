@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>793</width>
-    <height>389</height>
+    <width>1280</width>
+    <height>510</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -24,8 +24,8 @@
   </property>
   <property name="maximumSize">
    <size>
-    <width>793</width>
-    <height>389</height>
+    <width>1280</width>
+    <height>720</height>
    </size>
   </property>
   <property name="focusPolicy">
@@ -39,9 +39,12 @@
     <normaloff>:/Assets/icon.ico</normaloff>:/Assets/icon.ico</iconset>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: rgb(48, 60, 77);</string>
+   <string notr="true"/>
   </property>
   <widget class="QWidget" name="centralWidget">
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(48, 60, 77);</string>
+   </property>
    <widget class="QPushButton" name="pushButton_Generate_tag">
     <property name="geometry">
      <rect>
@@ -544,14 +547,23 @@ color: rgb(150, 150, 150);</string>
      <rect>
       <x>180</x>
       <y>40</y>
-      <width>191</width>
+      <width>200</width>
       <height>141</height>
      </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>0</width>
+      <height>0</height>
+     </size>
     </property>
     <property name="styleSheet">
      <string notr="true">background-color: rgb(21, 172, 112);</string>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout_5">
+     <property name="spacing">
+      <number>10</number>
+     </property>
      <property name="sizeConstraint">
       <enum>QLayout::SetFixedSize</enum>
      </property>
@@ -899,7 +911,7 @@ border-color: rgb(21, 172, 112);</string>
      <item>
       <widget class="QPushButton" name="pb_add_thread">
        <property name="styleSheet">
-        <string notr="true">font: 12pt &quot;Segoe UI&quot;;
+        <string notr="true">font: 11pt &quot;Segoe UI&quot;;
 color: rgb(255, 245, 242);
 border-color: rgb(21, 172, 112);</string>
        </property>
@@ -915,9 +927,15 @@ border-color: rgb(21, 172, 112);</string>
      <rect>
       <x>10</x>
       <y>110</y>
-      <width>129</width>
-      <height>117</height>
+      <width>400</width>
+      <height>200</height>
      </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>400</width>
+      <height>200</height>
+     </size>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout_10">
      <property name="spacing">
@@ -933,8 +951,8 @@ border-color: rgb(21, 172, 112);</string>
        </property>
        <property name="minimumSize">
         <size>
-         <width>106</width>
-         <height>25</height>
+         <width>150</width>
+         <height>40</height>
         </size>
        </property>
        <property name="maximumSize">
@@ -969,8 +987,8 @@ border-color: rgb(21, 172, 112);</string>
        </property>
        <property name="minimumSize">
         <size>
-         <width>106</width>
-         <height>25</height>
+         <width>150</width>
+         <height>40</height>
         </size>
        </property>
        <property name="maximumSize">
@@ -1005,8 +1023,8 @@ border-color: rgb(21, 172, 112);</string>
        </property>
        <property name="minimumSize">
         <size>
-         <width>106</width>
-         <height>25</height>
+         <width>150</width>
+         <height>40</height>
         </size>
        </property>
        <property name="maximumSize">
@@ -1035,14 +1053,27 @@ border-color: rgb(21, 172, 112);</string>
       </widget>
      </item>
      <item>
+      <spacer name="verticalSpacer">
+       <property name="orientation">
+        <enum>Qt::Vertical</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>20</width>
+         <height>40</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
       <widget class="QPushButton" name="pb_configure_state_machine">
        <property name="enabled">
         <bool>true</bool>
        </property>
        <property name="minimumSize">
         <size>
-         <width>106</width>
-         <height>25</height>
+         <width>150</width>
+         <height>40</height>
         </size>
        </property>
        <property name="maximumSize">
@@ -1059,8 +1090,9 @@ border-color: rgb(21, 172, 112);</string>
        </property>
        <property name="styleSheet">
         <string notr="true">font: 12pt &quot;Segoe UI&quot;;
+border-color: rgb(21, 172, 112);
 color: rgb(255, 245, 242);
-border-color: rgb(21, 172, 112);</string>
+</string>
        </property>
        <property name="text">
         <string>Configure State Machine</string>
@@ -1072,6 +1104,16 @@ border-color: rgb(21, 172, 112);</string>
      </item>
     </layout>
    </widget>
+   <widget class="QWidget" name="widget_states" native="true">
+    <property name="geometry">
+     <rect>
+      <x>330</x>
+      <y>230</y>
+      <width>341</width>
+      <height>91</height>
+     </rect>
+    </property>
+   </widget>
    <zorder>widget_options_thread_options</zorder>
    <zorder>widget_options_buttons</zorder>
    <zorder>label_bar_background</zorder>
@@ -1082,14 +1124,15 @@ border-color: rgb(21, 172, 112);</string>
    <zorder>widget_buttons_quit</zorder>
    <zorder>widget_help_buttons</zorder>
    <zorder>widget_generate_options</zorder>
+   <zorder>widget_states</zorder>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>793</width>
-     <height>25</height>
+     <width>1280</width>
+     <height>20</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuHelp">

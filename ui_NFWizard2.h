@@ -90,7 +90,9 @@ public:
     QPushButton *pb_configure_Main_thread;
     QPushButton *pb_configure_thread_in_main;
     QPushButton *pb_configure_thread_in_class;
+    QSpacerItem *verticalSpacer;
     QPushButton *pb_configure_state_machine;
+    QWidget *widget_states;
     QMenuBar *menuBar;
     QMenu *menuHelp;
     QToolBar *mainToolBar;
@@ -100,19 +102,19 @@ public:
     {
         if (NFWizard2->objectName().isEmpty())
             NFWizard2->setObjectName(QStringLiteral("NFWizard2"));
-        NFWizard2->resize(793, 389);
+        NFWizard2->resize(1280, 510);
         QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
         sizePolicy.setHeightForWidth(NFWizard2->sizePolicy().hasHeightForWidth());
         NFWizard2->setSizePolicy(sizePolicy);
         NFWizard2->setMinimumSize(QSize(793, 389));
-        NFWizard2->setMaximumSize(QSize(793, 389));
+        NFWizard2->setMaximumSize(QSize(1280, 720));
         NFWizard2->setFocusPolicy(Qt::StrongFocus);
         QIcon icon;
         icon.addFile(QStringLiteral(":/Assets/icon.ico"), QSize(), QIcon::Normal, QIcon::Off);
         NFWizard2->setWindowIcon(icon);
-        NFWizard2->setStyleSheet(QStringLiteral("background-color: rgb(48, 60, 77);"));
+        NFWizard2->setStyleSheet(QStringLiteral(""));
         actionUVision_Configuration = new QAction(NFWizard2);
         actionUVision_Configuration->setObjectName(QStringLiteral("actionUVision_Configuration"));
         actionSTM32CubeMx_Configuration = new QAction(NFWizard2);
@@ -123,6 +125,7 @@ public:
         actionAbout_Qt->setObjectName(QStringLiteral("actionAbout_Qt"));
         centralWidget = new QWidget(NFWizard2);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
+        centralWidget->setStyleSheet(QStringLiteral("background-color: rgb(48, 60, 77);"));
         pushButton_Generate_tag = new QPushButton(centralWidget);
         pushButton_Generate_tag->setObjectName(QStringLiteral("pushButton_Generate_tag"));
         pushButton_Generate_tag->setGeometry(QRect(0, 10, 92, 24));
@@ -307,10 +310,11 @@ public:
 
         widget_help_buttons = new QWidget(centralWidget);
         widget_help_buttons->setObjectName(QStringLiteral("widget_help_buttons"));
-        widget_help_buttons->setGeometry(QRect(180, 40, 191, 141));
+        widget_help_buttons->setGeometry(QRect(180, 40, 200, 141));
+        widget_help_buttons->setMinimumSize(QSize(0, 0));
         widget_help_buttons->setStyleSheet(QStringLiteral("background-color: rgb(21, 172, 112);"));
         verticalLayout_5 = new QVBoxLayout(widget_help_buttons);
-        verticalLayout_5->setSpacing(6);
+        verticalLayout_5->setSpacing(10);
         verticalLayout_5->setContentsMargins(11, 11, 11, 11);
         verticalLayout_5->setObjectName(QStringLiteral("verticalLayout_5"));
         verticalLayout_5->setSizeConstraint(QLayout::SetFixedSize);
@@ -480,7 +484,7 @@ public:
 
         pb_add_thread = new QPushButton(widget_options_thread_options);
         pb_add_thread->setObjectName(QStringLiteral("pb_add_thread"));
-        pb_add_thread->setStyleSheet(QLatin1String("font: 12pt \"Segoe UI\";\n"
+        pb_add_thread->setStyleSheet(QLatin1String("font: 11pt \"Segoe UI\";\n"
 "color: rgb(255, 245, 242);\n"
 "border-color: rgb(21, 172, 112);"));
 
@@ -488,7 +492,8 @@ public:
 
         widget_options_buttons = new QWidget(centralWidget);
         widget_options_buttons->setObjectName(QStringLiteral("widget_options_buttons"));
-        widget_options_buttons->setGeometry(QRect(10, 110, 129, 117));
+        widget_options_buttons->setGeometry(QRect(10, 110, 400, 200));
+        widget_options_buttons->setMinimumSize(QSize(400, 200));
         verticalLayout_10 = new QVBoxLayout(widget_options_buttons);
         verticalLayout_10->setSpacing(20);
         verticalLayout_10->setContentsMargins(11, 11, 11, 11);
@@ -497,7 +502,7 @@ public:
         pb_configure_Main_thread = new QPushButton(widget_options_buttons);
         pb_configure_Main_thread->setObjectName(QStringLiteral("pb_configure_Main_thread"));
         pb_configure_Main_thread->setEnabled(true);
-        pb_configure_Main_thread->setMinimumSize(QSize(106, 25));
+        pb_configure_Main_thread->setMinimumSize(QSize(150, 40));
         pb_configure_Main_thread->setMaximumSize(QSize(200, 50));
         pb_configure_Main_thread->setCursor(QCursor(Qt::PointingHandCursor));
         pb_configure_Main_thread->setStyleSheet(QLatin1String("font: 12pt \"Segoe UI\";\n"
@@ -510,7 +515,7 @@ public:
         pb_configure_thread_in_main = new QPushButton(widget_options_buttons);
         pb_configure_thread_in_main->setObjectName(QStringLiteral("pb_configure_thread_in_main"));
         pb_configure_thread_in_main->setEnabled(true);
-        pb_configure_thread_in_main->setMinimumSize(QSize(106, 25));
+        pb_configure_thread_in_main->setMinimumSize(QSize(150, 40));
         pb_configure_thread_in_main->setMaximumSize(QSize(200, 50));
         pb_configure_thread_in_main->setCursor(QCursor(Qt::PointingHandCursor));
         pb_configure_thread_in_main->setStyleSheet(QLatin1String("font: 12pt \"Segoe UI\";\n"
@@ -523,7 +528,7 @@ public:
         pb_configure_thread_in_class = new QPushButton(widget_options_buttons);
         pb_configure_thread_in_class->setObjectName(QStringLiteral("pb_configure_thread_in_class"));
         pb_configure_thread_in_class->setEnabled(true);
-        pb_configure_thread_in_class->setMinimumSize(QSize(106, 25));
+        pb_configure_thread_in_class->setMinimumSize(QSize(150, 40));
         pb_configure_thread_in_class->setMaximumSize(QSize(200, 50));
         pb_configure_thread_in_class->setCursor(QCursor(Qt::PointingHandCursor));
         pb_configure_thread_in_class->setStyleSheet(QLatin1String("font: 12pt \"Segoe UI\";\n"
@@ -533,19 +538,27 @@ public:
 
         verticalLayout_10->addWidget(pb_configure_thread_in_class);
 
+        verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        verticalLayout_10->addItem(verticalSpacer);
+
         pb_configure_state_machine = new QPushButton(widget_options_buttons);
         pb_configure_state_machine->setObjectName(QStringLiteral("pb_configure_state_machine"));
         pb_configure_state_machine->setEnabled(true);
-        pb_configure_state_machine->setMinimumSize(QSize(106, 25));
+        pb_configure_state_machine->setMinimumSize(QSize(150, 40));
         pb_configure_state_machine->setMaximumSize(QSize(200, 50));
         pb_configure_state_machine->setCursor(QCursor(Qt::PointingHandCursor));
         pb_configure_state_machine->setStyleSheet(QLatin1String("font: 12pt \"Segoe UI\";\n"
+"border-color: rgb(21, 172, 112);\n"
 "color: rgb(255, 245, 242);\n"
-"border-color: rgb(21, 172, 112);"));
+""));
         pb_configure_state_machine->setFlat(false);
 
         verticalLayout_10->addWidget(pb_configure_state_machine);
 
+        widget_states = new QWidget(centralWidget);
+        widget_states->setObjectName(QStringLiteral("widget_states"));
+        widget_states->setGeometry(QRect(330, 230, 341, 91));
         NFWizard2->setCentralWidget(centralWidget);
         widget_options_thread_options->raise();
         widget_options_buttons->raise();
@@ -557,9 +570,10 @@ public:
         widget_buttons_quit->raise();
         widget_help_buttons->raise();
         widget_generate_options->raise();
+        widget_states->raise();
         menuBar = new QMenuBar(NFWizard2);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 793, 25));
+        menuBar->setGeometry(QRect(0, 0, 1280, 20));
         menuHelp = new QMenu(menuBar);
         menuHelp->setObjectName(QStringLiteral("menuHelp"));
         NFWizard2->setMenuBar(menuBar);
