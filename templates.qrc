@@ -6,5 +6,7 @@
         <file>Templates/README.md</file>
         <file>Templates/thread_template.h</file>
         <file>Templates/thread_template.cpp</file>
+        <file>Templates/main_thread_template.h</file>
+        <file>Templates/main_thread_template.cpp</file>
     </qresource>
 </RCC>

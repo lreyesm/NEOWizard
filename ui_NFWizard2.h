@@ -88,8 +88,9 @@ public:
     QWidget *widget_options_buttons;
     QVBoxLayout *verticalLayout_10;
     QPushButton *pb_configure_Main_thread;
-    QPushButton *pb_configure_thread;
-    QPushButton *pushButton_uVisionBrowse_3;
+    QPushButton *pb_configure_thread_in_main;
+    QPushButton *pb_configure_thread_in_class;
+    QPushButton *pb_configure_state_machine;
     QMenuBar *menuBar;
     QMenu *menuHelp;
     QToolBar *mainToolBar;
@@ -506,33 +507,48 @@ public:
 
         verticalLayout_10->addWidget(pb_configure_Main_thread);
 
-        pb_configure_thread = new QPushButton(widget_options_buttons);
-        pb_configure_thread->setObjectName(QStringLiteral("pb_configure_thread"));
-        pb_configure_thread->setEnabled(true);
-        pb_configure_thread->setMinimumSize(QSize(106, 25));
-        pb_configure_thread->setMaximumSize(QSize(200, 50));
-        pb_configure_thread->setCursor(QCursor(Qt::PointingHandCursor));
-        pb_configure_thread->setStyleSheet(QLatin1String("font: 12pt \"Segoe UI\";\n"
+        pb_configure_thread_in_main = new QPushButton(widget_options_buttons);
+        pb_configure_thread_in_main->setObjectName(QStringLiteral("pb_configure_thread_in_main"));
+        pb_configure_thread_in_main->setEnabled(true);
+        pb_configure_thread_in_main->setMinimumSize(QSize(106, 25));
+        pb_configure_thread_in_main->setMaximumSize(QSize(200, 50));
+        pb_configure_thread_in_main->setCursor(QCursor(Qt::PointingHandCursor));
+        pb_configure_thread_in_main->setStyleSheet(QLatin1String("font: 12pt \"Segoe UI\";\n"
 "color: rgb(255, 245, 242);\n"
 "border-color: rgb(21, 172, 112);"));
-        pb_configure_thread->setFlat(false);
+        pb_configure_thread_in_main->setFlat(false);
 
-        verticalLayout_10->addWidget(pb_configure_thread);
+        verticalLayout_10->addWidget(pb_configure_thread_in_main);
 
-        pushButton_uVisionBrowse_3 = new QPushButton(widget_options_buttons);
-        pushButton_uVisionBrowse_3->setObjectName(QStringLiteral("pushButton_uVisionBrowse_3"));
-        pushButton_uVisionBrowse_3->setEnabled(true);
-        pushButton_uVisionBrowse_3->setMinimumSize(QSize(106, 25));
-        pushButton_uVisionBrowse_3->setMaximumSize(QSize(200, 50));
-        pushButton_uVisionBrowse_3->setCursor(QCursor(Qt::PointingHandCursor));
-        pushButton_uVisionBrowse_3->setStyleSheet(QLatin1String("font: 12pt \"Segoe UI\";\n"
+        pb_configure_thread_in_class = new QPushButton(widget_options_buttons);
+        pb_configure_thread_in_class->setObjectName(QStringLiteral("pb_configure_thread_in_class"));
+        pb_configure_thread_in_class->setEnabled(true);
+        pb_configure_thread_in_class->setMinimumSize(QSize(106, 25));
+        pb_configure_thread_in_class->setMaximumSize(QSize(200, 50));
+        pb_configure_thread_in_class->setCursor(QCursor(Qt::PointingHandCursor));
+        pb_configure_thread_in_class->setStyleSheet(QLatin1String("font: 12pt \"Segoe UI\";\n"
 "color: rgb(255, 245, 242);\n"
 "border-color: rgb(21, 172, 112);"));
-        pushButton_uVisionBrowse_3->setFlat(false);
+        pb_configure_thread_in_class->setFlat(false);
 
-        verticalLayout_10->addWidget(pushButton_uVisionBrowse_3);
+        verticalLayout_10->addWidget(pb_configure_thread_in_class);
+
+        pb_configure_state_machine = new QPushButton(widget_options_buttons);
+        pb_configure_state_machine->setObjectName(QStringLiteral("pb_configure_state_machine"));
+        pb_configure_state_machine->setEnabled(true);
+        pb_configure_state_machine->setMinimumSize(QSize(106, 25));
+        pb_configure_state_machine->setMaximumSize(QSize(200, 50));
+        pb_configure_state_machine->setCursor(QCursor(Qt::PointingHandCursor));
+        pb_configure_state_machine->setStyleSheet(QLatin1String("font: 12pt \"Segoe UI\";\n"
+"color: rgb(255, 245, 242);\n"
+"border-color: rgb(21, 172, 112);"));
+        pb_configure_state_machine->setFlat(false);
+
+        verticalLayout_10->addWidget(pb_configure_state_machine);
 
         NFWizard2->setCentralWidget(centralWidget);
+        widget_options_thread_options->raise();
+        widget_options_buttons->raise();
         label_bar_background->raise();
         pushButton_Generate_tag->raise();
         pushButton_Options_tag->raise();
@@ -541,18 +557,9 @@ public:
         widget_buttons_quit->raise();
         widget_help_buttons->raise();
         widget_generate_options->raise();
-        pb_configure_thread->raise();
-        pushButton_uVisionBrowse_3->raise();
-        pb_configure_Main_thread->raise();
-        cb_thread_priority->raise();
-        sb_thread_stack_size->raise();
-        le_thread_name->raise();
-        l_thread_name->raise();
-        l_thread_stack_size->raise();
-        l_thread_priority->raise();
         menuBar = new QMenuBar(NFWizard2);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 793, 20));
+        menuBar->setGeometry(QRect(0, 0, 793, 25));
         menuHelp = new QMenu(menuBar);
         menuHelp->setObjectName(QStringLiteral("menuHelp"));
         NFWizard2->setMenuBar(menuBar);
@@ -668,13 +675,17 @@ public:
 #endif // QT_NO_TOOLTIP
         pb_configure_Main_thread->setText(QApplication::translate("NFWizard2", "Configure Main Thread", Q_NULLPTR));
 #ifndef QT_NO_TOOLTIP
-        pb_configure_thread->setToolTip(QApplication::translate("NFWizard2", "Look for uVision project path in your PC", Q_NULLPTR));
+        pb_configure_thread_in_main->setToolTip(QApplication::translate("NFWizard2", "Look for uVision project path in your PC", Q_NULLPTR));
 #endif // QT_NO_TOOLTIP
-        pb_configure_thread->setText(QApplication::translate("NFWizard2", "Configure a Thread", Q_NULLPTR));
+        pb_configure_thread_in_main->setText(QApplication::translate("NFWizard2", "Configure Thread in Main", Q_NULLPTR));
 #ifndef QT_NO_TOOLTIP
-        pushButton_uVisionBrowse_3->setToolTip(QApplication::translate("NFWizard2", "Look for uVision project path in your PC", Q_NULLPTR));
+        pb_configure_thread_in_class->setToolTip(QApplication::translate("NFWizard2", "Look for uVision project path in your PC", Q_NULLPTR));
 #endif // QT_NO_TOOLTIP
-        pushButton_uVisionBrowse_3->setText(QApplication::translate("NFWizard2", "Configure State Machine", Q_NULLPTR));
+        pb_configure_thread_in_class->setText(QApplication::translate("NFWizard2", "Configure a Thread", Q_NULLPTR));
+#ifndef QT_NO_TOOLTIP
+        pb_configure_state_machine->setToolTip(QApplication::translate("NFWizard2", "Look for uVision project path in your PC", Q_NULLPTR));
+#endif // QT_NO_TOOLTIP
+        pb_configure_state_machine->setText(QApplication::translate("NFWizard2", "Configure State Machine", Q_NULLPTR));
         menuHelp->setTitle(QApplication::translate("NFWizard2", "Help", Q_NULLPTR));
     } // retranslateUi
 

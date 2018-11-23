@@ -18,6 +18,7 @@ class NFWizard2 : public QMainWindow
         QString endLine;
         QString mssg;
     };
+    enum{Main_Thead,Thread_in_Main,Thread_in_Class};
 public:
     explicit NFWizard2(QWidget *parent = 0);
     ~NFWizard2();
@@ -57,19 +58,24 @@ private slots:
 
     void on_pb_about_QT_clicked();
 
-    void on_pb_configure_thread_clicked();
-
     void on_pb_add_thread_clicked();
+
+    void on_pb_configure_thread_in_class_clicked();
+
+    void on_pb_configure_thread_in_main_clicked();
+
+    void on_pb_configure_Main_thread_clicked();
 
 private:
     void generateProjectFileTree();
     void generateTemplates(const QString& projectRootRef);
-    void generateTemplates_for_Thread(const QString& projectRootRef);
+    void generateTemplates_for_Thread(const QString& projectRootRef, const QString thread_name);
     void processInterrupFile();
     void processMainFiles();
+    void process_Main_Thread_Files(const QString thread_name);
     void process_Thread_Files(const QString thread_name);
     void processXmlFiles();
-    void processXmlFiles_for_Threads();
+    void processXmlFiles_for_Threads(const QString thread_name);
     void processHalConfigFile();
     void saveSettings();
     void loadSettings();
@@ -95,6 +101,7 @@ private:
     QString cubeVersion;
 
     bool generate_project_folders;
+    int add_thread_state;
 };
 
 #endif // NFWIZARD2_H

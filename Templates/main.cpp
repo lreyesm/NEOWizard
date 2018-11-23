@@ -21,14 +21,11 @@
 /* USER CODE BEGIN PV */
 /* Private variables ---------------------------------------------------------*/
 
-#ifdef RTE_CMSIS_RTOS_RTX
-extern uint32_t os_time;
-
 extern uint32_t os_time;
 uint32_t HAL_GetTick(void) {
     return os_time;
 }
-#endif
+
 
 /* USER CODE END PV */
 

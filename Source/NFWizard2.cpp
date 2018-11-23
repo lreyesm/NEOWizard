@@ -54,6 +54,10 @@ void NFWizard2::on_pushButton_uVisionBrowse_clicked()
     if (QFile::exists(fileuVision)) {
         ui->lineEdit_uVisionPath->setText(fileuVision);
         fileuVision_Path = QFileInfo(fileuVision).dir().path();
+        if(!lastPath.contains(fileuVision_Path)){
+
+            lastPath = fileuVision_Path+QString("/RTE/Device");
+        }
     }
 }
 
@@ -263,6 +267,59 @@ void NFWizard2::processInterrupFile()
     QDir::setCurrent(fileuVision);
 }
 
+void NFWizard2::process_Main_Thread_Files(const QString thread_name){
+
+    TextFileProcessor main_cpp_FileProcessor;
+
+    ////procesamiento del main_thread_name.h----------------------------------------------------------------------------------------------------------
+
+    main_cpp_FileProcessor.setFilename(fileuVision_Path+QString("/Include/")+thread_name+QString(".h"));
+                                        //// ignora espacios en blanco antes de la linea de codigo
+
+    main_cpp_FileProcessor.setStartLine("#ifndef MAIN_THREAD_TEMPLATE_H");       ////inicio del contenido a eliminar
+    main_cpp_FileProcessor.setEndLine("#define MAIN_THREAD_TEMPLATE_H"); ////fin del contenido a eliminar
+    main_cpp_FileProcessor.setReplacementString(QString("#ifndef ")+thread_name.toUpper()+QString("_H\n")+QString("#define ")+thread_name.toUpper()+QString("_H\n"));
+    main_cpp_FileProcessor.processTextBlock();
+
+    main_cpp_FileProcessor.setStartLine("class Main_Thread_Template:public eObject::eApplicationBase<Main_Thread_Template>");       ////inicio del contenido a eliminar
+    main_cpp_FileProcessor.setEndLine("class Main_Thread_Template:public eObject::eApplicationBase<Main_Thread_Template>"); ////fin del contenido a eliminar
+    main_cpp_FileProcessor.setReplacementString(QString("class ")+thread_name+QString(":public eObject::eApplicationBase<")+thread_name+QString(">"));
+    main_cpp_FileProcessor.processTextBlock();
+
+    main_cpp_FileProcessor.setStartLine("Main_Thread_Template();");       ////inicio del contenido a eliminar
+    main_cpp_FileProcessor.setEndLine("Main_Thread_Template();"); ////fin del contenido a eliminar
+    main_cpp_FileProcessor.setReplacementString(thread_name+QString("();"));
+    main_cpp_FileProcessor.processTextBlock();
+
+    main_cpp_FileProcessor.setStartLine("#endif // MAIN_THREAD_TEMPLATE_H");       ////inicio del contenido a eliminar
+    main_cpp_FileProcessor.setEndLine("#endif // MAIN_THREAD_TEMPLATE_H"); ////fin del contenido a eliminar
+    main_cpp_FileProcessor.setReplacementString(QString("#endif // ")+thread_name.toUpper()+QString("_H"));
+    main_cpp_FileProcessor.processTextBlock();
+
+    ////-------------------------------------------------------------------------------------------------------------------------------------------
+
+    ////Procesamiento del main_thread_name.cpp----------------------------------------------------------------------------------------------------------
+
+    main_cpp_FileProcessor.setFilename(fileuVision_Path+QString("/Source/")+thread_name+QString(".cpp"));
+
+    main_cpp_FileProcessor.setStartLine("#include \"Main_Thread_Template.h\"");       ////inicio del contenido a eliminar
+    main_cpp_FileProcessor.setEndLine("#include \"Main_Thread_Template.h\""); ////fin del contenido a eliminar
+    main_cpp_FileProcessor.setReplacementString(QString("#include \"")+thread_name+QString(".h\""));
+    main_cpp_FileProcessor.processTextBlock();
+
+    main_cpp_FileProcessor.setStartLine("Main_Thread_Template::Main_Thread_Template()");       ////inicio del contenido a eliminar
+    main_cpp_FileProcessor.setEndLine("Main_Thread_Template::Main_Thread_Template()"); ////fin del contenido a eliminar
+    main_cpp_FileProcessor.setReplacementString(thread_name+QString("::")+thread_name+QString("()"));
+    main_cpp_FileProcessor.processTextBlock();
+
+    main_cpp_FileProcessor.setStartLine("void Main_Thread_Template::userLoop()");       ////inicio del contenido a eliminar
+    main_cpp_FileProcessor.setEndLine("void Main_Thread_Template::userLoop()"); ////fin del contenido a eliminar
+    main_cpp_FileProcessor.setReplacementString(QString("void ")+thread_name+QString("::userLoop()"));
+    main_cpp_FileProcessor.processTextBlock();
+    ////-------------------------------------------------------------------------------------------------------------------------------------------
+
+}
+
 void NFWizard2::process_Thread_Files(const QString thread_name){
 
     TextFileProcessor main_cpp_FileProcessor;
@@ -272,6 +329,12 @@ void NFWizard2::process_Thread_Files(const QString thread_name){
 
     main_cpp_FileProcessor.setFilename(fileuVision_Path+QString("/Include/")+thread_name+QString(".h"));
                                         //// ignora espacios en blanco antes de la linea de codigo
+                                        ///
+    main_cpp_FileProcessor.setStartLine("#ifndef THREAD_NAME_H");       ////inicio del contenido a eliminar
+    main_cpp_FileProcessor.setEndLine("#define THREAD_NAME_H"); ////fin del contenido a eliminar
+    main_cpp_FileProcessor.setReplacementString(QString("#ifndef ")+thread_name.toUpper()+QString("_H\n")+QString("#define ")+thread_name.toUpper()+QString("_H\n"));
+    main_cpp_FileProcessor.processTextBlock();
+
     main_cpp_FileProcessor.setStartLine("class Thread_Name : public eObject::eSingletonStaticBase<Thread_Name>");       ////inicio del contenido a eliminar
     main_cpp_FileProcessor.setEndLine("class Thread_Name : public eObject::eSingletonStaticBase<Thread_Name>"); ////fin del contenido a eliminar
     main_cpp_FileProcessor.setReplacementString(QString("class ")+thread_name+QString(" : public eObject::eSingletonStaticBase<")+thread_name+QString(">"));
@@ -301,6 +364,11 @@ void NFWizard2::process_Thread_Files(const QString thread_name){
     main_cpp_FileProcessor.setEndLine("return this->Thread_Name_Instance;"); ////fin del contenido a eliminar
     main_cpp_FileProcessor.setReplacementString(QString("return this->")+thread_name+QString("_Instance;"));
     main_cpp_FileProcessor.processTextBlock();
+
+    main_cpp_FileProcessor.setStartLine("#endif // THREAD_NAME_H");       ////inicio del contenido a eliminar
+    main_cpp_FileProcessor.setEndLine("#endif // THREAD_NAME_H"); ////fin del contenido a eliminar
+    main_cpp_FileProcessor.setReplacementString(QString("#endif // ")+thread_name.toUpper()+QString("_H"));
+    main_cpp_FileProcessor.processTextBlock();
     ////-------------------------------------------------------------------------------------------------------------------------------------------
 
 
@@ -313,14 +381,14 @@ void NFWizard2::process_Thread_Files(const QString thread_name){
     main_cpp_FileProcessor.setReplacementString(QString("#include \"")+thread_name+QString(".h\""));
     main_cpp_FileProcessor.processTextBlock();
 
-    main_cpp_FileProcessor.setStartLine("Thread_Name::Thread_Name() : eSingletonStaticBase(this),sender(Thread_Name_Run, eThread::PriorityNormal)");       ////inicio del contenido a eliminar
-    main_cpp_FileProcessor.setEndLine("Thread_Name::Thread_Name() : eSingletonStaticBase(this),sender(Thread_Name_Run, eThread::PriorityNormal)"); ////fin del contenido a eliminar
+    main_cpp_FileProcessor.setStartLine("Thread_Name::Thread_Name() : eSingletonStaticBase(this),Thread_Name_Instance(Thread_Name_Run, eThread::PriorityNormal)");       ////inicio del contenido a eliminar
+    main_cpp_FileProcessor.setEndLine("Thread_Name::Thread_Name() : eSingletonStaticBase(this),Thread_Name_Instance(Thread_Name_Run, eThread::PriorityNormal)"); ////fin del contenido a eliminar
     main_cpp_FileProcessor.setReplacementString(thread_name+QString("::")+thread_name+QString("() : eSingletonStaticBase(this),")+thread_name+QString("_Instance(")+thread_name+QString("_Run, eThread::Priority")+ui->cb_thread_priority->currentText()+QString(")"));
     main_cpp_FileProcessor.processTextBlock();
 
-    main_cpp_FileProcessor.setStartLine("Thread_Name.start();");       ////inicio del contenido a eliminar
-    main_cpp_FileProcessor.setEndLine("Thread_Name.start();"); ////fin del contenido a eliminar
-    main_cpp_FileProcessor.setReplacementString(thread_name+QString("_Instance.start();"));
+    main_cpp_FileProcessor.setStartLine("Thread_Name_Instance.start();");       ////inicio del contenido a eliminar
+    main_cpp_FileProcessor.setEndLine("Thread_Name_Instance.start();"); ////fin del contenido a eliminar
+    main_cpp_FileProcessor.setReplacementString(QString("//")+thread_name+QString("_Instance.start();"));
     main_cpp_FileProcessor.processTextBlock();
 
     main_cpp_FileProcessor.setStartLine("void Thread_Name::Thread_Name_Run(eThread &threadInstance)");       ////inicio del contenido a eliminar
@@ -355,22 +423,14 @@ void NFWizard2::processMainFiles()
     }
 }
 
-void NFWizard2::processXmlFiles_for_Threads(){
+void NFWizard2::processXmlFiles_for_Threads(const QString thread_name){
 
-    QDir cubeDir = QFileInfo(fileCube).dir();  ////Guarda la direccion de cubeDir (".../STCubeGenerated")
-    if(!cubeDir.cdUp()){   ////Sube a la direccion (".../STM32F429ZITx")
-        QMessageBox::critical(this,tr("NFWizard2"),tr("<font color = white >Error. File not founnd."));
-        return;
-    }
-    QFileInfoList fileList = cubeDir.entryInfoList(QStringList("*.gpdsc"),QDir::Files,QDir::Type);  ////Busca archivos *.gpdsc (1 solo)
-    if(fileList.size() != 1){   ////Solo debe haber un archivo *.gpdsc
-        QMessageBox::critical(this,tr("NFWizard2"),tr("<font color = white >Error. File not founnd."));
-        return;
-    }
-    XMLModifyNamespace::XMLKeilModify XmlDoc(fileuVision,fileList[0].absoluteFilePath());  ////Contructor de XMLKeilModify le pasa como parametros
+    XMLModifyNamespace::XMLKeilModify XmlDoc;  ////Contructor de XMLKeilModify le pasa como parametros
 
-    XmlDoc.updateUvisionXml_for_Threads(ui->le_thread_name->text());  ////modifica el archivo *.uvprojx de Keil, añade nodes con la direccion del archivo main.cpp
-                                ////y cambia intancias de "Target 1" por "DEBUG"
+    XmlDoc.setUvisionXmlFile(fileuVision);
+
+    XmlDoc.updateUvisionXml_for_Threads(thread_name);  ////modifica el archivo *.uvprojx de Keil, añade nodes con la direccion del archivo thread_name.cpp
+
 }
 
 
@@ -441,10 +501,12 @@ void NFWizard2::loadSettings()
 
 }
 
-void NFWizard2::generateTemplates_for_Thread(const QString &projectRootRef){ ////Copia los templates thread.h y cpp en /Source/
+void NFWizard2::generateTemplates_for_Thread(const QString &projectRootRef,const QString thread_name){ ////Copia los templates thread.h y cpp en /Source/
 
     if (!QDir::setCurrent(projectRootRef)) {
         qDebug() << "could not switch to " << projectRootRef;
+        QMessageBox::warning(this, "NEOWizard", QString("<font color = white >Coud not locate project folders \n Please generate project folders \n in \"Generate\" window or set location of uVision Project"));
+
     }
     qDebug() << "Current path: " << QDir::currentPath();
 
@@ -452,9 +514,15 @@ void NFWizard2::generateTemplates_for_Thread(const QString &projectRootRef){ ///
     typedef QList<FilePair> FilePairList;
     FilePairList fileList;
 
-    fileList << FilePair("://Templates/thread_template.cpp", QString("Source/")+ui->le_thread_name->text()+QString(".cpp"))
-             << FilePair("://Templates/thread_template.h", QString("Include/")+ui->le_thread_name->text()+QString(".h"));
+    if(add_thread_state == Thread_in_Class){
+        fileList << FilePair("://Templates/thread_template.cpp", QString("Source/")+thread_name+QString(".cpp"))
+                 << FilePair("://Templates/thread_template.h", QString("Include/")+thread_name+QString(".h"));
+    }
+    else if(add_thread_state == Main_Thead){
 
+        fileList << FilePair("://Templates/main_thread_template.cpp", QString("Source/")+thread_name+QString(".cpp"))
+                 << FilePair("://Templates/main_thread_template.h", QString("Include/")+thread_name+QString(".h"));
+    }
     FilePair filePair;
     bool retval = false;
 
@@ -671,19 +739,50 @@ void NFWizard2::on_pb_about_QT_clicked()
     on_actionAbout_Qt_triggered();
 }
 
-void NFWizard2::on_pb_configure_thread_clicked()
-{
-    ui->widget_options_thread_options->show();
-}
-
 void NFWizard2::on_pb_add_thread_clicked()
 {
     ui->widget_options_thread_options->hide();
 
     QFileInfo fileInfo(fileuVision);
-    this->generateTemplates_for_Thread(fileInfo.dir().path());////copia los templates para las carpetas del projecto
-    this->process_Thread_Files(ui->le_thread_name->text());
-    this->processXmlFiles_for_Threads(); ////modifica XML de keil
-    QMessageBox::information(this, "NEOWizard", QString("<font color = white >Thread generated correctly\nPlease save changes in uVision project"));
+
+    if(add_thread_state==Thread_in_Class){
+
+        this->generateTemplates_for_Thread(fileInfo.dir().path(), ui->le_thread_name->text());////copia los templates para las carpetas del projecto
+        this->process_Thread_Files(ui->le_thread_name->text());
+        this->processXmlFiles_for_Threads(ui->le_thread_name->text()); ////modifica XML de keil
+        QMessageBox::information(this, "NEOWizard", QString("<font color = white >Thread generated correctly\nPlease save changes in uVision project"));
+    }
+
+    if(add_thread_state==Main_Thead){
+
+        this->generateTemplates_for_Thread(fileInfo.dir().path(), ui->le_thread_name->text());////copia los templates para las carpetas del projecto
+        this->process_Main_Thread_Files(ui->le_thread_name->text());
+        this->processXmlFiles_for_Threads(ui->le_thread_name->text()); ////modifica XML de keil
+        QMessageBox::information(this, "NEOWizard", QString("<font color = white >Main Thread generated correctly\nPlease save changes in uVision project"));
+    }
+}
+
+void NFWizard2::on_pb_configure_thread_in_class_clicked()
+{
+  add_thread_state = Thread_in_Class;
+  ui->widget_options_thread_options->show();
+  ui->l_thread_priority->show();
+  ui->cb_thread_priority->show();
+}
+
+void NFWizard2::on_pb_configure_thread_in_main_clicked()
+{
+   add_thread_state = Thread_in_Main;
+   ui->widget_options_thread_options->show();
+   ui->l_thread_priority->show();
+   ui->cb_thread_priority->show();
+}
+
+void NFWizard2::on_pb_configure_Main_thread_clicked()
+{
+    add_thread_state = Main_Thead;
+    ui->widget_options_thread_options->show();
+    ui->l_thread_priority->hide();
+    ui->cb_thread_priority->hide();
 
 }
