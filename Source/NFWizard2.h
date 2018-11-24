@@ -72,6 +72,13 @@ private slots:
     void on_pb_add_state_clicked();
 
     void on_state_clicked(QString state_name);
+    void on_state_toggled(QString state_name);
+
+    void on_pb_generate_state_machine_clicked();
+
+    void on_pb_back_clicked();
+
+    void on_pb_ok_clicked();
 
 private:
     void generateProjectFileTree();
@@ -97,6 +104,9 @@ private:
     void show_generate();
     void show_options();
     void set_points();
+    void clean_widget_state_machine();
+    int draw_super_state();
+    int get_state_index_with_name(const QString& state_name);
 
 
 private:

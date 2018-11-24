@@ -794,9 +794,8 @@ void NFWizard2::on_pb_about_QT_clicked()
 void NFWizard2::on_pb_add_thread_clicked()
 {
     if(ui->le_thread_name->text().isEmpty()){
-
-        QMessageBox::information(this, "NEOWizard", QString("<font color = white >Please add name thread"));
-        return;
+        
+        QMessageBox::information(this, "NEOWizard", QString("<font color = white >Pl\nPlease save changes in uVision project"));        
     }
     ui->widget_options_thread_options->hide();
 
