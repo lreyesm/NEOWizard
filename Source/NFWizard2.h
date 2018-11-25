@@ -80,6 +80,16 @@ private slots:
 
     void on_pb_ok_clicked();
 
+    void on_pb_open_state_clicked();
+
+    void on_pb_configure_state_clicked();
+
+    void on_pb_add_sub_sate_clicked();
+
+    void on_pb_eliminate_state_clicked();
+
+    void on_lw_Events_clicked(const QModelIndex &index);
+
 private:
     void generateProjectFileTree();
     void generateTemplates(const QString& projectRootRef);
@@ -105,8 +115,12 @@ private:
     void show_options();
     void set_points();
     void clean_widget_state_machine();
-    int draw_super_state();
+    int draw_super_state(const QString& superState);
     int get_state_index_with_name(const QString& state_name);
+    QList<quint16> get_state_indexes_with_parent(const QString &superState);
+    bool add_state_in_superstate(const QString& superState, const QString& state_name, const bool show);
+    void clear_line_edits_and_list_widgets();
+    bool eliminate_State(const QString& superState);
 
 
 private:
@@ -120,9 +134,12 @@ private:
     QString cubeVersion;
 
     bool generate_project_folders;
-    int add_thread_state;
+    int add_thread_state;  ////enum del tipo de hilo a agregar
     QList<QHierarchy_State*> hierarchy_states;
-    QList<QPoint> points[8];
+    QList<QPoint> points[8];////almacena los QPoints de estados a dibujar
+    QString current_state; ////estado marcado
+    QString current_state_parent;////los hijos de este superestado son los dibujados
+    int current_positions_minus_one; ////Cantidad -1 de estados a dibujar
 
 };
 

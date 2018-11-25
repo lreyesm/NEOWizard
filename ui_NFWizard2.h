@@ -97,9 +97,9 @@ public:
     QVBoxLayout *verticalLayout_12;
     QVBoxLayout *verticalLayout_11;
     QHBoxLayout *horizontalLayout_7;
+    QPushButton *pb_back;
     QLabel *l_state_parent_tag;
     QLabel *l_name_current_state;
-    QPushButton *pb_back;
     QWidget *widget_states;
     QWidget *widget_state_info;
     QVBoxLayout *verticalLayout_22;
@@ -141,6 +141,12 @@ public:
     QPushButton *pb_add_state;
     QLineEdit *le_state_name;
     QPushButton *pb_generate_state_machine;
+    QWidget *widget_on_state_options;
+    QVBoxLayout *verticalLayout_25;
+    QPushButton *pb_open_state;
+    QPushButton *pb_configure_state;
+    QPushButton *pb_add_sub_sate;
+    QPushButton *pb_eliminate_state;
     QMenuBar *menuBar;
     QMenu *menuHelp;
     QToolBar *mainToolBar;
@@ -619,6 +625,14 @@ public:
         horizontalLayout_7->setSpacing(6);
         horizontalLayout_7->setObjectName(QStringLiteral("horizontalLayout_7"));
         horizontalLayout_7->setSizeConstraint(QLayout::SetFixedSize);
+        pb_back = new QPushButton(widget_layout_state_machine);
+        pb_back->setObjectName(QStringLiteral("pb_back"));
+        pb_back->setStyleSheet(QLatin1String("font: 12pt \"Segoe UI\";\n"
+"border-color: rgb(21, 172, 112);\n"
+"color: rgb(255, 245, 242);"));
+
+        horizontalLayout_7->addWidget(pb_back);
+
         l_state_parent_tag = new QLabel(widget_layout_state_machine);
         l_state_parent_tag->setObjectName(QStringLiteral("l_state_parent_tag"));
         l_state_parent_tag->setStyleSheet(QLatin1String("font: 11pt \"Segoe UI\";\n"
@@ -634,14 +648,6 @@ public:
 "color: rgb(255, 245, 242);"));
 
         horizontalLayout_7->addWidget(l_name_current_state);
-
-        pb_back = new QPushButton(widget_layout_state_machine);
-        pb_back->setObjectName(QStringLiteral("pb_back"));
-        pb_back->setStyleSheet(QLatin1String("font: 12pt \"Segoe UI\";\n"
-"border-color: rgb(21, 172, 112);\n"
-"color: rgb(255, 245, 242);"));
-
-        horizontalLayout_7->addWidget(pb_back);
 
 
         verticalLayout_11->addLayout(horizontalLayout_7);
@@ -940,6 +946,55 @@ public:
 
         verticalLayout_12->addLayout(verticalLayout_11);
 
+        widget_on_state_options = new QWidget(centralWidget);
+        widget_on_state_options->setObjectName(QStringLiteral("widget_on_state_options"));
+        widget_on_state_options->setGeometry(QRect(705, 300, 101, 77));
+        widget_on_state_options->setCursor(QCursor(Qt::ArrowCursor));
+        verticalLayout_25 = new QVBoxLayout(widget_on_state_options);
+        verticalLayout_25->setSpacing(6);
+        verticalLayout_25->setContentsMargins(11, 11, 11, 11);
+        verticalLayout_25->setObjectName(QStringLiteral("verticalLayout_25"));
+        verticalLayout_25->setSizeConstraint(QLayout::SetFixedSize);
+        pb_open_state = new QPushButton(widget_on_state_options);
+        pb_open_state->setObjectName(QStringLiteral("pb_open_state"));
+        pb_open_state->setCursor(QCursor(Qt::PointingHandCursor));
+        pb_open_state->setStyleSheet(QLatin1String("font:  10pt \"Segoe UI\";\n"
+"border-color: rgb(21, 172, 112);\n"
+"color: rgb(255, 245, 242);"));
+        pb_open_state->setFlat(true);
+
+        verticalLayout_25->addWidget(pb_open_state);
+
+        pb_configure_state = new QPushButton(widget_on_state_options);
+        pb_configure_state->setObjectName(QStringLiteral("pb_configure_state"));
+        pb_configure_state->setCursor(QCursor(Qt::PointingHandCursor));
+        pb_configure_state->setStyleSheet(QLatin1String("font: 10pt \"Segoe UI\";\n"
+"border-color: rgb(21, 172, 112);\n"
+"color: rgb(255, 245, 242);"));
+        pb_configure_state->setFlat(true);
+
+        verticalLayout_25->addWidget(pb_configure_state);
+
+        pb_add_sub_sate = new QPushButton(widget_on_state_options);
+        pb_add_sub_sate->setObjectName(QStringLiteral("pb_add_sub_sate"));
+        pb_add_sub_sate->setCursor(QCursor(Qt::PointingHandCursor));
+        pb_add_sub_sate->setStyleSheet(QLatin1String("font: 10pt \"Segoe UI\";\n"
+"border-color: rgb(21, 172, 112);\n"
+"color: rgb(255, 245, 242);"));
+        pb_add_sub_sate->setFlat(true);
+
+        verticalLayout_25->addWidget(pb_add_sub_sate);
+
+        pb_eliminate_state = new QPushButton(widget_on_state_options);
+        pb_eliminate_state->setObjectName(QStringLiteral("pb_eliminate_state"));
+        pb_eliminate_state->setCursor(QCursor(Qt::PointingHandCursor));
+        pb_eliminate_state->setStyleSheet(QLatin1String("font: 10pt \"Segoe UI\";\n"
+"border-color: rgb(21, 172, 112);\n"
+"color: rgb(255, 245, 242);"));
+        pb_eliminate_state->setFlat(true);
+
+        verticalLayout_25->addWidget(pb_eliminate_state);
+
         NFWizard2->setCentralWidget(centralWidget);
         widget_options_thread_options->raise();
         widget_options_buttons->raise();
@@ -952,9 +1007,10 @@ public:
         widget_help_buttons->raise();
         widget_generate_options->raise();
         widget_layout_state_machine->raise();
+        widget_on_state_options->raise();
         menuBar = new QMenuBar(NFWizard2);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 1280, 20));
+        menuBar->setGeometry(QRect(0, 0, 1280, 25));
         menuHelp = new QMenu(menuBar);
         menuHelp->setObjectName(QStringLiteral("menuHelp"));
         NFWizard2->setMenuBar(menuBar);
@@ -1081,9 +1137,9 @@ public:
         pb_configure_state_machine->setToolTip(QApplication::translate("NFWizard2", "Look for uVision project path in your PC", Q_NULLPTR));
 #endif // QT_NO_TOOLTIP
         pb_configure_state_machine->setText(QApplication::translate("NFWizard2", "Configure State Machine", Q_NULLPTR));
-        l_state_parent_tag->setText(QApplication::translate("NFWizard2", "                 Super State  :", Q_NULLPTR));
-        l_name_current_state->setText(QApplication::translate("NFWizard2", "No Parent", Q_NULLPTR));
         pb_back->setText(QApplication::translate("NFWizard2", "Back", Q_NULLPTR));
+        l_state_parent_tag->setText(QApplication::translate("NFWizard2", "         Super State  :", Q_NULLPTR));
+        l_name_current_state->setText(QApplication::translate("NFWizard2", "No Parent", Q_NULLPTR));
         label->setText(QApplication::translate("NFWizard2", "STATE NAME", Q_NULLPTR));
         label_2->setText(QApplication::translate("NFWizard2", "SUPER STATE", Q_NULLPTR));
         label_3->setText(QApplication::translate("NFWizard2", "INITIAL STATE", Q_NULLPTR));
@@ -1093,9 +1149,13 @@ public:
         l_Events->setText(QApplication::translate("NFWizard2", "EVENTS", Q_NULLPTR));
         l_Next_State->setText(QApplication::translate("NFWizard2", "NEXT STATE", Q_NULLPTR));
         l_actions->setText(QApplication::translate("NFWizard2", "ACTIONS", Q_NULLPTR));
-        pb_ok->setText(QApplication::translate("NFWizard2", "OK", Q_NULLPTR));
+        pb_ok->setText(QApplication::translate("NFWizard2", "Apply", Q_NULLPTR));
         pb_add_state->setText(QApplication::translate("NFWizard2", "Add State", Q_NULLPTR));
         pb_generate_state_machine->setText(QApplication::translate("NFWizard2", "Generate", Q_NULLPTR));
+        pb_open_state->setText(QApplication::translate("NFWizard2", "Open State", Q_NULLPTR));
+        pb_configure_state->setText(QApplication::translate("NFWizard2", "Configure State", Q_NULLPTR));
+        pb_add_sub_sate->setText(QApplication::translate("NFWizard2", "Add Child ", Q_NULLPTR));
+        pb_eliminate_state->setText(QApplication::translate("NFWizard2", "Eliminate State", Q_NULLPTR));
         menuHelp->setTitle(QApplication::translate("NFWizard2", "Help", Q_NULLPTR));
     } // retranslateUi
 

@@ -10,7 +10,6 @@
 #include <QFileDialog>
 #include <QMessageBox>
 
-
 NFWizard2::NFWizard2(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::NFWizard2)
@@ -24,6 +23,7 @@ NFWizard2::NFWizard2(QWidget *parent) :
     ui->statusBar->hide();
 
     this->windows_widget_position();
+    current_positions_minus_one =0;
     this->hide_all_objects();
     this->show_generate();
     this->set_points();
@@ -37,12 +37,13 @@ NFWizard2::NFWizard2(QWidget *parent) :
 NFWizard2::~NFWizard2()
 {
     saveSettings();
-    QHierarchy_State* hierarchy_state;
-    foreach (hierarchy_state, hierarchy_states) {
 
-        delete hierarchy_state;
+    for (quint16 i=0; i< hierarchy_states.size();i++) {
+
+        hierarchy_states[i]->~QHierarchy_State();
     }
-
+    hierarchy_states.clear();
+    hierarchy_states.~QList();
     delete ui;
 }
 
@@ -698,7 +699,8 @@ void NFWizard2::on_pushButton_generate_folders_clicked()
 
 void NFWizard2::on_pushButton_Quit_clicked()
 {
-     this->close();
+    this->~NFWizard2();
+    this->close();
 }
 
 void NFWizard2::on_pushButton_Help_tag_clicked()
@@ -741,6 +743,7 @@ void NFWizard2::hide_all_objects(){
     ui->widget_options_buttons->hide();
     ui->widget_options_thread_options->hide();
     ui->widget_layout_state_machine->hide();
+    ui->widget_on_state_options->hide();
 }
 
 void NFWizard2::show_generate(){
@@ -863,27 +866,24 @@ void NFWizard2::on_pb_configure_state_machine_clicked()
 
 void NFWizard2::on_pb_add_state_clicked()
 {
+    if(ui->l_name_current_state->text()=="No Parent"){
+        if(current_positions_minus_one >=6){
+
+            QMessageBox::information(this, "NEOWizard", QString("<font color = white >You can't add more states in this Super State"));
+            return;
+        }
+    }
     if(!ui->le_state_name->text().isEmpty()){
 
-        for(quint16 i=0; i < hierarchy_states.size(); i++){
 
-            if(hierarchy_states[i]->get_state_name()==ui->le_state_name->text()){
+        current_state = ui->le_state_name->text();
+        current_state_parent = ui->l_name_current_state->text();
 
-                QMessageBox::information(this, "NEOWizard", QString("<font color = white >You can't have two state with the same name,\nPlease change name to the new state"));
-                return;
-            }
+        if(!add_state_in_superstate(current_state_parent, current_state, true)){
+           return;
         }
 
-        QHierarchy_State *state = new QHierarchy_State(ui->widget_states, ui->le_state_name->text());
-        state->set_state_parent(ui->l_name_current_state->text());
-        state->show();
-        connect(state,SIGNAL(signal_clicked(QString)),this,SLOT(on_state_clicked(QString)));
-        connect(state,SIGNAL(signal_toggled(QString)),this,SLOT(on_state_toggled(QString)));
-        state->setToolTip(QString("State Name : ")+state->get_state_name()+QString("\nSuper State : ")+state->get_state_parent()+QString("\nInitial State : Unknow"));
-        hierarchy_states.append(state);
-
-        if(draw_super_state()==6){
-            ui->pb_add_state->setEnabled(false);
+        if(draw_super_state(current_state_parent)==6){
             QMessageBox::information(this, "NEOWizard", QString("<font color = white >You can't add more state to this parent, please change of state"));
         }
         qDebug()<<"tam :"<<QString::number(hierarchy_states.size());
@@ -897,10 +897,13 @@ void NFWizard2::on_pb_add_state_clicked()
 
 void NFWizard2::on_state_clicked(QString state_name){
 
-    clean_widget_state_machine();
-    ui->l_name_current_state->setText(state_name);
-    ui->widget_state_info->show();
+    current_state = state_name;
+    current_state_parent = ui->l_name_current_state->text();
+    ui->widget_on_state_options->show();
+    ui->widget_on_state_options->move(QWidget::mapFromGlobal(QCursor::pos()));
 
+    //int index = get_state_index_with_name(current_state);
+    //ui->widget_on_state_options->move(points[current_positions_minus_one][hierarchy_states[index]->get_position_in_superstate()]);
 }
 
 void NFWizard2::on_state_toggled(QString state_name){
@@ -964,13 +967,13 @@ void NFWizard2::on_pb_generate_state_machine_clicked()
        qDebug()<<"State :  "<<hierarchy_states[i]->get_state_name()<<"   Superstate : "<<hierarchy_states[i]->get_state_parent();
 }
 
-int NFWizard2::draw_super_state(){
+int NFWizard2::draw_super_state(const QString &superState){
 
     QStringList list;
 
     for(quint16 i=0; i < hierarchy_states.size(); i++){
 
-        if(hierarchy_states[i]->get_state_parent()==ui->l_name_current_state->text()){
+        if(hierarchy_states[i]->get_state_parent()==superState){
             list.append(hierarchy_states[i]->get_state_parent());
             hierarchy_states[i]->show();
         }
@@ -978,15 +981,41 @@ int NFWizard2::draw_super_state(){
             hierarchy_states[i]->hide();
         }
     }
+    ui->l_name_current_state->setText(superState);
+    current_state_parent = superState;
 
     quint16 p=0;
 
+    current_positions_minus_one = list.size()-1;
+
+    int index = get_state_index_with_name(superState);
+
+    if(index!=-1){
+
+        ui->l_name_current_state->setToolTip(QString("<font color = black >")
+                                             +QString("\nState Name : ")+hierarchy_states[index]->get_state_name()
+                                             +QString("\nSuper State : ")+hierarchy_states[index]->get_state_parent()
+                                             +QString("\nInitial State : ")+hierarchy_states[index]->get_state_initial()
+                                             +QString("\nNext State : ")+hierarchy_states[index]->get_events_list()[0].next_state);
+    }
+
+
+    if(list.isEmpty()){
+        qDebug()<<"Nada que dibujar";
+        return 0;
+    }
+
     for(quint16 i=0; i < hierarchy_states.size(); i++){
 
-        if(hierarchy_states[i]->get_state_parent()==ui->l_name_current_state->text()){
+        if(hierarchy_states[i]->get_state_parent()==superState){
 
-            hierarchy_states[i]->move(points[list.size()-1][p]);
+            hierarchy_states[i]->move(points[current_positions_minus_one][p]);
+            hierarchy_states[i]->set_position_in_superstate(p);
             p++;
+            if(p>=6){
+                break;
+                qDebug()<<"Maxima cantidad de estados";
+            }
         }
     }
     return p;
@@ -1002,69 +1031,75 @@ void NFWizard2::on_pb_back_clicked()
 
     if(!ui->widget_state_info->isHidden()){
         ui->widget_state_info->hide();
+        int index = get_state_index_with_name(ui->l_name_current_state->text());
+
+        if(index == -1){
+            qDebug()<<"Estado no encontrado";
+            return;
+        }
+        current_state = hierarchy_states[index]->get_state_name();
+        current_state_parent = hierarchy_states[index]->get_state_parent();
+
+        draw_super_state(hierarchy_states[index]->get_state_parent());
+        ui->pb_add_state->setEnabled(true);
+
+        return;
     }
 
     clean_widget_state_machine();
 
     int index = get_state_index_with_name(ui->l_name_current_state->text());
 
-    ui->l_name_current_state->setText(hierarchy_states[index]->get_state_parent());
-    draw_super_state();
-
-    index = get_state_index_with_name(hierarchy_states[index]->get_state_parent());
-
-    if(index==-1){
+    if(index == -1){
+        qDebug()<<"Estado no encontrado";
         return;
     }
-    ui->l_name_current_state->setToolTip(QString("<font color = black >")
-                                         +QString("\nState Name : ")+hierarchy_states[index]->get_state_name()
-                                         +QString("\nSuper State : ")+hierarchy_states[index]->get_state_parent()
-                                         +QString("\nInitial State : ")+hierarchy_states[index]->get_state_initial()
-                                         +QString("\nNext State : ")+hierarchy_states[index]->get_events_list()[0].next_state);
+
+    current_state = hierarchy_states[index]->get_state_name();  ////estado de donde viene
+    current_state_parent = hierarchy_states[index]->get_state_parent(); ////estado a dibujar
+
+    draw_super_state(current_state_parent);
 
 }
 
 void NFWizard2::on_pb_ok_clicked()
 {
-    for(quint16 i=0; i < hierarchy_states.size(); i++){
 
-        if(hierarchy_states[i]->get_state_name()==ui->l_name_current_state->text()){
+    int index = get_state_index_with_name(ui->l_name_current_state->text());
 
-            if(!ui->le_current_state_name->text().isEmpty())
-                hierarchy_states[i]->set_state_name(ui->le_current_state_name->text());
-            if(!ui->le_super_state_name->text().isEmpty())
-                hierarchy_states[i]->set_state_parent(ui->le_super_state_name->text());
-            if(!ui->le_initial_state_name->text().isEmpty())
-                hierarchy_states[i]->set_state_initial(ui->le_initial_state_name->text());
-            if(!ui->le_entry_action->text().isEmpty())
-                hierarchy_states[i]->set_state_entryAction(ui->le_entry_action->text());
-            if(!ui->le_exit_action->text().isEmpty())
-                hierarchy_states[i]->set_state_exitAction(ui->le_exit_action->text());
-            if(!ui->le_default_state_name->text().isEmpty())
-                hierarchy_states[i]->set_state_default(ui->le_default_state_name->text());
+    if(index!=-1){
 
-            QHierarchy_State::QHierarchy_State_Event_t T_event;
-            T_event.event = "FLAG_1"; ////Aqui agregar el evento de los listWidgets****************************************************************************
-            T_event.next_state = "STATE_X";
-            T_event.state_action = "action";
-            hierarchy_states[i]->add_Event(T_event);
+        if(!ui->le_current_state_name->text().isEmpty())
+            hierarchy_states[index]->set_state_name(ui->le_current_state_name->text());
+        if(!ui->le_super_state_name->text().isEmpty())
+            hierarchy_states[index]->set_state_parent(ui->le_super_state_name->text());
+        if(!ui->le_initial_state_name->text().isEmpty())
+            hierarchy_states[index]->set_state_initial(ui->le_initial_state_name->text());
+        if(!ui->le_entry_action->text().isEmpty())
+            hierarchy_states[index]->set_state_entryAction(ui->le_entry_action->text());
+        if(!ui->le_exit_action->text().isEmpty())
+            hierarchy_states[index]->set_state_exitAction(ui->le_exit_action->text());
+        if(!ui->le_default_state_name->text().isEmpty())
+            hierarchy_states[index]->set_state_default(ui->le_default_state_name->text());
 
-            hierarchy_states[i]->setToolTip(QString("State Name : ")+hierarchy_states[i]->get_state_name()
-                                            +QString("\nSuper State : ")+hierarchy_states[i]->get_state_parent()
-                                            +QString("\nInitial State : ")+hierarchy_states[i]->get_state_initial()
-                                            +QString("\nNext State : ")+hierarchy_states[i]->get_events_list()[0].next_state);
+        QHierarchy_State::QHierarchy_State_Event_t T_event;
+        T_event.event = "No Event"; ////Aqui agregar el evento de los listWidgets****************************************************************************
+        T_event.next_state = "No Next State";
+        T_event.state_action = "No Action";
+        hierarchy_states[index]->add_Event(T_event);
 
-            ui->l_name_current_state->setToolTip(QString("<font color = black >")
-                                                 +QString("State Name : ")+hierarchy_states[i]->get_state_name()
-                                                 +QString("\nSuper State : ")+hierarchy_states[i]->get_state_parent()
-                                                 +QString("\nInitial State : ")+hierarchy_states[i]->get_state_initial()
-                                                 +QString("\nNext State : ")+hierarchy_states[i]->get_events_list()[0].next_state);
+        hierarchy_states[index]->setToolTip(QString("State Name : ")+hierarchy_states[index]->get_state_name()
+                                            +QString("\nSuper State : ")+hierarchy_states[index]->get_state_parent()
+                                            +QString("\nInitial State : ")+hierarchy_states[index]->get_state_initial()
+                                            +QString("\nNext State : ")+hierarchy_states[index]->get_events_list()[0].next_state);
 
-            break;
-        }
+        hierarchy_states[index]->setToolTipDuration(10000);
+
     }
+
+    draw_super_state(hierarchy_states[index]->get_state_parent());
+    clear_line_edits_and_list_widgets();
     ui->widget_state_info->hide();
-    draw_super_state();
     ui->pb_add_state->setEnabled(true);
 
 }
@@ -1079,4 +1114,134 @@ int NFWizard2::get_state_index_with_name(const QString &state_name){
         }
     }
     return -1;
+}
+
+QList<quint16> NFWizard2::get_state_indexes_with_parent(const QString &superState){
+
+    QList<quint16> indexes;
+    for(quint16 i=0; i < hierarchy_states.size(); i++){
+
+        if(hierarchy_states[i]->get_state_name()==superState){
+
+            indexes.append(i);
+        }
+    }
+    return indexes;
+}
+
+void NFWizard2::clear_line_edits_and_list_widgets(){
+
+        ui->le_current_state_name->clear();
+
+        ui->le_super_state_name->clear();
+
+        ui->le_initial_state_name->clear();
+
+        ui->le_entry_action->clear();
+
+        ui->le_exit_action->clear();
+
+        ui->le_default_state_name->clear();
+
+        ui->lw_Actions->clear();
+
+        ui->lw_Events->clear();
+
+        ui->lw_Next_State->clear();
+}
+
+void NFWizard2::on_pb_open_state_clicked()
+{
+    clean_widget_state_machine();
+    ui->widget_on_state_options->hide();
+    ui->l_name_current_state->setText(current_state);
+    draw_super_state(current_state);
+}
+
+void NFWizard2::on_pb_configure_state_clicked()
+{
+    clean_widget_state_machine();
+    ui->widget_on_state_options->hide();
+    ui->l_name_current_state->setText(current_state);
+    ui->widget_state_info->show();
+    ui->pb_add_state->setEnabled(false);
+}
+
+void NFWizard2::on_pb_add_sub_sate_clicked()
+{
+    ui->widget_on_state_options->hide();
+    add_state_in_superstate(current_state, ui->le_state_name->text(), false);
+}
+
+void NFWizard2::on_pb_eliminate_state_clicked()
+{
+    ui->widget_on_state_options->hide();
+}
+
+bool NFWizard2::add_state_in_superstate(const QString &superState, const QString& state_name, const bool show){
+
+    if(superState!="No Parent"){ ////si tiene mas de la cantidad maxima de hijos
+
+        int index = get_state_index_with_name(superState);
+        if(index !=-1){
+
+            if(hierarchy_states[index]->get_subStates_count() >= QHierarchy_State::MAX_SUB_STATE){
+
+                QMessageBox::information(this, "NEOWizard", QString("<font color = white >You can't add more State into this superstate"));
+                return false;
+            }
+        }
+        else{
+            QMessageBox::information(this, "NEOWizard", QString("<font color = white >Cannot find the parent State"));
+            return false;
+        }
+    }
+
+    for(quint16 i=0; i < hierarchy_states.size(); i++){ ////no pueden haber 2 estados con el mismo nombre
+
+        if(hierarchy_states[i]->get_state_name()==ui->le_state_name->text()){
+
+            QMessageBox::information(this, "NEOWizard", QString("<font color = white >You can't have two state with the same name,\nPlease change name to the new state"));
+            return false;
+        }
+    }
+    if(superState != QString("No Parent")){ ////Si no existe el estado padre no añado estado
+        int index = get_state_index_with_name(superState);
+        if(index == -1){
+            QMessageBox::warning(this, tr("NFWizard2"),tr("<font color = white >The parent State doesn't exist"));
+            return false;
+        }
+    }
+    QHierarchy_State *state = new QHierarchy_State(ui->widget_states, state_name);
+    state->set_state_parent(superState);
+
+    if(state->get_state_parent()!="No Parent"){ ////añade el estado a la lista de hijos directos de su estado padre
+
+        int index = get_state_index_with_name(state->get_state_parent());
+        if(index !=-1){
+            hierarchy_states[index]->add_direct_sub_State(state_name);
+        }
+    }
+    if(show){
+        state->show();
+    }
+    connect(state,SIGNAL(signal_clicked(QString)),this,SLOT(on_state_clicked(QString)));
+    connect(state,SIGNAL(signal_toggled(QString)),this,SLOT(on_state_toggled(QString)));
+    state->setToolTip(QString("<font color =  green >State Name : ")+state->get_state_name()
+                      +QString("\nSuper State : ")+state->get_state_parent()
+                      +QString("\nInitial State : "+state->get_state_initial())
+                      +QString("\nNext State : ")+state->get_events_list()[0].next_state);
+    hierarchy_states.append(state);
+
+    return true;
+}
+
+bool NFWizard2::eliminate_State(const QString &superState){
+
+    return true;
+}
+
+void NFWizard2::on_lw_Events_clicked(const QModelIndex &index)
+{
+
 }

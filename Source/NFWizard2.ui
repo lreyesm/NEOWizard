@@ -1125,13 +1125,25 @@ color: rgb(255, 245, 242);
           <enum>QLayout::SetFixedSize</enum>
          </property>
          <item>
+          <widget class="QPushButton" name="pb_back">
+           <property name="styleSheet">
+            <string notr="true">font: 12pt &quot;Segoe UI&quot;;
+border-color: rgb(21, 172, 112);
+color: rgb(255, 245, 242);</string>
+           </property>
+           <property name="text">
+            <string>Back</string>
+           </property>
+          </widget>
+         </item>
+         <item>
           <widget class="QLabel" name="l_state_parent_tag">
            <property name="styleSheet">
             <string notr="true">font: 11pt &quot;Segoe UI&quot;;
 color: rgb(255, 245, 242);</string>
            </property>
            <property name="text">
-            <string>                 Super State  :</string>
+            <string>         Super State  :</string>
            </property>
           </widget>
          </item>
@@ -1155,18 +1167,6 @@ color: rgb(255, 245, 242);</string>
            </property>
            <property name="text">
             <string>No Parent</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="pb_back">
-           <property name="styleSheet">
-            <string notr="true">font: 12pt &quot;Segoe UI&quot;;
-border-color: rgb(21, 172, 112);
-color: rgb(255, 245, 242);</string>
-           </property>
-           <property name="text">
-            <string>Back</string>
            </property>
           </widget>
          </item>
@@ -1537,7 +1537,7 @@ border-color: rgb(21, 172, 112);
 color: rgb(255, 245, 242);</string>
                </property>
                <property name="text">
-                <string>OK</string>
+                <string>Apply</string>
                </property>
               </widget>
              </item>
@@ -1629,6 +1629,96 @@ border-color: rgb(21, 172, 112);
      </item>
     </layout>
    </widget>
+   <widget class="QWidget" name="widget_on_state_options" native="true">
+    <property name="geometry">
+     <rect>
+      <x>705</x>
+      <y>300</y>
+      <width>101</width>
+      <height>77</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>ArrowCursor</cursorShape>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout_25">
+     <property name="sizeConstraint">
+      <enum>QLayout::SetFixedSize</enum>
+     </property>
+     <item>
+      <widget class="QPushButton" name="pb_open_state">
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">font:  10pt &quot;Segoe UI&quot;;
+border-color: rgb(21, 172, 112);
+color: rgb(255, 245, 242);</string>
+       </property>
+       <property name="text">
+        <string>Open State</string>
+       </property>
+       <property name="flat">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pb_configure_state">
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">font: 10pt &quot;Segoe UI&quot;;
+border-color: rgb(21, 172, 112);
+color: rgb(255, 245, 242);</string>
+       </property>
+       <property name="text">
+        <string>Configure State</string>
+       </property>
+       <property name="flat">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pb_add_sub_sate">
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">font: 10pt &quot;Segoe UI&quot;;
+border-color: rgb(21, 172, 112);
+color: rgb(255, 245, 242);</string>
+       </property>
+       <property name="text">
+        <string>Add Child </string>
+       </property>
+       <property name="flat">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pb_eliminate_state">
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">font: 10pt &quot;Segoe UI&quot;;
+border-color: rgb(21, 172, 112);
+color: rgb(255, 245, 242);</string>
+       </property>
+       <property name="text">
+        <string>Eliminate State</string>
+       </property>
+       <property name="flat">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
    <zorder>widget_options_thread_options</zorder>
    <zorder>widget_options_buttons</zorder>
    <zorder>label_bar_background</zorder>
@@ -1640,6 +1730,7 @@ border-color: rgb(21, 172, 112);
    <zorder>widget_help_buttons</zorder>
    <zorder>widget_generate_options</zorder>
    <zorder>widget_layout_state_machine</zorder>
+   <zorder>widget_on_state_options</zorder>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
@@ -1647,7 +1738,7 @@ border-color: rgb(21, 172, 112);
      <x>0</x>
      <y>0</y>
      <width>1280</width>
-     <height>20</height>
+     <height>25</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuHelp">
