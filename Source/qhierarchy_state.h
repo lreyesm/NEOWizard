@@ -31,9 +31,11 @@ public:
     const QString get_state_on_entry_Action(){ return on_entry_Action;}
     const QString get_state_on_exit_Action(){ return on_exit_Action;}
     QList<QHierarchy_State_Event_t> get_events_list();
-    const quint8 get_position_in_superstate(){ return (quint8)position_in_superstate;}
+    quint8 get_position_in_superstate(){ return (quint8)position_in_superstate;}
     const QStringList get_direct_SubStates(){ return direct_subStates;}
-    const quint8 get_subStates_count(){ return subState_count;}
+    quint8 get_subStates_count(){ return subState_count;}
+    bool look_for_child(const QString &child_state);
+    bool eliminate_child(const QString &child_state); ////Modificar esta funcion /Que hacer con estados hijos del eliminado
 //    const QStringList get_events();
 //    const QStringList get_next_states();
 //    const QStringList get_state_actions();

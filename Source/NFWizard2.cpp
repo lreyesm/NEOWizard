@@ -10,6 +10,7 @@
 #include <QFileDialog>
 #include <QMessageBox>
 
+
 NFWizard2::NFWizard2(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::NFWizard2)
@@ -38,12 +39,6 @@ NFWizard2::~NFWizard2()
 {
     saveSettings();
 
-    for (quint16 i=0; i< hierarchy_states.size();i++) {
-
-        hierarchy_states[i]->~QHierarchy_State();
-    }
-    hierarchy_states.clear();
-    hierarchy_states.~QList();
     delete ui;
 }
 
@@ -51,22 +46,24 @@ void NFWizard2::windows_widget_position(){
 
     this->setGeometry(200,200,793,389);
 
-    ui->widget_layout_state_machine->move(300,0);
+    ui->widget_layout_state_machine->move(370,0);
     ui->widget_options_buttons->move(90,80);
-    ui->widget_options_thread_options->move(300,80);
+    ui->widget_options_thread_options->move(350,40);
+    ui->widget_event_options->move(400,90);
 
-    ui->pb_configure_state_machine->setStyleSheet(QStringLiteral("color: rgb(255, 245, 242); background-color: rgb(21, 172, 112); font: 11pt \"Segoe UI\"; border-color: rgb(255, 172, 112);"));
-    ui->pb_configure_Main_thread->setStyleSheet(QStringLiteral("color: rgb(255, 245, 242); background-color: rgb(21, 172, 112); font: 11pt \"Segoe UI\"; border-color: rgb(255, 172, 112);"));
-    ui->pb_configure_thread_in_class->setStyleSheet(QStringLiteral("color: rgb(255, 245, 242); background-color: rgb(21, 172, 112); font: 11pt \"Segoe UI\"; border-color: rgb(255, 172, 112);"));
-    ui->pb_configure_thread_in_main->setStyleSheet(QStringLiteral("color: rgb(255, 245, 242); background-color: rgb(21, 172, 112); font: 11pt \"Segoe UI\"; border-color: rgb(255, 172, 112);"));
+    ui->pb_configure_state_machine->setStyleSheet(QStringLiteral("color: rgb(21, 172, 112); font: 11pt \"Segoe UI\";"));
+    ui->pb_configure_Main_thread->setStyleSheet(QStringLiteral("color: rgb(21, 172, 112); font: 11pt \"Segoe UI\";"));
+    ui->pb_configure_thread_in_class->setStyleSheet(QStringLiteral("color: rgb(21, 172, 112); font: 11pt \"Segoe UI\";"));
+    ui->pb_configure_thread_in_main->setStyleSheet(QStringLiteral("color: rgb(21, 172, 112); font: 11pt \"Segoe UI\";"));
+
+    ui->pb_back->setStyleSheet(QStringLiteral("color: rgb(21, 172, 112); font: 11pt \"Segoe UI\";"));
+    ui->pb_add_state->setStyleSheet(QStringLiteral("color: rgb(21, 172, 112); font: 11pt \"Segoe UI\";"));
+    ui->pb_generate_state_machine->setStyleSheet(QStringLiteral("color: rgb(21, 172, 112); font: 11pt \"Segoe UI\";"));
 
     ui->pb_add_thread->setStyleSheet(QStringLiteral("color: rgb(255, 245, 242); background-color: rgb(21, 172, 112); font: 11pt \"Segoe UI\"; border-color: rgb(255, 172, 112);"));
     ui->cb_thread_priority->setStyleSheet(QStringLiteral("color: rgb(255, 245, 242); background-color: rgb(21, 172, 112); font: 11pt \"Segoe UI\"; border-color: rgb(255, 172, 112);"));
 
-    ui->pb_ok->setStyleSheet(QStringLiteral("color: rgb(255, 245, 242); background-color: rgb(21, 172, 112); font: 11pt \"Segoe UI\"; border-color: rgb(255, 172, 112);"));
-    ui->pb_add_state->setStyleSheet(QStringLiteral("color: rgb(255, 245, 242); background-color: rgb(21, 172, 112); font: 11pt \"Segoe UI\"; border-color: rgb(255, 172, 112);"));
-    ui->pb_back->setStyleSheet(QStringLiteral("color: rgb(255, 245, 242); background-color: rgb(21, 172, 112); font: 11pt \"Segoe UI\"; border-color: rgb(255, 172, 112);"));
-    ui->pb_generate_state_machine->setStyleSheet(QStringLiteral("color: rgb(255, 245, 242); background-color: rgb(21, 172, 112); font: 11pt \"Segoe UI\"; border-color: rgb(255, 172, 112);"));
+    ui->pb_ok->setStyleSheet(QStringLiteral("background-color: rgb(48, 60, 77); color: rgb(21, 172, 112); font: 11pt \"Segoe UI\";"));
 
 //font: 12pt "Segoe UI";
 //color: rgb(255, 245, 242);
@@ -296,6 +293,51 @@ void NFWizard2::processInterrupFile()
     QDir::setCurrent(fileuVision);
 }
 
+void NFWizard2::process_Thread_in_Main_cpp_File(const QString thread_name, const QString main_thread_name, const QString thread_priority){
+
+    TextFileProcessor main_cpp_FileProcessor;
+
+    main_cpp_FileProcessor.setFilename(fileuVision_Path+QString("/Source/")+main_thread_name+QString(".cpp"));
+
+    main_cpp_FileProcessor.setStartLine(main_thread_name+QString("::")+main_thread_name+QString("()"));       ////inicio del contenido a eliminar
+    main_cpp_FileProcessor.setEndLine(main_thread_name+QString("::")+main_thread_name+QString("()")); ////fin del contenido a eliminar
+    main_cpp_FileProcessor.setReplacementString(main_thread_name+QString("::")+main_thread_name+QString("():\n               ")
+                                                +thread_name+QString("(")+thread_name+QString("Run,eObject::eThread::Priority")
+                                                +thread_priority+QString(")"));
+    main_cpp_FileProcessor.processTextBlock();
+
+    main_cpp_FileProcessor.setStartLine("/*Threads Functions Implementation Generated Code*/");       ////inicio del contenido a eliminar
+    main_cpp_FileProcessor.setEndLine("/*Threads Functions Implementation Generated Code*/"); ////fin del contenido a eliminar
+    main_cpp_FileProcessor.setReplacementString(QString("/*Threads Functions Implementation Generated Code*/\n")
+                                                +QString("void ")+main_thread_name
+                                                +QString("::")+thread_name
+                                                +QString("Run(eObject::eThread &thread)\n{\n\n}"));
+    main_cpp_FileProcessor.processTextBlock();
+
+}
+
+void NFWizard2::process_Thread_in_Main_h_File(const QString thread_name, const QString main_thread_name){
+
+    TextFileProcessor main_h_FileProcessor;
+
+    main_h_FileProcessor.setFilename(fileuVision_Path+QString("/Include/")+main_thread_name+QString(".h"));
+
+    main_h_FileProcessor.setStartLine("#include <eApplicationBase.h>");       ////inicio del contenido a eliminar
+    main_h_FileProcessor.setEndLine("#include <eApplicationBase.h>"); ////fin del contenido a eliminar
+    main_h_FileProcessor.setReplacementString(QString("#include <eApplicationBase.h>\n")+QString("#include <eThread.h>\n"));
+    main_h_FileProcessor.processTextBlock();
+
+    main_h_FileProcessor.setStartLine("/*User declare thread objects*/");       ////inicio del contenido a eliminar
+    main_h_FileProcessor.setEndLine("/*User declare thread objects*/"); ////fin del contenido a eliminar
+    main_h_FileProcessor.setReplacementString(QString("/*User declare thread objects*/\n")+QString("    eObject::eThread ")+thread_name+QString(";\n"));
+    main_h_FileProcessor.processTextBlock();
+
+    main_h_FileProcessor.setStartLine("/*User declare thread objects functions*/");       ////inicio del contenido a eliminar
+    main_h_FileProcessor.setEndLine("/*User declare thread objects functions*/"); ////fin del contenido a eliminar
+    main_h_FileProcessor.setReplacementString(QString("/*User declare thread objects functions*/\n")+QString("    static void ")+thread_name+QString("Run(eObject::eThread &thread);\n"));
+    main_h_FileProcessor.processTextBlock();
+}
+
 void NFWizard2::process_Main_Thread_Files(const QString thread_name){
 
     TextFileProcessor main_cpp_FileProcessor;
@@ -361,14 +403,14 @@ void NFWizard2::processMainFile_add_Main_Thread_Exec(const QString thread_name, 
     main_cpp_FileProcessor.setReplacementString(QString("/* USER CODE BEGIN Includes */\n#include \"")+thread_name+QString(".h\"\n"));
     main_cpp_FileProcessor.processTextBlock();
 
-    main_cpp_FileProcessor.setStartLine("//Sustituir por el nombre de la clase asignado");       ////inicio del contenido a eliminar
-    main_cpp_FileProcessor.setEndLine("//Application app;"); ////fin del contenido a eliminar
-    main_cpp_FileProcessor.setReplacementString(QString("//Sustituir por el nombre de la clase asignado\n  ")+thread_name+QString(" app;\n"));
+    main_cpp_FileProcessor.setStartLine("/* USER CODE BEGIN 2 */");       ////inicio del contenido a eliminar
+    main_cpp_FileProcessor.setEndLine("/* USER CODE BEGIN 2 */\n"); ////fin del contenido a eliminar
+    main_cpp_FileProcessor.setReplacementString(QString("/* USER CODE BEGIN 2 */\n\n  ")+QString("app.exec();\n"));
     main_cpp_FileProcessor.processTextBlock();
 
-    main_cpp_FileProcessor.setStartLine("//app.exec();");       ////inicio del contenido a eliminar
-    main_cpp_FileProcessor.setEndLine("//app.exec();"); ////fin del contenido a eliminar
-    main_cpp_FileProcessor.setReplacementString(QString("//Funcion de ejecucion de hilo principal\n  ")+QString("app.exec();\n"));
+    main_cpp_FileProcessor.setStartLine("/* USER CODE BEGIN 2 */");       ////inicio del contenido a eliminar
+    main_cpp_FileProcessor.setEndLine("/* USER CODE BEGIN 2 */"); ////fin del contenido a eliminar
+    main_cpp_FileProcessor.setReplacementString(QString("/* USER CODE BEGIN 2 */\n\n  ")+thread_name+QString(" app;\n"));
     main_cpp_FileProcessor.processTextBlock();
 }
 
@@ -744,6 +786,10 @@ void NFWizard2::hide_all_objects(){
     ui->widget_options_thread_options->hide();
     ui->widget_layout_state_machine->hide();
     ui->widget_on_state_options->hide();
+
+    ui->widget_event_options->hide();
+    ui->le_state_to_search->hide();
+
 }
 
 void NFWizard2::show_generate(){
@@ -796,10 +842,19 @@ void NFWizard2::on_pb_about_QT_clicked()
 
 void NFWizard2::on_pb_add_thread_clicked()
 {
-    if(ui->le_thread_name->text().isEmpty()){
+    if(!ui->le_thread_name->isHidden()){
+        if(ui->le_thread_name->text().isEmpty()){
 
-        QMessageBox::information(this, "NEOWizard", QString("<font color = white >Please add name thread"));
-        return;
+            QMessageBox::information(this, "NEOWizard", QString("<font color = white >Please add thread name"));
+            return;
+        }
+    }
+    if(!ui->le_main_thread_name->isHidden()){
+        if(ui->le_main_thread_name->text().isEmpty()){
+
+            QMessageBox::information(this, "NEOWizard", QString("<font color = white >Please add main thread name"));
+            return;
+        }
     }
     ui->widget_options_thread_options->hide();
 
@@ -815,15 +870,15 @@ void NFWizard2::on_pb_add_thread_clicked()
 
     if(add_thread_state==Main_Thead){
 
-        this->generateTemplates_for_Thread(fileInfo.dir().path(), ui->le_thread_name->text());////copia los templates para las carpetas del projecto
-        this->process_Main_Thread_Files(ui->le_thread_name->text());
-        this->processXmlFiles_for_Threads(ui->le_thread_name->text()); ////modifica XML de keil
+        this->generateTemplates_for_Thread(fileInfo.dir().path(), ui->le_main_thread_name->text());////copia los templates para las carpetas del projecto
+        this->process_Main_Thread_Files(ui->le_main_thread_name->text());
+        this->processXmlFiles_for_Threads(ui->le_main_thread_name->text()); ////modifica XML de keil
         QMessageBox::information(this, "NEOWizard", QString("<font color = white >Main Thread generated correctly\nPlease save changes in uVision project"));
     }
     if(add_thread_state==Thread_in_Main){
 
-//        this->generateTemplates_for_Thread(fileInfo.dir().path(), ui->le_thread_name->text());////copia los templates para las carpetas del projecto
-//        this->process_Main_Thread_Files(ui->le_thread_name->text());
+        this->process_Thread_in_Main_h_File(ui->le_thread_name->text(), ui->le_main_thread_name->text());
+        this->process_Thread_in_Main_cpp_File(ui->le_thread_name->text(), ui->le_main_thread_name->text(),ui->cb_thread_priority->currentText());
 //        this->processXmlFiles_for_Threads(ui->le_thread_name->text()); ////modifica XML de keil
 //        QMessageBox::information(this, "NEOWizard", QString("<font color = white >Main Thread generated correctly\nPlease save changes in uVision project"));
     }
@@ -833,8 +888,12 @@ void NFWizard2::on_pb_configure_thread_in_class_clicked()
 {
   add_thread_state = Thread_in_Class;
   ui->widget_options_thread_options->show();
+  ui->le_thread_name->show();
+  ui->l_thread_name->show();
   ui->l_thread_priority->show();
   ui->cb_thread_priority->show();
+  ui->le_main_thread_name->hide();
+  ui->l_main_thread_name->hide();
   ui->widget_layout_state_machine->hide();
 }
 
@@ -842,8 +901,12 @@ void NFWizard2::on_pb_configure_thread_in_main_clicked()
 {
    add_thread_state = Thread_in_Main;
    ui->widget_options_thread_options->show();
+   ui->le_thread_name->show();
+   ui->l_thread_name->show();
    ui->l_thread_priority->show();
    ui->cb_thread_priority->show();
+   ui->le_main_thread_name->show();
+   ui->l_main_thread_name->show();
    ui->widget_layout_state_machine->hide();
 }
 
@@ -851,6 +914,10 @@ void NFWizard2::on_pb_configure_Main_thread_clicked()
 {
     add_thread_state = Main_Thead;
     ui->widget_options_thread_options->show();
+    ui->le_main_thread_name->show();
+    ui->l_main_thread_name->show();
+    ui->le_thread_name->hide();
+    ui->l_thread_name->hide();
     ui->l_thread_priority->hide();
     ui->cb_thread_priority->hide();
     ui->widget_layout_state_machine->hide();
@@ -969,56 +1036,49 @@ void NFWizard2::on_pb_generate_state_machine_clicked()
 
 int NFWizard2::draw_super_state(const QString &superState){
 
-    QStringList list;
+    clean_widget_state_machine();
 
-    for(quint16 i=0; i < hierarchy_states.size(); i++){
+    QList<quint16> indexes = get_state_indexes_with_parent(superState);
 
-        if(hierarchy_states[i]->get_state_parent()==superState){
-            list.append(hierarchy_states[i]->get_state_parent());
-            hierarchy_states[i]->show();
-        }
-        else{
-            hierarchy_states[i]->hide();
-        }
+    for(quint16 i=0; i < indexes.size(); i++){
+
+        hierarchy_states[indexes[i]]->show();
     }
+
     ui->l_name_current_state->setText(superState);
     current_state_parent = superState;
 
-    quint16 p=0;
-
-    current_positions_minus_one = list.size()-1;
+    current_positions_minus_one = indexes.size()-1;
 
     int index = get_state_index_with_name(superState);
 
     if(index!=-1){
 
-        ui->l_name_current_state->setToolTip(QString("<font color = black >")
-                                             +QString("\nState Name : ")+hierarchy_states[index]->get_state_name()
-                                             +QString("\nSuper State : ")+hierarchy_states[index]->get_state_parent()
-                                             +QString("\nInitial State : ")+hierarchy_states[index]->get_state_initial()
-                                             +QString("\nNext State : ")+hierarchy_states[index]->get_events_list()[0].next_state);
+        ui->l_name_current_state->setToolTip(QString("<font color = green >")
+                                             +QString("State Name : ")+hierarchy_states[index]->get_state_name()
+                                             +QString("<br>Super State : ")+hierarchy_states[index]->get_state_parent()
+                                             +QString("<br>Initial State  : ")+hierarchy_states[index]->get_state_initial()
+                                             +QString("<br>Next State   : ")+hierarchy_states[index]->get_events_list()[0].next_state);
     }
 
 
-    if(list.isEmpty()){
+    if(indexes.isEmpty()){
         qDebug()<<"Nada que dibujar";
         return 0;
     }
 
-    for(quint16 i=0; i < hierarchy_states.size(); i++){
+    for(quint16 i=0; i < indexes.size(); i++){
 
-        if(hierarchy_states[i]->get_state_parent()==superState){
+        hierarchy_states[indexes[i]]->move(points[current_positions_minus_one][i]);
+        hierarchy_states[indexes[i]]->set_position_in_superstate(i);
 
-            hierarchy_states[i]->move(points[current_positions_minus_one][p]);
-            hierarchy_states[i]->set_position_in_superstate(p);
-            p++;
-            if(p>=6){
-                break;
-                qDebug()<<"Maxima cantidad de estados";
-            }
+        if(i>=6){
+            break;
+            qDebug()<<"Maxima cantidad de estados";
         }
+
     }
-    return p;
+    return indexes.size();
 }
 
 void NFWizard2::on_pb_back_clicked()
@@ -1040,13 +1100,11 @@ void NFWizard2::on_pb_back_clicked()
         current_state = hierarchy_states[index]->get_state_name();
         current_state_parent = hierarchy_states[index]->get_state_parent();
 
-        draw_super_state(hierarchy_states[index]->get_state_parent());
+        draw_super_state(current_state_parent);
         ui->pb_add_state->setEnabled(true);
 
         return;
     }
-
-    clean_widget_state_machine();
 
     int index = get_state_index_with_name(ui->l_name_current_state->text());
 
@@ -1069,12 +1127,38 @@ void NFWizard2::on_pb_ok_clicked()
 
     if(index!=-1){
 
-        if(!ui->le_current_state_name->text().isEmpty())
-            hierarchy_states[index]->set_state_name(ui->le_current_state_name->text());
-        if(!ui->le_super_state_name->text().isEmpty())
-            hierarchy_states[index]->set_state_parent(ui->le_super_state_name->text());
-        if(!ui->le_initial_state_name->text().isEmpty())
-            hierarchy_states[index]->set_state_initial(ui->le_initial_state_name->text());
+
+        if(!ui->le_super_state_name->text().isEmpty()){
+            if(get_state_index_with_name(ui->le_super_state_name->text())!=-1 || ui->le_super_state_name->text()=="No Parent"){
+
+                int parent_index = get_state_index_with_name(hierarchy_states[index]->get_state_parent());
+                if(parent_index!=-1){  ////Eliminar hijo de la lista de hijos de antiguo padre
+                    hierarchy_states[parent_index]->eliminate_child( hierarchy_states[index]->get_state_name());
+                }
+                ////Añadir el estado a la lista de hijos de nuevo padre
+                int new_parent_index = get_state_index_with_name(ui->le_super_state_name->text());
+                hierarchy_states[new_parent_index]->add_direct_sub_State(hierarchy_states[index]->get_state_name());
+                hierarchy_states[index]->set_state_parent(ui->le_super_state_name->text());
+            }
+            else{
+                QMessageBox::information(this, "NEOWizard", QString("<font green = white >Superstate not found, the State will mantain his old parent"));
+            }
+        }
+        if(!ui->le_current_state_name->text().isEmpty()){
+            if(get_state_index_with_name(ui->le_current_state_name->text())==-1){
+
+                hierarchy_states[index]->set_state_name(ui->le_current_state_name->text());
+            }
+            else{
+                QMessageBox::information(this, "NEOWizard", QString("<font color = green >There is already a State with this name, the State will mantain his old name"));
+            }
+        }
+        if(!ui->le_initial_state_name->text().isEmpty()){
+            if(hierarchy_states[index]->look_for_child(ui->le_initial_state_name->text())){
+                QMessageBox::information(this, "NEOWizard", QString("<font color = green >The initial State you are adding is not a child of State : ")+hierarchy_states[index]->get_state_name());
+                hierarchy_states[index]->set_state_initial(ui->le_initial_state_name->text());
+            }
+        }
         if(!ui->le_entry_action->text().isEmpty())
             hierarchy_states[index]->set_state_entryAction(ui->le_entry_action->text());
         if(!ui->le_exit_action->text().isEmpty())
@@ -1082,16 +1166,17 @@ void NFWizard2::on_pb_ok_clicked()
         if(!ui->le_default_state_name->text().isEmpty())
             hierarchy_states[index]->set_state_default(ui->le_default_state_name->text());
 
-        QHierarchy_State::QHierarchy_State_Event_t T_event;
-        T_event.event = "No Event"; ////Aqui agregar el evento de los listWidgets****************************************************************************
-        T_event.next_state = "No Next State";
-        T_event.state_action = "No Action";
-        hierarchy_states[index]->add_Event(T_event);
+//        QHierarchy_State::QHierarchy_State_Event_t T_event;
+//        T_event.event = "No Event"; ////Aqui agregar el evento de los listWidgets****************************************************************************
+//        T_event.next_state = "No Next State";
+//        T_event.state_action = "No Action";
+//        hierarchy_states[index]->add_Event(T_event);
 
-        hierarchy_states[index]->setToolTip(QString("State Name : ")+hierarchy_states[index]->get_state_name()
-                                            +QString("\nSuper State : ")+hierarchy_states[index]->get_state_parent()
-                                            +QString("\nInitial State : ")+hierarchy_states[index]->get_state_initial()
-                                            +QString("\nNext State : ")+hierarchy_states[index]->get_events_list()[0].next_state);
+
+        hierarchy_states[index]->setToolTip(QString("<font color = green >State Name : ")+hierarchy_states[index]->get_state_name()
+                                            +QString("<br>Super State : ")+hierarchy_states[index]->get_state_parent()
+                                            +QString("<br>Initial State  : ")+hierarchy_states[index]->get_state_initial()
+                                            +QString("<br>Next State  : ")+hierarchy_states[index]->get_events_list()[0].next_state);
 
         hierarchy_states[index]->setToolTipDuration(10000);
 
@@ -1121,7 +1206,7 @@ QList<quint16> NFWizard2::get_state_indexes_with_parent(const QString &superStat
     QList<quint16> indexes;
     for(quint16 i=0; i < hierarchy_states.size(); i++){
 
-        if(hierarchy_states[i]->get_state_name()==superState){
+        if(hierarchy_states[i]->get_state_parent()==superState){
 
             indexes.append(i);
         }
@@ -1154,17 +1239,38 @@ void NFWizard2::on_pb_open_state_clicked()
 {
     clean_widget_state_machine();
     ui->widget_on_state_options->hide();
-    ui->l_name_current_state->setText(current_state);
     draw_super_state(current_state);
 }
 
 void NFWizard2::on_pb_configure_state_clicked()
 {
+    clear_line_edits_and_list_widgets();
     clean_widget_state_machine();
     ui->widget_on_state_options->hide();
     ui->l_name_current_state->setText(current_state);
     ui->widget_state_info->show();
     ui->pb_add_state->setEnabled(false);
+
+    int index = get_state_index_with_name(current_state);
+
+    if(index!=-1){
+        QStringList temp_to_add_events;
+        QStringList temp_to_add_next_state;
+        QStringList temp_to_add_actions;
+
+        for(quint16 i =0; i< hierarchy_states[index]->get_events_list().size(); i++){
+            temp_to_add_events.append( hierarchy_states[index]->get_events_list()[i].event);
+            temp_to_add_next_state.append( hierarchy_states[index]->get_events_list()[i].next_state);
+            temp_to_add_actions.append( hierarchy_states[index]->get_events_list()[i].state_action);
+        }
+
+        ui->lw_Events->addItems(temp_to_add_events);
+        ui->lw_Next_State->addItems(temp_to_add_next_state);
+        ui->lw_Actions->addItems(temp_to_add_actions);
+    }
+    else{
+        qDebug()<<"No encontrado el estado en funcion : on_pb_configure_state_clicked";
+    }
 }
 
 void NFWizard2::on_pb_add_sub_sate_clicked()
@@ -1176,6 +1282,9 @@ void NFWizard2::on_pb_add_sub_sate_clicked()
 void NFWizard2::on_pb_eliminate_state_clicked()
 {
     ui->widget_on_state_options->hide();
+    eliminate_State(current_state);
+    //on_pb_generate_state_machine_clicked();
+    draw_super_state(current_state_parent);
 }
 
 bool NFWizard2::add_state_in_superstate(const QString &superState, const QString& state_name, const bool show){
@@ -1228,9 +1337,9 @@ bool NFWizard2::add_state_in_superstate(const QString &superState, const QString
     connect(state,SIGNAL(signal_clicked(QString)),this,SLOT(on_state_clicked(QString)));
     connect(state,SIGNAL(signal_toggled(QString)),this,SLOT(on_state_toggled(QString)));
     state->setToolTip(QString("<font color =  green >State Name : ")+state->get_state_name()
-                      +QString("\nSuper State : ")+state->get_state_parent()
-                      +QString("\nInitial State : "+state->get_state_initial())
-                      +QString("\nNext State : ")+state->get_events_list()[0].next_state);
+                      +QString("<br>Super State : ")+state->get_state_parent()
+                      +QString("<br>Initial State  : "+state->get_state_initial())
+                      +QString("<br>Next State   : ")+state->get_events_list()[0].next_state);
     hierarchy_states.append(state);
 
     return true;
@@ -1238,10 +1347,153 @@ bool NFWizard2::add_state_in_superstate(const QString &superState, const QString
 
 bool NFWizard2::eliminate_State(const QString &superState){
 
-    return true;
+    int index = get_state_index_with_name(superState);
+    if(index != -1){ ////encontrado
+
+        for(quint16 i =0; i< hierarchy_states[index]->get_direct_SubStates().size();i++){
+
+
+            int child_index = get_state_index_with_name( hierarchy_states[index]->get_direct_SubStates()[i]);
+            if(child_index != -1){
+                i--;
+                eliminate_State(hierarchy_states[child_index]->get_state_name());
+            }
+
+        }
+
+        int index_parent = get_state_index_with_name(hierarchy_states[index]->get_state_parent());
+
+        if(index_parent!=-1){ ////si no tiene padre debe ser "No parent" superestado inicial
+
+            hierarchy_states[index_parent]->eliminate_child(hierarchy_states[index]->get_state_name());
+        }
+        hierarchy_states[index]->hide();
+        hierarchy_states[index]->deleteLater();
+        hierarchy_states.removeOne(hierarchy_states[index]);
+
+        return true;
+    }
+    else{ ////No encontrado el estado a eliminar
+        return false;
+    }
 }
 
 void NFWizard2::on_lw_Events_clicked(const QModelIndex &index)
 {
+   ui->widget_event_options->show();
+}
+
+void NFWizard2::on_lw_Next_State_clicked(const QModelIndex &index)
+{
+    ui->widget_event_options->show();
+}
+
+void NFWizard2::on_lw_Actions_clicked(const QModelIndex &index)
+{
+    ui->widget_event_options->show();
+}
+
+void NFWizard2::on_pb_search_state_clicked()
+{
+    if(ui->le_state_to_search->isHidden()){
+
+        ui->le_state_to_search->show();
+        ui->widget_add_gen_buttons->hide();
+    }
+    else{
+        ui->le_state_to_search->hide();
+        ui->widget_add_gen_buttons->show();
+    }
 
 }
+
+void NFWizard2::on_pb_add_event_clicked()
+{
+    ui->widget_event_options->hide();
+
+    int index = get_state_index_with_name(current_state);
+
+    QString event_action = "No Action";
+    QString event_next_state = "No Next State";
+
+    if(index!=-1){
+
+        if(ui->le_event_ID_name->text().isEmpty()){
+
+            QMessageBox::warning(this, tr("NFWizard2"),tr("<font color = white >Insert Event ID name"));
+            return;
+        }
+        if(!ui->le_next_state_name->text().isEmpty()){
+
+            event_action = ui->le_action_name->text();
+        }
+        if(!ui->le_action_name->text().isEmpty()){
+
+            event_next_state = ui->le_next_state_name->text();
+        }
+        if(!ui->le_next_state_name->text().isEmpty() || !ui->le_action_name->text().isEmpty()){
+
+            hierarchy_states[index]->add_Event(ui->le_event_ID_name->text(), event_next_state, event_action);
+            QStringList temp_to_add_events;
+            QStringList temp_to_add_next_state;
+            QStringList temp_to_add_actions;
+            ui->lw_Events->clear();
+            ui->lw_Next_State->clear();
+            ui->lw_Actions->clear();
+            for(quint16 i =0; i< hierarchy_states[index]->get_events_list().size(); i++){
+               temp_to_add_events.append( hierarchy_states[index]->get_events_list()[i].event);
+               temp_to_add_next_state.append( hierarchy_states[index]->get_events_list()[i].next_state);
+               temp_to_add_actions.append( hierarchy_states[index]->get_events_list()[i].state_action);
+            }
+
+            ui->lw_Events->addItems(temp_to_add_events);
+            ui->lw_Next_State->addItems(temp_to_add_next_state);
+            ui->lw_Actions->addItems(temp_to_add_actions);
+        }
+        else{
+            QMessageBox::warning(this, tr("NFWizard2"),tr("<font color = white >Insert Action or Next State"));
+            return;
+        }
+
+    }
+}
+
+void NFWizard2::on_pb_cancel_add_event_clicked()
+{
+   ui->widget_event_options->hide();
+}
+
+void NFWizard2::on_le_state_to_search_textChanged(const QString &arg1)
+{
+    if(!arg1.isEmpty()){
+        QStringList complete_list;
+        for(quint16 i=0; i< hierarchy_states.size(); i++){
+            if(hierarchy_states[i]->get_state_name().contains(arg1)){
+                complete_list.append(hierarchy_states[i]->get_state_name());
+            }
+        }
+
+        complete_list_object = new QCompleter(complete_list,this);
+
+        complete_list_object->setCaseSensitivity(Qt::CaseInsensitive);
+        complete_list_object->setCompletionMode(QCompleter::UnfilteredPopupCompletion);
+        ui->le_state_to_search->setCompleter(complete_list_object);
+
+        connect(complete_list_object,SIGNAL(highlighted(QString)),this, SLOT(on_selected_state_in_search(QString)));
+    }
+}
+
+void NFWizard2::on_selected_state_in_search(const QString &state){
+
+    int index = get_state_index_with_name(state);
+    if(index!=-1){
+        current_state = state;
+        draw_super_state(hierarchy_states[index]->get_state_parent());
+        qDebug()<<"State selected : "+state+" on function : on_selected_state_in_search";
+    }
+}
+
+
+
+
+

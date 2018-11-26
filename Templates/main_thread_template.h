@@ -15,10 +15,15 @@ public:
     ////Main function, this function is executed infinitely when app.exec() in main.cpp
     virtual void userLoop() E_DECLARE_OVERRIDE;
 
-private:
     /*User declare thread objects*/
 
     /*End of User declare thread objects*/
+
+private:
+
+    /*User declare thread objects functions*/
+
+    /*End of User declare thread objects functions*/
 };
 
 

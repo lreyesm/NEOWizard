@@ -153,6 +153,7 @@ debug/qrc_assets.cpp: assets.qrc \
 		Assets/green_3.png \
 		Assets/check_box_off.png \
 		Assets/button_quit.png \
+		Assets/button_background.png \
 		Assets/generate_tag_off.png \
 		Assets/keilEditorOptions.PNG \
 		Assets/icon.ico \
@@ -409,7 +410,7 @@ debug/moc_NFWizard2.cpp: C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/QMainWin
 		Source/NFWizard2.h \
 		debug/moc_predefs.h \
 		C:/Qt/Qt5.9.0/5.9/mingw53_32/bin/moc.exe
-	C:\Qt\Qt5.9.0\5.9\mingw53_32\bin\moc.exe $(DEFINES) --include debug/moc_predefs.h -IC:/Qt/Qt5.9.0/5.9/mingw53_32/mkspecs/win32-g++ -IO:/QT_Trabajo/NFWizard2 -IO:/QT_Trabajo/NFWizard2/Source -IC:/Qt/Qt5.9.0/5.9/mingw53_32/include -IC:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets -IC:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtGui -IC:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtANGLE -IC:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtXml -IC:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtCore -IC:/Qt/Qt5.9.0/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include -IC:/Qt/Qt5.9.0/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include-fixed -IC:/Qt/Qt5.9.0/Tools/mingw530_32/i686-w64-mingw32/include -IC:/Qt/Qt5.9.0/Tools/mingw530_32/i686-w64-mingw32/include/c++ -IC:/Qt/Qt5.9.0/Tools/mingw530_32/i686-w64-mingw32/include/c++/i686-w64-mingw32 -IC:/Qt/Qt5.9.0/Tools/mingw530_32/i686-w64-mingw32/include/c++/backward Source\NFWizard2.h -o debug\moc_NFWizard2.cpp
+	C:\Qt\Qt5.9.0\5.9\mingw53_32\bin\moc.exe $(DEFINES) --include debug/moc_predefs.h -IC:/Qt/Qt5.9.0/5.9/mingw53_32/mkspecs/win32-g++ -IF:/NFWizard2 -IF:/NFWizard2/Source -IC:/Qt/Qt5.9.0/5.9/mingw53_32/include -IC:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets -IC:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtGui -IC:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtANGLE -IC:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtXml -IC:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtCore -IC:/Qt/Qt5.9.0/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include -IC:/Qt/Qt5.9.0/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include-fixed -IC:/Qt/Qt5.9.0/Tools/mingw530_32/i686-w64-mingw32/include -IC:/Qt/Qt5.9.0/Tools/mingw530_32/i686-w64-mingw32/include/c++ -IC:/Qt/Qt5.9.0/Tools/mingw530_32/i686-w64-mingw32/include/c++/i686-w64-mingw32 -IC:/Qt/Qt5.9.0/Tools/mingw530_32/i686-w64-mingw32/include/c++/backward Source\NFWizard2.h -o debug\moc_NFWizard2.cpp
 
 debug/moc_DialogConfigurationHelp.cpp: C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/QDialog \
 		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qdialog.h \
@@ -629,7 +630,7 @@ debug/moc_DialogConfigurationHelp.cpp: C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWi
 		Source/DialogConfigurationHelp.h \
 		debug/moc_predefs.h \
 		C:/Qt/Qt5.9.0/5.9/mingw53_32/bin/moc.exe
-	C:\Qt\Qt5.9.0\5.9\mingw53_32\bin\moc.exe $(DEFINES) --include debug/moc_predefs.h -IC:/Qt/Qt5.9.0/5.9/mingw53_32/mkspecs/win32-g++ -IO:/QT_Trabajo/NFWizard2 -IO:/QT_Trabajo/NFWizard2/Source -IC:/Qt/Qt5.9.0/5.9/mingw53_32/include -IC:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets -IC:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtGui -IC:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtANGLE -IC:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtXml -IC:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtCore -IC:/Qt/Qt5.9.0/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include -IC:/Qt/Qt5.9.0/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include-fixed -IC:/Qt/Qt5.9.0/Tools/mingw530_32/i686-w64-mingw32/include -IC:/Qt/Qt5.9.0/Tools/mingw530_32/i686-w64-mingw32/include/c++ -IC:/Qt/Qt5.9.0/Tools/mingw530_32/i686-w64-mingw32/include/c++/i686-w64-mingw32 -IC:/Qt/Qt5.9.0/Tools/mingw530_32/i686-w64-mingw32/include/c++/backward Source\DialogConfigurationHelp.h -o debug\moc_DialogConfigurationHelp.cpp
+	C:\Qt\Qt5.9.0\5.9\mingw53_32\bin\moc.exe $(DEFINES) --include debug/moc_predefs.h -IC:/Qt/Qt5.9.0/5.9/mingw53_32/mkspecs/win32-g++ -IF:/NFWizard2 -IF:/NFWizard2/Source -IC:/Qt/Qt5.9.0/5.9/mingw53_32/include -IC:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets -IC:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtGui -IC:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtANGLE -IC:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtXml -IC:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtCore -IC:/Qt/Qt5.9.0/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include -IC:/Qt/Qt5.9.0/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include-fixed -IC:/Qt/Qt5.9.0/Tools/mingw530_32/i686-w64-mingw32/include -IC:/Qt/Qt5.9.0/Tools/mingw530_32/i686-w64-mingw32/include/c++ -IC:/Qt/Qt5.9.0/Tools/mingw530_32/i686-w64-mingw32/include/c++/i686-w64-mingw32 -IC:/Qt/Qt5.9.0/Tools/mingw530_32/i686-w64-mingw32/include/c++/backward Source\DialogConfigurationHelp.h -o debug\moc_DialogConfigurationHelp.cpp
 
 debug/moc_qhierarchy_state.cpp: C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/QPushButton \
 		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qpushbutton.h \
@@ -737,7 +738,7 @@ debug/moc_qhierarchy_state.cpp: C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/Q
 		Source/qhierarchy_state.h \
 		debug/moc_predefs.h \
 		C:/Qt/Qt5.9.0/5.9/mingw53_32/bin/moc.exe
-	C:\Qt\Qt5.9.0\5.9\mingw53_32\bin\moc.exe $(DEFINES) --include debug/moc_predefs.h -IC:/Qt/Qt5.9.0/5.9/mingw53_32/mkspecs/win32-g++ -IO:/QT_Trabajo/NFWizard2 -IO:/QT_Trabajo/NFWizard2/Source -IC:/Qt/Qt5.9.0/5.9/mingw53_32/include -IC:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets -IC:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtGui -IC:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtANGLE -IC:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtXml -IC:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtCore -IC:/Qt/Qt5.9.0/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include -IC:/Qt/Qt5.9.0/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include-fixed -IC:/Qt/Qt5.9.0/Tools/mingw530_32/i686-w64-mingw32/include -IC:/Qt/Qt5.9.0/Tools/mingw530_32/i686-w64-mingw32/include/c++ -IC:/Qt/Qt5.9.0/Tools/mingw530_32/i686-w64-mingw32/include/c++/i686-w64-mingw32 -IC:/Qt/Qt5.9.0/Tools/mingw530_32/i686-w64-mingw32/include/c++/backward Source\qhierarchy_state.h -o debug\moc_qhierarchy_state.cpp
+	C:\Qt\Qt5.9.0\5.9\mingw53_32\bin\moc.exe $(DEFINES) --include debug/moc_predefs.h -IC:/Qt/Qt5.9.0/5.9/mingw53_32/mkspecs/win32-g++ -IF:/NFWizard2 -IF:/NFWizard2/Source -IC:/Qt/Qt5.9.0/5.9/mingw53_32/include -IC:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets -IC:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtGui -IC:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtANGLE -IC:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtXml -IC:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtCore -IC:/Qt/Qt5.9.0/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include -IC:/Qt/Qt5.9.0/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include-fixed -IC:/Qt/Qt5.9.0/Tools/mingw530_32/i686-w64-mingw32/include -IC:/Qt/Qt5.9.0/Tools/mingw530_32/i686-w64-mingw32/include/c++ -IC:/Qt/Qt5.9.0/Tools/mingw530_32/i686-w64-mingw32/include/c++/i686-w64-mingw32 -IC:/Qt/Qt5.9.0/Tools/mingw530_32/i686-w64-mingw32/include/c++/backward Source\qhierarchy_state.h -o debug\moc_qhierarchy_state.cpp
 
 compiler_moc_source_make_all:
 compiler_moc_source_clean:

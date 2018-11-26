@@ -5,6 +5,7 @@
 #include <QtCore>
 #include "DialogConfigurationHelp.h"
 #include <qhierarchy_state.h>
+#include <QCompleter>
 
 namespace Ui {
 class NFWizard2;
@@ -90,6 +91,20 @@ private slots:
 
     void on_lw_Events_clicked(const QModelIndex &index);
 
+    void on_lw_Next_State_clicked(const QModelIndex &index);
+
+    void on_lw_Actions_clicked(const QModelIndex &index);
+
+    void on_pb_search_state_clicked();
+
+    void on_pb_add_event_clicked();
+
+    void on_pb_cancel_add_event_clicked();
+
+    void on_le_state_to_search_textChanged(const QString &arg1);
+
+    void on_selected_state_in_search(const QString &state);
+
 private:
     void generateProjectFileTree();
     void generateTemplates(const QString& projectRootRef);
@@ -98,6 +113,8 @@ private:
     void processMainFiles();
     void processMainFile_add_Main_Thread_Exec(const QString thread_name, const QString main_cpp_dir);
     void process_Main_Thread_Files(const QString thread_name);
+    void process_Thread_in_Main_h_File(const QString thread_name, const QString main_thread_name);
+    void process_Thread_in_Main_cpp_File(const QString thread_name, const QString main_thread_name, const QString thread_priority);
     void process_Thread_Files(const QString thread_name);
     void processXmlFiles();
     void processXmlFiles_for_Threads(const QString thread_name);
@@ -140,6 +157,7 @@ private:
     QString current_state; ////estado marcado
     QString current_state_parent;////los hijos de este superestado son los dibujados
     int current_positions_minus_one; ////Cantidad -1 de estados a dibujar
+    QCompleter *complete_list_object;
 
 };
 

@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1280</width>
-    <height>510</height>
+    <height>800</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -25,7 +25,7 @@
   <property name="maximumSize">
    <size>
     <width>1280</width>
-    <height>720</height>
+    <height>800</height>
    </size>
   </property>
   <property name="focusPolicy">
@@ -771,7 +771,7 @@ background-color: rgb(21, 172, 112);</string>
       <x>670</x>
       <y>60</y>
       <width>132</width>
-      <height>209</height>
+      <height>241</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -794,12 +794,40 @@ color: rgb(255, 245, 242);
 border-color: rgb(21, 172, 112);</string>
          </property>
          <property name="text">
-          <string>Thread Name</string>
+          <string>New Thread Name</string>
          </property>
         </widget>
        </item>
        <item>
         <widget class="QLineEdit" name="le_thread_name">
+         <property name="styleSheet">
+          <string notr="true">font: 12pt &quot;Segoe UI&quot;;
+color: rgb(255, 245, 242);
+border-color: rgb(21, 172, 112);</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QVBoxLayout" name="verticalLayout_32">
+       <property name="sizeConstraint">
+        <enum>QLayout::SetFixedSize</enum>
+       </property>
+       <item>
+        <widget class="QLabel" name="l_main_thread_name">
+         <property name="styleSheet">
+          <string notr="true">font: 12pt &quot;Segoe UI&quot;;
+color: rgb(255, 245, 242);
+border-color: rgb(21, 172, 112);</string>
+         </property>
+         <property name="text">
+          <string>Main Thread Name</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="le_main_thread_name">
          <property name="styleSheet">
           <string notr="true">font: 12pt &quot;Segoe UI&quot;;
 color: rgb(255, 245, 242);
@@ -910,13 +938,18 @@ border-color: rgb(21, 172, 112);</string>
      </item>
      <item>
       <widget class="QPushButton" name="pb_add_thread">
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
        <property name="styleSheet">
-        <string notr="true">font: 11pt &quot;Segoe UI&quot;;
-color: rgb(255, 245, 242);
-border-color: rgb(21, 172, 112);</string>
+        <string notr="true">font: 12pt &quot;Segoe UI&quot;;
+color:  rgb(21, 172, 112);</string>
        </property>
        <property name="text">
         <string>Add Thread</string>
+       </property>
+       <property name="flat">
+        <bool>true</bool>
        </property>
       </widget>
      </item>
@@ -936,6 +969,10 @@ border-color: rgb(21, 172, 112);</string>
       <width>400</width>
       <height>200</height>
      </size>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 12pt &quot;Segoe UI&quot;;
+color: rgb(21, 172, 112);</string>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout_10">
      <property name="spacing">
@@ -969,14 +1006,14 @@ border-color: rgb(21, 172, 112);</string>
        </property>
        <property name="styleSheet">
         <string notr="true">font: 12pt &quot;Segoe UI&quot;;
-color: rgb(255, 245, 242);
-border-color: rgb(21, 172, 112);</string>
+color:  rgb(21, 172, 112);;
+</string>
        </property>
        <property name="text">
         <string>Configure Main Thread</string>
        </property>
        <property name="flat">
-        <bool>false</bool>
+        <bool>true</bool>
        </property>
       </widget>
      </item>
@@ -1005,14 +1042,14 @@ border-color: rgb(21, 172, 112);</string>
        </property>
        <property name="styleSheet">
         <string notr="true">font: 12pt &quot;Segoe UI&quot;;
-color: rgb(255, 245, 242);
+color:  rgb(21, 172, 112);
 border-color: rgb(21, 172, 112);</string>
        </property>
        <property name="text">
         <string>Configure Thread in Main</string>
        </property>
        <property name="flat">
-        <bool>false</bool>
+        <bool>true</bool>
        </property>
       </widget>
      </item>
@@ -1041,14 +1078,14 @@ border-color: rgb(21, 172, 112);</string>
        </property>
        <property name="styleSheet">
         <string notr="true">font: 12pt &quot;Segoe UI&quot;;
-color: rgb(255, 245, 242);
-border-color: rgb(21, 172, 112);</string>
+color: rgb(21, 172, 112);
+</string>
        </property>
        <property name="text">
         <string>Configure a Thread</string>
        </property>
        <property name="flat">
-        <bool>false</bool>
+        <bool>true</bool>
        </property>
       </widget>
      </item>
@@ -1059,8 +1096,8 @@ border-color: rgb(21, 172, 112);</string>
        </property>
        <property name="sizeHint" stdset="0">
         <size>
-         <width>20</width>
-         <height>40</height>
+         <width>10</width>
+         <height>20</height>
         </size>
        </property>
       </spacer>
@@ -1090,15 +1127,14 @@ border-color: rgb(21, 172, 112);</string>
        </property>
        <property name="styleSheet">
         <string notr="true">font: 12pt &quot;Segoe UI&quot;;
-border-color: rgb(21, 172, 112);
-color: rgb(255, 245, 242);
+color:  rgb(21, 172, 112);
 </string>
        </property>
        <property name="text">
         <string>Configure State Machine</string>
        </property>
        <property name="flat">
-        <bool>false</bool>
+        <bool>true</bool>
        </property>
       </widget>
      </item>
@@ -1107,100 +1143,181 @@ color: rgb(255, 245, 242);
    <widget class="QWidget" name="widget_layout_state_machine" native="true">
     <property name="geometry">
      <rect>
-      <x>830</x>
+      <x>820</x>
       <y>40</y>
-      <width>425</width>
-      <height>378</height>
+      <width>418</width>
+      <height>428</height>
      </rect>
     </property>
-    <layout class="QVBoxLayout" name="verticalLayout_12">
+    <layout class="QVBoxLayout" name="verticalLayout_11">
+     <property name="sizeConstraint">
+      <enum>QLayout::SetFixedSize</enum>
+     </property>
      <item>
-      <layout class="QVBoxLayout" name="verticalLayout_11">
-       <property name="sizeConstraint">
-        <enum>QLayout::SetFixedSize</enum>
+      <widget class="QWidget" name="widget_back_search" native="true">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>0</height>
+        </size>
        </property>
-       <item>
-        <layout class="QHBoxLayout" name="horizontalLayout_7">
-         <property name="sizeConstraint">
-          <enum>QLayout::SetFixedSize</enum>
-         </property>
-         <item>
-          <widget class="QPushButton" name="pb_back">
-           <property name="styleSheet">
-            <string notr="true">font: 12pt &quot;Segoe UI&quot;;
-border-color: rgb(21, 172, 112);
-color: rgb(255, 245, 242);</string>
-           </property>
-           <property name="text">
-            <string>Back</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLabel" name="l_state_parent_tag">
-           <property name="styleSheet">
-            <string notr="true">font: 11pt &quot;Segoe UI&quot;;
-color: rgb(255, 245, 242);</string>
-           </property>
-           <property name="text">
-            <string>         Super State  :</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLabel" name="l_name_current_state">
-           <property name="minimumSize">
-            <size>
-             <width>120</width>
-             <height>0</height>
-            </size>
-           </property>
-           <property name="maximumSize">
-            <size>
-             <width>150</width>
-             <height>30</height>
-            </size>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">font: 11pt &quot;Segoe UI&quot;;
-color: rgb(255, 245, 242);</string>
-           </property>
-           <property name="text">
-            <string>No Parent</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
-       <item>
-        <widget class="QWidget" name="widget_states" native="true">
-         <property name="enabled">
-          <bool>true</bool>
-         </property>
-         <property name="minimumSize">
-          <size>
-           <width>405</width>
-           <height>300</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>407</width>
-           <height>300</height>
-          </size>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">background-color: rgb(96, 120, 154);</string>
-         </property>
-         <widget class="QWidget" name="widget_state_info" native="true">
-          <property name="geometry">
-           <rect>
-            <x>70</x>
-            <y>0</y>
-            <width>271</width>
-            <height>287</height>
-           </rect>
+       <property name="maximumSize">
+        <size>
+         <width>400</width>
+         <height>100</height>
+        </size>
+       </property>
+       <layout class="QHBoxLayout" name="horizontalLayout_7">
+        <property name="sizeConstraint">
+         <enum>QLayout::SetFixedSize</enum>
+        </property>
+        <item>
+         <widget class="QPushButton" name="pb_back">
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>30</height>
+           </size>
           </property>
+          <property name="cursor">
+           <cursorShape>PointingHandCursor</cursorShape>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">font: 12pt &quot;Segoe UI&quot;;
+color:  rgb(21, 172, 112);</string>
+          </property>
+          <property name="text">
+           <string>Back</string>
+          </property>
+          <property name="flat">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="l_state_parent_tag">
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>20</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">font: 11pt &quot;Segoe UI&quot;;
+color:  rgb(21, 172, 112);
+</string>
+          </property>
+          <property name="text">
+           <string>      Super State  :</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="l_name_current_state">
+          <property name="minimumSize">
+           <size>
+            <width>80</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>80</width>
+            <height>20</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color: rgb(48, 60, 77);
+font: 11pt &quot;Segoe UI&quot;;
+color:  rgb(21, 172, 112);</string>
+          </property>
+          <property name="text">
+           <string>No Parent</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <layout class="QVBoxLayout" name="verticalLayout_31">
+          <property name="sizeConstraint">
+           <enum>QLayout::SetFixedSize</enum>
+          </property>
+          <item>
+           <widget class="QPushButton" name="pb_search_state">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>20</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>30</height>
+             </size>
+            </property>
+            <property name="cursor">
+             <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">font: 12pt &quot;Segoe UI&quot;;
+color:  rgb(21, 172, 112);</string>
+            </property>
+            <property name="text">
+             <string>Search</string>
+            </property>
+            <property name="flat">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="le_state_to_search">
+            <property name="minimumSize">
+             <size>
+              <width>80</width>
+              <height>20</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>100</width>
+              <height>30</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">font: 11pt &quot;Segoe UI&quot;;
+color: rgb(255, 245, 242);</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+     </item>
+     <item>
+      <widget class="QWidget" name="widget_states" native="true">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>400</width>
+         <height>260</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>400</width>
+         <height>270</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(89, 99, 113);</string>
+       </property>
+       <layout class="QVBoxLayout" name="verticalLayout_12">
+        <item>
+         <widget class="QWidget" name="widget_state_info" native="true">
           <layout class="QVBoxLayout" name="verticalLayout_22">
            <item>
             <layout class="QHBoxLayout" name="horizontalLayout_8">
@@ -1215,38 +1332,6 @@ color: rgb(255, 245, 242);</string>
                <property name="sizeConstraint">
                 <enum>QLayout::SetFixedSize</enum>
                </property>
-               <item>
-                <layout class="QVBoxLayout" name="verticalLayout_16">
-                 <property name="sizeConstraint">
-                  <enum>QLayout::SetFixedSize</enum>
-                 </property>
-                 <item>
-                  <widget class="QLabel" name="label">
-                   <property name="minimumSize">
-                    <size>
-                     <width>0</width>
-                     <height>12</height>
-                    </size>
-                   </property>
-                   <property name="styleSheet">
-                    <string notr="true">font: 10pt &quot;Segoe UI&quot;;
-color: rgb(255, 245, 242);</string>
-                   </property>
-                   <property name="text">
-                    <string>STATE NAME</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QLineEdit" name="le_current_state_name">
-                   <property name="styleSheet">
-                    <string notr="true">font: 9pt &quot;Segoe UI&quot;;
-color: rgb(255, 245, 242);</string>
-                   </property>
-                  </widget>
-                 </item>
-                </layout>
-               </item>
                <item>
                 <layout class="QVBoxLayout" name="verticalLayout_17">
                  <property name="sizeConstraint">
@@ -1415,6 +1500,38 @@ color: rgb(255, 245, 242);</string>
                 <number>10</number>
                </property>
                <item>
+                <layout class="QVBoxLayout" name="verticalLayout_16">
+                 <property name="sizeConstraint">
+                  <enum>QLayout::SetFixedSize</enum>
+                 </property>
+                 <item>
+                  <widget class="QLabel" name="label">
+                   <property name="minimumSize">
+                    <size>
+                     <width>0</width>
+                     <height>12</height>
+                    </size>
+                   </property>
+                   <property name="styleSheet">
+                    <string notr="true">font: 10pt &quot;Segoe UI&quot;;
+color: rgb(255, 245, 242);</string>
+                   </property>
+                   <property name="text">
+                    <string>STATE NAME</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLineEdit" name="le_current_state_name">
+                   <property name="styleSheet">
+                    <string notr="true">font: 9pt &quot;Segoe UI&quot;;
+color: rgb(255, 245, 242);</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
+               <item>
                 <layout class="QVBoxLayout" name="verticalLayout_13">
                  <property name="sizeConstraint">
                   <enum>QLayout::SetFixedSize</enum>
@@ -1437,6 +1554,9 @@ color: rgb(255, 245, 242);</string>
                      <width>120</width>
                      <height>50</height>
                     </size>
+                   </property>
+                   <property name="cursor" stdset="0">
+                    <cursorShape>PointingHandCursor</cursorShape>
                    </property>
                    <property name="styleSheet">
                     <string notr="true">font: 9pt &quot;Segoe UI&quot;;
@@ -1470,6 +1590,9 @@ color: rgb(255, 245, 242);</string>
                      <height>50</height>
                     </size>
                    </property>
+                   <property name="cursor" stdset="0">
+                    <cursorShape>PointingHandCursor</cursorShape>
+                   </property>
                    <property name="styleSheet">
                     <string notr="true">font: 9pt &quot;Segoe UI&quot;;
 color: rgb(255, 245, 242);</string>
@@ -1502,6 +1625,9 @@ color: rgb(255, 245, 242);</string>
                      <height>50</height>
                     </size>
                    </property>
+                   <property name="cursor" stdset="0">
+                    <cursorShape>PointingHandCursor</cursorShape>
+                   </property>
                    <property name="styleSheet">
                     <string notr="true">font: 9pt &quot;Segoe UI&quot;;
 color: rgb(255, 245, 242);</string>
@@ -1531,13 +1657,18 @@ color: rgb(255, 245, 242);</string>
              </item>
              <item>
               <widget class="QPushButton" name="pb_ok">
+               <property name="cursor">
+                <cursorShape>PointingHandCursor</cursorShape>
+               </property>
                <property name="styleSheet">
                 <string notr="true">font: 10pt &quot;Segoe UI&quot;;
-border-color: rgb(21, 172, 112);
 color: rgb(255, 245, 242);</string>
                </property>
                <property name="text">
                 <string>Apply</string>
+               </property>
+               <property name="flat">
+                <bool>true</bool>
                </property>
               </widget>
              </item>
@@ -1558,74 +1689,106 @@ color: rgb(255, 245, 242);</string>
            </item>
           </layout>
          </widget>
-        </widget>
-       </item>
-       <item>
-        <layout class="QHBoxLayout" name="horizontalLayout_6">
-         <property name="spacing">
-          <number>10</number>
-         </property>
-         <property name="sizeConstraint">
-          <enum>QLayout::SetFixedSize</enum>
-         </property>
-         <item>
-          <widget class="QPushButton" name="pb_add_state">
-           <property name="maximumSize">
-            <size>
-             <width>150</width>
-             <height>16777215</height>
-            </size>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">font: 12pt &quot;Segoe UI&quot;;
-border-color: rgb(21, 172, 112);
-color: rgb(255, 245, 242);
-</string>
-           </property>
-           <property name="text">
-            <string>Add State</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLineEdit" name="le_state_name">
-           <property name="maximumSize">
-            <size>
-             <width>150</width>
-             <height>16777215</height>
-            </size>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">font: 10pt &quot;Segoe UI&quot;;
+        </item>
+       </layout>
+      </widget>
+     </item>
+     <item>
+      <widget class="QWidget" name="widget_add_gen_buttons" native="true">
+       <property name="styleSheet">
+        <string notr="true">font: 12pt &quot;Segoe UI&quot;;
+color:  rgb(21, 172, 112);</string>
+       </property>
+       <layout class="QHBoxLayout" name="horizontalLayout_6">
+        <property name="spacing">
+         <number>10</number>
+        </property>
+        <property name="sizeConstraint">
+         <enum>QLayout::SetFixedSize</enum>
+        </property>
+        <item>
+         <widget class="QPushButton" name="pb_add_state">
+          <property name="minimumSize">
+           <size>
+            <width>120</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>133</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="cursor">
+           <cursorShape>PointingHandCursor</cursorShape>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">font: 12pt &quot;Segoe UI&quot;;
+color:  rgb(21, 172, 112);</string>
+          </property>
+          <property name="text">
+           <string>Add State</string>
+          </property>
+          <property name="flat">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="le_state_name">
+          <property name="minimumSize">
+           <size>
+            <width>120</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>133</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">font: 10pt &quot;Segoe UI&quot;;
 color: rgb(255, 245, 242);</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="pb_generate_state_machine">
-           <property name="enabled">
-            <bool>true</bool>
-           </property>
-           <property name="maximumSize">
-            <size>
-             <width>150</width>
-             <height>16777215</height>
-            </size>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">font: 12pt &quot;Segoe UI&quot;;
-border-color: rgb(21, 172, 112);
-
-</string>
-           </property>
-           <property name="text">
-            <string>Generate</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
-      </layout>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="pb_generate_state_machine">
+          <property name="enabled">
+           <bool>true</bool>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>120</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>133</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="cursor">
+           <cursorShape>PointingHandCursor</cursorShape>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">font: 12pt &quot;Segoe UI&quot;;
+color:  rgb(21, 172, 112);</string>
+          </property>
+          <property name="text">
+           <string>Generate</string>
+          </property>
+          <property name="flat">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
      </item>
     </layout>
    </widget>
@@ -1653,7 +1816,7 @@ border-color: rgb(21, 172, 112);
        <property name="styleSheet">
         <string notr="true">font:  10pt &quot;Segoe UI&quot;;
 border-color: rgb(21, 172, 112);
-color: rgb(255, 245, 242);</string>
+color:  rgb(21, 172, 112);</string>
        </property>
        <property name="text">
         <string>Open State</string>
@@ -1671,7 +1834,7 @@ color: rgb(255, 245, 242);</string>
        <property name="styleSheet">
         <string notr="true">font: 10pt &quot;Segoe UI&quot;;
 border-color: rgb(21, 172, 112);
-color: rgb(255, 245, 242);</string>
+color:  rgb(21, 172, 112);</string>
        </property>
        <property name="text">
         <string>Configure State</string>
@@ -1689,7 +1852,7 @@ color: rgb(255, 245, 242);</string>
        <property name="styleSheet">
         <string notr="true">font: 10pt &quot;Segoe UI&quot;;
 border-color: rgb(21, 172, 112);
-color: rgb(255, 245, 242);</string>
+color:  rgb(21, 172, 112);</string>
        </property>
        <property name="text">
         <string>Add Child </string>
@@ -1707,7 +1870,7 @@ color: rgb(255, 245, 242);</string>
        <property name="styleSheet">
         <string notr="true">font: 10pt &quot;Segoe UI&quot;;
 border-color: rgb(21, 172, 112);
-color: rgb(255, 245, 242);</string>
+color:  rgb(21, 172, 112);</string>
        </property>
        <property name="text">
         <string>Eliminate State</string>
@@ -1719,8 +1882,165 @@ color: rgb(255, 245, 242);</string>
      </item>
     </layout>
    </widget>
-   <zorder>widget_options_thread_options</zorder>
-   <zorder>widget_options_buttons</zorder>
+   <widget class="QWidget" name="widget_event_options" native="true">
+    <property name="geometry">
+     <rect>
+      <x>540</x>
+      <y>350</y>
+      <width>187</width>
+      <height>231</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout_30">
+     <item>
+      <layout class="QVBoxLayout" name="verticalLayout_29">
+       <property name="sizeConstraint">
+        <enum>QLayout::SetFixedSize</enum>
+       </property>
+       <item>
+        <layout class="QVBoxLayout" name="verticalLayout_26">
+         <property name="sizeConstraint">
+          <enum>QLayout::SetFixedSize</enum>
+         </property>
+         <item>
+          <widget class="QLabel" name="l_EVENT">
+           <property name="styleSheet">
+            <string notr="true">font: 12pt &quot;Segoe UI&quot;;
+color:  rgb(21, 172, 112);</string>
+           </property>
+           <property name="text">
+            <string>EVENT ID</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="le_event_ID_name">
+           <property name="maximumSize">
+            <size>
+             <width>165</width>
+             <height>16777215</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">font: 10pt &quot;Segoe UI&quot;;
+color: rgb(255, 245, 242);</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QVBoxLayout" name="verticalLayout_27">
+         <property name="sizeConstraint">
+          <enum>QLayout::SetFixedSize</enum>
+         </property>
+         <item>
+          <widget class="QLabel" name="l_NEXT_STATE">
+           <property name="styleSheet">
+            <string notr="true">font: 12pt &quot;Segoe UI&quot;;
+color:  rgb(21, 172, 112);</string>
+           </property>
+           <property name="text">
+            <string>NEXT STATE</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="le_next_state_name">
+           <property name="maximumSize">
+            <size>
+             <width>165</width>
+             <height>16777215</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">font: 10pt &quot;Segoe UI&quot;;
+color: rgb(255, 245, 242);</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QVBoxLayout" name="verticalLayout_28">
+         <property name="sizeConstraint">
+          <enum>QLayout::SetFixedSize</enum>
+         </property>
+         <item>
+          <widget class="QLabel" name="l_ACTION">
+           <property name="styleSheet">
+            <string notr="true">font: 12pt &quot;Segoe UI&quot;;
+color:  rgb(21, 172, 112);</string>
+           </property>
+           <property name="text">
+            <string>ACTION</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="le_action_name">
+           <property name="minimumSize">
+            <size>
+             <width>165</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>165</width>
+             <height>16777215</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">font: 10pt &quot;Segoe UI&quot;;
+color: rgb(255, 245, 242);</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_10">
+       <item>
+        <widget class="QPushButton" name="pb_cancel_add_event">
+         <property name="cursor">
+          <cursorShape>PointingHandCursor</cursorShape>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">font: 12pt &quot;Segoe UI&quot;;
+color:  rgb(21, 172, 112);</string>
+         </property>
+         <property name="text">
+          <string>Cancel</string>
+         </property>
+         <property name="flat">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pb_add_event">
+         <property name="cursor">
+          <cursorShape>PointingHandCursor</cursorShape>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">font: 12pt &quot;Segoe UI&quot;;
+color:  rgb(21, 172, 112);</string>
+         </property>
+         <property name="text">
+          <string>Add Event</string>
+         </property>
+         <property name="flat">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </widget>
    <zorder>label_bar_background</zorder>
    <zorder>pushButton_Generate_tag</zorder>
    <zorder>pushButton_Options_tag</zorder>
@@ -1731,6 +2051,9 @@ color: rgb(255, 245, 242);</string>
    <zorder>widget_generate_options</zorder>
    <zorder>widget_layout_state_machine</zorder>
    <zorder>widget_on_state_options</zorder>
+   <zorder>widget_options_thread_options</zorder>
+   <zorder>widget_event_options</zorder>
+   <zorder>widget_options_buttons</zorder>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
@@ -1738,7 +2061,7 @@ color: rgb(255, 245, 242);</string>
      <x>0</x>
      <y>0</y>
      <width>1280</width>
-     <height>25</height>
+     <height>20</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuHelp">

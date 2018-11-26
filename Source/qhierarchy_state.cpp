@@ -31,8 +31,7 @@ QHierarchy_State::QHierarchy_State(QWidget *parent, QString state_name_ref) : QP
 
 QHierarchy_State::~QHierarchy_State()
 {
-    this->~QPushButton();
-    delete this;
+    this->deleteLater();
 }
 
 void QHierarchy_State::set_configured(bool config){
@@ -91,6 +90,8 @@ QList<QHierarchy_State::QHierarchy_State_Event_t> QHierarchy_State::get_events_l
 
 void QHierarchy_State::set_state_name(const QString &name){
 
+    setObjectName(name);
+    setText(objectName().left(3).toUpper());
     state_name = name;
 }
 
@@ -123,7 +124,7 @@ void QHierarchy_State::add_Event(const QHierarchy_State_Event_t event){
 void QHierarchy_State::add_Event(const QString event, const QString next_state, const QString state_action){
 
     if(!events_list.isEmpty()){
-        if(events_list[0].event == "No Event" && events_list[0].event == "No Next State" && events_list[0].event == "No Action"){
+        if(events_list[0].event == "No Event" && events_list[0].next_state == "No Next State" && events_list[0].state_action == "No Action"){
 
             events_list.clear();
         }
@@ -149,3 +150,26 @@ void QHierarchy_State::add_Event(const QString event, const QString next_state, 
 
 //    next_states.append(next);
 //}
+
+bool QHierarchy_State::look_for_child(const QString &child_state){
+
+    if(direct_subStates.contains(child_state)){
+        return true;
+    }
+
+    else{
+        return false;
+    }
+}
+
+bool QHierarchy_State::eliminate_child(const QString &child_state){ ////Modificar esta funcion /Que hacer con estados hijos del eliminado
+
+    if(!direct_subStates.contains(child_state)){
+        return false;
+    }
+    else{
+        return direct_subStates.removeOne(child_state);
+    }
+}
+
+
