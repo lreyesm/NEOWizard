@@ -11,8 +11,8 @@ QHierarchy_State::QHierarchy_State(QWidget *parent, QString state_name_ref) : QP
     this->setText(objectName().left(3).toUpper());
     this->move(0,0);
     this->setCursor(QCursor(Qt::PointingHandCursor));
-    this->setStyleSheet(QLatin1String("color: rgb(255, 245, 242); background-image: url(:/Assets/green_2.png); font: 12pt \"Segoe UI\";"));
-    this->setFixedSize(81,81);
+    this->setStyleSheet(QLatin1String("color: rgb(255, 245, 242); background-image: url(:/Assets/state.png); font: 11pt \"Segoe UI\";"));
+    this->setFixedSize(67,67);
     this->setFlat(true);
 
     connect(this,SIGNAL(clicked(bool)),this,SLOT(send_signal_click()));
@@ -32,6 +32,17 @@ QHierarchy_State::QHierarchy_State(QWidget *parent, QString state_name_ref) : QP
 QHierarchy_State::~QHierarchy_State()
 {
     this->deleteLater();
+}
+
+void QHierarchy_State::setInitial(bool ini){
+
+    if(ini){
+        this->setStyleSheet(QLatin1String("color: rgb(255, 245, 242); background-image: url(:/Assets/state_init.png); font: 11pt \"Segoe UI\";"));
+    }
+    else{
+        this->setStyleSheet(QLatin1String("color: rgb(255, 245, 242); background-image: url(:/Assets/state.png); font: 11pt \"Segoe UI\";"));
+    }
+    initial = ini;
 }
 
 void QHierarchy_State::set_configured(bool config){

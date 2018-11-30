@@ -25,5 +25,7 @@
         <file>Assets/green_2.png</file>
         <file>Assets/green_3.png</file>
         <file>Assets/button_background.png</file>
+        <file>Assets/state.png</file>
+        <file>Assets/state_init.png</file>
     </qresource>
 </RCC>

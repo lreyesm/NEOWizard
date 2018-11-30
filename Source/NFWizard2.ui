@@ -35,7 +35,7 @@
    <string>NEOWizard</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="../assets.qrc">
+   <iconset>
     <normaloff>:/Assets/icon.ico</normaloff>:/Assets/icon.ico</iconset>
   </property>
   <property name="styleSheet">
@@ -937,6 +937,23 @@ border-color: rgb(21, 172, 112);</string>
       </layout>
      </item>
      <item>
+      <widget class="QPushButton" name="pb_acept_main_thread">
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">font: 12pt &quot;Segoe UI&quot;;
+color:  rgb(21, 172, 112);</string>
+       </property>
+       <property name="text">
+        <string>Acept</string>
+       </property>
+       <property name="flat">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
       <widget class="QPushButton" name="pb_add_thread">
        <property name="cursor">
         <cursorShape>PointingHandCursor</cursorShape>
@@ -1661,7 +1678,7 @@ color: rgb(255, 245, 242);</string>
                 <cursorShape>PointingHandCursor</cursorShape>
                </property>
                <property name="styleSheet">
-                <string notr="true">font: 10pt &quot;Segoe UI&quot;;
+                <string notr="true">font: 11pt &quot;Segoe UI&quot;;
 color: rgb(255, 245, 242);</string>
                </property>
                <property name="text">
@@ -1798,7 +1815,7 @@ color:  rgb(21, 172, 112);</string>
       <x>705</x>
       <y>300</y>
       <width>101</width>
-      <height>77</height>
+      <height>121</height>
      </rect>
     </property>
     <property name="cursor">
@@ -1820,6 +1837,24 @@ color:  rgb(21, 172, 112);</string>
        </property>
        <property name="text">
         <string>Open State</string>
+       </property>
+       <property name="flat">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pb_set_as_initial">
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">font:  10pt &quot;Segoe UI&quot;;
+border-color: rgb(21, 172, 112);
+color:  rgb(21, 172, 112);</string>
+       </property>
+       <property name="text">
+        <string>Set as Initial</string>
        </property>
        <property name="flat">
         <bool>true</bool>
@@ -2106,8 +2141,6 @@ color:  rgb(21, 172, 112);</string>
   </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources>
-  <include location="../assets.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

@@ -105,10 +105,32 @@ private slots:
 
     void on_selected_state_in_search(const QString &state);
 
+
+    void on_pb_set_as_initial_clicked();
+
+    void on_pb_acept_main_thread_clicked();
+
+    void on_le_event_ID_name_textChanged(const QString &arg1);
+
+
+    void on_le_next_state_name_textChanged(const QString &arg1);
+
+    void on_le_action_name_textChanged(const QString &arg1);
+
+    void on_le_entry_action_textChanged(const QString &arg1);
+
+    void on_le_exit_action_textChanged(const QString &arg1);
+
+    void on_le_super_state_name_textChanged(const QString &arg1);
+
+    void on_le_initial_state_name_textChanged(const QString &arg1);
+
+    void on_le_default_state_name_textChanged(const QString &arg1);
+
 private:
     void generateProjectFileTree();
     void generateTemplates(const QString& projectRootRef);
-    void generateTemplates_for_Thread(const QString& projectRootRef, const QString thread_name);
+    int generateTemplates_for_Thread(const QString& projectRootRef, const QString thread_name);
     void processInterrupFile();
     void processMainFiles();
     void processMainFile_add_Main_Thread_Exec(const QString thread_name, const QString main_cpp_dir);
@@ -138,7 +160,16 @@ private:
     bool add_state_in_superstate(const QString& superState, const QString& state_name, const bool show);
     void clear_line_edits_and_list_widgets();
     bool eliminate_State(const QString& superState);
-
+    void generate_code_for_state_machine(const QString main_thread_name);
+    void generate_definition_for_State_Machine_actions(const QString main_thread_name, const QString action);
+    void generate_definition_for_State_Machine_events(const QString main_thread_name, const QString event_id, bool define_enum, bool last_event);
+    void generate_definition_for_State_Machine_entries_funtions(const QString main_thread_name, const QString entryAction);
+    void generate_definition_for_State_Machine_exits_funtions(const QString main_thread_name, const QString exitAction);
+    int get_child_initial_index(const QString &superState);
+    int check_if_compatible(const QString path, const QString main_thread_name, const QString header_source_quest, const QString line_code);
+    int generate_guide_code_Main_Thread_h(const QString path, const QString main_thread_name);
+    int generate_guide_code_Main_Thread_cpp(const QString path, const QString main_thread_name);
+    int generate_labels_for_state_machine(const QString path, const QString main_thread_name);
 
 private:
     Ui::NFWizard2 *ui;
@@ -157,7 +188,10 @@ private:
     QString current_state; ////estado marcado
     QString current_state_parent;////los hijos de este superestado son los dibujados
     int current_positions_minus_one; ////Cantidad -1 de estados a dibujar
-    QCompleter *complete_list_object;
+    QCompleter *complete_list_object_states;
+    QCompleter *complete_list_object_actions;
+    QCompleter *complete_list_object_events;
+    QCompleter *complete_list_object_fuctions_exits_entries;
 
 };
 

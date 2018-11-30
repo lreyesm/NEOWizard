@@ -5,6 +5,8 @@
 
 using namespace eObject;
 
+/*Definition of Events ID of State Machine*/
+/*End of Definition of Events ID of State Machine*/
 
 class Main_Thread_Template:public eObject::eApplicationBase<Main_Thread_Template>
 {
@@ -18,6 +20,14 @@ public:
     /*User declare thread objects*/
 
     /*End of User declare thread objects*/
+
+
+    /*Definitions of State Machine*/
+
+    /*Definition of Action Prototypes of State Machine*/
+    /*End of Definition of Action Prototypes of State Machine*/
+
+    /*End of Definitions of State Machine*/
 
 private:
 

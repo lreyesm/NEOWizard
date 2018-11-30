@@ -36,6 +36,7 @@ public:
     quint8 get_subStates_count(){ return subState_count;}
     bool look_for_child(const QString &child_state);
     bool eliminate_child(const QString &child_state); ////Modificar esta funcion /Que hacer con estados hijos del eliminado
+    bool isInitial(){ return initial;}
 //    const QStringList get_events();
 //    const QStringList get_next_states();
 //    const QStringList get_state_actions();
@@ -50,7 +51,8 @@ public:
     void add_Event(const QString event, const QString next_state, const QString state_action);
     void set_position_in_superstate(const int pos){ position_in_superstate = (quint8)pos;}
     void add_direct_sub_State(const QString subState){ if(subState_count < MAX_CHILD_STATES){direct_subStates.append(subState); subState_count++;}}
-//    void add_state_event(const QString event);
+    void setInitial(bool ini);
+    //    void add_state_event(const QString event);
 //    void add_next_state(const QString next);
 //    void add_state_action(const QString action);
 
@@ -77,6 +79,7 @@ private:
     QStringList direct_subStates;
     int position_in_superstate;
     quint8 subState_count;
+    bool initial;
 
 //    QStringList events;
 //    QStringList next_states;

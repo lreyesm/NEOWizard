@@ -88,6 +88,7 @@ public:
     QVBoxLayout *verticalLayout_7;
     QLabel *l_thread_stack_size;
     QSpinBox *sb_thread_stack_size;
+    QPushButton *pb_acept_main_thread;
     QPushButton *pb_add_thread;
     QWidget *widget_options_buttons;
     QVBoxLayout *verticalLayout_10;
@@ -152,6 +153,7 @@ public:
     QWidget *widget_on_state_options;
     QVBoxLayout *verticalLayout_25;
     QPushButton *pb_open_state;
+    QPushButton *pb_set_as_initial;
     QPushButton *pb_configure_state;
     QPushButton *pb_add_sub_sate;
     QPushButton *pb_eliminate_state;
@@ -582,6 +584,15 @@ public:
 
         verticalLayout_9->addLayout(verticalLayout_7);
 
+        pb_acept_main_thread = new QPushButton(widget_options_thread_options);
+        pb_acept_main_thread->setObjectName(QStringLiteral("pb_acept_main_thread"));
+        pb_acept_main_thread->setCursor(QCursor(Qt::PointingHandCursor));
+        pb_acept_main_thread->setStyleSheet(QLatin1String("font: 12pt \"Segoe UI\";\n"
+"color:  rgb(21, 172, 112);"));
+        pb_acept_main_thread->setFlat(true);
+
+        verticalLayout_9->addWidget(pb_acept_main_thread);
+
         pb_add_thread = new QPushButton(widget_options_thread_options);
         pb_add_thread->setObjectName(QStringLiteral("pb_add_thread"));
         pb_add_thread->setCursor(QCursor(Qt::PointingHandCursor));
@@ -980,7 +991,7 @@ public:
         pb_ok = new QPushButton(widget_state_info);
         pb_ok->setObjectName(QStringLiteral("pb_ok"));
         pb_ok->setCursor(QCursor(Qt::PointingHandCursor));
-        pb_ok->setStyleSheet(QLatin1String("font: 10pt \"Segoe UI\";\n"
+        pb_ok->setStyleSheet(QLatin1String("font: 11pt \"Segoe UI\";\n"
 "color: rgb(255, 245, 242);"));
         pb_ok->setFlat(true);
 
@@ -1045,7 +1056,7 @@ public:
 
         widget_on_state_options = new QWidget(centralWidget);
         widget_on_state_options->setObjectName(QStringLiteral("widget_on_state_options"));
-        widget_on_state_options->setGeometry(QRect(705, 300, 101, 77));
+        widget_on_state_options->setGeometry(QRect(705, 300, 101, 121));
         widget_on_state_options->setCursor(QCursor(Qt::ArrowCursor));
         verticalLayout_25 = new QVBoxLayout(widget_on_state_options);
         verticalLayout_25->setSpacing(6);
@@ -1061,6 +1072,16 @@ public:
         pb_open_state->setFlat(true);
 
         verticalLayout_25->addWidget(pb_open_state);
+
+        pb_set_as_initial = new QPushButton(widget_on_state_options);
+        pb_set_as_initial->setObjectName(QStringLiteral("pb_set_as_initial"));
+        pb_set_as_initial->setCursor(QCursor(Qt::PointingHandCursor));
+        pb_set_as_initial->setStyleSheet(QLatin1String("font:  10pt \"Segoe UI\";\n"
+"border-color: rgb(21, 172, 112);\n"
+"color:  rgb(21, 172, 112);"));
+        pb_set_as_initial->setFlat(true);
+
+        verticalLayout_25->addWidget(pb_set_as_initial);
 
         pb_configure_state = new QPushButton(widget_on_state_options);
         pb_configure_state->setObjectName(QStringLiteral("pb_configure_state"));
@@ -1324,6 +1345,7 @@ public:
          << QApplication::translate("NFWizard2", "Error ", Q_NULLPTR)
         );
         l_thread_stack_size->setText(QApplication::translate("NFWizard2", "Thread Stack Size ", Q_NULLPTR));
+        pb_acept_main_thread->setText(QApplication::translate("NFWizard2", "Acept", Q_NULLPTR));
         pb_add_thread->setText(QApplication::translate("NFWizard2", "Add Thread", Q_NULLPTR));
 #ifndef QT_NO_TOOLTIP
         pb_configure_Main_thread->setToolTip(QApplication::translate("NFWizard2", "Look for uVision project path in your PC", Q_NULLPTR));
@@ -1358,6 +1380,7 @@ public:
         pb_add_state->setText(QApplication::translate("NFWizard2", "Add State", Q_NULLPTR));
         pb_generate_state_machine->setText(QApplication::translate("NFWizard2", "Generate", Q_NULLPTR));
         pb_open_state->setText(QApplication::translate("NFWizard2", "Open State", Q_NULLPTR));
+        pb_set_as_initial->setText(QApplication::translate("NFWizard2", "Set as Initial", Q_NULLPTR));
         pb_configure_state->setText(QApplication::translate("NFWizard2", "Configure State", Q_NULLPTR));
         pb_add_sub_sate->setText(QApplication::translate("NFWizard2", "Add Child ", Q_NULLPTR));
         pb_eliminate_state->setText(QApplication::translate("NFWizard2", "Eliminate State", Q_NULLPTR));
