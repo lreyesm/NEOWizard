@@ -21,11 +21,9 @@
         <file>Assets/options_tag_on.png</file>
         <file>Assets/background.png</file>
         <file>Assets/check_box_off.png</file>
-        <file>Assets/green_1.png</file>
-        <file>Assets/green_2.png</file>
-        <file>Assets/green_3.png</file>
         <file>Assets/button_background.png</file>
         <file>Assets/state.png</file>
         <file>Assets/state_init.png</file>
+        <file>Assets/warning.png</file>
     </qresource>
 </RCC>

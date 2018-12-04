@@ -97,6 +97,8 @@ public:
     QPushButton *pb_configure_thread_in_class;
     QSpacerItem *verticalSpacer;
     QPushButton *pb_configure_state_machine;
+    QPushButton *pb_load_state_machine;
+    QPushButton *pb_save_state_machine;
     QWidget *widget_layout_state_machine;
     QVBoxLayout *verticalLayout_11;
     QWidget *widget_back_search;
@@ -172,6 +174,21 @@ public:
     QHBoxLayout *horizontalLayout_10;
     QPushButton *pb_cancel_add_event;
     QPushButton *pb_add_event;
+    QPushButton *pb_delete_event;
+    QWidget *widget_state_machine_name;
+    QVBoxLayout *verticalLayout_34;
+    QVBoxLayout *verticalLayout_33;
+    QLabel *l_state_machine_name;
+    QLineEdit *le_state_machine_name;
+    QHBoxLayout *horizontalLayout_11;
+    QPushButton *pb_cancel_state_machine_name;
+    QPushButton *pb_acept_sate_machine_name;
+    QPushButton *pb_warning_state_machine;
+    QWidget *widget_add_delete_event;
+    QVBoxLayout *verticalLayout_35;
+    QPushButton *pb_add_event_action;
+    QPushButton *pb_delete_event_action;
+    QPushButton *pb_cancel_add_event_2;
     QMenuBar *menuBar;
     QMenu *menuHelp;
     QToolBar *mainToolBar;
@@ -668,6 +685,32 @@ public:
         pb_configure_state_machine->setFlat(true);
 
         verticalLayout_10->addWidget(pb_configure_state_machine);
+
+        pb_load_state_machine = new QPushButton(widget_options_buttons);
+        pb_load_state_machine->setObjectName(QStringLiteral("pb_load_state_machine"));
+        pb_load_state_machine->setEnabled(true);
+        pb_load_state_machine->setMinimumSize(QSize(150, 40));
+        pb_load_state_machine->setMaximumSize(QSize(200, 50));
+        pb_load_state_machine->setCursor(QCursor(Qt::PointingHandCursor));
+        pb_load_state_machine->setStyleSheet(QLatin1String("font: 12pt \"Segoe UI\";\n"
+"color:  rgb(21, 172, 112);\n"
+""));
+        pb_load_state_machine->setFlat(true);
+
+        verticalLayout_10->addWidget(pb_load_state_machine);
+
+        pb_save_state_machine = new QPushButton(widget_options_buttons);
+        pb_save_state_machine->setObjectName(QStringLiteral("pb_save_state_machine"));
+        pb_save_state_machine->setEnabled(true);
+        pb_save_state_machine->setMinimumSize(QSize(150, 40));
+        pb_save_state_machine->setMaximumSize(QSize(200, 50));
+        pb_save_state_machine->setCursor(QCursor(Qt::PointingHandCursor));
+        pb_save_state_machine->setStyleSheet(QLatin1String("font: 12pt \"Segoe UI\";\n"
+"color:  rgb(21, 172, 112);\n"
+""));
+        pb_save_state_machine->setFlat(true);
+
+        verticalLayout_10->addWidget(pb_save_state_machine);
 
         widget_layout_state_machine = new QWidget(centralWidget);
         widget_layout_state_machine->setObjectName(QStringLiteral("widget_layout_state_machine"));
@@ -1215,8 +1258,111 @@ public:
 
         horizontalLayout_10->addWidget(pb_add_event);
 
+        pb_delete_event = new QPushButton(widget_event_options);
+        pb_delete_event->setObjectName(QStringLiteral("pb_delete_event"));
+        pb_delete_event->setCursor(QCursor(Qt::PointingHandCursor));
+        pb_delete_event->setStyleSheet(QLatin1String("font: 12pt \"Segoe UI\";\n"
+"color:  rgb(21, 172, 112);"));
+        pb_delete_event->setFlat(true);
+
+        horizontalLayout_10->addWidget(pb_delete_event);
+
 
         verticalLayout_30->addLayout(horizontalLayout_10);
+
+        widget_state_machine_name = new QWidget(centralWidget);
+        widget_state_machine_name->setObjectName(QStringLiteral("widget_state_machine_name"));
+        widget_state_machine_name->setGeometry(QRect(290, 430, 188, 109));
+        verticalLayout_34 = new QVBoxLayout(widget_state_machine_name);
+        verticalLayout_34->setSpacing(6);
+        verticalLayout_34->setContentsMargins(11, 11, 11, 11);
+        verticalLayout_34->setObjectName(QStringLiteral("verticalLayout_34"));
+        verticalLayout_33 = new QVBoxLayout();
+        verticalLayout_33->setSpacing(6);
+        verticalLayout_33->setObjectName(QStringLiteral("verticalLayout_33"));
+        verticalLayout_33->setSizeConstraint(QLayout::SetFixedSize);
+        l_state_machine_name = new QLabel(widget_state_machine_name);
+        l_state_machine_name->setObjectName(QStringLiteral("l_state_machine_name"));
+        l_state_machine_name->setStyleSheet(QLatin1String("font: 12pt \"Segoe UI\";\n"
+"color:  rgb(21, 172, 112);"));
+
+        verticalLayout_33->addWidget(l_state_machine_name);
+
+        le_state_machine_name = new QLineEdit(widget_state_machine_name);
+        le_state_machine_name->setObjectName(QStringLiteral("le_state_machine_name"));
+        le_state_machine_name->setMaximumSize(QSize(165, 16777215));
+        le_state_machine_name->setStyleSheet(QLatin1String("font: 10pt \"Segoe UI\";\n"
+"color: rgb(255, 245, 242);"));
+
+        verticalLayout_33->addWidget(le_state_machine_name);
+
+        horizontalLayout_11 = new QHBoxLayout();
+        horizontalLayout_11->setSpacing(6);
+        horizontalLayout_11->setObjectName(QStringLiteral("horizontalLayout_11"));
+        horizontalLayout_11->setSizeConstraint(QLayout::SetFixedSize);
+        pb_cancel_state_machine_name = new QPushButton(widget_state_machine_name);
+        pb_cancel_state_machine_name->setObjectName(QStringLiteral("pb_cancel_state_machine_name"));
+        pb_cancel_state_machine_name->setCursor(QCursor(Qt::PointingHandCursor));
+        pb_cancel_state_machine_name->setStyleSheet(QLatin1String("font: 12pt \"Segoe UI\";\n"
+"color:  rgb(21, 172, 112);"));
+        pb_cancel_state_machine_name->setFlat(true);
+
+        horizontalLayout_11->addWidget(pb_cancel_state_machine_name);
+
+        pb_acept_sate_machine_name = new QPushButton(widget_state_machine_name);
+        pb_acept_sate_machine_name->setObjectName(QStringLiteral("pb_acept_sate_machine_name"));
+        pb_acept_sate_machine_name->setCursor(QCursor(Qt::PointingHandCursor));
+        pb_acept_sate_machine_name->setStyleSheet(QLatin1String("font: 12pt \"Segoe UI\";\n"
+"color:  rgb(21, 172, 112);"));
+        pb_acept_sate_machine_name->setFlat(true);
+
+        horizontalLayout_11->addWidget(pb_acept_sate_machine_name);
+
+
+        verticalLayout_33->addLayout(horizontalLayout_11);
+
+
+        verticalLayout_34->addLayout(verticalLayout_33);
+
+        pb_warning_state_machine = new QPushButton(centralWidget);
+        pb_warning_state_machine->setObjectName(QStringLiteral("pb_warning_state_machine"));
+        pb_warning_state_machine->setGeometry(QRect(760, 480, 67, 66));
+        pb_warning_state_machine->setStyleSheet(QStringLiteral("background-image: url(:/Assets/warning.png); background-color: rgb(89, 99, 113);"));
+        pb_warning_state_machine->setFlat(true);
+        widget_add_delete_event = new QWidget(centralWidget);
+        widget_add_delete_event->setObjectName(QStringLiteral("widget_add_delete_event"));
+        widget_add_delete_event->setGeometry(QRect(900, 530, 96, 66));
+        verticalLayout_35 = new QVBoxLayout(widget_add_delete_event);
+        verticalLayout_35->setSpacing(6);
+        verticalLayout_35->setContentsMargins(11, 11, 11, 11);
+        verticalLayout_35->setObjectName(QStringLiteral("verticalLayout_35"));
+        verticalLayout_35->setSizeConstraint(QLayout::SetFixedSize);
+        pb_add_event_action = new QPushButton(widget_add_delete_event);
+        pb_add_event_action->setObjectName(QStringLiteral("pb_add_event_action"));
+        pb_add_event_action->setCursor(QCursor(Qt::PointingHandCursor));
+        pb_add_event_action->setStyleSheet(QLatin1String("font: 12pt \"Segoe UI\";\n"
+"color:  rgb(21, 172, 112);"));
+        pb_add_event_action->setFlat(true);
+
+        verticalLayout_35->addWidget(pb_add_event_action);
+
+        pb_delete_event_action = new QPushButton(widget_add_delete_event);
+        pb_delete_event_action->setObjectName(QStringLiteral("pb_delete_event_action"));
+        pb_delete_event_action->setCursor(QCursor(Qt::PointingHandCursor));
+        pb_delete_event_action->setStyleSheet(QLatin1String("font: 12pt \"Segoe UI\";\n"
+"color:  rgb(21, 172, 112);"));
+        pb_delete_event_action->setFlat(true);
+
+        verticalLayout_35->addWidget(pb_delete_event_action);
+
+        pb_cancel_add_event_2 = new QPushButton(widget_add_delete_event);
+        pb_cancel_add_event_2->setObjectName(QStringLiteral("pb_cancel_add_event_2"));
+        pb_cancel_add_event_2->setCursor(QCursor(Qt::PointingHandCursor));
+        pb_cancel_add_event_2->setStyleSheet(QLatin1String("font: 12pt \"Segoe UI\";\n"
+"color:  rgb(21, 172, 112);"));
+        pb_cancel_add_event_2->setFlat(true);
+
+        verticalLayout_35->addWidget(pb_cancel_add_event_2);
 
         NFWizard2->setCentralWidget(centralWidget);
         label_bar_background->raise();
@@ -1232,6 +1378,11 @@ public:
         widget_options_thread_options->raise();
         widget_event_options->raise();
         widget_options_buttons->raise();
+        widget_state_machine_name->raise();
+        pb_warning_state_machine->raise();
+        pb_add_event_action->raise();
+        pb_delete_event_action->raise();
+        widget_add_delete_event->raise();
         menuBar = new QMenuBar(NFWizard2);
         menuBar->setObjectName(QStringLiteral("menuBar"));
         menuBar->setGeometry(QRect(0, 0, 1280, 20));
@@ -1346,26 +1497,43 @@ public:
         );
         l_thread_stack_size->setText(QApplication::translate("NFWizard2", "Thread Stack Size ", Q_NULLPTR));
         pb_acept_main_thread->setText(QApplication::translate("NFWizard2", "Acept", Q_NULLPTR));
+#ifndef QT_NO_TOOLTIP
+        pb_add_thread->setToolTip(QApplication::translate("NFWizard2", "Add the Thread configured", Q_NULLPTR));
+#endif // QT_NO_TOOLTIP
         pb_add_thread->setText(QApplication::translate("NFWizard2", "Add Thread", Q_NULLPTR));
 #ifndef QT_NO_TOOLTIP
-        pb_configure_Main_thread->setToolTip(QApplication::translate("NFWizard2", "Look for uVision project path in your PC", Q_NULLPTR));
+        pb_configure_Main_thread->setToolTip(QApplication::translate("NFWizard2", "Configure a Main Thread and execute it in main.cpp", Q_NULLPTR));
 #endif // QT_NO_TOOLTIP
         pb_configure_Main_thread->setText(QApplication::translate("NFWizard2", "Configure Main Thread", Q_NULLPTR));
 #ifndef QT_NO_TOOLTIP
-        pb_configure_thread_in_main->setToolTip(QApplication::translate("NFWizard2", "Look for uVision project path in your PC", Q_NULLPTR));
+        pb_configure_thread_in_main->setToolTip(QApplication::translate("NFWizard2", "Configure a Thread inside the Main Thread, you can execute it whenever you desire", Q_NULLPTR));
 #endif // QT_NO_TOOLTIP
         pb_configure_thread_in_main->setText(QApplication::translate("NFWizard2", "Configure Thread in Main", Q_NULLPTR));
 #ifndef QT_NO_TOOLTIP
-        pb_configure_thread_in_class->setToolTip(QApplication::translate("NFWizard2", "Look for uVision project path in your PC", Q_NULLPTR));
+        pb_configure_thread_in_class->setToolTip(QApplication::translate("NFWizard2", "Configure a Thread inside a Class you can name", Q_NULLPTR));
 #endif // QT_NO_TOOLTIP
         pb_configure_thread_in_class->setText(QApplication::translate("NFWizard2", "Configure a Thread", Q_NULLPTR));
 #ifndef QT_NO_TOOLTIP
-        pb_configure_state_machine->setToolTip(QApplication::translate("NFWizard2", "Look for uVision project path in your PC", Q_NULLPTR));
+        pb_configure_state_machine->setToolTip(QApplication::translate("NFWizard2", "Configure a state machine and then generate the code in your Main Thread", Q_NULLPTR));
 #endif // QT_NO_TOOLTIP
         pb_configure_state_machine->setText(QApplication::translate("NFWizard2", "Configure State Machine", Q_NULLPTR));
+#ifndef QT_NO_TOOLTIP
+        pb_load_state_machine->setToolTip(QApplication::translate("NFWizard2", "Load a State Machine saved in folder HSMs into your uVision project path", Q_NULLPTR));
+#endif // QT_NO_TOOLTIP
+        pb_load_state_machine->setText(QApplication::translate("NFWizard2", "Load State Machine", Q_NULLPTR));
+#ifndef QT_NO_TOOLTIP
+        pb_save_state_machine->setToolTip(QApplication::translate("NFWizard2", "Save the State Machine configured in folder HSMs into your uVision project path", Q_NULLPTR));
+#endif // QT_NO_TOOLTIP
+        pb_save_state_machine->setText(QApplication::translate("NFWizard2", "Save State Machine", Q_NULLPTR));
+#ifndef QT_NO_TOOLTIP
+        pb_back->setToolTip(QApplication::translate("NFWizard2", "Go back to previous parent", Q_NULLPTR));
+#endif // QT_NO_TOOLTIP
         pb_back->setText(QApplication::translate("NFWizard2", "Back", Q_NULLPTR));
         l_state_parent_tag->setText(QApplication::translate("NFWizard2", "      Super State  :", Q_NULLPTR));
         l_name_current_state->setText(QApplication::translate("NFWizard2", "No Parent", Q_NULLPTR));
+#ifndef QT_NO_TOOLTIP
+        pb_search_state->setToolTip(QApplication::translate("NFWizard2", "Search for a State of the State Machine configured", Q_NULLPTR));
+#endif // QT_NO_TOOLTIP
         pb_search_state->setText(QApplication::translate("NFWizard2", "Search", Q_NULLPTR));
         label_2->setText(QApplication::translate("NFWizard2", "SUPER STATE", Q_NULLPTR));
         label_3->setText(QApplication::translate("NFWizard2", "INITIAL STATE", Q_NULLPTR));
@@ -1376,8 +1544,17 @@ public:
         l_Events->setText(QApplication::translate("NFWizard2", "EVENTS", Q_NULLPTR));
         l_Next_State->setText(QApplication::translate("NFWizard2", "NEXT STATE", Q_NULLPTR));
         l_actions->setText(QApplication::translate("NFWizard2", "ACTIONS", Q_NULLPTR));
+#ifndef QT_NO_TOOLTIP
+        pb_ok->setToolTip(QApplication::translate("NFWizard2", "Apply changes to the State properties", Q_NULLPTR));
+#endif // QT_NO_TOOLTIP
         pb_ok->setText(QApplication::translate("NFWizard2", "Apply", Q_NULLPTR));
+#ifndef QT_NO_TOOLTIP
+        pb_add_state->setToolTip(QApplication::translate("NFWizard2", "Add a new State in the current Super State", Q_NULLPTR));
+#endif // QT_NO_TOOLTIP
         pb_add_state->setText(QApplication::translate("NFWizard2", "Add State", Q_NULLPTR));
+#ifndef QT_NO_TOOLTIP
+        pb_generate_state_machine->setToolTip(QApplication::translate("NFWizard2", "Generate the code for the State Machine configured or loaded inside your Main Thread", Q_NULLPTR));
+#endif // QT_NO_TOOLTIP
         pb_generate_state_machine->setText(QApplication::translate("NFWizard2", "Generate", Q_NULLPTR));
         pb_open_state->setText(QApplication::translate("NFWizard2", "Open State", Q_NULLPTR));
         pb_set_as_initial->setText(QApplication::translate("NFWizard2", "Set as Initial", Q_NULLPTR));
@@ -1387,8 +1564,37 @@ public:
         l_EVENT->setText(QApplication::translate("NFWizard2", "EVENT ID", Q_NULLPTR));
         l_NEXT_STATE->setText(QApplication::translate("NFWizard2", "NEXT STATE", Q_NULLPTR));
         l_ACTION->setText(QApplication::translate("NFWizard2", "ACTION", Q_NULLPTR));
+#ifndef QT_NO_TOOLTIP
+        pb_cancel_add_event->setToolTip(QApplication::translate("NFWizard2", "Cancel the adding of the event", Q_NULLPTR));
+#endif // QT_NO_TOOLTIP
         pb_cancel_add_event->setText(QApplication::translate("NFWizard2", "Cancel", Q_NULLPTR));
+#ifndef QT_NO_TOOLTIP
+        pb_add_event->setToolTip(QApplication::translate("NFWizard2", "Add the event configured", Q_NULLPTR));
+#endif // QT_NO_TOOLTIP
         pb_add_event->setText(QApplication::translate("NFWizard2", "Add Event", Q_NULLPTR));
+#ifndef QT_NO_TOOLTIP
+        pb_delete_event->setToolTip(QApplication::translate("NFWizard2", "Add the event configured", Q_NULLPTR));
+#endif // QT_NO_TOOLTIP
+        pb_delete_event->setText(QApplication::translate("NFWizard2", "Erase Event", Q_NULLPTR));
+        l_state_machine_name->setText(QApplication::translate("NFWizard2", "State Machine Name", Q_NULLPTR));
+#ifndef QT_NO_TOOLTIP
+        pb_cancel_state_machine_name->setToolTip(QApplication::translate("NFWizard2", "Cancel the name configured", Q_NULLPTR));
+#endif // QT_NO_TOOLTIP
+        pb_cancel_state_machine_name->setText(QApplication::translate("NFWizard2", "Cancel", Q_NULLPTR));
+        pb_acept_sate_machine_name->setText(QApplication::translate("NFWizard2", "Acept", Q_NULLPTR));
+        pb_warning_state_machine->setText(QString());
+#ifndef QT_NO_TOOLTIP
+        pb_add_event_action->setToolTip(QApplication::translate("NFWizard2", "Add the event configured", Q_NULLPTR));
+#endif // QT_NO_TOOLTIP
+        pb_add_event_action->setText(QApplication::translate("NFWizard2", "Add Event", Q_NULLPTR));
+#ifndef QT_NO_TOOLTIP
+        pb_delete_event_action->setToolTip(QApplication::translate("NFWizard2", "Add the event configured", Q_NULLPTR));
+#endif // QT_NO_TOOLTIP
+        pb_delete_event_action->setText(QApplication::translate("NFWizard2", "Erase Event", Q_NULLPTR));
+#ifndef QT_NO_TOOLTIP
+        pb_cancel_add_event_2->setToolTip(QApplication::translate("NFWizard2", "Cancel the adding of the event", Q_NULLPTR));
+#endif // QT_NO_TOOLTIP
+        pb_cancel_add_event_2->setText(QApplication::translate("NFWizard2", "Cancel", Q_NULLPTR));
         menuHelp->setTitle(QApplication::translate("NFWizard2", "Help", Q_NULLPTR));
     } // retranslateUi
 

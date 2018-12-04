@@ -35,7 +35,7 @@
    <string>NEOWizard</string>
   </property>
   <property name="windowIcon">
-   <iconset>
+   <iconset resource="../assets.qrc">
     <normaloff>:/Assets/icon.ico</normaloff>:/Assets/icon.ico</iconset>
   </property>
   <property name="styleSheet">
@@ -958,6 +958,9 @@ color:  rgb(21, 172, 112);</string>
        <property name="cursor">
         <cursorShape>PointingHandCursor</cursorShape>
        </property>
+       <property name="toolTip">
+        <string>Add the Thread configured</string>
+       </property>
        <property name="styleSheet">
         <string notr="true">font: 12pt &quot;Segoe UI&quot;;
 color:  rgb(21, 172, 112);</string>
@@ -1019,7 +1022,7 @@ color: rgb(21, 172, 112);</string>
         <cursorShape>PointingHandCursor</cursorShape>
        </property>
        <property name="toolTip">
-        <string>Look for uVision project path in your PC</string>
+        <string>Configure a Main Thread and execute it in main.cpp</string>
        </property>
        <property name="styleSheet">
         <string notr="true">font: 12pt &quot;Segoe UI&quot;;
@@ -1055,7 +1058,7 @@ color:  rgb(21, 172, 112);;
         <cursorShape>PointingHandCursor</cursorShape>
        </property>
        <property name="toolTip">
-        <string>Look for uVision project path in your PC</string>
+        <string>Configure a Thread inside the Main Thread, you can execute it whenever you desire</string>
        </property>
        <property name="styleSheet">
         <string notr="true">font: 12pt &quot;Segoe UI&quot;;
@@ -1091,7 +1094,7 @@ border-color: rgb(21, 172, 112);</string>
         <cursorShape>PointingHandCursor</cursorShape>
        </property>
        <property name="toolTip">
-        <string>Look for uVision project path in your PC</string>
+        <string>Configure a Thread inside a Class you can name</string>
        </property>
        <property name="styleSheet">
         <string notr="true">font: 12pt &quot;Segoe UI&quot;;
@@ -1140,7 +1143,7 @@ color: rgb(21, 172, 112);
         <cursorShape>PointingHandCursor</cursorShape>
        </property>
        <property name="toolTip">
-        <string>Look for uVision project path in your PC</string>
+        <string>Configure a state machine and then generate the code in your Main Thread</string>
        </property>
        <property name="styleSheet">
         <string notr="true">font: 12pt &quot;Segoe UI&quot;;
@@ -1149,6 +1152,78 @@ color:  rgb(21, 172, 112);
        </property>
        <property name="text">
         <string>Configure State Machine</string>
+       </property>
+       <property name="flat">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pb_load_state_machine">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>150</width>
+         <height>40</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>200</width>
+         <height>50</height>
+        </size>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="toolTip">
+        <string>Load a State Machine saved in folder HSMs into your uVision project path</string>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">font: 12pt &quot;Segoe UI&quot;;
+color:  rgb(21, 172, 112);
+</string>
+       </property>
+       <property name="text">
+        <string>Load State Machine</string>
+       </property>
+       <property name="flat">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pb_save_state_machine">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>150</width>
+         <height>40</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>200</width>
+         <height>50</height>
+        </size>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="toolTip">
+        <string>Save the State Machine configured in folder HSMs into your uVision project path</string>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">font: 12pt &quot;Segoe UI&quot;;
+color:  rgb(21, 172, 112);
+</string>
+       </property>
+       <property name="text">
+        <string>Save State Machine</string>
        </property>
        <property name="flat">
         <bool>true</bool>
@@ -1198,6 +1273,9 @@ color:  rgb(21, 172, 112);
           </property>
           <property name="cursor">
            <cursorShape>PointingHandCursor</cursorShape>
+          </property>
+          <property name="toolTip">
+           <string>Go back to previous parent</string>
           </property>
           <property name="styleSheet">
            <string notr="true">font: 12pt &quot;Segoe UI&quot;;
@@ -1274,6 +1352,9 @@ color:  rgb(21, 172, 112);</string>
             </property>
             <property name="cursor">
              <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="toolTip">
+             <string>Search for a State of the State Machine configured</string>
             </property>
             <property name="styleSheet">
              <string notr="true">font: 12pt &quot;Segoe UI&quot;;
@@ -1677,6 +1758,9 @@ color: rgb(255, 245, 242);</string>
                <property name="cursor">
                 <cursorShape>PointingHandCursor</cursorShape>
                </property>
+               <property name="toolTip">
+                <string>Apply changes to the State properties</string>
+               </property>
                <property name="styleSheet">
                 <string notr="true">font: 11pt &quot;Segoe UI&quot;;
 color: rgb(255, 245, 242);</string>
@@ -1740,6 +1824,9 @@ color:  rgb(21, 172, 112);</string>
           <property name="cursor">
            <cursorShape>PointingHandCursor</cursorShape>
           </property>
+          <property name="toolTip">
+           <string>Add a new State in the current Super State</string>
+          </property>
           <property name="styleSheet">
            <string notr="true">font: 12pt &quot;Segoe UI&quot;;
 color:  rgb(21, 172, 112);</string>
@@ -1791,6 +1878,9 @@ color: rgb(255, 245, 242);</string>
           </property>
           <property name="cursor">
            <cursorShape>PointingHandCursor</cursorShape>
+          </property>
+          <property name="toolTip">
+           <string>Generate the code for the State Machine configured or loaded inside your Main Thread</string>
           </property>
           <property name="styleSheet">
            <string notr="true">font: 12pt &quot;Segoe UI&quot;;
@@ -2043,6 +2133,9 @@ color: rgb(255, 245, 242);</string>
          <property name="cursor">
           <cursorShape>PointingHandCursor</cursorShape>
          </property>
+         <property name="toolTip">
+          <string>Cancel the adding of the event</string>
+         </property>
          <property name="styleSheet">
           <string notr="true">font: 12pt &quot;Segoe UI&quot;;
 color:  rgb(21, 172, 112);</string>
@@ -2060,6 +2153,9 @@ color:  rgb(21, 172, 112);</string>
          <property name="cursor">
           <cursorShape>PointingHandCursor</cursorShape>
          </property>
+         <property name="toolTip">
+          <string>Add the event configured</string>
+         </property>
          <property name="styleSheet">
           <string notr="true">font: 12pt &quot;Segoe UI&quot;;
 color:  rgb(21, 172, 112);</string>
@@ -2072,7 +2168,209 @@ color:  rgb(21, 172, 112);</string>
          </property>
         </widget>
        </item>
+       <item>
+        <widget class="QPushButton" name="pb_delete_event">
+         <property name="cursor">
+          <cursorShape>PointingHandCursor</cursorShape>
+         </property>
+         <property name="toolTip">
+          <string>Add the event configured</string>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">font: 12pt &quot;Segoe UI&quot;;
+color:  rgb(21, 172, 112);</string>
+         </property>
+         <property name="text">
+          <string>Erase Event</string>
+         </property>
+         <property name="flat">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
       </layout>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="widget_state_machine_name" native="true">
+    <property name="geometry">
+     <rect>
+      <x>290</x>
+      <y>430</y>
+      <width>188</width>
+      <height>109</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout_34">
+     <item>
+      <layout class="QVBoxLayout" name="verticalLayout_33">
+       <property name="sizeConstraint">
+        <enum>QLayout::SetFixedSize</enum>
+       </property>
+       <item>
+        <widget class="QLabel" name="l_state_machine_name">
+         <property name="styleSheet">
+          <string notr="true">font: 12pt &quot;Segoe UI&quot;;
+color:  rgb(21, 172, 112);</string>
+         </property>
+         <property name="text">
+          <string>State Machine Name</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="le_state_machine_name">
+         <property name="maximumSize">
+          <size>
+           <width>165</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">font: 10pt &quot;Segoe UI&quot;;
+color: rgb(255, 245, 242);</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_11">
+         <property name="sizeConstraint">
+          <enum>QLayout::SetFixedSize</enum>
+         </property>
+         <item>
+          <widget class="QPushButton" name="pb_cancel_state_machine_name">
+           <property name="cursor">
+            <cursorShape>PointingHandCursor</cursorShape>
+           </property>
+           <property name="toolTip">
+            <string>Cancel the name configured</string>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">font: 12pt &quot;Segoe UI&quot;;
+color:  rgb(21, 172, 112);</string>
+           </property>
+           <property name="text">
+            <string>Cancel</string>
+           </property>
+           <property name="flat">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pb_acept_sate_machine_name">
+           <property name="cursor">
+            <cursorShape>PointingHandCursor</cursorShape>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">font: 12pt &quot;Segoe UI&quot;;
+color:  rgb(21, 172, 112);</string>
+           </property>
+           <property name="text">
+            <string>Acept</string>
+           </property>
+           <property name="flat">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QPushButton" name="pb_warning_state_machine">
+    <property name="geometry">
+     <rect>
+      <x>760</x>
+      <y>480</y>
+      <width>67</width>
+      <height>66</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-image: url(:/Assets/warning.png); background-color: rgb(89, 99, 113);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="flat">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QWidget" name="widget_add_delete_event" native="true">
+    <property name="geometry">
+     <rect>
+      <x>900</x>
+      <y>530</y>
+      <width>96</width>
+      <height>66</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout_35">
+     <property name="sizeConstraint">
+      <enum>QLayout::SetFixedSize</enum>
+     </property>
+     <item>
+      <widget class="QPushButton" name="pb_add_event_action">
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="toolTip">
+        <string>Add the event configured</string>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">font: 12pt &quot;Segoe UI&quot;;
+color:  rgb(21, 172, 112);</string>
+       </property>
+       <property name="text">
+        <string>Add Event</string>
+       </property>
+       <property name="flat">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pb_delete_event_action">
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="toolTip">
+        <string>Add the event configured</string>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">font: 12pt &quot;Segoe UI&quot;;
+color:  rgb(21, 172, 112);</string>
+       </property>
+       <property name="text">
+        <string>Erase Event</string>
+       </property>
+       <property name="flat">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pb_cancel_add_event_2">
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="toolTip">
+        <string>Cancel the adding of the event</string>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">font: 12pt &quot;Segoe UI&quot;;
+color:  rgb(21, 172, 112);</string>
+       </property>
+       <property name="text">
+        <string>Cancel</string>
+       </property>
+       <property name="flat">
+        <bool>true</bool>
+       </property>
+      </widget>
      </item>
     </layout>
    </widget>
@@ -2089,6 +2387,11 @@ color:  rgb(21, 172, 112);</string>
    <zorder>widget_options_thread_options</zorder>
    <zorder>widget_event_options</zorder>
    <zorder>widget_options_buttons</zorder>
+   <zorder>widget_state_machine_name</zorder>
+   <zorder>pb_warning_state_machine</zorder>
+   <zorder>pb_add_event_action</zorder>
+   <zorder>pb_delete_event_action</zorder>
+   <zorder>widget_add_delete_event</zorder>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
@@ -2141,6 +2444,8 @@ color:  rgb(21, 172, 112);</string>
   </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources/>
+ <resources>
+  <include location="../assets.qrc"/>
+ </resources>
  <connections/>
 </ui>

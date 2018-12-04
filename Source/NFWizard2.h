@@ -105,13 +105,11 @@ private slots:
 
     void on_selected_state_in_search(const QString &state);
 
-
     void on_pb_set_as_initial_clicked();
 
     void on_pb_acept_main_thread_clicked();
 
     void on_le_event_ID_name_textChanged(const QString &arg1);
-
 
     void on_le_next_state_name_textChanged(const QString &arg1);
 
@@ -126,6 +124,32 @@ private slots:
     void on_le_initial_state_name_textChanged(const QString &arg1);
 
     void on_le_default_state_name_textChanged(const QString &arg1);
+
+    void on_pb_load_state_machine_clicked();
+
+    void on_pb_save_state_machine_clicked();
+
+    void on_pb_acept_sate_machine_name_clicked();
+
+    void on_pb_cancel_state_machine_name_clicked();
+
+    void check_for_warnings();
+
+    void on_le_state_machine_name_textChanged(const QString &arg1);
+
+    void on_pb_add_event_action_clicked();
+
+    void on_pb_delete_event_action_clicked();
+
+    void on_pb_delete_event_clicked();
+
+    void on_pb_cancel_add_event_2_clicked();
+
+    void on_selected_event(const QString &arg1);
+
+signals:
+
+    check_warnings();
 
 private:
     void generateProjectFileTree();
@@ -171,6 +195,7 @@ private:
     int generate_guide_code_Main_Thread_cpp(const QString path, const QString main_thread_name);
     int generate_labels_for_state_machine(const QString path, const QString main_thread_name);
 
+
 private:
     Ui::NFWizard2 *ui;
     DialogConfigurationHelp *dialogConfigHelp;
@@ -192,6 +217,8 @@ private:
     QCompleter *complete_list_object_actions;
     QCompleter *complete_list_object_events;
     QCompleter *complete_list_object_fuctions_exits_entries;
+    QCompleter *complete_list_saved_states;
+    bool isLoad;
 
 };
 

@@ -30,7 +30,7 @@ public:
     const QString get_state_default();
     const QString get_state_on_entry_Action(){ return on_entry_Action;}
     const QString get_state_on_exit_Action(){ return on_exit_Action;}
-    QList<QHierarchy_State_Event_t> get_events_list();
+    QList<QHierarchy_State_Event_t> &get_events_list();
     quint8 get_position_in_superstate(){ return (quint8)position_in_superstate;}
     const QStringList get_direct_SubStates(){ return direct_subStates;}
     quint8 get_subStates_count(){ return subState_count;}
@@ -52,6 +52,8 @@ public:
     void set_position_in_superstate(const int pos){ position_in_superstate = (quint8)pos;}
     void add_direct_sub_State(const QString subState){ if(subState_count < MAX_CHILD_STATES){direct_subStates.append(subState); subState_count++;}}
     void setInitial(bool ini);
+    void write_file(QDataStream &out);
+    void read_file(QDataStream &in);
     //    void add_state_event(const QString event);
 //    void add_next_state(const QString next);
 //    void add_state_action(const QString action);

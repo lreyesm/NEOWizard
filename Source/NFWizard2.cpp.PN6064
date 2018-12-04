@@ -48,8 +48,7 @@ void NFWizard2::windows_widget_position(){
     this->setGeometry(200,200,793,389);
 
     //ui->widget_state_machine_name->move((int)(this->geometry().width()/2), (int)(this->geometry().height()/2));
-    ui->widget_add_delete_event->move(500,140);
-    ui->pb_warning_state_machine->move(392,77);
+    ui->pb_warning_state_machine->move(370,50);
     ui->widget_state_machine_name->move(500,140);
     ui->widget_layout_state_machine->move(370,0);
     ui->widget_options_buttons->move(90,80);
@@ -69,7 +68,6 @@ void NFWizard2::windows_widget_position(){
     ui->cb_thread_priority->setStyleSheet(QStringLiteral("color: rgb(255, 245, 242); background-color: rgb(21, 172, 112); font: 11pt \"Segoe UI\";"));
 
     ui->pb_ok->setStyleSheet(QStringLiteral("background-color: rgb(48, 60, 77); color: rgb(21, 172, 112); font: 11pt \"Segoe UI\";"));
-    ui->pb_warning_state_machine->setStyleSheet(QStringLiteral("background-image: url(:/Assets/warning.png); background-color: rgb(89, 99, 113);"));
 
 }
 
@@ -792,9 +790,7 @@ void NFWizard2::hide_all_objects(){
     ui->pushButton_Options_tag->setFixedSize(49,19);
     ui->pushButton_Options_tag->move(115,8);
 
-    ui->widget_add_delete_event->hide();
 
-    ui->pb_warning_state_machine->hide();
     if(ui->pb_configure_state_machine->text()=="Back"){
 
         on_pb_configure_state_machine_clicked();
@@ -1550,7 +1546,6 @@ void NFWizard2::on_pb_configure_state_clicked()
     ui->l_name_current_state->setText(current_state);
     ui->widget_state_info->show();
     ui->pb_add_state->setEnabled(false);
-    ui->pb_warning_state_machine->hide();
 
     int index = get_state_index_with_name(current_state);
 
@@ -1681,17 +1676,17 @@ bool NFWizard2::eliminate_State(const QString &superState){
 
 void NFWizard2::on_lw_Events_clicked(const QModelIndex &index)
 {
-    ui->widget_add_delete_event->show();
+   ui->widget_event_options->show();
 }
 
 void NFWizard2::on_lw_Next_State_clicked(const QModelIndex &index)
 {
-    ui->widget_add_delete_event->show();
+    ui->widget_event_options->show();
 }
 
 void NFWizard2::on_lw_Actions_clicked(const QModelIndex &index)
 {
-    ui->widget_add_delete_event->show();
+    ui->widget_event_options->show();
 }
 
 void NFWizard2::on_pb_search_state_clicked()
@@ -2247,15 +2242,6 @@ void NFWizard2::on_pb_set_as_initial_clicked()
         ////aqui cambiar foto de fondo de este estado (circulo con i de inicial)
     }
     ui->widget_on_state_options->hide();
-
-    if(index_parent!=-1){
-        hierarchy_states[index_parent]->setToolTip(QString("<font color =  green >State Name : ")+hierarchy_states[index_parent]->get_state_name()
-                                                   +QString("<br>Super State : ")+hierarchy_states[index_parent]->get_state_parent()
-                                                   +QString("<br>Initial State  : "+hierarchy_states[index_parent]->get_state_initial())
-                                                   +QString("<br>Next State   : ")+hierarchy_states[index_parent]->get_events_list()[0].next_state);
-    }
-
-    emit check_warnings();
 }
 
 void NFWizard2::on_pb_acept_main_thread_clicked()
@@ -2291,8 +2277,6 @@ void NFWizard2::on_le_event_ID_name_textChanged(const QString &arg1)
         complete_list_object_events->setCaseSensitivity(Qt::CaseInsensitive);
         complete_list_object_events->setCompletionMode(QCompleter::UnfilteredPopupCompletion);
         ui->le_event_ID_name->setCompleter(complete_list_object_events);
-
-        connect(complete_list_object_events,SIGNAL(highlighted(QString)),this, SLOT(on_selected_event(QString)));
     }
 }
 
@@ -2478,7 +2462,7 @@ void NFWizard2::on_pb_acept_sate_machine_name_clicked()
 
             data_base->close();
 
-            QMessageBox::information(this,"Information","<font color=white>Saved State Machine:  "+hierarchy_states[0]->get_state_name(),QMessageBox::Ok);
+            QMessageBox::information(this,"Information","Saved State Machine:  "+hierarchy_states[0]->get_state_name(),QMessageBox::Ok);
         }
     }
     else if(isLoad){
@@ -2487,7 +2471,7 @@ void NFWizard2::on_pb_acept_sate_machine_name_clicked()
 
         if (!data_base->exists()) {
             qWarning() << "file: " << data_base->fileName() << " not found!";
-            QMessageBox::information(this,"Information","<font color=white>Cannot Load State Machine:  "+ui->le_state_machine_name->text(),QMessageBox::Ok);
+            QMessageBox::information(this,"Information","Cannot Load State Machine:  "+ui->le_state_machine_name->text(),QMessageBox::Ok);
             return;
         }
 
@@ -2522,7 +2506,7 @@ void NFWizard2::on_pb_acept_sate_machine_name_clicked()
 
             data_base->close();
 
-            QMessageBox::information(this,"Information","<font color=white>Load State Machine:  "+hierarchy_states[0]->get_state_name(),QMessageBox::Ok);
+            QMessageBox::information(this,"Information","Load State Machine:  "+hierarchy_states[0]->get_state_name(),QMessageBox::Ok);
         }
         draw_super_state(hierarchy_states[0]->get_state_parent());
     }
@@ -2532,137 +2516,4 @@ void NFWizard2::on_pb_cancel_state_machine_name_clicked()
 {
     ui->widget_state_machine_name->hide();
     ui->le_state_machine_name->clear();
-}
-
-void NFWizard2::on_le_state_machine_name_textChanged(const QString &arg1)
-{
-    QFileInfo fileInfo(fileuVision);
-    QDir directory(fileInfo.dir().path()+QString("/HSMs"));
-    QStringList saved_state_machines_list = directory.entryList(QStringList() << "*.dat" << "*.DAT",QDir::Files);
-
-    if(!arg1.isEmpty()){
-        QStringList complete_list;
-        for(quint16 i=0; i< saved_state_machines_list.size(); i++){
-            if(saved_state_machines_list[i].contains(arg1)){
-                QString n = saved_state_machines_list[i];
-                n.chop(4);
-                complete_list.append(n);
-            }
-        }
-
-        if(!complete_list.isEmpty()){
-            complete_list_saved_states = new QCompleter(complete_list,this);
-
-            complete_list_saved_states->setCaseSensitivity(Qt::CaseInsensitive);
-            complete_list_saved_states->setCompletionMode(QCompleter::UnfilteredPopupCompletion);
-            ui->le_state_machine_name->setCompleter(complete_list_saved_states);
-        }
-    }
-}
-
-void NFWizard2::on_pb_add_event_action_clicked()
-{
-    ui->widget_add_delete_event->hide();
-    ui->widget_event_options->show();
-    ui->pb_add_event->show();
-    ui->pb_delete_event->hide();
-}
-
-void NFWizard2::on_pb_delete_event_action_clicked()
-{
-    ui->widget_add_delete_event->hide();
-
-    int index = get_state_index_with_name(current_state);
-
-    if(index!=-1){
-
-        if(!hierarchy_states[index]->get_events_list().isEmpty()){
-            if(hierarchy_states[index]->get_events_list()[0].event == "No Event"){
-
-                QMessageBox::warning(this, tr("NFWizard2"),tr("<font color = white >This State has no Events to erase"));
-                return;
-            }
-        }
-    }
-    ui->widget_event_options->show();
-    ui->pb_add_event->hide();
-    ui->pb_delete_event->show();
-}
-
-void NFWizard2::on_pb_cancel_add_event_2_clicked()
-{
-    ui->widget_add_delete_event->hide();
-}
-
-void NFWizard2::on_pb_delete_event_clicked()
-{
-    ui->widget_event_options->hide();
-
-    int index = get_state_index_with_name(current_state);
-
-    if(index!=-1){
-
-        if(ui->le_event_ID_name->text().isEmpty()){
-
-            QMessageBox::warning(this, tr("NFWizard2"),tr("<font color = white >Insert Event ID name to Erase"));
-            return;
-        }
-
-        for(quint16 i =0; i< hierarchy_states[index]->get_events_list().size(); i++){
-
-            if(hierarchy_states[index]->get_events_list()[i].event == ui->le_event_ID_name->text()){
-
-                hierarchy_states[index]->get_events_list().removeAt(i);
-            }
-
-        }
-        if(hierarchy_states[index]->get_events_list().isEmpty()){
-
-            hierarchy_states[index]->add_Event("No Event", "No Next State", "No Action");
-
-            ui->lw_Events->clear();
-            ui->lw_Next_State->clear();
-            ui->lw_Actions->clear();
-
-            ui->lw_Events->addItem(QString("No Event"));
-            ui->lw_Next_State->addItem(QString("No Next State"));
-            ui->lw_Actions->addItem(QString("No Action"));
-        }
-        else{
-
-            QStringList temp_to_add_events;
-            QStringList temp_to_add_next_state;
-            QStringList temp_to_add_actions;
-            ui->lw_Events->clear();
-            ui->lw_Next_State->clear();
-            ui->lw_Actions->clear();
-            for(quint16 i =0; i< hierarchy_states[index]->get_events_list().size(); i++){
-               temp_to_add_events.append( hierarchy_states[index]->get_events_list()[i].event);
-               temp_to_add_next_state.append( hierarchy_states[index]->get_events_list()[i].next_state);
-               temp_to_add_actions.append( hierarchy_states[index]->get_events_list()[i].state_action);
-            }
-
-            ui->lw_Events->addItems(temp_to_add_events);
-            ui->lw_Next_State->addItems(temp_to_add_next_state);
-            ui->lw_Actions->addItems(temp_to_add_actions);
-        }
-    }
-}
-
-void NFWizard2::on_selected_event(const QString &arg1){
-
-    int index = get_state_index_with_name(current_state);
-
-    if(index!=-1){
-
-        for(quint16 i =0; i< hierarchy_states[index]->get_events_list().size(); i++){
-
-            if(hierarchy_states[index]->get_events_list()[i].event == arg1){
-
-                ui->le_next_state_name->setText(hierarchy_states[index]->get_events_list()[i].next_state);
-                ui->le_action_name->setText(hierarchy_states[index]->get_events_list()[i].state_action);
-            }
-
-        }
-    }
 }

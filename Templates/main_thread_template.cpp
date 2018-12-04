@@ -59,6 +59,8 @@ void Main_Thread_Template::userLoop()
     /*Thread in Main Thread Generated Code*/
     /*End of Thread in Main Thread Generated Code*/
 
+    /*Start of State Machine*/
+    /*End of Start of State Machine*/
 //    while (true)
 //    {
 //

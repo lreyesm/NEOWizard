@@ -29,9 +29,62 @@ QHierarchy_State::QHierarchy_State(QWidget *parent, QString state_name_ref) : QP
     configured=false;
 }
 
+
 QHierarchy_State::~QHierarchy_State()
 {
     this->deleteLater();
+}
+
+void QHierarchy_State::write_file(QDataStream &out){
+
+
+    out<<this->state_name;
+    out<<this->state_parent;
+    out<<this->state_initial;
+    out<<this->state_default;
+    out<<this->on_entry_Action;
+    out<<this->on_exit_Action;
+    for(quint8 i=0; i< events_list.size();i++){
+
+        out<<this->events_list[i].event;
+        out<<this->events_list[i].next_state;
+        out<<this->events_list[i].state_action;
+    }
+    out<<this->direct_subStates;
+    out<<this->position_in_superstate;
+    out<<this->subState_count;
+    out<<this->initial;
+    out<<this->configured;
+
+}
+//-----------------------------------------------------------------------------------------------------------------------
+
+
+//Esta funcion me lee desde un dataStream los datos de bebe guardados en un archivo--------------------------------------
+//-----------------------------------------------------------------------------------------------------------------------
+void QHierarchy_State::read_file(QDataStream &in){
+
+    in>>this->state_name;
+    in>>this->state_parent;
+    in>>this->state_initial;
+    in>>this->state_default;
+    in>>this->on_entry_Action;
+    in>>this->on_exit_Action;
+    for(quint8 i=0; i< events_list.size();i++){
+
+        in>>this->events_list[i].event;
+        in>>this->events_list[i].next_state;
+        in>>this->events_list[i].state_action;
+    }
+    in>>this->direct_subStates;
+    in>>this->position_in_superstate;
+    in>>this->subState_count;
+    in>>this->initial;
+    in>>this->configured;
+
+    this->setObjectName(state_name);
+    this->setText(objectName().left(3).toUpper());
+    this->setInitial(initial);
 }
 
 void QHierarchy_State::setInitial(bool ini){
@@ -81,7 +134,7 @@ const QString QHierarchy_State::get_state_default(){
     return state_default;
 }
 
-QList<QHierarchy_State::QHierarchy_State_Event_t> QHierarchy_State::get_events_list(){
+QList<QHierarchy_State::QHierarchy_State_Event_t>& QHierarchy_State::get_events_list(){
 
     return events_list;
 }

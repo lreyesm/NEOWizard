@@ -135,7 +135,9 @@ int TextFileProcessor::check_if_code_exist(const QString line_code, bool case_se
 
     QString fileContent = file.readAll();
 
-    if(fileContent.contains(line_code)){
+    Qt::CaseSensitivity case_sensitive_ = (case_sensitive)?Qt::CaseSensitive:Qt::CaseInsensitive;
+
+    if(fileContent.contains(line_code, case_sensitive_)){
 
         retval = 1;
     }
@@ -165,20 +167,20 @@ int TextFileProcessor::write_string_to_document(const QString fileContent){
 }
 int TextFileProcessor::generate_machine_lines_in_main_thread_h(){
 
-    QFile file(filename());
-    if (!file.open(QFile::ReadWrite | QFile::Text)) {
-        qWarning() << "File: " << filename() << " could not be opened for read!";
-
-        return -2;
-    }
-
     QString replacement_line = "\n/*Definition of Events ID of State Machine*/\n/*End of Definition of Events ID of State Machine*/\n";
-    QString replacement_line_2 = "    /*Definitions of State Machine*/\n\n    /*Definition of Action Prototypes of State Machine*/\n    /*End of Definition of Action Prototypes of State Machine*/\n\n    /*End of Definitions of State Machine*/";
+    QString replacement_line_2 = "    /*Definitions of State Machine*/\n\n    /*Definition of Action Prototypes of State Machine*/\n    /*End of Definition of Action Prototypes of State Machine*/\n\n    /*End of Definitions of State Machine*/\n\n";
 
 
     if(check_if_code_exist("#include <eApplicationBase.h>", false)==1){
 
          QString toReplace = "#include <eApplicationBase.h>\n\n" + replacement_line;
+
+         QFile file(filename());
+         if (!file.open(QFile::ReadWrite | QFile::Text)) {
+             qWarning() << "File: " << filename() << " could not be opened for read!";
+
+             return -2;
+         }
 
          QString fileContent = file.readAll();
 
@@ -196,6 +198,13 @@ int TextFileProcessor::generate_machine_lines_in_main_thread_h(){
 
             QString toReplace = "#include \"eApplicationBase.h\"\n\n" + replacement_line;
 
+            QFile file(filename());
+            if (!file.open(QFile::ReadWrite | QFile::Text)) {
+                qWarning() << "File: " << filename() << " could not be opened for read!";
+
+                return -2;
+            }
+
             QString fileContent = file.readAll();
 
             file.close();
@@ -208,12 +217,37 @@ int TextFileProcessor::generate_machine_lines_in_main_thread_h(){
             }
         }
         else{
-            return 0;
+
+            QFile file(filename());
+            if (!file.open(QFile::ReadWrite | QFile::Text)) {
+                qWarning() << "File: " << filename() << " could not be opened for read!";
+
+                return -2;
+            }
+
+            QString fileContent = file.readAll();
+
+            fileContent = "#include <eApplicationBase.h>\n\n" + replacement_line + fileContent;
+
+            file.close();
+
+            int retval = write_string_to_document(fileContent);
+            if(retval != 1){
+                return retval;
+            }
+            return 1;
         }
     }
     if(check_if_code_exist("private:", true)==1){
 
         QString toReplace = replacement_line_2 + "private:\n";
+
+        QFile file(filename());
+        if (!file.open(QFile::ReadWrite | QFile::Text)) {
+            qWarning() << "File: " << filename() << " could not be opened for read!";
+
+            return -2;
+        }
 
         QString fileContent = file.readAll();
 
@@ -238,12 +272,6 @@ int TextFileProcessor::generate_machine_lines_in_main_thread_h(){
 
 int TextFileProcessor::generate_machine_lines_in_main_thread_cpp(const QString main_thread_name){
 
-    QFile file(filename());
-    if (!file.open(QFile::ReadWrite | QFile::Text)) {
-        qWarning() << "File: " << filename() << " could not be opened for read!";
-
-        return -2;
-    }
 
     QString replacement_line = QString("/* USER CODE BEGIN Includes */")+
             QString("\n/* USER CODE BEGIN END Includes */")+
@@ -254,7 +282,7 @@ int TextFileProcessor::generate_machine_lines_in_main_thread_cpp(const QString m
             QString("\n\n/*Definition of Exit Functions Prototypes of State Machine*/")+
             QString("\n/*End of Definition of Exit Functions Prototypes of State Machine*/");
 
-    QString replacement_line_2 = QString("    /*State Machine Generated Code*/")+
+    QString replacement_line_2 = QString("\n\n    /*State Machine Generated Code*/")+
             QString("\n\n    /*Name of State Machine controller*/")+
             QString("\n    /*End of Name of State Machine controller*/")+
 
@@ -282,11 +310,50 @@ int TextFileProcessor::generate_machine_lines_in_main_thread_cpp(const QString m
             QString("\n\n    /*Definition of all Exit Actions from State Machine*/")+
             QString("\n    /*End of Definition of all Exit Actions from State Machine*/")+
 
+            QString("\n\n    /*Start of State Machine*/")+
+            QString("\n    /*End of Start of State Machine*/")+
+
             QString("\n\n    /*End of State Machine Generated Code*/");
+
+    QString replacement_line_3 = QString("\n/*Implementation of Action Prototypes of State Machine*/")+
+            QString("\n /*End of Implementation of Action Prototypes of State Machine*/")+
+
+            QString("\n\n/*Implementation of Entry Functions of State Machine*/")+
+            QString("\n /*End of Implementation Entry Functions of State Machine*/")+
+
+            QString("\n\n/*Implementation of Exit Functions of State Machine*/")+
+            QString("\n/*End of Implementation Exit Functions of State Machine*/");
+
+    if(check_if_code_exist("/*Implementation of Action Prototypes of State Machine*/", false)!=1){
+
+
+         QFile file(filename());
+         if (!file.open(QFile::ReadWrite | QFile::Text)) {
+             qWarning() << "File: " << filename() << " could not be opened for read!";
+
+             return -2;
+         }
+
+         QString fileContent = file.readAll() + replacement_line_3;
+
+         file.close();
+
+         int retval = write_string_to_document(fileContent);
+         if(retval != 1){
+             return retval;
+         }
+    }
 
     if(check_if_code_exist("#include \""+main_thread_name+".h\"", false)==1){
 
          QString toReplace = "#include \""+main_thread_name+".h\"\n\n" + replacement_line;
+
+         QFile file(filename());
+         if (!file.open(QFile::ReadWrite | QFile::Text)) {
+             qWarning() << "File: " << filename() << " could not be opened for read!";
+
+             return -2;
+         }
 
          QString fileContent = file.readAll();
 
@@ -303,6 +370,13 @@ int TextFileProcessor::generate_machine_lines_in_main_thread_cpp(const QString m
         if(check_if_code_exist("#include <"+main_thread_name+".h>", false)==1){
 
             QString toReplace = "#include <"+main_thread_name+".h>\n\n" + replacement_line;
+
+            QFile file(filename());
+            if (!file.open(QFile::ReadWrite | QFile::Text)) {
+                qWarning() << "File: " << filename() << " could not be opened for read!";
+
+                return -2;
+            }
 
             QString fileContent = file.readAll();
 
@@ -323,6 +397,13 @@ int TextFileProcessor::generate_machine_lines_in_main_thread_cpp(const QString m
 
         QString toReplace = "::userLoop(){" + replacement_line_2;
 
+        QFile file(filename());
+        if (!file.open(QFile::ReadWrite | QFile::Text)) {
+            qWarning() << "File: " << filename() << " could not be opened for read!";
+
+            return -2;
+        }
+
         QString fileContent = file.readAll();
 
         file.close();
@@ -338,6 +419,13 @@ int TextFileProcessor::generate_machine_lines_in_main_thread_cpp(const QString m
     else{
         if(check_if_code_exist("::userLoop()\n", true)==1){
             QString toReplace = "::userLoop(){" + replacement_line_2;
+
+            QFile file(filename());
+            if (!file.open(QFile::ReadWrite | QFile::Text)) {
+                qWarning() << "File: " << filename() << " could not be opened for read!";
+
+                return -2;
+            }
 
             QString fileContent = file.readAll();
 
@@ -388,16 +476,16 @@ int TextFileProcessor::generate_code_in_main_thread_h(){
 
 int TextFileProcessor::generate_code_in_main_thread_cpp(const QString main_thread_name){
 
+    QFile file(filename());
+    if (!file.open(QFile::ReadWrite | QFile::Text)) {
+        qWarning() << "File: " << filename() << " could not be opened for read!";
+
+        return -2;
+    }
     QString replacement_line = main_thread_name+"::"+main_thread_name+"(),";
-    QString add_line = "\n\n/*Threads Functions Implementation Generated Code*/\n/*End of Threads Functions Implementation Generated Code*/\n";
+    QString add_line = QString("\n\n/*Threads Functions Implementation Generated Code*/\n/*End of Threads Functions Implementation Generated Code*/\n");
     if(check_if_code_exist(main_thread_name+"::"+main_thread_name+"():",true)==1){
 
-         QFile file(filename());
-         if (!file.open(QFile::ReadWrite | QFile::Text)) {
-             qWarning() << "File: " << filename() << " could not be opened for read!";
-
-             return -2;
-         }
          QString fileContent = file.readAll()+add_line;
          file.close();
 
@@ -407,6 +495,14 @@ int TextFileProcessor::generate_code_in_main_thread_cpp(const QString main_threa
     }
     else{
         if(check_if_code_exist(main_thread_name+"::"+main_thread_name+"()",true)==1){
+
+            QString fileContent = file.readAll()+add_line;
+            file.close();
+
+//            replacement_line = main_thread_name+"::"+main_thread_name+"()";
+//            fileContent.replace(main_thread_name+"::"+main_thread_name+"()", replacement_line);
+
+            return write_string_to_document(fileContent);
             return 1;
         }
         return 0;
