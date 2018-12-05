@@ -147,6 +147,10 @@ private slots:
 
     void on_selected_event(const QString &arg1);
 
+    void on_pb_load_from_Thread_clicked();
+
+    void on_le_main_thread_name_textChanged(const QString &arg1);
+
 signals:
 
     check_warnings();
@@ -194,6 +198,7 @@ private:
     int generate_guide_code_Main_Thread_h(const QString path, const QString main_thread_name);
     int generate_guide_code_Main_Thread_cpp(const QString path, const QString main_thread_name);
     int generate_labels_for_state_machine(const QString path, const QString main_thread_name);
+    int load_state_machine_from_Thread(const QString path, const QString main_thread_name);
 
 
 private:
@@ -218,6 +223,7 @@ private:
     QCompleter *complete_list_object_events;
     QCompleter *complete_list_object_fuctions_exits_entries;
     QCompleter *complete_list_saved_states;
+    QCompleter *complete_list_saved_threads;
     bool isLoad;
 
 };

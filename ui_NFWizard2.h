@@ -97,6 +97,7 @@ public:
     QPushButton *pb_configure_thread_in_class;
     QSpacerItem *verticalSpacer;
     QPushButton *pb_configure_state_machine;
+    QPushButton *pb_load_from_Thread;
     QPushButton *pb_load_state_machine;
     QPushButton *pb_save_state_machine;
     QWidget *widget_layout_state_machine;
@@ -685,6 +686,19 @@ public:
         pb_configure_state_machine->setFlat(true);
 
         verticalLayout_10->addWidget(pb_configure_state_machine);
+
+        pb_load_from_Thread = new QPushButton(widget_options_buttons);
+        pb_load_from_Thread->setObjectName(QStringLiteral("pb_load_from_Thread"));
+        pb_load_from_Thread->setEnabled(true);
+        pb_load_from_Thread->setMinimumSize(QSize(150, 40));
+        pb_load_from_Thread->setMaximumSize(QSize(200, 50));
+        pb_load_from_Thread->setCursor(QCursor(Qt::PointingHandCursor));
+        pb_load_from_Thread->setStyleSheet(QLatin1String("font: 12pt \"Segoe UI\";\n"
+"color:  rgb(21, 172, 112);\n"
+""));
+        pb_load_from_Thread->setFlat(true);
+
+        verticalLayout_10->addWidget(pb_load_from_Thread);
 
         pb_load_state_machine = new QPushButton(widget_options_buttons);
         pb_load_state_machine->setObjectName(QStringLiteral("pb_load_state_machine"));
@@ -1326,7 +1340,7 @@ public:
 
         pb_warning_state_machine = new QPushButton(centralWidget);
         pb_warning_state_machine->setObjectName(QStringLiteral("pb_warning_state_machine"));
-        pb_warning_state_machine->setGeometry(QRect(760, 480, 67, 66));
+        pb_warning_state_machine->setGeometry(QRect(760, 480, 46, 43));
         pb_warning_state_machine->setStyleSheet(QStringLiteral("background-image: url(:/Assets/warning.png); background-color: rgb(89, 99, 113);"));
         pb_warning_state_machine->setFlat(true);
         widget_add_delete_event = new QWidget(centralWidget);
@@ -1380,8 +1394,6 @@ public:
         widget_options_buttons->raise();
         widget_state_machine_name->raise();
         pb_warning_state_machine->raise();
-        pb_add_event_action->raise();
-        pb_delete_event_action->raise();
         widget_add_delete_event->raise();
         menuBar = new QMenuBar(NFWizard2);
         menuBar->setObjectName(QStringLiteral("menuBar"));
@@ -1517,6 +1529,10 @@ public:
         pb_configure_state_machine->setToolTip(QApplication::translate("NFWizard2", "Configure a state machine and then generate the code in your Main Thread", Q_NULLPTR));
 #endif // QT_NO_TOOLTIP
         pb_configure_state_machine->setText(QApplication::translate("NFWizard2", "Configure State Machine", Q_NULLPTR));
+#ifndef QT_NO_TOOLTIP
+        pb_load_from_Thread->setToolTip(QApplication::translate("NFWizard2", "Load a State Machine saved in folder HSMs into your uVision project path", Q_NULLPTR));
+#endif // QT_NO_TOOLTIP
+        pb_load_from_Thread->setText(QApplication::translate("NFWizard2", "Load from Main Thread", Q_NULLPTR));
 #ifndef QT_NO_TOOLTIP
         pb_load_state_machine->setToolTip(QApplication::translate("NFWizard2", "Load a State Machine saved in folder HSMs into your uVision project path", Q_NULLPTR));
 #endif // QT_NO_TOOLTIP

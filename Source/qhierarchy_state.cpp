@@ -8,11 +8,13 @@ QHierarchy_State::QHierarchy_State(QWidget *parent, QString state_name_ref) : QP
     this->state_name = state_name_ref;
     subState_count = 0;
     this->setEnabled(true);
-    this->setText(objectName().left(3).toUpper());
+    QString n = objectName().toUpper();
+    n.remove("state",Qt::CaseInsensitive);
+    this->setText(n.left(3));
     this->move(0,0);
     this->setCursor(QCursor(Qt::PointingHandCursor));
     this->setStyleSheet(QLatin1String("color: rgb(255, 245, 242); background-image: url(:/Assets/state.png); font: 11pt \"Segoe UI\";"));
-    this->setFixedSize(67,67);
+    this->setFixedSize(55,56);
     this->setFlat(true);
 
     connect(this,SIGNAL(clicked(bool)),this,SLOT(send_signal_click()));
@@ -83,7 +85,9 @@ void QHierarchy_State::read_file(QDataStream &in){
     in>>this->configured;
 
     this->setObjectName(state_name);
-    this->setText(objectName().left(3).toUpper());
+    QString n = objectName().toUpper();
+    n.remove("state",Qt::CaseInsensitive);
+    this->setText(n.left(3));
     this->setInitial(initial);
 }
 
@@ -232,6 +236,7 @@ bool QHierarchy_State::eliminate_child(const QString &child_state){ ////Modifica
         return false;
     }
     else{
+        subState_count--;
         return direct_subStates.removeOne(child_state);
     }
 }

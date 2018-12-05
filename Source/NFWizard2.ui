@@ -1159,6 +1159,42 @@ color:  rgb(21, 172, 112);
       </widget>
      </item>
      <item>
+      <widget class="QPushButton" name="pb_load_from_Thread">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>150</width>
+         <height>40</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>200</width>
+         <height>50</height>
+        </size>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="toolTip">
+        <string>Load a State Machine saved in folder HSMs into your uVision project path</string>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">font: 12pt &quot;Segoe UI&quot;;
+color:  rgb(21, 172, 112);
+</string>
+       </property>
+       <property name="text">
+        <string>Load from Main Thread</string>
+       </property>
+       <property name="flat">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
       <widget class="QPushButton" name="pb_load_state_machine">
        <property name="enabled">
         <bool>true</bool>
@@ -2285,8 +2321,8 @@ color:  rgb(21, 172, 112);</string>
      <rect>
       <x>760</x>
       <y>480</y>
-      <width>67</width>
-      <height>66</height>
+      <width>46</width>
+      <height>43</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -2389,8 +2425,6 @@ color:  rgb(21, 172, 112);</string>
    <zorder>widget_options_buttons</zorder>
    <zorder>widget_state_machine_name</zorder>
    <zorder>pb_warning_state_machine</zorder>
-   <zorder>pb_add_event_action</zorder>
-   <zorder>pb_delete_event_action</zorder>
    <zorder>widget_add_delete_event</zorder>
   </widget>
   <widget class="QMenuBar" name="menuBar">

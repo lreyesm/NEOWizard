@@ -816,6 +816,7 @@ void NFWizard2::hide_all_objects(){
 
     ui->widget_state_machine_name->hide();
     ui->pb_load_state_machine->hide();
+    ui->pb_load_from_Thread->hide();
     ui->pb_save_state_machine->hide();
 
 }
@@ -1109,6 +1110,7 @@ void NFWizard2::on_pb_configure_state_machine_clicked()
         ui->pb_configure_state_machine->setText("Back");
         ui->pb_load_state_machine->show();
         ui->pb_save_state_machine->show();
+        ui->pb_load_from_Thread->show();
 
         ui->pb_configure_thread_in_class->hide();
         ui->pb_configure_thread_in_main->hide();
@@ -1124,6 +1126,8 @@ void NFWizard2::on_pb_configure_state_machine_clicked()
 
         ui->pb_load_state_machine->hide();
         ui->pb_save_state_machine->hide();
+        ui->pb_load_from_Thread->hide();
+        ui->pb_warning_state_machine->hide();
 
         ui->widget_layout_state_machine->hide();
     }
@@ -1342,6 +1346,10 @@ int NFWizard2::draw_super_state(const QString &superState){
 
     for(quint16 i=0; i < indexes.size(); i++){
 
+        if(current_positions_minus_one>=QHierarchy_State::MAX_SUB_STATE){
+            break;
+            qDebug()<<"Maxima cantidad de estados";
+        }
         hierarchy_states[indexes[i]]->move(points[current_positions_minus_one][i]);
         hierarchy_states[indexes[i]]->set_position_in_superstate(i);
 
@@ -1412,8 +1420,11 @@ void NFWizard2::on_pb_ok_clicked()
                 }
                 ////Añadir el estado a la lista de hijos de nuevo padre
                 int new_parent_index = get_state_index_with_name(ui->le_super_state_name->text());
-                hierarchy_states[new_parent_index]->add_direct_sub_State(hierarchy_states[index]->get_state_name());
-                hierarchy_states[index]->set_state_parent(ui->le_super_state_name->text());
+                if(new_parent_index!=-1){
+
+                    hierarchy_states[new_parent_index]->add_direct_sub_State(hierarchy_states[index]->get_state_name());
+                    hierarchy_states[index]->set_state_parent(ui->le_super_state_name->text());
+                }
             }
             else{
                 QMessageBox::information(this, "NEOWizard", QString("<font green = white >Superstate not found, the State will mantain his old parent"));
@@ -1555,6 +1566,14 @@ void NFWizard2::on_pb_configure_state_clicked()
     int index = get_state_index_with_name(current_state);
 
     if(index!=-1){
+
+        ui->le_current_state_name->setText(hierarchy_states[index]->get_state_name());
+        ui->le_super_state_name->setText(hierarchy_states[index]->get_state_parent());
+        ui->le_initial_state_name->setText(hierarchy_states[index]->get_state_initial());
+        ui->le_entry_action->setText(hierarchy_states[index]->get_state_on_entry_Action());
+        ui->le_exit_action->setText(hierarchy_states[index]->get_state_on_exit_Action());
+        ui->le_default_state_name->setText(hierarchy_states[index]->get_state_default());
+
         QStringList temp_to_add_events;
         QStringList temp_to_add_next_state;
         QStringList temp_to_add_actions;
@@ -1769,7 +1788,7 @@ void NFWizard2::on_le_state_to_search_textChanged(const QString &arg1)
     if(!arg1.isEmpty()){
         QStringList complete_list;
         for(quint16 i=0; i< hierarchy_states.size(); i++){
-            if(hierarchy_states[i]->get_state_name().contains(arg1)){
+            if(hierarchy_states[i]->get_state_name().contains(arg1, Qt::CaseInsensitive)){
                 complete_list.append(hierarchy_states[i]->get_state_name());
             }
         }
@@ -1910,7 +1929,16 @@ void NFWizard2::generate_code_for_state_machine(const QString main_thread_name){
     {
     main_cpp_FileProcessor.setStartLine("/* USER CODE BEGIN Includes */");       ////inicio del contenido a eliminar
     main_cpp_FileProcessor.setEndLine("/* USER CODE BEGIN Includes */"); ////fin del contenido a eliminar
-    main_cpp_FileProcessor.setReplacementString(QString("/* USER CODE BEGIN Includes */\n\n")+QString("#include <eHierarchicalStateMachine.h>\n"));
+    main_cpp_FileProcessor.setReplacementString(QString("/* USER CODE BEGIN Includes */\n\n")+QString("#include <eHierarchicalStateMachine.h>\n\n#define APP_QUEUE_SIZE 16"));
+    main_cpp_FileProcessor.processTextBlock();
+    }
+    ///*********************************************************************************************************************************************************
+
+    /* Definition of Event Message Queue *////*********************************************************************************************************************************************************
+    {
+    main_cpp_FileProcessor.setStartLine("/*Definitions of State Machine*/");       ////inicio del contenido a eliminar
+    main_cpp_FileProcessor.setEndLine("/*Definitions of State Machine*/"); ////fin del contenido a eliminar
+    main_cpp_FileProcessor.setReplacementString(QString("/*Definitions of State Machine*/\n\n")+QString("eObject::Declare::eMessageQueue<APP_QUEUE_SIZE> appEventQueue;"));
     main_cpp_FileProcessor.processTextBlock();
     }
     ///*********************************************************************************************************************************************************
@@ -2074,8 +2102,8 @@ void NFWizard2::generate_code_for_state_machine(const QString main_thread_name){
                 main_cpp_FileProcessor.setStartLine("/*Definition of all eAction from State Machine*/");       ////inicio del contenido a eliminar
                 main_cpp_FileProcessor.setEndLine("/*Definition of all eAction from State Machine*/"); ////fin del contenido a eliminar
                 main_cpp_FileProcessor.setReplacementString(QString("/*Definition of all eAction from State Machine*/\n")
-                                                            +QString("    eObject::eState::eAction_t action_")
-                                                            +action+QString(";\n    action_")+action
+                                                            +QString("    eObject::eState::eAction_t ")
+                                                            +action+QString(";\n    ")+action
                                                             +QString(".bind<")+main_thread_name+QString(", &")+main_thread_name
                                                             +QString("::")+action+QString("_Action>(this);"));
 
@@ -2280,7 +2308,7 @@ void NFWizard2::on_le_event_ID_name_textChanged(const QString &arg1)
         for(quint16 i=0; i< hierarchy_states.size(); i++){
             for(quint16 n=0; n< hierarchy_states[i]->get_events_list().size(); n++){
 
-                if(hierarchy_states[i]->get_events_list()[n].event.contains(arg1) && hierarchy_states[i]->get_events_list()[n].event != "No Event"){
+                if(hierarchy_states[i]->get_events_list()[n].event.contains(arg1, Qt::CaseInsensitive) && hierarchy_states[i]->get_events_list()[n].event != "No Event"){
                     complete_list.append(hierarchy_states[i]->get_events_list()[n].event);
                 }
             }
@@ -2304,7 +2332,7 @@ void NFWizard2::on_le_next_state_name_textChanged(const QString &arg1)
     if(!arg1.isEmpty()){
         QStringList complete_list;
         for(quint16 i=0; i< hierarchy_states.size(); i++){
-            if(hierarchy_states[i]->get_state_name().contains(arg1)){
+            if(hierarchy_states[i]->get_state_name().contains(arg1, Qt::CaseInsensitive)){
                 complete_list.append(hierarchy_states[i]->get_state_name());
             }
         }
@@ -2325,7 +2353,7 @@ void NFWizard2::on_le_action_name_textChanged(const QString &arg1)
         for(quint16 i=0; i< hierarchy_states.size(); i++){
             for(quint16 n=0; n< hierarchy_states[i]->get_events_list().size(); n++){
 
-                if(hierarchy_states[i]->get_events_list()[n].state_action.contains(arg1) && hierarchy_states[i]->get_events_list()[n].state_action != "No Action"){
+                if(hierarchy_states[i]->get_events_list()[n].state_action.contains(arg1, Qt::CaseInsensitive) && hierarchy_states[i]->get_events_list()[n].state_action != "No Action"){
                     complete_list.append(hierarchy_states[i]->get_events_list()[n].state_action);
                 }
             }
@@ -2346,7 +2374,7 @@ void NFWizard2::on_le_entry_action_textChanged(const QString &arg1)
         QStringList complete_list;
         for(quint16 i=0; i< hierarchy_states.size(); i++){
 
-            if(hierarchy_states[i]->get_state_on_entry_Action().contains(arg1)){
+            if(hierarchy_states[i]->get_state_on_entry_Action().contains(arg1, Qt::CaseInsensitive)){
                 complete_list.append(hierarchy_states[i]->get_state_on_entry_Action());
             }
 
@@ -2367,7 +2395,7 @@ void NFWizard2::on_le_exit_action_textChanged(const QString &arg1)
         QStringList complete_list;
         for(quint16 i=0; i< hierarchy_states.size(); i++){
 
-            if(hierarchy_states[i]->get_state_on_exit_Action().contains(arg1)){
+            if(hierarchy_states[i]->get_state_on_exit_Action().contains(arg1, Qt::CaseInsensitive)){
                 complete_list.append(hierarchy_states[i]->get_state_on_exit_Action());
             }
 
@@ -2387,7 +2415,7 @@ void NFWizard2::on_le_super_state_name_textChanged(const QString &arg1)
     if(!arg1.isEmpty()){
         QStringList complete_list;
         for(quint16 i=0; i< hierarchy_states.size(); i++){
-            if(hierarchy_states[i]->get_state_name().contains(arg1)){
+            if(hierarchy_states[i]->get_state_name().contains(arg1, Qt::CaseInsensitive)){
                 complete_list.append(hierarchy_states[i]->get_state_name());
             }
         }
@@ -2407,7 +2435,7 @@ void NFWizard2::on_le_initial_state_name_textChanged(const QString &arg1)
         QStringList complete_list;
         int index = get_state_index_with_name(current_state);
         for(quint16 i=0; i< hierarchy_states[index]->get_direct_SubStates().size(); i++){
-            if(hierarchy_states[index]->get_direct_SubStates()[i].contains(arg1)){
+            if(hierarchy_states[index]->get_direct_SubStates()[i].contains(arg1, Qt::CaseInsensitive)){
                 complete_list.append(hierarchy_states[index]->get_direct_SubStates()[i]);
             }
         }
@@ -2425,7 +2453,7 @@ void NFWizard2::on_le_default_state_name_textChanged(const QString &arg1)
     if(!arg1.isEmpty()){
         QStringList complete_list;
         for(quint16 i=0; i< hierarchy_states.size(); i++){
-            if(hierarchy_states[i]->get_state_name().contains(arg1)){
+            if(hierarchy_states[i]->get_state_name().contains(arg1, Qt::CaseInsensitive)){
                 complete_list.append(hierarchy_states[i]->get_state_name());
             }
         }
@@ -2543,7 +2571,7 @@ void NFWizard2::on_le_state_machine_name_textChanged(const QString &arg1)
     if(!arg1.isEmpty()){
         QStringList complete_list;
         for(quint16 i=0; i< saved_state_machines_list.size(); i++){
-            if(saved_state_machines_list[i].contains(arg1)){
+            if(saved_state_machines_list[i].contains(arg1, Qt::CaseInsensitive)){
                 QString n = saved_state_machines_list[i];
                 n.chop(4);
                 complete_list.append(n);
@@ -2663,6 +2691,333 @@ void NFWizard2::on_selected_event(const QString &arg1){
                 ui->le_action_name->setText(hierarchy_states[index]->get_events_list()[i].state_action);
             }
 
+        }
+    }
+}
+
+void NFWizard2::on_pb_load_from_Thread_clicked()
+{
+    if(ui->le_main_thread_name->text().isEmpty()){
+
+        QMessageBox::information(this, "NEOWizard","<font color = white >Insert name of main thread");
+        ui->widget_options_thread_options->show();
+        ui->widget_options_thread_options->move(500,140);
+        ui->le_main_thread_name->show();
+        ui->l_main_thread_name->show();
+        ui->le_thread_name->hide();
+        ui->l_thread_name->hide();
+        ui->l_thread_priority->hide();
+        ui->cb_thread_priority->hide();
+        ui->l_thread_stack_size->hide();
+        ui->sb_thread_stack_size->hide();
+        ui->pb_add_thread->hide();
+        ui->pb_acept_main_thread->show();
+        return;
+    }
+
+    load_state_machine_from_Thread(fileuVision_Path, ui->le_main_thread_name->text());
+}
+
+int NFWizard2::load_state_machine_from_Thread(const QString path, const QString main_thread_name){
+
+    TextFileProcessor main_FileProcessor;
+
+    main_FileProcessor.setFilename(path+QString("/Source/")+main_thread_name+QString(".cpp"));
+
+    ////Obtiene estados********************************************************************************************************
+    main_FileProcessor.setStartLine("eObject::Declare::eState");
+    main_FileProcessor.setEndLine(";");
+
+    QStringList definitions = main_FileProcessor.get_text_between();
+    QStringList states_list;
+    for(quint16 i=0; i< definitions.size(); i++){
+
+        if(!((definitions[i]).isEmpty()) && definitions[i]!="End String"){
+            states_list.append(definitions[i].simplified().section('>',1,1).remove(" ").remove(";"));//.remove("state"));
+        }
+    }
+
+    for(quint16 i=0; i< hierarchy_states.size(); i++){  ////Borrar maquinas guardadas y vaciar lista de maquinas
+
+        hierarchy_states[i]->hide();
+        hierarchy_states[i]->deleteLater();
+    }
+    hierarchy_states.clear();
+
+    for(quint16 i=0; i< states_list.size(); i++){
+
+        if(!((definitions[i]).isEmpty())){
+            add_state_in_superstate(QString("No Parent"),states_list[i], false);
+        }
+    }
+
+    definitions.clear();
+    states_list.clear();
+    ////************************************************************************************************************************
+
+
+    ////Obtiene Estado Inicial********************************************************************************************************
+
+    main_FileProcessor.setStartLine("hsm.setInitialState");
+    main_FileProcessor.setEndLine(";");
+
+    definitions = main_FileProcessor.get_text_between();
+
+    for(quint16 n=0; n< definitions.size(); n++){
+
+        if(!((definitions[n]).isEmpty())
+                && definitions[n]!="End String"
+                && definitions[n]!="Not Found String"
+                && definitions[n]!="Not Found"
+                && definitions[n]!="No File"){
+
+            QString parent_state;
+            parent_state =(definitions[n].simplified().section('(',1,1).remove(" ").remove(")").remove(";"));//.remove("state"));
+            int index = get_state_index_with_name(parent_state);
+            if(index!=-1){
+
+                hierarchy_states[index]->setInitial(true);
+            }
+        }
+    }
+
+    definitions.clear();
+    ////*************************************************************************************************************************
+
+
+    ////Obtiene superEstados********************************************************************************************************
+
+    QString parent_state;
+    for(quint16 i=0; i< hierarchy_states.size(); i++){
+
+        main_FileProcessor.setStartLine(hierarchy_states[i]->get_state_name()+QString(".setSuperstate"));
+        main_FileProcessor.setEndLine(";");
+
+        definitions = main_FileProcessor.get_text_between();
+
+        for(quint16 n=0; n< definitions.size(); n++){
+
+            if(!((definitions[n]).isEmpty())
+                    && definitions[n]!="End String"
+                    && definitions[n]!="Not Found String"
+                    && definitions[n]!="Not Found"){
+
+                parent_state =(definitions[n].simplified().section('(',1,1).remove(" ").remove(")").remove(";"));//.remove("state"));
+
+                int index = get_state_index_with_name(parent_state);
+                if(index!=-1){
+
+                    hierarchy_states[i]->set_state_parent(parent_state);
+                    hierarchy_states[index]->add_direct_sub_State(hierarchy_states[i]->get_state_name());
+                }
+            }
+        }
+    }
+    definitions.clear();
+    ////*************************************************************************************************************************
+
+
+    ////Obtiene Estados Iniciales********************************************************************************************************
+    for(quint16 i=0; i< hierarchy_states.size(); i++){
+
+        main_FileProcessor.setStartLine(hierarchy_states[i]->get_state_name()+QString(".setInitialSubState"));
+        main_FileProcessor.setEndLine(";");
+
+        definitions = main_FileProcessor.get_text_between();
+
+        for(quint16 n=0; n< definitions.size(); n++){
+
+            if(!((definitions[n]).isEmpty())
+                    && definitions[n]!="End String"
+                    && definitions[n]!="Not Found String"
+                    && definitions[n]!="Not Found"
+                    && definitions[n]!="No File"){
+
+                QString child_initial_state;
+                child_initial_state =(definitions[n].simplified().section('(',1,1).remove(" ").remove(")").remove(";"));//.remove("state"));
+
+                hierarchy_states[i]->set_state_initial(child_initial_state);
+
+                int index = get_state_index_with_name(child_initial_state);
+                if(index!=-1){
+
+                    hierarchy_states[index]->setInitial(true);
+                }
+            }
+        }
+    }
+    definitions.clear();
+    ////*************************************************************************************************************************
+
+
+    ////Guarda declaracion de acciones*************************************************************************************************************************
+
+    QStringList action_list;
+
+    main_FileProcessor.setStartLine("eObject::eState::eAction_t");
+    main_FileProcessor.setEndLine(";");
+
+    definitions = main_FileProcessor.get_text_between();
+
+    for(quint16 i=0; i< definitions.size(); i++){
+
+        if(!((definitions[i]).isEmpty())
+                && definitions[i]!="End String"
+                && definitions[i]!="Not Found String"
+                && definitions[i]!="Not Found"
+                && definitions[i]!="No File"){
+
+            action_list.append(definitions[i].simplified().section(' ',1,1).remove(" ").remove(";"));//.remove("state"));
+        }
+    }
+
+    definitions.clear();
+    ////*************************************************************************************************************************
+
+
+    ////Añade eventos, estados siguientes y acciones********************************************************************************************************
+
+    for(quint16 i=0; i< hierarchy_states.size(); i++){
+
+        main_FileProcessor.setStartLine(hierarchy_states[i]->get_state_name()+QString(".addEvent"));
+        main_FileProcessor.setEndLine(";");
+
+        definitions = main_FileProcessor.get_text_between();
+
+        for(quint16 n=0; n< definitions.size(); n++){
+
+            if(!((definitions[n]).isEmpty())
+                    && definitions[n]!="End String"
+                    && definitions[n]!="Not Found String"
+                    && definitions[n]!="Not Found"
+                    && definitions[n]!="No File"){
+
+                QString event_struct;
+                event_struct =(definitions[n].simplified().section('(',1,1));//.remove("state"));
+                QStringList event_split = event_struct.split(",",QString::SkipEmptyParts);
+
+                for(quint8 c=0; c < event_split.size(); c++){
+
+                    event_split[c].remove(" ").remove(")").remove(";");
+
+                }
+
+                if(event_split.size()==2){  ////Evento y accion o estado siguiente
+
+                    if(action_list.contains(event_split[1])){
+
+                        hierarchy_states[i]->add_Event(event_split[0], "No Next State",event_split[1]);
+                    }
+                    else{
+                        hierarchy_states[i]->add_Event(event_split[0], event_split[1], "No Action");
+                    }
+                }
+                else if (event_split.size()==3){
+                     ////Evento y accion y estado siguiente
+                     hierarchy_states[i]->add_Event(event_split[0], event_split[1], event_split[2]);
+                }
+            }
+        }
+    }
+    definitions.clear();
+    ////*************************************************************************************************************************
+
+
+    ////Obtiene Acciones de Entrada********************************************************************************************************
+    for(quint16 i=0; i< hierarchy_states.size(); i++){
+
+        main_FileProcessor.setStartLine(hierarchy_states[i]->get_state_name()+QString(".signalEntered.connect"));
+        main_FileProcessor.setEndLine(";");
+
+        definitions = main_FileProcessor.get_text_between();
+
+        for(quint16 n=0; n< definitions.size(); n++){
+
+            if(!((definitions[n]).isEmpty())
+                    && definitions[n]!="End String"
+                    && definitions[n]!="Not Found String"
+                    && definitions[n]!="Not Found"
+                    && definitions[n]!="No File"){
+
+                QString entry_action;
+                entry_action =(definitions[n].simplified().section('<',1,1).remove(" ").remove("&")
+                                      .remove(">").remove("(").remove(")").remove(";"));//.remove("state"));
+
+                hierarchy_states[i]->set_state_entryAction(entry_action);
+
+            }
+        }
+    }
+    definitions.clear();
+    ////*************************************************************************************************************************
+
+
+    ////Obtiene Acciones de Salida********************************************************************************************************
+    for(quint16 i=0; i< hierarchy_states.size(); i++){
+
+        main_FileProcessor.setStartLine(hierarchy_states[i]->get_state_name()+QString(".signalExited.connect"));
+        main_FileProcessor.setEndLine(";");
+
+        definitions = main_FileProcessor.get_text_between();
+
+        for(quint16 n=0; n< definitions.size(); n++){
+
+            if(!((definitions[n]).isEmpty())
+                    && definitions[n]!="End String"
+                    && definitions[n]!="Not Found String"
+                    && definitions[n]!="Not Found"
+                    && definitions[n]!="No File"){
+
+                QString exit_action;
+                exit_action =(definitions[n].simplified().section('<',1,1).remove(" ").remove("&")
+                                      .remove(">").remove("(").remove(")").remove(";"));//.remove("state"));
+
+                hierarchy_states[i]->set_state_exitAction(exit_action);
+
+            }
+        }
+    }
+    definitions.clear();
+    ////*************************************************************************************************************************
+
+    ////************************************************************************************************************************
+
+    for(quint16 i=0; i< hierarchy_states.size();i++){
+        hierarchy_states[i]->setToolTip(QString("<font color =  green >State Name : ")+hierarchy_states[i]->get_state_name()
+                                                   +QString("<br>Super State : ")+hierarchy_states[i]->get_state_parent()
+                                                   +QString("<br>Initial State  : "+hierarchy_states[i]->get_state_initial())
+                                                   +QString("<br>Next State   : ")+hierarchy_states[i]->get_events_list()[0].next_state);
+    }
+
+    draw_super_state(QString("No Parent"));
+
+    return 1;
+}
+
+
+void NFWizard2::on_le_main_thread_name_textChanged(const QString &arg1)
+{
+
+    QFileInfo fileInfo(fileuVision);
+    QDir directory(fileInfo.dir().path()+QString("/Source"));
+    QStringList saved_thread_list = directory.entryList(QStringList() << "*.cpp" << "*.CPP",QDir::Files);
+
+    if(!arg1.isEmpty()){
+        QStringList complete_list;
+        for(quint16 i=0; i< saved_thread_list.size(); i++){
+            if(saved_thread_list[i].contains(arg1, Qt::CaseInsensitive)){
+                QString n = saved_thread_list[i];
+                n.chop(4);
+                complete_list.append(n);
+            }
+        }
+
+        if(!complete_list.isEmpty()){
+            complete_list_saved_threads = new QCompleter(complete_list,this);
+
+            complete_list_saved_threads->setCaseSensitivity(Qt::CaseInsensitive);
+            complete_list_saved_threads->setCompletionMode(QCompleter::UnfilteredPopupCompletion);
+            ui->le_main_thread_name->setCompleter(complete_list_saved_threads);
         }
     }
 }

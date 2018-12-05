@@ -68,6 +68,56 @@ void TextFileProcessor::processTextBlock() //esta funcion es muy parecida a proc
     }
 }
 
+const QStringList  TextFileProcessor::get_text_between(){
+
+    QStringList found_list;
+
+    QFile file(filename());   // almacena en file el archivo
+    if (!file.exists()) {
+        qWarning() << "file: " << filename() << " not found!";
+
+        found_list.append("No File");
+
+         return found_list;
+    }
+    if (!file.open(QFile::ReadOnly | QFile::Text)) { //lo abre como lectura
+        qWarning() << "file: " << filename() << " could not be opened for read!";
+
+        found_list.append("Not Read");
+        return found_list;
+    }
+
+    QTextDocument document;
+    document.setPlainText(file.readAll());
+    file.close();
+    QTextCursor cursorStart = document.find(startLine_);
+    QTextCursor cursorEnd = document.find(endLine_, cursorStart);
+    if (!cursorStart.hasSelection() || !cursorEnd.hasSelection()) {
+        qWarning() << "The text between: " << startLine_ << " and " << endLine_ << "not found";
+        found_list.append("Not Found String");
+        return found_list;
+    }
+    cursorStart.setPosition(cursorEnd.position(),QTextCursor::KeepAnchor);
+
+    found_list.append(cursorStart.selectedText());
+
+    while(true){
+
+        cursorStart = document.find(startLine_, cursorEnd);
+        cursorEnd = document.find(endLine_, cursorStart);
+
+        if (!cursorStart.hasSelection() || !cursorEnd.hasSelection()) {
+            //qWarning() << "The text between: " << startLine_ << " and " << endLine_ << "not found";
+            found_list.append("End String");
+            return found_list;
+        }
+        cursorStart.setPosition(cursorEnd.position(),QTextCursor::KeepAnchor);
+
+        found_list.append(cursorStart.selectedText());
+
+    }
+}
+
 void TextFileProcessor::replace_all_lines_code_instances(){
 
         QFile file(filename());
