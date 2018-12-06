@@ -151,6 +151,8 @@ private slots:
 
     void on_le_main_thread_name_textChanged(const QString &arg1);
 
+    void on_pb_change_to_event_clicked();
+
 signals:
 
     check_warnings();
@@ -214,7 +216,7 @@ private:
     bool generate_project_folders;
     int add_thread_state;  ////enum del tipo de hilo a agregar
     QList<QHierarchy_State*> hierarchy_states;
-    QList<QPoint> points[8];////almacena los QPoints de estados a dibujar
+    QList<QPoint> points[10];////almacena los QPoints de estados a dibujar
     QString current_state; ////estado marcado
     QString current_state_parent;////los hijos de este superestado son los dibujados
     int current_positions_minus_one; ////Cantidad -1 de estados a dibujar

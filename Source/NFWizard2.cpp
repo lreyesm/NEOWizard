@@ -68,7 +68,7 @@ void NFWizard2::windows_widget_position(){
     ui->pb_add_thread->setStyleSheet(QStringLiteral("color: rgb(21, 172, 112); font: 11pt \"Segoe UI\"; "));
     ui->cb_thread_priority->setStyleSheet(QStringLiteral("color: rgb(255, 245, 242); background-color: rgb(21, 172, 112); font: 11pt \"Segoe UI\";"));
 
-    ui->pb_ok->setStyleSheet(QStringLiteral("background-color: rgb(48, 60, 77); color: rgb(21, 172, 112); font: 11pt \"Segoe UI\";"));
+    //ui->pb_ok->setStyleSheet(QStringLiteral("background-color: rgb(48, 60, 77); color: rgb(21, 172, 112); font: 11pt \"Segoe UI\";"));
     ui->pb_warning_state_machine->setStyleSheet(QStringLiteral("background-image: url(:/Assets/warning.png); background-color: rgb(89, 99, 113);"));
 
 }
@@ -765,6 +765,34 @@ void NFWizard2::on_pushButton_Quit_clicked()
 void NFWizard2::on_pushButton_Help_tag_clicked()
 {
     hide_all_objects();
+    ui->tw_state_machine->show();
+    ui->tw_state_machine->clear();
+    QStringList n;
+    n<<"hola"<<"adios";
+    QList<QTreeWidgetItem*> items;
+
+    for(quint16 i=0;i< hierarchy_states.size();i++){
+
+        items.append(new QTreeWidgetItem(QStringList(hierarchy_states[i]->get_state_name())));
+                //QString name = items[i]->text(0);
+    }
+
+    for(quint16 i=0;i< hierarchy_states.size();i++){
+
+        if(hierarchy_states[i]->get_state_parent()=="No Parent"){
+
+            ui->tw_state_machine->addTopLevelItem(items[i]);
+        }
+
+        for(quint16 n=0; n< hierarchy_states[i]->get_direct_SubStates().size();n++){
+
+            int index = get_state_index_with_name(hierarchy_states[i]->get_direct_SubStates()[n]);
+
+            items[i]->addChild(items[index]);
+        }
+    }
+
+
     this->show_help();
 }
 
@@ -792,6 +820,8 @@ void NFWizard2::hide_all_objects(){
     ui->pushButton_Options_tag->setFixedSize(49,19);
     ui->pushButton_Options_tag->move(115,8);
 
+    ui->tw_state_machine->hide();
+    ui->widget_events->hide();
     ui->widget_add_delete_event->hide();
 
     ui->pb_warning_state_machine->hide();
@@ -907,6 +937,11 @@ void NFWizard2::on_pb_add_thread_clicked()
             return;
         }
     }
+
+    if(QMessageBox::information(this,"Confirmation","Add Thread?",QMessageBox::Ok,QMessageBox::Cancel)!=QMessageBox::Ok){
+        return;
+    }
+
     ui->widget_options_thread_options->hide();
 
     QFileInfo fileInfo(fileuVision);
@@ -1115,6 +1150,8 @@ void NFWizard2::on_pb_configure_state_machine_clicked()
         ui->pb_configure_thread_in_class->hide();
         ui->pb_configure_thread_in_main->hide();
         ui->pb_configure_Main_thread->hide();
+
+        emit check_warnings();
     }
     else{
 
@@ -1273,6 +1310,33 @@ void NFWizard2::set_points(){
     points[5].append(QPoint((int)(x/4)*3-hieratic_state_circle_radius,(int)(y/2)-hieratic_state_circle_radius));
     points[5].append(QPoint((int)(x/3)-hieratic_state_circle_radius,(int)(y/5)*4-hieratic_state_circle_radius));
     points[5].append(QPoint((int)(x/3)*2-hieratic_state_circle_radius,(int)(y/5)*4-hieratic_state_circle_radius));
+
+    points[6].append(QPoint((int)(x/2)-hieratic_state_circle_radius,(int)(y/2)-hieratic_state_circle_radius));
+    points[6].append(QPoint((int)(x/3)-hieratic_state_circle_radius,(int)(y/5)-hieratic_state_circle_radius));
+    points[6].append(QPoint((int)(x/3)*2-hieratic_state_circle_radius,(int)(y/5)-hieratic_state_circle_radius));
+    points[6].append(QPoint((int)(x/4)-hieratic_state_circle_radius,(int)(y/2)-hieratic_state_circle_radius));
+    points[6].append(QPoint((int)(x/4)*3-hieratic_state_circle_radius,(int)(y/2)-hieratic_state_circle_radius));
+    points[6].append(QPoint((int)(x/3)-hieratic_state_circle_radius,(int)(y/5)*4-hieratic_state_circle_radius));
+    points[6].append(QPoint((int)(x/3)*2-hieratic_state_circle_radius,(int)(y/5)*4-hieratic_state_circle_radius));
+
+    points[7].append(QPoint((int)(x/2)-hieratic_state_circle_radius,(int)(y/20)*7-hieratic_state_circle_radius));
+    points[7].append(QPoint((int)(x/2)-hieratic_state_circle_radius,(int)(y/20)*13-hieratic_state_circle_radius));
+    points[7].append(QPoint((int)(x/3)-hieratic_state_circle_radius,(int)(y/5)-hieratic_state_circle_radius));
+    points[7].append(QPoint((int)(x/3)*2-hieratic_state_circle_radius,(int)(y/5)-hieratic_state_circle_radius));
+    points[7].append(QPoint((int)(x/4)-hieratic_state_circle_radius,(int)(y/2)-hieratic_state_circle_radius));
+    points[7].append(QPoint((int)(x/4)*3-hieratic_state_circle_radius,(int)(y/2)-hieratic_state_circle_radius));
+    points[7].append(QPoint((int)(x/3)-hieratic_state_circle_radius,(int)(y/5)*4-hieratic_state_circle_radius));
+    points[7].append(QPoint((int)(x/3)*2-hieratic_state_circle_radius,(int)(y/5)*4-hieratic_state_circle_radius));
+
+    points[8].append(QPoint((int)(x/2)-hieratic_state_circle_radius,(int)(y/5)-hieratic_state_circle_radius));
+    points[8].append(QPoint((int)(x/2)-hieratic_state_circle_radius,(int)(y/2)-hieratic_state_circle_radius));
+    points[8].append(QPoint((int)(x/2)-hieratic_state_circle_radius,(int)(y/5)*4-hieratic_state_circle_radius));
+    points[8].append(QPoint((int)(x/3)-hieratic_state_circle_radius,(int)(y/5)-hieratic_state_circle_radius));
+    points[8].append(QPoint((int)(x/3)*2-hieratic_state_circle_radius,(int)(y/5)-hieratic_state_circle_radius));
+    points[8].append(QPoint((int)(x/4)-hieratic_state_circle_radius,(int)(y/2)-hieratic_state_circle_radius));
+    points[8].append(QPoint((int)(x/4)*3-hieratic_state_circle_radius,(int)(y/2)-hieratic_state_circle_radius));
+    points[8].append(QPoint((int)(x/3)-hieratic_state_circle_radius,(int)(y/5)*4-hieratic_state_circle_radius));
+    points[8].append(QPoint((int)(x/3)*2-hieratic_state_circle_radius,(int)(y/5)*4-hieratic_state_circle_radius));
 }
 
 void NFWizard2::on_pb_generate_state_machine_clicked()
@@ -1304,10 +1368,13 @@ void NFWizard2::on_pb_generate_state_machine_clicked()
        return;
    }
    else{
-       generate_labels_for_state_machine(fileuVision_Path, ui->le_main_thread_name->text());
-       generate_code_for_state_machine(ui->le_main_thread_name->text());
-       ui->widget_options_thread_options->hide();
-       QMessageBox::information(this, "NEOWizard","<font color = white >State Machine Generated");
+
+       if(QMessageBox::information(this,"Confirmation","<font color=white >Generate State Machine?",QMessageBox::Ok,QMessageBox::Cancel)==QMessageBox::Ok){
+           generate_labels_for_state_machine(fileuVision_Path, ui->le_main_thread_name->text());
+           generate_code_for_state_machine(ui->le_main_thread_name->text());
+           ui->widget_options_thread_options->hide();
+           QMessageBox::information(this, "NEOWizard","<font color = white >State Machine Generated");
+       }
    }
 }
 
@@ -1823,7 +1890,7 @@ void NFWizard2::generate_definition_for_State_Machine_actions(const QString main
     main_h_FileProcessor.setEndLine("/*Definition of Action Prototypes of State Machine*/"); ////fin del contenido a eliminar
     main_h_FileProcessor.setReplacementString(QString("/*Definition of Action Prototypes of State Machine*/\n\n")
                                                 +QString("    void ")+action
-                                                +QString("_Action(int event);"));
+                                                +QString("(int event);"));
 
     main_h_FileProcessor.processTextBlock();
 
@@ -1838,7 +1905,7 @@ void NFWizard2::generate_definition_for_State_Machine_entries_funtions(const QSt
     main_h_FileProcessor.setStartLine("/*Definition of Entry Functions Prototypes of State Machine*/");       ////inicio del contenido a eliminar
     main_h_FileProcessor.setEndLine("/*Definition of Entry Functions Prototypes of State Machine*/"); ////fin del contenido a eliminar
     main_h_FileProcessor.setReplacementString(QString("/*Definition of Entry Functions Prototypes of State Machine*/\n\n")
-                                                +QString("    void entryAction")+entryAction
+                                                +QString("    void ")+entryAction
                                                 +QString("();"));
 
     main_h_FileProcessor.processTextBlock();
@@ -1854,7 +1921,7 @@ void NFWizard2::generate_definition_for_State_Machine_exits_funtions(const QStri
     main_h_FileProcessor.setStartLine("/*Definition of Exit Functions Prototypes of State Machine*/");       ////inicio del contenido a eliminar
     main_h_FileProcessor.setEndLine("/*Definition of Exit Functions Prototypes of State Machine*/"); ////fin del contenido a eliminar
     main_h_FileProcessor.setReplacementString(QString("/*Definition of Exit Functions Prototypes of State Machine*/\n\n")
-                                                +QString("    void exitAction")+exitAction
+                                                +QString("    void ")+exitAction
                                                 +QString("();"));
 
     main_h_FileProcessor.processTextBlock();
@@ -1892,6 +1959,27 @@ void NFWizard2::generate_definition_for_State_Machine_events(const QString main_
 
         main_h_FileProcessor.processTextBlock();
     }
+
+    /* Definition of Event Message Queue *////*********************************************************************************************************************************************************
+    if(main_h_FileProcessor.check_if_code_exist("eObject::Declare::eMessageQueue<APP_QUEUE_SIZE> appEventQueue;", false)==0){
+    main_h_FileProcessor.setStartLine("#include <eApplicationBase.h>");       ////inicio del contenido a eliminar
+    main_h_FileProcessor.setEndLine("#include <eApplicationBase.h>"); ////fin del contenido a eliminar
+    main_h_FileProcessor.setReplacementString(QString("#include <eApplicationBase.h>\n\n#include <eMessageQueue.h>\n")+QString("#define APP_QUEUE_SIZE 16\n"));
+    main_h_FileProcessor.processTextBlock();
+    }
+    ///*********************************************************************************************************************************************************
+
+
+    /* Definition of Event Message Queue *////*********************************************************************************************************************************************************
+    if(main_h_FileProcessor.check_if_code_exist("eObject::Declare::eMessageQueue<APP_QUEUE_SIZE> appEventQueue;", false)==0){
+    main_h_FileProcessor.setStartLine("/*Definitions of State Machine*/");       ////inicio del contenido a eliminar
+    main_h_FileProcessor.setEndLine("/*Definitions of State Machine*/"); ////fin del contenido a eliminar
+    main_h_FileProcessor.setReplacementString(QString("/*Definitions of State Machine*/\n\n")+QString("eObject::Declare::eMessageQueue<APP_QUEUE_SIZE> appEventQueue;"));
+    main_h_FileProcessor.processTextBlock();
+    }
+    ///*********************************************************************************************************************************************************
+
+
 }
 
 int NFWizard2::generate_labels_for_state_machine(const QString path, const QString main_thread_name){
@@ -1929,20 +2017,10 @@ void NFWizard2::generate_code_for_state_machine(const QString main_thread_name){
     {
     main_cpp_FileProcessor.setStartLine("/* USER CODE BEGIN Includes */");       ////inicio del contenido a eliminar
     main_cpp_FileProcessor.setEndLine("/* USER CODE BEGIN Includes */"); ////fin del contenido a eliminar
-    main_cpp_FileProcessor.setReplacementString(QString("/* USER CODE BEGIN Includes */\n\n")+QString("#include <eHierarchicalStateMachine.h>\n\n#define APP_QUEUE_SIZE 16"));
+    main_cpp_FileProcessor.setReplacementString(QString("/* USER CODE BEGIN Includes */\n\n")+QString("#include <eHierarchicalStateMachine.h>\n\n"));
     main_cpp_FileProcessor.processTextBlock();
     }
     ///*********************************************************************************************************************************************************
-
-    /* Definition of Event Message Queue *////*********************************************************************************************************************************************************
-    {
-    main_cpp_FileProcessor.setStartLine("/*Definitions of State Machine*/");       ////inicio del contenido a eliminar
-    main_cpp_FileProcessor.setEndLine("/*Definitions of State Machine*/"); ////fin del contenido a eliminar
-    main_cpp_FileProcessor.setReplacementString(QString("/*Definitions of State Machine*/\n\n")+QString("eObject::Declare::eMessageQueue<APP_QUEUE_SIZE> appEventQueue;"));
-    main_cpp_FileProcessor.processTextBlock();
-    }
-    ///*********************************************************************************************************************************************************
-
 
     /*Name of State Machine controller*////*********************************************************************************************************************************************************
     {
@@ -1973,7 +2051,7 @@ void NFWizard2::generate_code_for_state_machine(const QString main_thread_name){
             main_cpp_FileProcessor.setStartLine("/*Definition of Entry Functions Prototypes of State Machine*/");       ////inicio del contenido a eliminar
             main_cpp_FileProcessor.setEndLine("/*Definition of Entry Functions Prototypes of State Machine*/"); ////fin del contenido a eliminar
             main_cpp_FileProcessor.setReplacementString(QString("/*Definition of Entry Functions Prototypes of State Machine*/\n\n")
-                                                        +QString("void entryAction")+entryAction
+                                                        +QString("void ")+entryAction
                                                         +QString("();"));
 
             main_cpp_FileProcessor.processTextBlock();
@@ -1982,7 +2060,7 @@ void NFWizard2::generate_code_for_state_machine(const QString main_thread_name){
             main_cpp_FileProcessor.setEndLine("/*Definition of all Entry Actions from State Machine*/"); ////fin del contenido a eliminar
             main_cpp_FileProcessor.setReplacementString(QString("/*Definition of all Entry Actions from State Machine*/\n")
                                                         +QString("    ")+hierarchy_states[i]->get_state_name()
-                                                        +QString(".signalEntered.connect<&entryAction")
+                                                        +QString(".signalEntered.connect<&")
                                                         +entryAction+QString(">();"));
 
             main_cpp_FileProcessor.processTextBlock();
@@ -1992,7 +2070,7 @@ void NFWizard2::generate_code_for_state_machine(const QString main_thread_name){
             main_cpp_FileProcessor.setStartLine("/*Implementation of Entry Functions of State Machine*/");       ////inicio del contenido a eliminar
             main_cpp_FileProcessor.setEndLine("/*Implementation of Entry Functions of State Machine*/"); ////fin del contenido a eliminar
             main_cpp_FileProcessor.setReplacementString(QString("/*Implementation of Entry Functions of State Machine*/\n")
-                                                        +QString("void ")+QString("entryAction")
+                                                        +QString("void ")
                                                         +entryAction+QString("(){\n\n}"));
 
             main_cpp_FileProcessor.processTextBlock();
@@ -2010,7 +2088,7 @@ void NFWizard2::generate_code_for_state_machine(const QString main_thread_name){
             main_cpp_FileProcessor.setStartLine("/*Definition of Exit Functions Prototypes of State Machine*/");       ////inicio del contenido a eliminar
             main_cpp_FileProcessor.setEndLine("/*Definition of Exit Functions Prototypes of State Machine*/"); ////fin del contenido a eliminar
             main_cpp_FileProcessor.setReplacementString(QString("/*Definition of Exit Functions Prototypes of State Machine*/\n\n")
-                                                        +QString("void exitAction")+exitAction
+                                                        +QString("void ")+exitAction
                                                         +QString("();"));
 
             main_cpp_FileProcessor.processTextBlock();
@@ -2019,7 +2097,7 @@ void NFWizard2::generate_code_for_state_machine(const QString main_thread_name){
             main_cpp_FileProcessor.setEndLine("/*Definition of all Exit Actions from State Machine*/"); ////fin del contenido a eliminar
             main_cpp_FileProcessor.setReplacementString(QString("/*Definition of all Exit Actions from State Machine*/\n")
                                                         +QString("    ")+hierarchy_states[i]->get_state_name()
-                                                        +QString(".signalExited.connect<&exitAction")
+                                                        +QString(".signalExited.connect<&")
                                                         +exitAction+QString(">();"));
 
             main_cpp_FileProcessor.processTextBlock();
@@ -2029,7 +2107,7 @@ void NFWizard2::generate_code_for_state_machine(const QString main_thread_name){
             main_cpp_FileProcessor.setStartLine("/*Implementation of Exit Functions of State Machine*/");       ////inicio del contenido a eliminar
             main_cpp_FileProcessor.setEndLine("/*Implementation of Exit Functions of State Machine*/"); ////fin del contenido a eliminar
             main_cpp_FileProcessor.setReplacementString(QString("/*Implementation of Exit Functions of State Machine*/\n")
-                                                        +QString("void ")+QString("exitAction")
+                                                        +QString("void ")
                                                         +exitAction+QString("(){\n\n}"));
 
             main_cpp_FileProcessor.processTextBlock();
@@ -2063,7 +2141,7 @@ void NFWizard2::generate_code_for_state_machine(const QString main_thread_name){
                 QString action_state = "";
                 if(hierarchy_states[i]->get_events_list()[n].state_action != "No Action"){
 
-                    action_state = QString(", action")+hierarchy_states[i]->get_events_list()[n].state_action;
+                    action_state = QString(", ")+hierarchy_states[i]->get_events_list()[n].state_action;
                 }
                 if(hierarchy_states[i]->get_events_list()[n].next_state != "No Next State"){
 
@@ -2105,7 +2183,7 @@ void NFWizard2::generate_code_for_state_machine(const QString main_thread_name){
                                                             +QString("    eObject::eState::eAction_t ")
                                                             +action+QString(";\n    ")+action
                                                             +QString(".bind<")+main_thread_name+QString(", &")+main_thread_name
-                                                            +QString("::")+action+QString("_Action>(this);"));
+                                                            +QString("::")+action+QString(">(this);"));
 
                 main_cpp_FileProcessor.processTextBlock();
                 }
@@ -2117,7 +2195,7 @@ void NFWizard2::generate_code_for_state_machine(const QString main_thread_name){
                 main_cpp_FileProcessor.setEndLine("/*Implementation of Action Prototypes of State Machine*/"); ////fin del contenido a eliminar
                 main_cpp_FileProcessor.setReplacementString(QString("/*Implementation of Action Prototypes of State Machine*/\n")
                                                             +QString("void ")+main_thread_name+QString("::")
-                                                            +action+QString("_Action")+QString("(int event){\n\n}"));
+                                                            +action+QString("(int event){\n\n}"));
 
                 main_cpp_FileProcessor.processTextBlock();
                 }
@@ -2144,7 +2222,7 @@ void NFWizard2::generate_code_for_state_machine(const QString main_thread_name){
         main_cpp_FileProcessor.setEndLine("/*Definition of all eState from State Machine*/"); ////fin del contenido a eliminar
         main_cpp_FileProcessor.setReplacementString(QString("/*Definition of all eState from State Machine*/\n")
                                                     +QString("    eObject::Declare::eState<")
-                                                    +QString::number(next_states_size)
+                                                    +QString::number((next_states_size<1)?1:next_states_size)
                                                     +QString("> ")+hierarchy_states[i]->get_state_name()+QString(";"));
 
         main_cpp_FileProcessor.processTextBlock();
@@ -2497,7 +2575,7 @@ void NFWizard2::on_pb_acept_sate_machine_name_clicked()
             qDebug()<<data_base->fileName();
 
             QDataStream out(data_base);
-            //out.setVersion(QDataStream::Qt_5_9);
+            out.setVersion(QDataStream::Qt_5_9);
 
             for(quint8 i=0; i< hierarchy_states.size(); i++){
 
@@ -2519,6 +2597,10 @@ void NFWizard2::on_pb_acept_sate_machine_name_clicked()
             return;
         }
 
+        if(!ui->widget_on_state_options->isHidden()){
+
+            ui->widget_on_state_options->hide();
+        }
         for(quint16 i=0; i< hierarchy_states.size(); i++){
 
             hierarchy_states[i]->hide();
@@ -2531,7 +2613,7 @@ void NFWizard2::on_pb_acept_sate_machine_name_clicked()
             qDebug()<<data_base->fileName();
 
             QDataStream in(data_base);
-            //out.setVersion(QDataStream::Qt_5_9);
+            in.setVersion(QDataStream::Qt_5_9);
 
             while(!data_base->atEnd()){
 
@@ -2566,7 +2648,7 @@ void NFWizard2::on_le_state_machine_name_textChanged(const QString &arg1)
 {
     QFileInfo fileInfo(fileuVision);
     QDir directory(fileInfo.dir().path()+QString("/HSMs"));
-    QStringList saved_state_machines_list = directory.entryList(QStringList() << "*.dat" << "*.DAT",QDir::Files);
+    QStringList saved_state_machines_list = directory.entryList(QStringList() << "*.dat" << "*.DAT"<<"*.txt"<<"*.TXT",QDir::Files);
 
     if(!arg1.isEmpty()){
         QStringList complete_list;
@@ -2699,7 +2781,7 @@ void NFWizard2::on_pb_load_from_Thread_clicked()
 {
     if(ui->le_main_thread_name->text().isEmpty()){
 
-        QMessageBox::information(this, "NEOWizard","<font color = white >Insert name of main thread");
+        QMessageBox::information(this, "NEOWizard","<font color = white >Insert name of main thread and try again");
         ui->widget_options_thread_options->show();
         ui->widget_options_thread_options->move(500,140);
         ui->le_main_thread_name->show();
@@ -2715,7 +2797,14 @@ void NFWizard2::on_pb_load_from_Thread_clicked()
         return;
     }
 
-    load_state_machine_from_Thread(fileuVision_Path, ui->le_main_thread_name->text());
+    if(QMessageBox::information(this,"Confirmation","<font color=white >Load State Machine",QMessageBox::Ok,QMessageBox::Cancel)==QMessageBox::Ok){
+
+        if(!ui->widget_on_state_options->isHidden()){
+
+            ui->widget_on_state_options->hide();
+        }
+        load_state_machine_from_Thread(fileuVision_Path, ui->le_main_thread_name->text());
+    }
 }
 
 int NFWizard2::load_state_machine_from_Thread(const QString path, const QString main_thread_name){
@@ -3019,5 +3108,23 @@ void NFWizard2::on_le_main_thread_name_textChanged(const QString &arg1)
             complete_list_saved_threads->setCompletionMode(QCompleter::UnfilteredPopupCompletion);
             ui->le_main_thread_name->setCompleter(complete_list_saved_threads);
         }
+    }
+}
+
+
+void NFWizard2::on_pb_change_to_event_clicked()
+{
+    if(ui->widget_super_initial_default_state->isHidden()){
+
+        ui->widget_super_initial_default_state->show();
+        ui->widget_events->hide();
+        ui->widget_state_name_entry_exit_actions->show();
+        ui->pb_change_to_event->setText("Events");
+    }
+    else{
+        ui->widget_state_name_entry_exit_actions->hide();
+        ui->widget_super_initial_default_state->hide();
+        ui->widget_events->show();
+        ui->pb_change_to_event->setText("Back");
     }
 }

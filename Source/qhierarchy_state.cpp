@@ -13,8 +13,8 @@ QHierarchy_State::QHierarchy_State(QWidget *parent, QString state_name_ref) : QP
     this->setText(n.left(3));
     this->move(0,0);
     this->setCursor(QCursor(Qt::PointingHandCursor));
-    this->setStyleSheet(QLatin1String("color: rgb(255, 245, 242); background-image: url(:/Assets/state.png); font: 11pt \"Segoe UI\";"));
-    this->setFixedSize(55,56);
+    this->setStyleSheet(QLatin1String("color: rgb(255, 245, 242); background-image: url(:/Assets/state.png); font: 10pt \"Segoe UI\";"));
+    this->setFixedSize(60,57);
     this->setFlat(true);
 
     connect(this,SIGNAL(clicked(bool)),this,SLOT(send_signal_click()));
@@ -28,6 +28,7 @@ QHierarchy_State::QHierarchy_State(QWidget *parent, QString state_name_ref) : QP
     add_Event("No Event", "No Next State", "No Action");
     position_in_superstate = -1;
 
+    initial=false;
     configured=false;
 }
 
@@ -46,6 +47,7 @@ void QHierarchy_State::write_file(QDataStream &out){
     out<<this->state_default;
     out<<this->on_entry_Action;
     out<<this->on_exit_Action;
+    out<<(quint8)(this->events_list.size());
     for(quint8 i=0; i< events_list.size();i++){
 
         out<<this->events_list[i].event;
@@ -57,6 +59,8 @@ void QHierarchy_State::write_file(QDataStream &out){
     out<<this->subState_count;
     out<<this->initial;
     out<<this->configured;
+    QString n= QString("End of State\n");
+    out<<n;
 
 }
 //-----------------------------------------------------------------------------------------------------------------------
@@ -72,7 +76,14 @@ void QHierarchy_State::read_file(QDataStream &in){
     in>>this->state_default;
     in>>this->on_entry_Action;
     in>>this->on_exit_Action;
-    for(quint8 i=0; i< events_list.size();i++){
+
+    quint8 size_events_list=0;
+    in>>size_events_list;
+
+    for(quint8 i=0; i< size_events_list;i++){
+        this->add_Event("No Event1", "No Next State1", "No Action1");
+    }
+    for(quint8 i=0; i< size_events_list;i++){
 
         in>>this->events_list[i].event;
         in>>this->events_list[i].next_state;
@@ -83,6 +94,8 @@ void QHierarchy_State::read_file(QDataStream &in){
     in>>this->subState_count;
     in>>this->initial;
     in>>this->configured;
+    QString string_end;
+    in>>string_end;
 
     this->setObjectName(state_name);
     QString n = objectName().toUpper();
@@ -94,10 +107,10 @@ void QHierarchy_State::read_file(QDataStream &in){
 void QHierarchy_State::setInitial(bool ini){
 
     if(ini){
-        this->setStyleSheet(QLatin1String("color: rgb(255, 245, 242); background-image: url(:/Assets/state_init.png); font: 11pt \"Segoe UI\";"));
+        this->setStyleSheet(QLatin1String("color: rgb(255, 245, 242); background-image: url(:/Assets/state_init.png); font: 10pt \"Segoe UI\";"));
     }
     else{
-        this->setStyleSheet(QLatin1String("color: rgb(255, 245, 242); background-image: url(:/Assets/state.png); font: 11pt \"Segoe UI\";"));
+        this->setStyleSheet(QLatin1String("color: rgb(255, 245, 242); background-image: url(:/Assets/state.png); font: 10pt \"Segoe UI\";"));
     }
     initial = ini;
 }

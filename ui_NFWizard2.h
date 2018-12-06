@@ -27,6 +27,7 @@
 #include <QtWidgets/QSpinBox>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QToolBar>
+#include <QtWidgets/QTreeWidget>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 
@@ -115,6 +116,7 @@ public:
     QWidget *widget_state_info;
     QVBoxLayout *verticalLayout_22;
     QHBoxLayout *horizontalLayout_8;
+    QWidget *widget_super_initial_default_state;
     QVBoxLayout *verticalLayout_20;
     QVBoxLayout *verticalLayout_17;
     QLabel *label_2;
@@ -122,29 +124,35 @@ public:
     QVBoxLayout *verticalLayout_18;
     QLabel *label_3;
     QLineEdit *le_initial_state_name;
+    QVBoxLayout *verticalLayout_19;
+    QLabel *label_4;
+    QLineEdit *le_default_state_name;
+    QWidget *widget_events;
+    QHBoxLayout *horizontalLayout_12;
+    QVBoxLayout *verticalLayout_36;
+    QLabel *l_Events;
+    QListWidget *lw_Events;
+    QVBoxLayout *verticalLayout_37;
+    QLabel *l_Next_State;
+    QListWidget *lw_Next_State;
+    QVBoxLayout *verticalLayout_38;
+    QLabel *l_actions;
+    QListWidget *lw_Actions;
+    QSpacerItem *horizontalSpacer_5;
+    QWidget *widget_state_name_entry_exit_actions;
+    QVBoxLayout *verticalLayout_21;
+    QVBoxLayout *verticalLayout_16;
+    QLabel *label;
+    QLineEdit *le_current_state_name;
     QVBoxLayout *verticalLayout_23;
     QLabel *l_Entry_Action;
     QLineEdit *le_entry_action;
     QVBoxLayout *verticalLayout_24;
     QLabel *l_Exit_Action;
     QLineEdit *le_exit_action;
-    QVBoxLayout *verticalLayout_19;
-    QLabel *label_4;
-    QLineEdit *le_default_state_name;
-    QVBoxLayout *verticalLayout_21;
-    QVBoxLayout *verticalLayout_16;
-    QLabel *label;
-    QLineEdit *le_current_state_name;
-    QVBoxLayout *verticalLayout_13;
-    QLabel *l_Events;
-    QListWidget *lw_Events;
-    QVBoxLayout *verticalLayout_14;
-    QLabel *l_Next_State;
-    QListWidget *lw_Next_State;
-    QVBoxLayout *verticalLayout_15;
-    QLabel *l_actions;
-    QListWidget *lw_Actions;
     QHBoxLayout *horizontalLayout_9;
+    QSpacerItem *horizontalSpacer_4;
+    QPushButton *pb_change_to_event;
     QSpacerItem *horizontalSpacer_3;
     QPushButton *pb_ok;
     QSpacerItem *horizontalSpacer_2;
@@ -190,6 +198,7 @@ public:
     QPushButton *pb_add_event_action;
     QPushButton *pb_delete_event_action;
     QPushButton *pb_cancel_add_event_2;
+    QTreeWidget *tw_state_machine;
     QMenuBar *menuBar;
     QMenu *menuHelp;
     QToolBar *mainToolBar;
@@ -728,7 +737,7 @@ public:
 
         widget_layout_state_machine = new QWidget(centralWidget);
         widget_layout_state_machine->setObjectName(QStringLiteral("widget_layout_state_machine"));
-        widget_layout_state_machine->setGeometry(QRect(820, 40, 418, 428));
+        widget_layout_state_machine->setGeometry(QRect(820, 40, 418, 426));
         verticalLayout_11 = new QVBoxLayout(widget_layout_state_machine);
         verticalLayout_11->setSpacing(6);
         verticalLayout_11->setContentsMargins(11, 11, 11, 11);
@@ -818,18 +827,23 @@ public:
         verticalLayout_22->setSpacing(6);
         verticalLayout_22->setContentsMargins(11, 11, 11, 11);
         verticalLayout_22->setObjectName(QStringLiteral("verticalLayout_22"));
+        verticalLayout_22->setSizeConstraint(QLayout::SetFixedSize);
         horizontalLayout_8 = new QHBoxLayout();
         horizontalLayout_8->setSpacing(15);
         horizontalLayout_8->setObjectName(QStringLiteral("horizontalLayout_8"));
-        verticalLayout_20 = new QVBoxLayout();
-        verticalLayout_20->setSpacing(5);
+        horizontalLayout_8->setSizeConstraint(QLayout::SetFixedSize);
+        widget_super_initial_default_state = new QWidget(widget_state_info);
+        widget_super_initial_default_state->setObjectName(QStringLiteral("widget_super_initial_default_state"));
+        verticalLayout_20 = new QVBoxLayout(widget_super_initial_default_state);
+        verticalLayout_20->setSpacing(15);
+        verticalLayout_20->setContentsMargins(11, 11, 11, 11);
         verticalLayout_20->setObjectName(QStringLiteral("verticalLayout_20"));
         verticalLayout_20->setSizeConstraint(QLayout::SetFixedSize);
         verticalLayout_17 = new QVBoxLayout();
         verticalLayout_17->setSpacing(6);
         verticalLayout_17->setObjectName(QStringLiteral("verticalLayout_17"));
         verticalLayout_17->setSizeConstraint(QLayout::SetFixedSize);
-        label_2 = new QLabel(widget_state_info);
+        label_2 = new QLabel(widget_super_initial_default_state);
         label_2->setObjectName(QStringLiteral("label_2"));
         label_2->setMinimumSize(QSize(0, 12));
         label_2->setStyleSheet(QLatin1String("font: 10pt \"Segoe UI\";\n"
@@ -837,7 +851,7 @@ public:
 
         verticalLayout_17->addWidget(label_2);
 
-        le_super_state_name = new QLineEdit(widget_state_info);
+        le_super_state_name = new QLineEdit(widget_super_initial_default_state);
         le_super_state_name->setObjectName(QStringLiteral("le_super_state_name"));
         le_super_state_name->setStyleSheet(QLatin1String("font: 9pt \"Segoe UI\";\n"
 "color: rgb(255, 245, 242);"));
@@ -851,7 +865,7 @@ public:
         verticalLayout_18->setSpacing(6);
         verticalLayout_18->setObjectName(QStringLiteral("verticalLayout_18"));
         verticalLayout_18->setSizeConstraint(QLayout::SetFixedSize);
-        label_3 = new QLabel(widget_state_info);
+        label_3 = new QLabel(widget_super_initial_default_state);
         label_3->setObjectName(QStringLiteral("label_3"));
         label_3->setMinimumSize(QSize(0, 12));
         label_3->setStyleSheet(QLatin1String("font: 10pt \"Segoe UI\";\n"
@@ -859,7 +873,7 @@ public:
 
         verticalLayout_18->addWidget(label_3);
 
-        le_initial_state_name = new QLineEdit(widget_state_info);
+        le_initial_state_name = new QLineEdit(widget_super_initial_default_state);
         le_initial_state_name->setObjectName(QStringLiteral("le_initial_state_name"));
         le_initial_state_name->setStyleSheet(QLatin1String("font: 9pt \"Segoe UI\";\n"
 "color: rgb(255, 245, 242);"));
@@ -869,55 +883,11 @@ public:
 
         verticalLayout_20->addLayout(verticalLayout_18);
 
-        verticalLayout_23 = new QVBoxLayout();
-        verticalLayout_23->setSpacing(6);
-        verticalLayout_23->setObjectName(QStringLiteral("verticalLayout_23"));
-        verticalLayout_23->setSizeConstraint(QLayout::SetFixedSize);
-        l_Entry_Action = new QLabel(widget_state_info);
-        l_Entry_Action->setObjectName(QStringLiteral("l_Entry_Action"));
-        l_Entry_Action->setMinimumSize(QSize(0, 12));
-        l_Entry_Action->setStyleSheet(QLatin1String("font: 10pt \"Segoe UI\";\n"
-"color: rgb(255, 245, 242);"));
-
-        verticalLayout_23->addWidget(l_Entry_Action);
-
-        le_entry_action = new QLineEdit(widget_state_info);
-        le_entry_action->setObjectName(QStringLiteral("le_entry_action"));
-        le_entry_action->setStyleSheet(QLatin1String("font: 9pt \"Segoe UI\";\n"
-"color: rgb(255, 245, 242);"));
-
-        verticalLayout_23->addWidget(le_entry_action);
-
-
-        verticalLayout_20->addLayout(verticalLayout_23);
-
-        verticalLayout_24 = new QVBoxLayout();
-        verticalLayout_24->setSpacing(6);
-        verticalLayout_24->setObjectName(QStringLiteral("verticalLayout_24"));
-        verticalLayout_24->setSizeConstraint(QLayout::SetFixedSize);
-        l_Exit_Action = new QLabel(widget_state_info);
-        l_Exit_Action->setObjectName(QStringLiteral("l_Exit_Action"));
-        l_Exit_Action->setMinimumSize(QSize(0, 12));
-        l_Exit_Action->setStyleSheet(QLatin1String("font: 10pt \"Segoe UI\";\n"
-"color: rgb(255, 245, 242);"));
-
-        verticalLayout_24->addWidget(l_Exit_Action);
-
-        le_exit_action = new QLineEdit(widget_state_info);
-        le_exit_action->setObjectName(QStringLiteral("le_exit_action"));
-        le_exit_action->setStyleSheet(QLatin1String("font: 9pt \"Segoe UI\";\n"
-"color: rgb(255, 245, 242);"));
-
-        verticalLayout_24->addWidget(le_exit_action);
-
-
-        verticalLayout_20->addLayout(verticalLayout_24);
-
         verticalLayout_19 = new QVBoxLayout();
         verticalLayout_19->setSpacing(6);
         verticalLayout_19->setObjectName(QStringLiteral("verticalLayout_19"));
         verticalLayout_19->setSizeConstraint(QLayout::SetFixedSize);
-        label_4 = new QLabel(widget_state_info);
+        label_4 = new QLabel(widget_super_initial_default_state);
         label_4->setObjectName(QStringLiteral("label_4"));
         label_4->setMinimumSize(QSize(0, 12));
         label_4->setStyleSheet(QLatin1String("font: 10pt \"Segoe UI\";\n"
@@ -925,7 +895,7 @@ public:
 
         verticalLayout_19->addWidget(label_4);
 
-        le_default_state_name = new QLineEdit(widget_state_info);
+        le_default_state_name = new QLineEdit(widget_super_initial_default_state);
         le_default_state_name->setObjectName(QStringLiteral("le_default_state_name"));
         le_default_state_name->setStyleSheet(QLatin1String("font: 9pt \"Segoe UI\";\n"
 "color: rgb(255, 245, 242);"));
@@ -936,16 +906,106 @@ public:
         verticalLayout_20->addLayout(verticalLayout_19);
 
 
-        horizontalLayout_8->addLayout(verticalLayout_20);
+        horizontalLayout_8->addWidget(widget_super_initial_default_state);
 
-        verticalLayout_21 = new QVBoxLayout();
-        verticalLayout_21->setSpacing(10);
+        widget_events = new QWidget(widget_state_info);
+        widget_events->setObjectName(QStringLiteral("widget_events"));
+        horizontalLayout_12 = new QHBoxLayout(widget_events);
+        horizontalLayout_12->setSpacing(3);
+        horizontalLayout_12->setContentsMargins(11, 11, 11, 11);
+        horizontalLayout_12->setObjectName(QStringLiteral("horizontalLayout_12"));
+        horizontalLayout_12->setSizeConstraint(QLayout::SetFixedSize);
+        verticalLayout_36 = new QVBoxLayout();
+        verticalLayout_36->setSpacing(6);
+        verticalLayout_36->setObjectName(QStringLiteral("verticalLayout_36"));
+        verticalLayout_36->setSizeConstraint(QLayout::SetFixedSize);
+        l_Events = new QLabel(widget_events);
+        l_Events->setObjectName(QStringLiteral("l_Events"));
+        l_Events->setStyleSheet(QLatin1String("font: 10pt \"Segoe UI\";\n"
+"color: rgb(255, 245, 242);"));
+
+        verticalLayout_36->addWidget(l_Events);
+
+        lw_Events = new QListWidget(widget_events);
+        lw_Events->setObjectName(QStringLiteral("lw_Events"));
+        lw_Events->setMinimumSize(QSize(100, 70));
+        lw_Events->setMaximumSize(QSize(120, 50));
+        lw_Events->viewport()->setProperty("cursor", QVariant(QCursor(Qt::PointingHandCursor)));
+        lw_Events->setStyleSheet(QLatin1String("font: 9pt \"Segoe UI\";\n"
+"color: rgb(255, 245, 242);"));
+
+        verticalLayout_36->addWidget(lw_Events);
+
+
+        horizontalLayout_12->addLayout(verticalLayout_36);
+
+        verticalLayout_37 = new QVBoxLayout();
+        verticalLayout_37->setSpacing(6);
+        verticalLayout_37->setObjectName(QStringLiteral("verticalLayout_37"));
+        verticalLayout_37->setSizeConstraint(QLayout::SetFixedSize);
+        l_Next_State = new QLabel(widget_events);
+        l_Next_State->setObjectName(QStringLiteral("l_Next_State"));
+        l_Next_State->setStyleSheet(QLatin1String("font: 10pt \"Segoe UI\";\n"
+"color: rgb(255, 245, 242);"));
+
+        verticalLayout_37->addWidget(l_Next_State);
+
+        lw_Next_State = new QListWidget(widget_events);
+        lw_Next_State->setObjectName(QStringLiteral("lw_Next_State"));
+        lw_Next_State->setMinimumSize(QSize(100, 70));
+        lw_Next_State->setMaximumSize(QSize(120, 50));
+        lw_Next_State->viewport()->setProperty("cursor", QVariant(QCursor(Qt::PointingHandCursor)));
+        lw_Next_State->setStyleSheet(QLatin1String("font: 9pt \"Segoe UI\";\n"
+"color: rgb(255, 245, 242);"));
+
+        verticalLayout_37->addWidget(lw_Next_State);
+
+
+        horizontalLayout_12->addLayout(verticalLayout_37);
+
+        verticalLayout_38 = new QVBoxLayout();
+        verticalLayout_38->setSpacing(6);
+        verticalLayout_38->setObjectName(QStringLiteral("verticalLayout_38"));
+        verticalLayout_38->setSizeConstraint(QLayout::SetFixedSize);
+        l_actions = new QLabel(widget_events);
+        l_actions->setObjectName(QStringLiteral("l_actions"));
+        l_actions->setStyleSheet(QLatin1String("font: 10pt \"Segoe UI\";\n"
+"color: rgb(255, 245, 242);"));
+
+        verticalLayout_38->addWidget(l_actions);
+
+        lw_Actions = new QListWidget(widget_events);
+        lw_Actions->setObjectName(QStringLiteral("lw_Actions"));
+        lw_Actions->setMinimumSize(QSize(100, 70));
+        lw_Actions->setMaximumSize(QSize(120, 50));
+        lw_Actions->viewport()->setProperty("cursor", QVariant(QCursor(Qt::PointingHandCursor)));
+        lw_Actions->setStyleSheet(QLatin1String("font: 9pt \"Segoe UI\";\n"
+"color: rgb(255, 245, 242);"));
+
+        verticalLayout_38->addWidget(lw_Actions);
+
+
+        horizontalLayout_12->addLayout(verticalLayout_38);
+
+
+        horizontalLayout_8->addWidget(widget_events);
+
+        horizontalSpacer_5 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_8->addItem(horizontalSpacer_5);
+
+        widget_state_name_entry_exit_actions = new QWidget(widget_state_info);
+        widget_state_name_entry_exit_actions->setObjectName(QStringLiteral("widget_state_name_entry_exit_actions"));
+        verticalLayout_21 = new QVBoxLayout(widget_state_name_entry_exit_actions);
+        verticalLayout_21->setSpacing(15);
+        verticalLayout_21->setContentsMargins(11, 11, 11, 11);
         verticalLayout_21->setObjectName(QStringLiteral("verticalLayout_21"));
+        verticalLayout_21->setSizeConstraint(QLayout::SetFixedSize);
         verticalLayout_16 = new QVBoxLayout();
         verticalLayout_16->setSpacing(6);
         verticalLayout_16->setObjectName(QStringLiteral("verticalLayout_16"));
         verticalLayout_16->setSizeConstraint(QLayout::SetFixedSize);
-        label = new QLabel(widget_state_info);
+        label = new QLabel(widget_state_name_entry_exit_actions);
         label->setObjectName(QStringLiteral("label"));
         label->setMinimumSize(QSize(0, 12));
         label->setStyleSheet(QLatin1String("font: 10pt \"Segoe UI\";\n"
@@ -953,7 +1013,7 @@ public:
 
         verticalLayout_16->addWidget(label);
 
-        le_current_state_name = new QLineEdit(widget_state_info);
+        le_current_state_name = new QLineEdit(widget_state_name_entry_exit_actions);
         le_current_state_name->setObjectName(QStringLiteral("le_current_state_name"));
         le_current_state_name->setStyleSheet(QLatin1String("font: 9pt \"Segoe UI\";\n"
 "color: rgb(255, 245, 242);"));
@@ -963,77 +1023,52 @@ public:
 
         verticalLayout_21->addLayout(verticalLayout_16);
 
-        verticalLayout_13 = new QVBoxLayout();
-        verticalLayout_13->setSpacing(6);
-        verticalLayout_13->setObjectName(QStringLiteral("verticalLayout_13"));
-        verticalLayout_13->setSizeConstraint(QLayout::SetFixedSize);
-        l_Events = new QLabel(widget_state_info);
-        l_Events->setObjectName(QStringLiteral("l_Events"));
-        l_Events->setStyleSheet(QLatin1String("font: 10pt \"Segoe UI\";\n"
+        verticalLayout_23 = new QVBoxLayout();
+        verticalLayout_23->setSpacing(8);
+        verticalLayout_23->setObjectName(QStringLiteral("verticalLayout_23"));
+        verticalLayout_23->setSizeConstraint(QLayout::SetFixedSize);
+        l_Entry_Action = new QLabel(widget_state_name_entry_exit_actions);
+        l_Entry_Action->setObjectName(QStringLiteral("l_Entry_Action"));
+        l_Entry_Action->setMinimumSize(QSize(0, 12));
+        l_Entry_Action->setStyleSheet(QLatin1String("font: 10pt \"Segoe UI\";\n"
 "color: rgb(255, 245, 242);"));
 
-        verticalLayout_13->addWidget(l_Events);
+        verticalLayout_23->addWidget(l_Entry_Action);
 
-        lw_Events = new QListWidget(widget_state_info);
-        lw_Events->setObjectName(QStringLiteral("lw_Events"));
-        lw_Events->setMaximumSize(QSize(120, 50));
-        lw_Events->viewport()->setProperty("cursor", QVariant(QCursor(Qt::PointingHandCursor)));
-        lw_Events->setStyleSheet(QLatin1String("font: 9pt \"Segoe UI\";\n"
+        le_entry_action = new QLineEdit(widget_state_name_entry_exit_actions);
+        le_entry_action->setObjectName(QStringLiteral("le_entry_action"));
+        le_entry_action->setStyleSheet(QLatin1String("font: 9pt \"Segoe UI\";\n"
 "color: rgb(255, 245, 242);"));
 
-        verticalLayout_13->addWidget(lw_Events);
+        verticalLayout_23->addWidget(le_entry_action);
 
-
-        verticalLayout_21->addLayout(verticalLayout_13);
-
-        verticalLayout_14 = new QVBoxLayout();
-        verticalLayout_14->setSpacing(6);
-        verticalLayout_14->setObjectName(QStringLiteral("verticalLayout_14"));
-        verticalLayout_14->setSizeConstraint(QLayout::SetFixedSize);
-        l_Next_State = new QLabel(widget_state_info);
-        l_Next_State->setObjectName(QStringLiteral("l_Next_State"));
-        l_Next_State->setStyleSheet(QLatin1String("font: 10pt \"Segoe UI\";\n"
+        verticalLayout_24 = new QVBoxLayout();
+        verticalLayout_24->setSpacing(6);
+        verticalLayout_24->setObjectName(QStringLiteral("verticalLayout_24"));
+        verticalLayout_24->setSizeConstraint(QLayout::SetFixedSize);
+        l_Exit_Action = new QLabel(widget_state_name_entry_exit_actions);
+        l_Exit_Action->setObjectName(QStringLiteral("l_Exit_Action"));
+        l_Exit_Action->setMinimumSize(QSize(0, 12));
+        l_Exit_Action->setStyleSheet(QLatin1String("font: 10pt \"Segoe UI\";\n"
 "color: rgb(255, 245, 242);"));
 
-        verticalLayout_14->addWidget(l_Next_State);
+        verticalLayout_24->addWidget(l_Exit_Action);
 
-        lw_Next_State = new QListWidget(widget_state_info);
-        lw_Next_State->setObjectName(QStringLiteral("lw_Next_State"));
-        lw_Next_State->setMaximumSize(QSize(120, 50));
-        lw_Next_State->viewport()->setProperty("cursor", QVariant(QCursor(Qt::PointingHandCursor)));
-        lw_Next_State->setStyleSheet(QLatin1String("font: 9pt \"Segoe UI\";\n"
+        le_exit_action = new QLineEdit(widget_state_name_entry_exit_actions);
+        le_exit_action->setObjectName(QStringLiteral("le_exit_action"));
+        le_exit_action->setStyleSheet(QLatin1String("font: 9pt \"Segoe UI\";\n"
 "color: rgb(255, 245, 242);"));
 
-        verticalLayout_14->addWidget(lw_Next_State);
+        verticalLayout_24->addWidget(le_exit_action);
 
 
-        verticalLayout_21->addLayout(verticalLayout_14);
-
-        verticalLayout_15 = new QVBoxLayout();
-        verticalLayout_15->setSpacing(6);
-        verticalLayout_15->setObjectName(QStringLiteral("verticalLayout_15"));
-        verticalLayout_15->setSizeConstraint(QLayout::SetFixedSize);
-        l_actions = new QLabel(widget_state_info);
-        l_actions->setObjectName(QStringLiteral("l_actions"));
-        l_actions->setStyleSheet(QLatin1String("font: 10pt \"Segoe UI\";\n"
-"color: rgb(255, 245, 242);"));
-
-        verticalLayout_15->addWidget(l_actions);
-
-        lw_Actions = new QListWidget(widget_state_info);
-        lw_Actions->setObjectName(QStringLiteral("lw_Actions"));
-        lw_Actions->setMaximumSize(QSize(120, 50));
-        lw_Actions->viewport()->setProperty("cursor", QVariant(QCursor(Qt::PointingHandCursor)));
-        lw_Actions->setStyleSheet(QLatin1String("font: 9pt \"Segoe UI\";\n"
-"color: rgb(255, 245, 242);"));
-
-        verticalLayout_15->addWidget(lw_Actions);
+        verticalLayout_23->addLayout(verticalLayout_24);
 
 
-        verticalLayout_21->addLayout(verticalLayout_15);
+        verticalLayout_21->addLayout(verticalLayout_23);
 
 
-        horizontalLayout_8->addLayout(verticalLayout_21);
+        horizontalLayout_8->addWidget(widget_state_name_entry_exit_actions);
 
 
         verticalLayout_22->addLayout(horizontalLayout_8);
@@ -1041,6 +1076,19 @@ public:
         horizontalLayout_9 = new QHBoxLayout();
         horizontalLayout_9->setSpacing(6);
         horizontalLayout_9->setObjectName(QStringLiteral("horizontalLayout_9"));
+        horizontalSpacer_4 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_9->addItem(horizontalSpacer_4);
+
+        pb_change_to_event = new QPushButton(widget_state_info);
+        pb_change_to_event->setObjectName(QStringLiteral("pb_change_to_event"));
+        pb_change_to_event->setCursor(QCursor(Qt::PointingHandCursor));
+        pb_change_to_event->setStyleSheet(QLatin1String("font: 11pt \"Segoe UI\";\n"
+"color: rgb(255, 245, 242);"));
+        pb_change_to_event->setFlat(true);
+
+        horizontalLayout_9->addWidget(pb_change_to_event);
+
         horizontalSpacer_3 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
         horizontalLayout_9->addItem(horizontalSpacer_3);
@@ -1378,10 +1426,11 @@ public:
 
         verticalLayout_35->addWidget(pb_cancel_add_event_2);
 
+        tw_state_machine = new QTreeWidget(centralWidget);
+        tw_state_machine->setObjectName(QStringLiteral("tw_state_machine"));
+        tw_state_machine->setGeometry(QRect(430, 10, 281, 341));
         NFWizard2->setCentralWidget(centralWidget);
         label_bar_background->raise();
-        pushButton_Generate_tag->raise();
-        pushButton_Options_tag->raise();
         pushButton_Help_tag->raise();
         widget_dirs->raise();
         widget_buttons_quit->raise();
@@ -1395,6 +1444,9 @@ public:
         widget_state_machine_name->raise();
         pb_warning_state_machine->raise();
         widget_add_delete_event->raise();
+        pushButton_Generate_tag->raise();
+        pushButton_Options_tag->raise();
+        tw_state_machine->raise();
         menuBar = new QMenuBar(NFWizard2);
         menuBar->setObjectName(QStringLiteral("menuBar"));
         menuBar->setGeometry(QRect(0, 0, 1280, 20));
@@ -1553,13 +1605,17 @@ public:
         pb_search_state->setText(QApplication::translate("NFWizard2", "Search", Q_NULLPTR));
         label_2->setText(QApplication::translate("NFWizard2", "SUPER STATE", Q_NULLPTR));
         label_3->setText(QApplication::translate("NFWizard2", "INITIAL STATE", Q_NULLPTR));
-        l_Entry_Action->setText(QApplication::translate("NFWizard2", "ENTRY ACTION", Q_NULLPTR));
-        l_Exit_Action->setText(QApplication::translate("NFWizard2", "EXIT ACTION", Q_NULLPTR));
         label_4->setText(QApplication::translate("NFWizard2", "DEFAULT EVENT", Q_NULLPTR));
-        label->setText(QApplication::translate("NFWizard2", "STATE NAME", Q_NULLPTR));
         l_Events->setText(QApplication::translate("NFWizard2", "EVENTS", Q_NULLPTR));
         l_Next_State->setText(QApplication::translate("NFWizard2", "NEXT STATE", Q_NULLPTR));
         l_actions->setText(QApplication::translate("NFWizard2", "ACTIONS", Q_NULLPTR));
+        label->setText(QApplication::translate("NFWizard2", "STATE NAME", Q_NULLPTR));
+        l_Entry_Action->setText(QApplication::translate("NFWizard2", "ENTRY ACTION", Q_NULLPTR));
+        l_Exit_Action->setText(QApplication::translate("NFWizard2", "EXIT ACTION", Q_NULLPTR));
+#ifndef QT_NO_TOOLTIP
+        pb_change_to_event->setToolTip(QApplication::translate("NFWizard2", "Apply changes to the State properties", Q_NULLPTR));
+#endif // QT_NO_TOOLTIP
+        pb_change_to_event->setText(QApplication::translate("NFWizard2", "Events", Q_NULLPTR));
 #ifndef QT_NO_TOOLTIP
         pb_ok->setToolTip(QApplication::translate("NFWizard2", "Apply changes to the State properties", Q_NULLPTR));
 #endif // QT_NO_TOOLTIP

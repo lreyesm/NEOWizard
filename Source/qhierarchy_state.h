@@ -3,7 +3,7 @@
 
 #include <QPushButton>
 
-#define MAX_CHILD_STATES 6
+#define MAX_CHILD_STATES 9
 
 class QHierarchy_State : public QPushButton
 {
