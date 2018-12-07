@@ -4,8 +4,9 @@
 #include <QMainWindow>
 #include <QtCore>
 #include "DialogConfigurationHelp.h"
-#include <qhierarchy_state.h>
+#include "qhierarchy_state.h"
 #include <QCompleter>
+#include <QTreeWidgetItem>
 
 namespace Ui {
 class NFWizard2;
@@ -153,6 +154,8 @@ private slots:
 
     void on_pb_change_to_event_clicked();
 
+    void on_tw_state_machine_itemClicked(QTreeWidgetItem *item, int column);
+
 signals:
 
     check_warnings();
@@ -184,7 +187,7 @@ private:
     void show_options();
     void set_points();
     void clean_widget_state_machine();
-    int draw_super_state(const QString& superState);
+    int draw_super_state(const QString& superState, const bool update_tree = true, const bool expand = false, const QString item_name = "Empty");
     int get_state_index_with_name(const QString& state_name);
     QList<quint16> get_state_indexes_with_parent(const QString &superState);
     bool add_state_in_superstate(const QString& superState, const QString& state_name, const bool show);
@@ -201,6 +204,8 @@ private:
     int generate_guide_code_Main_Thread_cpp(const QString path, const QString main_thread_name);
     int generate_labels_for_state_machine(const QString path, const QString main_thread_name);
     int load_state_machine_from_Thread(const QString path, const QString main_thread_name);
+    void show_update_tree_view(const bool expand = false, const QString item_name_parent = "Empty", const QString item_name = "Empty");
+    void highlight_state(const QString state_to_highlight);
 
 
 private:
@@ -216,7 +221,7 @@ private:
     bool generate_project_folders;
     int add_thread_state;  ////enum del tipo de hilo a agregar
     QList<QHierarchy_State*> hierarchy_states;
-    QList<QPoint> points[10];////almacena los QPoints de estados a dibujar
+    QList<QPoint> points[13];////almacena los QPoints de estados a dibujar
     QString current_state; ////estado marcado
     QString current_state_parent;////los hijos de este superestado son los dibujados
     int current_positions_minus_one; ////Cantidad -1 de estados a dibujar

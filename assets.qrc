@@ -25,5 +25,7 @@
         <file>Assets/warning.png</file>
         <file>Assets/state.png</file>
         <file>Assets/state_init.png</file>
+        <file>Assets/state_highlight.png</file>
+        <file>Assets/state_init_highlight.png</file>
     </qresource>
 </RCC>

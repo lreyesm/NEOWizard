@@ -1,6 +1,7 @@
 #include "qhierarchy_state.h"
 
-quint8 QHierarchy_State::MAX_SUB_STATE = MAX_CHILD_STATES;
+
+const quint8 QHierarchy_State::MAX_SUB_STATE = MAX_CHILD_STATES;
 
 QHierarchy_State::QHierarchy_State(QWidget *parent, QString state_name_ref) : QPushButton(parent)
 {
@@ -28,6 +29,7 @@ QHierarchy_State::QHierarchy_State(QWidget *parent, QString state_name_ref) : QP
     add_Event("No Event", "No Next State", "No Action");
     position_in_superstate = -1;
 
+    highLight = false;
     initial=false;
     configured=false;
 }
@@ -36,6 +38,32 @@ QHierarchy_State::QHierarchy_State(QWidget *parent, QString state_name_ref) : QP
 QHierarchy_State::~QHierarchy_State()
 {
     this->deleteLater();
+}
+
+bool QHierarchy_State::set_Highlight(const bool highlight){
+
+    if(highlight){
+
+        highLight = true;
+        if(initial){
+            this->setStyleSheet(QLatin1String("color: rgb(255, 245, 242); background-image: url(:/Assets/state_init_highlight.png); font: 10pt \"Segoe UI\";"));
+        }
+        else{
+            this->setStyleSheet(QLatin1String("color: rgb(255, 245, 242); background-image: url(:/Assets/state_highlight.png); font: 10pt \"Segoe UI\";"));
+        }
+        return true;
+    }
+    else{
+
+        highLight = false;
+        if(initial){
+            this->setStyleSheet(QLatin1String("color: rgb(255, 245, 242); background-image: url(:/Assets/state_init.png); font: 10pt \"Segoe UI\";"));
+        }
+        else{
+            this->setStyleSheet(QLatin1String("color: rgb(255, 245, 242); background-image: url(:/Assets/state.png); font: 10pt \"Segoe UI\";"));
+        }
+        return false;
+    }
 }
 
 void QHierarchy_State::write_file(QDataStream &out){

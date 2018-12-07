@@ -21,7 +21,7 @@ NFWizard2::NFWizard2(QWidget *parent) :
     generate_project_folders = false;
     ui->mainToolBar->hide();
     ui->menuBar->hide();
-    ui->statusBar->hide();
+    //ui->statusBar->hide();
 
     this->windows_widget_position();
     current_positions_minus_one =0;
@@ -45,9 +45,10 @@ NFWizard2::~NFWizard2()
 
 void NFWizard2::windows_widget_position(){
 
-    this->setGeometry(200,200,793,389);
+    this->setGeometry(200,200,1090,460);
 
     //ui->widget_state_machine_name->move((int)(this->geometry().width()/2), (int)(this->geometry().height()/2));
+    ui->widget_options->move(0,0);
     ui->widget_add_delete_event->move(500,140);
     ui->pb_warning_state_machine->move(392,77);
     ui->widget_state_machine_name->move(500,140);
@@ -55,6 +56,13 @@ void NFWizard2::windows_widget_position(){
     ui->widget_options_buttons->move(90,80);
     ui->widget_options_thread_options->move(350,40);
     ui->widget_event_options->move(400,90);
+
+    ui->pb_warning_state_machine->setParent(ui->widget_states);
+    ui->widget_state_machine_name->setParent(ui->widget_states);
+    ui->widget_state_machine_name->move(ui->widget_states->geometry().width()/2-ui->widget_state_machine_name->geometry().width()/2,
+                                        ui->widget_states->geometry().height()/2-ui->widget_state_machine_name->geometry().height()/2);
+    ui->widget_state_machine_name->setStyleSheet(QStringLiteral("background-color: rgb(48, 60, 77); color: rgb(21, 172, 112); font: 12pt \"Segoe UI\";"));
+    ui->pb_warning_state_machine->move(5,5);
 
     ui->pb_configure_state_machine->setStyleSheet(QStringLiteral("color: rgb(21, 172, 112); font: 11pt \"Segoe UI\";"));
     ui->pb_configure_Main_thread->setStyleSheet(QStringLiteral("color: rgb(21, 172, 112); font: 11pt \"Segoe UI\";"));
@@ -765,10 +773,16 @@ void NFWizard2::on_pushButton_Quit_clicked()
 void NFWizard2::on_pushButton_Help_tag_clicked()
 {
     hide_all_objects();
+
+    this->show_help();
+}
+
+void NFWizard2::show_update_tree_view(const bool expand, const QString item_name_parent, const QString item_name){
+
     ui->tw_state_machine->show();
     ui->tw_state_machine->clear();
-    QStringList n;
-    n<<"hola"<<"adios";
+    ui->tw_state_machine->setStyleSheet(QStringLiteral("color: rgb(21, 172, 112); font: 10pt \"Segoe UI\";"));
+
     QList<QTreeWidgetItem*> items;
 
     for(quint16 i=0;i< hierarchy_states.size();i++){
@@ -789,11 +803,46 @@ void NFWizard2::on_pushButton_Help_tag_clicked()
             int index = get_state_index_with_name(hierarchy_states[i]->get_direct_SubStates()[n]);
 
             items[i]->addChild(items[index]);
+
+        }
+
+    }
+    quint16 c=0;
+    if(expand){
+        for(quint16 i=0; i< items.size();i++){
+
+            QString n = items[i]->text(0);
+
+            if(item_name_parent == n){
+
+                items[i]->setExpanded(true);
+                c=i;
+                break;
+            }
         }
     }
 
+    if(expand){
+        QTreeWidgetItem* item;
+        item = items[c];
+        while(item->parent()!=NULL){
+            item->parent()->setExpanded(true);
+            item = item->parent();
+        }
+    }
+    if(item_name!="Empty"){
+        for(quint16 i=0; i< items.size();i++){
 
-    this->show_help();
+            QString n = items[i]->text(0);
+
+            if(item_name == n){
+
+                items[i]->setSelected(true);
+                break;
+            }
+        }
+    }
+
 }
 
 void NFWizard2::on_pushButton_Options_tag_clicked()
@@ -1151,6 +1200,8 @@ void NFWizard2::on_pb_configure_state_machine_clicked()
         ui->pb_configure_thread_in_main->hide();
         ui->pb_configure_Main_thread->hide();
 
+        show_update_tree_view();
+
         emit check_warnings();
     }
     else{
@@ -1253,6 +1304,7 @@ void NFWizard2::on_pb_add_state_clicked()
 
 void NFWizard2::on_state_clicked(QString state_name){
 
+    highlight_state(state_name);
     current_state = state_name;
     current_state_parent = ui->l_name_current_state->text();
     ui->widget_on_state_options->show();
@@ -1282,7 +1334,7 @@ void NFWizard2::set_points(){
 
     int x = ui->widget_states->size().rwidth();
     int y = ui->widget_states->size().rheight();
-    int hieratic_state_circle_radius = 40;
+    int hieratic_state_circle_radius = 27;
 
     points[0].append(QPoint((int)(x/2)-hieratic_state_circle_radius,(int)(y/2)-hieratic_state_circle_radius));
 
@@ -1337,6 +1389,42 @@ void NFWizard2::set_points(){
     points[8].append(QPoint((int)(x/4)*3-hieratic_state_circle_radius,(int)(y/2)-hieratic_state_circle_radius));
     points[8].append(QPoint((int)(x/3)-hieratic_state_circle_radius,(int)(y/5)*4-hieratic_state_circle_radius));
     points[8].append(QPoint((int)(x/3)*2-hieratic_state_circle_radius,(int)(y/5)*4-hieratic_state_circle_radius));
+
+    points[9].append(QPoint((int)(x/5)*2-hieratic_state_circle_radius,(int)(y/5)*2-hieratic_state_circle_radius));
+    points[9].append(QPoint((int)(x/5)*3-hieratic_state_circle_radius,(int)(y/5)*2-hieratic_state_circle_radius));
+    points[9].append(QPoint((int)(x/5)*2-hieratic_state_circle_radius,(int)(y/5)*3-hieratic_state_circle_radius));
+    points[9].append(QPoint((int)(x/5)*3-hieratic_state_circle_radius,(int)(y/5)*3-hieratic_state_circle_radius));
+    points[9].append(QPoint((int)(x/10)*3-hieratic_state_circle_radius,(int)(y/5)-hieratic_state_circle_radius));
+    points[9].append(QPoint((int)(x/10)*7-hieratic_state_circle_radius,(int)(y/5)-hieratic_state_circle_radius));
+    points[9].append(QPoint((int)(x/10)*2-hieratic_state_circle_radius,(int)(y/2)-hieratic_state_circle_radius));
+    points[9].append(QPoint((int)(x/10)*8-hieratic_state_circle_radius,(int)(y/2)-hieratic_state_circle_radius));
+    points[9].append(QPoint((int)(x/10)*3-hieratic_state_circle_radius,(int)(y/5)*4-hieratic_state_circle_radius));
+    points[9].append(QPoint((int)(x/10)*7-hieratic_state_circle_radius,(int)(y/5)*4-hieratic_state_circle_radius));
+
+    points[10].append(QPoint((int)(x/5)*2-hieratic_state_circle_radius,(int)(y/5)*2-hieratic_state_circle_radius));
+    points[10].append(QPoint((int)(x/5)*3-hieratic_state_circle_radius,(int)(y/5)*2-hieratic_state_circle_radius));
+    points[10].append(QPoint((int)(x/5)*2-hieratic_state_circle_radius,(int)(y/5)*3-hieratic_state_circle_radius));
+    points[10].append(QPoint((int)(x/5)*3-hieratic_state_circle_radius,(int)(y/5)*3-hieratic_state_circle_radius));
+    points[10].append(QPoint((int)(x/10)*3-hieratic_state_circle_radius,(int)(y/5)-hieratic_state_circle_radius));
+    points[10].append(QPoint((int)(x/10)*7-hieratic_state_circle_radius,(int)(y/5)-hieratic_state_circle_radius));
+    points[10].append(QPoint((int)(x/10)*2-hieratic_state_circle_radius,(int)(y/2)-hieratic_state_circle_radius));
+    points[10].append(QPoint((int)(x/10)*8-hieratic_state_circle_radius,(int)(y/2)-hieratic_state_circle_radius));
+    points[10].append(QPoint((int)(x/10)*3-hieratic_state_circle_radius,(int)(y/5)*4-hieratic_state_circle_radius));
+    points[10].append(QPoint((int)(x/10)*7-hieratic_state_circle_radius,(int)(y/5)*4-hieratic_state_circle_radius));
+    points[10].append(QPoint((int)(x/2)-hieratic_state_circle_radius,(int)(y/20)*17-hieratic_state_circle_radius));
+
+    points[11].append(QPoint((int)(x/5)*2-hieratic_state_circle_radius,(int)(y/5)*2-hieratic_state_circle_radius));
+    points[11].append(QPoint((int)(x/5)*3-hieratic_state_circle_radius,(int)(y/5)*2-hieratic_state_circle_radius));
+    points[11].append(QPoint((int)(x/5)*2-hieratic_state_circle_radius,(int)(y/5)*3-hieratic_state_circle_radius));
+    points[11].append(QPoint((int)(x/5)*3-hieratic_state_circle_radius,(int)(y/5)*3-hieratic_state_circle_radius));
+    points[11].append(QPoint((int)(x/10)*3-hieratic_state_circle_radius,(int)(y/5)-hieratic_state_circle_radius));
+    points[11].append(QPoint((int)(x/10)*7-hieratic_state_circle_radius,(int)(y/5)-hieratic_state_circle_radius));
+    points[11].append(QPoint((int)(x/10)*2-hieratic_state_circle_radius,(int)(y/2)-hieratic_state_circle_radius));
+    points[11].append(QPoint((int)(x/10)*8-hieratic_state_circle_radius,(int)(y/2)-hieratic_state_circle_radius));
+    points[11].append(QPoint((int)(x/10)*3-hieratic_state_circle_radius,(int)(y/5)*4-hieratic_state_circle_radius));
+    points[11].append(QPoint((int)(x/10)*7-hieratic_state_circle_radius,(int)(y/5)*4-hieratic_state_circle_radius));
+    points[11].append(QPoint((int)(x/2)-hieratic_state_circle_radius,(int)(y/20)*17-hieratic_state_circle_radius));
+    points[11].append(QPoint((int)(x/2)-hieratic_state_circle_radius,(int)(y/20)*3-hieratic_state_circle_radius));
 }
 
 void NFWizard2::on_pb_generate_state_machine_clicked()
@@ -1378,7 +1466,7 @@ void NFWizard2::on_pb_generate_state_machine_clicked()
    }
 }
 
-int NFWizard2::draw_super_state(const QString &superState){
+int NFWizard2::draw_super_state(const QString &superState, const bool update_tree, const bool expand, const QString item_name){
 
     clean_widget_state_machine();
 
@@ -1426,6 +1514,13 @@ int NFWizard2::draw_super_state(const QString &superState){
         }
 
     }
+    if(superState != "No Parent"){
+        show_update_tree_view(true, superState, item_name);
+    }
+    else{
+        show_update_tree_view(false, "Empty", item_name);
+    }
+
     emit check_warnings();
 
     return indexes.size();
@@ -1878,6 +1973,7 @@ void NFWizard2::on_selected_state_in_search(const QString &state){
         draw_super_state(hierarchy_states[index]->get_state_parent());
         qDebug()<<"State selected : "+state+" on function : on_selected_state_in_search";
     }
+    highlight_state(state);
 }
 
 void NFWizard2::generate_definition_for_State_Machine_actions(const QString main_thread_name, const QString action){
@@ -2813,6 +2909,8 @@ int NFWizard2::load_state_machine_from_Thread(const QString path, const QString 
 
     main_FileProcessor.setFilename(path+QString("/Source/")+main_thread_name+QString(".cpp"));
 
+    QApplication::setOverrideCursor(Qt::WaitCursor);
+
     ////Obtiene estados********************************************************************************************************
     main_FileProcessor.setStartLine("eObject::Declare::eState");
     main_FileProcessor.setEndLine(";");
@@ -3078,7 +3176,9 @@ int NFWizard2::load_state_machine_from_Thread(const QString path, const QString 
                                                    +QString("<br>Next State   : ")+hierarchy_states[i]->get_events_list()[0].next_state);
     }
 
-    draw_super_state(QString("No Parent"));
+    draw_super_state(QString("No Parent"), true, false);
+
+    QApplication::restoreOverrideCursor();
 
     return 1;
 }
@@ -3126,5 +3226,35 @@ void NFWizard2::on_pb_change_to_event_clicked()
         ui->widget_super_initial_default_state->hide();
         ui->widget_events->show();
         ui->pb_change_to_event->setText("Back");
+    }
+}
+
+void NFWizard2::on_tw_state_machine_itemClicked(QTreeWidgetItem *item, int column)
+{
+    //ui->statusBar->showMessage(item->text(column));
+
+    int index = get_state_index_with_name(item->text(column));
+
+    if(index !=-1){
+        draw_super_state(hierarchy_states[index]->get_state_parent(), true, true, item->text(column));
+
+        highlight_state(hierarchy_states[index]->get_state_name());
+    }
+}
+
+void NFWizard2::highlight_state(const QString state_to_highlight){
+
+    int index = get_state_index_with_name(state_to_highlight);
+    if(index!=-1){
+
+        for(quint16 i =0; i< hierarchy_states.size(); i++){
+
+            hierarchy_states[i]->set_Highlight(false);
+        }
+
+        if(!hierarchy_states[index]->isHighLight()){
+
+            hierarchy_states[index]->set_Highlight(true);
+        }
     }
 }

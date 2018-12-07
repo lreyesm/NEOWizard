@@ -3,7 +3,8 @@
 
 #include <QPushButton>
 
-#define MAX_CHILD_STATES 9
+
+#define MAX_CHILD_STATES 12
 
 class QHierarchy_State : public QPushButton
 {
@@ -14,7 +15,7 @@ public:
 
     ~QHierarchy_State();
 
-    static quint8 MAX_SUB_STATE;
+    static const quint8 MAX_SUB_STATE;
 
     typedef struct{
 
@@ -37,9 +38,10 @@ public:
     bool look_for_child(const QString &child_state);
     bool eliminate_child(const QString &child_state); ////Modificar esta funcion /Que hacer con estados hijos del eliminado
     bool isInitial(){ return initial;}
-//    const QStringList get_events();
-//    const QStringList get_next_states();
-//    const QStringList get_state_actions();
+    bool set_Highlight(const bool highlight);
+    //    const QStringList get_events();
+    //    const QStringList get_next_states();
+    //    const QStringList get_state_actions();
 
     void set_state_name(const QString &name);
     void set_state_parent(const QString &parent);
@@ -55,11 +57,12 @@ public:
     void write_file(QDataStream &out);
     void read_file(QDataStream &in);
     //    void add_state_event(const QString event);
-//    void add_next_state(const QString next);
-//    void add_state_action(const QString action);
+    //    void add_next_state(const QString next);
+    //    void add_state_action(const QString action);
 
     void set_configured(bool config);
     bool is_configured();
+    const bool isHighLight(){return highLight;}
 
 signals:
     void signal_clicked(QString clicked_state_name = "unknow");
@@ -82,13 +85,15 @@ private:
     int position_in_superstate;
     quint8 subState_count;
     bool initial;
+    bool highLight;
 
-//    QStringList events;
-//    QStringList next_states;
-//    QStringList state_actions;
+    //    QStringList events;
+    //    QStringList next_states;
+    //    QStringList state_actions;
 
     bool configured;
 
 };
+
 
 #endif // QHIERARCHY_STATE_H
