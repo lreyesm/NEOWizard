@@ -221,7 +221,7 @@ int TextFileProcessor::generate_machine_lines_in_main_thread_h(){
     QString replacement_line_2 = "    /*Definitions of State Machine*/\n\n    /*Definition of Action Prototypes of State Machine*/\n    /*End of Definition of Action Prototypes of State Machine*/\n\n    /*End of Definitions of State Machine*/\n\n";
 
 
-    if(check_if_code_exist("#include <eApplicationBase.h>", false)==1){
+    if(check_if_code_exist("#include <eApplicationBase.h>", false)==1 && check_if_code_exist(replacement_line, false)==0){
 
          QString toReplace = "#include <eApplicationBase.h>\n\n" + replacement_line;
 
@@ -244,7 +244,7 @@ int TextFileProcessor::generate_machine_lines_in_main_thread_h(){
          }
     }
     else{
-        if(check_if_code_exist("#include \"eApplicationBase.h\"", false)==1){
+        if(check_if_code_exist("#include \"eApplicationBase.h\"", false)==1 && check_if_code_exist(replacement_line, false)==0){
 
             QString toReplace = "#include \"eApplicationBase.h\"\n\n" + replacement_line;
 
@@ -372,7 +372,7 @@ int TextFileProcessor::generate_machine_lines_in_main_thread_cpp(const QString m
             QString("\n /*End of Implementation Entry Functions of State Machine*/")+
 
             QString("\n\n/*Implementation of Exit Functions of State Machine*/")+
-            QString("\n/*End of Implementation Exit Functions of State Machine*/");
+            QString("\n/*End of Implementation Exit Functions of State Machine*/\n\n");
 
     if(check_if_code_exist("/*Implementation of Action Prototypes of State Machine*/", false)!=1){
 

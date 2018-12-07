@@ -59,7 +59,7 @@ int main(void)
   //Application app;
 
   //Sustituir por el nombre de la clase asignado
-  //app.exec();
+  //app.exec( );
 
   /* USER CODE END 2 */
 

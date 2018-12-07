@@ -1152,95 +1152,11 @@ color:  rgb(21, 172, 112);</string>
      </item>
     </layout>
    </widget>
-   <widget class="QWidget" name="widget_state_machine_name" native="true">
-    <property name="geometry">
-     <rect>
-      <x>780</x>
-      <y>240</y>
-      <width>170</width>
-      <height>91</height>
-     </rect>
-    </property>
-    <layout class="QVBoxLayout" name="verticalLayout_33">
-     <property name="sizeConstraint">
-      <enum>QLayout::SetFixedSize</enum>
-     </property>
-     <item>
-      <widget class="QLabel" name="l_state_machine_name">
-       <property name="styleSheet">
-        <string notr="true">font: 12pt &quot;Segoe UI&quot;;
-color:  rgb(21, 172, 112);</string>
-       </property>
-       <property name="text">
-        <string>State Machine Name</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLineEdit" name="le_state_machine_name">
-       <property name="maximumSize">
-        <size>
-         <width>165</width>
-         <height>16777215</height>
-        </size>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">font: 10pt &quot;Segoe UI&quot;;
-color: rgb(255, 245, 242);</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <layout class="QHBoxLayout" name="horizontalLayout_11">
-       <property name="sizeConstraint">
-        <enum>QLayout::SetFixedSize</enum>
-       </property>
-       <item>
-        <widget class="QPushButton" name="pb_cancel_state_machine_name">
-         <property name="cursor">
-          <cursorShape>PointingHandCursor</cursorShape>
-         </property>
-         <property name="toolTip">
-          <string>Cancel the name configured</string>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">font: 12pt &quot;Segoe UI&quot;;
-color:  rgb(21, 172, 112);</string>
-         </property>
-         <property name="text">
-          <string>Cancel</string>
-         </property>
-         <property name="flat">
-          <bool>true</bool>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="pb_acept_sate_machine_name">
-         <property name="cursor">
-          <cursorShape>PointingHandCursor</cursorShape>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">font: 12pt &quot;Segoe UI&quot;;
-color:  rgb(21, 172, 112);</string>
-         </property>
-         <property name="text">
-          <string>Acept</string>
-         </property>
-         <property name="flat">
-          <bool>true</bool>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </item>
-    </layout>
-   </widget>
    <widget class="QWidget" name="widget_options" native="true">
     <property name="geometry">
      <rect>
       <x>30</x>
-      <y>370</y>
+      <y>310</y>
       <width>1008</width>
       <height>476</height>
      </rect>
@@ -1733,6 +1649,110 @@ color:  rgb(21, 172, 112);</string>
            <bool>true</bool>
           </property>
          </widget>
+        </item>
+       </layout>
+      </widget>
+     </item>
+     <item>
+      <widget class="QWidget" name="widget_state_machine_name" native="true">
+       <layout class="QVBoxLayout" name="verticalLayout_33">
+        <property name="sizeConstraint">
+         <enum>QLayout::SetFixedSize</enum>
+        </property>
+        <item>
+         <spacer name="verticalSpacer_4">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>40</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <widget class="QLabel" name="l_state_machine_name">
+          <property name="styleSheet">
+           <string notr="true">font: 12pt &quot;Segoe UI&quot;;
+color:  rgb(21, 172, 112);</string>
+          </property>
+          <property name="text">
+           <string>State Machine Name</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="le_state_machine_name">
+          <property name="maximumSize">
+           <size>
+            <width>165</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">font: 10pt &quot;Segoe UI&quot;;
+color: rgb(255, 245, 242);</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_11">
+          <property name="sizeConstraint">
+           <enum>QLayout::SetFixedSize</enum>
+          </property>
+          <item>
+           <widget class="QPushButton" name="pb_cancel_state_machine_name">
+            <property name="cursor">
+             <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="toolTip">
+             <string>Cancel the name configured</string>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">font: 12pt &quot;Segoe UI&quot;;
+color:  rgb(21, 172, 112);</string>
+            </property>
+            <property name="text">
+             <string>Cancel</string>
+            </property>
+            <property name="flat">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pb_acept_sate_machine_name">
+            <property name="cursor">
+             <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">font: 12pt &quot;Segoe UI&quot;;
+color:  rgb(21, 172, 112);</string>
+            </property>
+            <property name="text">
+             <string>Acept</string>
+            </property>
+            <property name="flat">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <spacer name="verticalSpacer_3">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>40</height>
+           </size>
+          </property>
+         </spacer>
         </item>
        </layout>
       </widget>
@@ -2537,6 +2557,35 @@ color:  rgb(21, 172, 112);</string>
      </item>
     </layout>
    </widget>
+   <widget class="QWidget" name="widget_wait" native="true">
+    <property name="geometry">
+     <rect>
+      <x>1060</x>
+      <y>290</y>
+      <width>144</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout_15">
+     <property name="sizeConstraint">
+      <enum>QLayout::SetFixedSize</enum>
+     </property>
+     <item>
+      <widget class="QLabel" name="label_loading">
+       <property name="styleSheet">
+        <string notr="true">font: 12pt &quot;Segoe UI&quot;;
+color:  rgb(21, 172, 112);</string>
+       </property>
+       <property name="text">
+        <string>LOADING...</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
    <zorder>widget_options</zorder>
    <zorder>label_bar_background</zorder>
    <zorder>pushButton_Help_tag</zorder>
@@ -2550,7 +2599,8 @@ color:  rgb(21, 172, 112);</string>
    <zorder>widget_add_delete_event</zorder>
    <zorder>pushButton_Generate_tag</zorder>
    <zorder>pushButton_Options_tag</zorder>
-   <zorder>widget_state_machine_name</zorder>
+   <zorder>label_espera</zorder>
+   <zorder>label_loading</zorder>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
