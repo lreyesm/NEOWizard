@@ -1157,7 +1157,7 @@ color:  rgb(21, 172, 112);</string>
      <rect>
       <x>30</x>
       <y>310</y>
-      <width>1008</width>
+      <width>1261</width>
       <height>476</height>
      </rect>
     </property>
@@ -1923,7 +1923,7 @@ color: rgb(255, 245, 242);</string>
             </property>
             <property name="minimumSize">
              <size>
-              <width>400</width>
+              <width>500</width>
               <height>260</height>
              </size>
             </property>
@@ -2088,8 +2088,8 @@ color: rgb(255, 245, 242);</string>
                         <widget class="QListWidget" name="lw_Events">
                          <property name="minimumSize">
                           <size>
-                           <width>100</width>
-                           <height>70</height>
+                           <width>150</width>
+                           <height>150</height>
                           </size>
                          </property>
                          <property name="maximumSize">
@@ -2106,6 +2106,19 @@ color: rgb(255, 245, 242);</string>
 color: rgb(255, 245, 242);</string>
                          </property>
                         </widget>
+                       </item>
+                       <item>
+                        <spacer name="verticalSpacer_5">
+                         <property name="orientation">
+                          <enum>Qt::Vertical</enum>
+                         </property>
+                         <property name="sizeHint" stdset="0">
+                          <size>
+                           <width>20</width>
+                           <height>40</height>
+                          </size>
+                         </property>
+                        </spacer>
                        </item>
                       </layout>
                      </item>
@@ -2129,8 +2142,8 @@ color: rgb(255, 245, 242);</string>
                         <widget class="QListWidget" name="lw_Next_State">
                          <property name="minimumSize">
                           <size>
-                           <width>100</width>
-                           <height>70</height>
+                           <width>150</width>
+                           <height>150</height>
                           </size>
                          </property>
                          <property name="maximumSize">
@@ -2147,6 +2160,19 @@ color: rgb(255, 245, 242);</string>
 color: rgb(255, 245, 242);</string>
                          </property>
                         </widget>
+                       </item>
+                       <item>
+                        <spacer name="verticalSpacer_6">
+                         <property name="orientation">
+                          <enum>Qt::Vertical</enum>
+                         </property>
+                         <property name="sizeHint" stdset="0">
+                          <size>
+                           <width>20</width>
+                           <height>40</height>
+                          </size>
+                         </property>
+                        </spacer>
                        </item>
                       </layout>
                      </item>
@@ -2170,8 +2196,8 @@ color: rgb(255, 245, 242);</string>
                         <widget class="QListWidget" name="lw_Actions">
                          <property name="minimumSize">
                           <size>
-                           <width>100</width>
-                           <height>70</height>
+                           <width>150</width>
+                           <height>150</height>
                           </size>
                          </property>
                          <property name="maximumSize">
@@ -2188,6 +2214,19 @@ color: rgb(255, 245, 242);</string>
 color: rgb(255, 245, 242);</string>
                          </property>
                         </widget>
+                       </item>
+                       <item>
+                        <spacer name="verticalSpacer_7">
+                         <property name="orientation">
+                          <enum>Qt::Vertical</enum>
+                         </property>
+                         <property name="sizeHint" stdset="0">
+                          <size>
+                           <width>20</width>
+                           <height>40</height>
+                          </size>
+                         </property>
+                        </spacer>
                        </item>
                       </layout>
                      </item>
@@ -2586,6 +2625,7 @@ color:  rgb(21, 172, 112);</string>
      </item>
     </layout>
    </widget>
+   <zorder>widget_wait</zorder>
    <zorder>widget_options</zorder>
    <zorder>label_bar_background</zorder>
    <zorder>pushButton_Help_tag</zorder>
@@ -2599,8 +2639,6 @@ color:  rgb(21, 172, 112);</string>
    <zorder>widget_add_delete_event</zorder>
    <zorder>pushButton_Generate_tag</zorder>
    <zorder>pushButton_Options_tag</zorder>
-   <zorder>label_espera</zorder>
-   <zorder>label_loading</zorder>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">

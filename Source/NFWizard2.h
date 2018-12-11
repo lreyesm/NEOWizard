@@ -156,6 +156,8 @@ private slots:
 
     void on_tw_state_machine_itemClicked(QTreeWidgetItem *item, int column);
 
+    void on_tw_state_machine_itemDoubleClicked(QTreeWidgetItem *item, int column);
+
 signals:
 
     check_warnings();
@@ -196,7 +198,7 @@ private:
     void generate_code_for_state_machine(const QString main_thread_name);
     void generate_definition_for_State_Machine_actions(const QString main_thread_name, const QString action);
     void generate_definition_for_State_Machine_events(const QString main_thread_name, const QString event_id, bool define_enum, bool last_event);
-    void generate_definition_for_State_Machine_entries_funtions(const QString main_thread_name, const QString entryAction);
+    void generate_definition_for_State_Machine_entries_funtions(const QString main_thread_name, const QString class_name);
     void generate_definition_for_State_Machine_exits_funtions(const QString main_thread_name, const QString exitAction);
     int get_child_initial_index(const QString &superState);
     int check_if_compatible(const QString path, const QString main_thread_name, const QString header_source_quest, const QString line_code);

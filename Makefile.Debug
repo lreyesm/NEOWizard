@@ -143,6 +143,7 @@ debug/qrc_assets.cpp: assets.qrc \
 		Assets/label_uVision.png \
 		Assets/button_browse.png \
 		Assets/warning.png \
+		Assets/state_init_highlight.png \
 		Assets/check_box_on.png \
 		Assets/options_tag_on.png \
 		Assets/label_generate_options.png \
@@ -158,7 +159,8 @@ debug/qrc_assets.cpp: assets.qrc \
 		Assets/keilEditorOptions.PNG \
 		Assets/icon.ico \
 		Assets/Stm32CubeMxProjectOptions.PNG \
-		Assets/line_edit.png
+		Assets/line_edit.png \
+		Assets/state_highlight.png
 	C:\Qt\Qt5.9.0\5.9\mingw53_32\bin\rcc.exe -name assets assets.qrc -o debug\qrc_assets.cpp
 
 debug/qrc_templates.cpp: templates.qrc \
@@ -409,6 +411,22 @@ debug/moc_NFWizard2.cpp: C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/QMainWin
 		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qabstractbutton.h \
 		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/QCompleter \
 		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qcompleter.h \
+		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/QTreeWidgetItem \
+		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qtreewidget.h \
+		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qtreeview.h \
+		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qabstractitemview.h \
+		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qabstractscrollarea.h \
+		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qframe.h \
+		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qabstractitemdelegate.h \
+		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qstyleoption.h \
+		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qabstractspinbox.h \
+		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtGui/qvalidator.h \
+		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qslider.h \
+		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qabstractslider.h \
+		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qstyle.h \
+		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qtabbar.h \
+		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qrubberband.h \
+		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qtreewidgetitemiterator.h \
 		Source/NFWizard2.h \
 		debug/moc_predefs.h \
 		C:/Qt/Qt5.9.0/5.9/mingw53_32/bin/moc.exe
@@ -994,6 +1012,22 @@ debug/main.o: Source/main.cpp Source/NFWizard2.h \
 		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qabstractbutton.h \
 		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/QCompleter \
 		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qcompleter.h \
+		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/QTreeWidgetItem \
+		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qtreewidget.h \
+		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qtreeview.h \
+		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qabstractitemview.h \
+		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qabstractscrollarea.h \
+		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qframe.h \
+		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qabstractitemdelegate.h \
+		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qstyleoption.h \
+		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qabstractspinbox.h \
+		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtGui/qvalidator.h \
+		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qslider.h \
+		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qabstractslider.h \
+		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qstyle.h \
+		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qtabbar.h \
+		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qrubberband.h \
+		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qtreewidgetitemiterator.h \
 		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/QApplication \
 		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qapplication.h \
 		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qdesktopwidget.h \
@@ -1228,6 +1262,22 @@ debug/NFWizard2.o: Source/NFWizard2.cpp Source/NFWizard2.h \
 		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qabstractbutton.h \
 		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/QCompleter \
 		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qcompleter.h \
+		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/QTreeWidgetItem \
+		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qtreewidget.h \
+		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qtreeview.h \
+		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qabstractitemview.h \
+		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qabstractscrollarea.h \
+		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qframe.h \
+		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qabstractitemdelegate.h \
+		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qstyleoption.h \
+		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qabstractspinbox.h \
+		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtGui/qvalidator.h \
+		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qslider.h \
+		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qabstractslider.h \
+		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qstyle.h \
+		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qtabbar.h \
+		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qrubberband.h \
+		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qtreewidgetitemiterator.h \
 		ui_NFWizard2.h \
 		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtCore/QVariant \
 		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/QAction \
@@ -1242,16 +1292,6 @@ debug/NFWizard2.o: Source/NFWizard2.cpp Source/NFWizard2.h \
 		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qbuttongroup.h \
 		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/QComboBox \
 		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qcombobox.h \
-		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qabstractitemdelegate.h \
-		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qstyleoption.h \
-		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qabstractspinbox.h \
-		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtGui/qvalidator.h \
-		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qslider.h \
-		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qabstractslider.h \
-		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qstyle.h \
-		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qtabbar.h \
-		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qrubberband.h \
-		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qframe.h \
 		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/QHBoxLayout \
 		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qboxlayout.h \
 		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qlayout.h \
@@ -1259,8 +1299,6 @@ debug/NFWizard2.o: Source/NFWizard2.cpp Source/NFWizard2.h \
 		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qgridlayout.h \
 		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/QHeaderView \
 		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qheaderview.h \
-		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qabstractitemview.h \
-		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qabstractscrollarea.h \
 		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/QLabel \
 		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qlabel.h \
 		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/QLineEdit \
@@ -1283,6 +1321,7 @@ debug/NFWizard2.o: Source/NFWizard2.cpp Source/NFWizard2.h \
 		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qstatusbar.h \
 		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/QToolBar \
 		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qtoolbar.h \
+		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/QTreeWidget \
 		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/QVBoxLayout \
 		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/QWidget \
 		Source/FolderTreeGenerator.h \
