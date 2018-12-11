@@ -158,6 +158,7 @@ private slots:
 
     void on_tw_state_machine_itemDoubleClicked(QTreeWidgetItem *item, int column);
 
+
 signals:
 
     check_warnings();

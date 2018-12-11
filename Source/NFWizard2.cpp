@@ -9,6 +9,7 @@
 #include <QtCore>
 #include <QFileDialog>
 #include <QMessageBox>
+#include <QMouseEvent>
 
 
 NFWizard2::NFWizard2(QWidget *parent) :
@@ -34,6 +35,7 @@ NFWizard2::NFWizard2(QWidget *parent) :
     dialogConfigHelp = new DialogConfigurationHelp(this);
     //dialogConfigHelp->layout()->setSizeConstraint(QLayout::SetFixedSize);
     loadSettings();
+
 }
 
 NFWizard2::~NFWizard2()
@@ -3448,15 +3450,20 @@ void NFWizard2::on_tw_state_machine_itemDoubleClicked(QTreeWidgetItem *item, int
     int index = get_state_index_with_name(item->text(column));
 
     if(index !=-1){
-        draw_super_state(hierarchy_states[index]->get_state_parent(), true, true, item->text(column));
+        //draw_super_state(hierarchy_states[index]->get_state_parent(), true, true, item->text(column));
 
-        highlight_state(hierarchy_states[index]->get_state_name());
+        //highlight_state(hierarchy_states[index]->get_state_name());
+        qDebug()<<"doble : "<<hierarchy_states[index]->get_state_name();
+
+        QString state_name = hierarchy_states[index]->get_state_name();
+        highlight_state(state_name);
+        current_state = state_name;
+        current_state_parent = ui->l_name_current_state->text();
+        ui->widget_on_state_options->show();
+        ui->widget_on_state_options->move(QWidget::mapFromGlobal(QCursor::pos()));
     }
 
-    QString state_name = hierarchy_states[index]->get_state_name();
-    highlight_state(state_name);
-    current_state = state_name;
-    current_state_parent = ui->l_name_current_state->text();
-    ui->widget_on_state_options->show();
-    ui->widget_on_state_options->move(QWidget::mapFromGlobal(QCursor::pos()));
+
 }
+
+
