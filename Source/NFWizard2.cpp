@@ -709,12 +709,12 @@ void NFWizard2::on_actionAbout_triggered()
 {
     QString info;
     QTextStream infoWriter(&info);
-    infoWriter << QStringLiteral("Released under Beerware license") << endl
-               << QStringLiteral("Contact:") << endl
-               << QStringLiteral("Ernesto Cruz Olivera: ecruzolivera@gmail.com") << endl
+    infoWriter << QStringLiteral("<font color = white >Released under Beerware license<br>") << endl
+               << QStringLiteral("Contact:<br>") << endl
+               << QStringLiteral("Ernesto Cruz Olivera: ecruzolivera@gmail.com<br>") << endl
                << QStringLiteral("Manuel A. Linarez Páez: manuel.linares@cneuro.edu.cu") << endl
                << QStringLiteral("Luis A. Reyes Morales: luis.reyes@cneuro.edu.cu") << endl;
-    QMessageBox::information(this, "<font color = white >NEOWizard", info);
+    QMessageBox::information(this, "NEOWizard", info);
 }
 
 void NFWizard2::on_actionUVision_Configuration_triggered()
@@ -3663,6 +3663,7 @@ void NFWizard2::on_le_main_thread_name_textChanged(const QString &arg1)
 void NFWizard2::on_pb_change_to_event_clicked()
 {
     if(ui->widget_super_initial_default_state->isHidden()){
+
 
         ui->widget_super_initial_default_state->show();
         ui->widget_events->hide();
