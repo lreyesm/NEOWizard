@@ -1363,7 +1363,7 @@ void NFWizard2::on_pb_add_state_clicked()
         }
         qDebug()<<"tam :"<<QString::number(hierarchy_states.size());
 
-        ui->pb_generate_state_machine->setEnabled(true);       
+        ui->pb_generate_state_machine->setEnabled(true);
     }
     else{
         QMessageBox::information(this, "NEOWizard", QString("<font color = white >Please add name to the state"));
@@ -1959,7 +1959,7 @@ void NFWizard2::on_state_right_clicked(QString state_name){
    current_state_parent = ui->l_name_current_state->text();
    highlight_state(state_name);
    ui->widget_on_state_options->show();
-   ui->widget_on_state_options->move(QWidget::mapFromGlobal(QCursor::pos())); 
+   ui->widget_on_state_options->move(QWidget::mapFromGlobal(QCursor::pos()));
 }
 
 void NFWizard2::on_state_left_clicked(QString state_name){
@@ -2229,7 +2229,7 @@ void NFWizard2::generate_definition_for_State_Machine_events(const QString main_
         }
     }
 
-    /* Definition of Event Message Queue *////*********************************************************************************************************************************************************  
+    /* Definition of Event Message Queue *////*********************************************************************************************************************************************************
 
     if(main_h_FileProcessor.check_if_code_exist(QString("#include <eMessageQueue.h>\n")+QString("#define APP_QUEUE_SIZE 16\n"), false)==0){
     main_h_FileProcessor.setStartLine("#include <eApplicationBase.h>");       ////inicio del contenido a eliminar
@@ -2446,7 +2446,7 @@ void NFWizard2::generate_code_for_state_machine(const QString main_thread_name){
                                                                 +QString("    ")+toReplace_string);
                     main_cpp_FileProcessor.processTextBlock();
                 }
-                
+
                 exits_names.append(exitAction);
 
                 if(!exitAction.contains("::")){
@@ -2465,7 +2465,7 @@ void NFWizard2::generate_code_for_state_machine(const QString main_thread_name){
             }
         }
         ////***************************************************************************************************************************************
-        
+
         /*Comprobacion de que cada estado tenga estado siguiente*////******************************************************************************************************************
         quint8 next_states_size=0;
         for(quint16 n=0; n< hierarchy_states[i]->get_events_list().size(); n++){
@@ -3626,7 +3626,7 @@ int NFWizard2::load_state_machine_from_Thread(const QString path, const QString 
 
     draw_super_state(QString("No Parent"), true, false);
 
-    QApplication::restoreOverrideCursor();  
+    QApplication::restoreOverrideCursor();
 
     return 1;
 }
@@ -3664,6 +3664,12 @@ void NFWizard2::on_pb_change_to_event_clicked()
 {
     if(ui->widget_super_initial_default_state->isHidden()){
 
+        //ui->widget_default_events->show();
+        ui->label_4->show();
+        ui->label_5->show();
+        ui->label_6->show();
+        ui->le_default_action_name->show();
+        ui->le_default_state_name->show();
 
         ui->widget_super_initial_default_state->show();
         ui->widget_events->hide();
@@ -3673,6 +3679,13 @@ void NFWizard2::on_pb_change_to_event_clicked()
 
     }
     else{
+        //ui->widget_default_events->hide();
+        ui->label_4->hide();
+        ui->label_5->hide();
+        ui->label_6->hide();
+        ui->le_default_action_name->hide();
+        ui->le_default_state_name->hide();
+
         ui->widget_state_name_entry_exit_actions->hide();
         ui->widget_super_initial_default_state->hide();
         ui->widget_events->show();
