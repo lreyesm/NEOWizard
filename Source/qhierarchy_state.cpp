@@ -18,8 +18,9 @@ QHierarchy_State::QHierarchy_State(QWidget *parent, QString state_name_ref) : QP
     this->setFixedSize(60,57);
     this->setFlat(true);
 
-    connect(this,SIGNAL(clicked(bool)),this,SLOT(send_signal_click()));
-    connect(this,SIGNAL(pressed()),this,SLOT(drag_with_mouse()));
+    connect(this,SIGNAL(doubleClicked()),this,SLOT(send_signal_double_click()));  ////a partir de aqui agregar en NEOWizard original
+    connect(this,SIGNAL(rightClicked()),this,SLOT(send_signal_right_click()));  ////a partir de aqui agregar en NEOWizard original
+    connect(this,SIGNAL(leftClicked()),this,SLOT(send_signal_left_click()));  ////a partir de aqui agregar en NEOWizard original
 
     state_parent = "No Parent";
     state_default = "No Default";
@@ -153,14 +154,32 @@ bool QHierarchy_State::is_configured(){
     return configured;
 }
 
+////Funciones slots q emiten las señales del boton*****************************************************************************************************************************
 void QHierarchy_State::send_signal_click(){
 
     emit signal_clicked(state_name);
 }
+
+void QHierarchy_State::send_signal_double_click(){  ////a partir de aqui agregar en NEOWizard original
+
+    emit signal_double_click(state_name);
+}
+
+void QHierarchy_State::send_signal_right_click(){  ////a partir de aqui agregar en NEOWizard original
+
+    emit signal_right_clicked(state_name);
+}
+
+void QHierarchy_State::send_signal_left_click(){  ////a partir de aqui agregar en NEOWizard original
+
+    emit signal_left_clicked(state_name);
+}
+
 void QHierarchy_State::drag_with_mouse(){
 
     emit signal_toggled(state_name);
 }
+////*****************************************************************************************************************************************************************************
 
 const QString QHierarchy_State::get_state_name(){
 

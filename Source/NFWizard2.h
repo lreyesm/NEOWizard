@@ -7,6 +7,7 @@
 #include "qhierarchy_state.h"
 #include <QCompleter>
 #include <QTreeWidgetItem>
+#include <QStandardItemModel>
 
 namespace Ui {
 class NFWizard2;
@@ -73,8 +74,9 @@ private slots:
 
     void on_pb_add_state_clicked();
 
-    void on_state_clicked(QString state_name);
-    void on_state_toggled(QString state_name);
+    void on_state_double_click(QString state_name);
+    void on_state_right_clicked(QString state_name);
+    void on_state_left_clicked(QString state_name);
 
     void on_pb_generate_state_machine_clicked();
 
@@ -89,12 +91,6 @@ private slots:
     void on_pb_add_sub_sate_clicked();
 
     void on_pb_eliminate_state_clicked();
-
-    void on_lw_Events_clicked(const QModelIndex &index);
-
-    void on_lw_Next_State_clicked(const QModelIndex &index);
-
-    void on_lw_Actions_clicked(const QModelIndex &index);
 
     void on_pb_search_state_clicked();
 
@@ -156,8 +152,13 @@ private slots:
 
     void on_tw_state_machine_itemClicked(QTreeWidgetItem *item, int column);
 
+    void on_tw_state_machine_itemPressed(QTreeWidgetItem *item, int column);
+
     void on_tw_state_machine_itemDoubleClicked(QTreeWidgetItem *item, int column);
 
+    void on_tableView_events_pressed(const QModelIndex &index);
+
+    void on_pb_cancel_state_options_clicked();
 
 signals:
 
@@ -209,6 +210,7 @@ private:
     int load_state_machine_from_Thread(const QString path, const QString main_thread_name);
     void show_update_tree_view(const bool expand = false, const QString item_name_parent = "Empty", const QString item_name = "Empty");
     void highlight_state(const QString state_to_highlight);
+    void update_table_view_events();
 
 
 private:
@@ -235,6 +237,8 @@ private:
     QCompleter *complete_list_saved_states;
     QCompleter *complete_list_saved_threads;
     bool isLoad;
+    bool busy;
+    QStandardItemModel *model;
 
 };
 

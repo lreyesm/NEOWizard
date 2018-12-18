@@ -27,5 +27,6 @@
         <file>Assets/state_init.png</file>
         <file>Assets/state_highlight.png</file>
         <file>Assets/state_init_highlight.png</file>
+        <file>Assets/label_background_line_large.png</file>
     </qresource>
 </RCC>

@@ -220,8 +220,9 @@ int TextFileProcessor::generate_machine_lines_in_main_thread_h(){
     QString replacement_line = "\n/*Definition of Events ID of State Machine*/\n/*End of Definition of Events ID of State Machine*/\n";
     QString replacement_line_2 = "    /*Definitions of State Machine*/\n\n    /*Definition of Action Prototypes of State Machine*/\n    /*End of Definition of Action Prototypes of State Machine*/\n\n    /*End of Definitions of State Machine*/\n\n";
 
+    QString exist_code= replacement_line.section('/',1,1);
 
-    if(check_if_code_exist("#include <eApplicationBase.h>", false)==1 && check_if_code_exist(replacement_line.section('/',1,1), false)==0){
+    if(check_if_code_exist("#include <eApplicationBase.h>", false)==1 && check_if_code_exist(exist_code, false)==0){
 
          QString toReplace = "#include <eApplicationBase.h>\n\n" + replacement_line;
 
@@ -268,24 +269,27 @@ int TextFileProcessor::generate_machine_lines_in_main_thread_h(){
         }
         else{
 
-            QFile file(filename());
-            if (!file.open(QFile::ReadWrite | QFile::Text)) {
-                qWarning() << "File: " << filename() << " could not be opened for read!";
+            if(check_if_code_exist("#include <eApplicationBase.h>", false)==0){
 
-                return -2;
+                QFile file(filename());
+                if (!file.open(QFile::ReadWrite | QFile::Text)) {
+                    qWarning() << "File: " << filename() << " could not be opened for read!";
+
+                    return -2;
+                }
+
+                QString fileContent = file.readAll();
+
+                fileContent = "#include <eApplicationBase.h>\n\n" + replacement_line + fileContent;
+
+                file.close();
+
+                int retval = write_string_to_document(fileContent);
+                if(retval != 1){
+                    return retval;
+                }
+                return 1;
             }
-
-            QString fileContent = file.readAll();
-
-            fileContent = "#include <eApplicationBase.h>\n\n" + replacement_line + fileContent;
-
-            file.close();
-
-            int retval = write_string_to_document(fileContent);
-            if(retval != 1){
-                return retval;
-            }
-            return 1;
         }
     }
     if(check_if_code_exist("private:", true)==1){
@@ -353,6 +357,9 @@ int TextFileProcessor::generate_machine_lines_in_main_thread_cpp(const QString m
 
             QString("\n\n    /*Adding all Events from State Machine*/")+
             QString("\n    /*End of Adding all Events from State Machine*/")+
+
+            QString("\n\n    /*Definition of all Default Events from State Machine*/")+
+            QString("\n    /*End of Definition of all Default Events from State Machine*/")+
 
             QString("\n\n    /*Definition of all Entry Actions from State Machine*/")+
             QString("\n    /*End of Definition of all Entry Actions from State Machine*/")+

@@ -2,6 +2,7 @@
 #define QHIERARCHY_STATE_H
 
 #include <QPushButton>
+#include <QMouseEvent>
 
 
 #define MAX_CHILD_STATES 12
@@ -68,9 +69,38 @@ signals:
     void signal_clicked(QString clicked_state_name = "unknow");
     void signal_toggled(QString toggled_state_name = "unknow");
 
+    void signal_double_click(QString double_clicked_state_name = "unknow"); ////a partir de aqui agregar en NEOWizard original
+    void signal_right_clicked(QString right_clicked_state_name = "unknow");
+    void signal_left_clicked(QString left_clicked_state_name = "unknow");
+    void doubleClicked();
+    void rightClicked();
+    void leftClicked();
+
+
 public slots:
     void send_signal_click();
     void drag_with_mouse();
+
+    void send_signal_double_click(); ////a partir de aqui agregar en NEOWizard original
+    void send_signal_right_click();
+    void send_signal_left_click();
+
+protected: ////a partir de aqui agregar en NEOWizard original
+
+    void mouseDoubleClickEvent(QMouseEvent *)
+    {
+            emit doubleClicked();
+    }
+private slots: ////a partir de aqui agregar en NEOWizard original
+
+    void mousePressEvent(QMouseEvent *e) ///al reimplementar esta funcion deja de funcionar el evento pressed
+    {
+        if(e->buttons()==Qt::RightButton)
+            emit rightClicked();
+
+        if(e->buttons()==Qt::LeftButton)
+            emit leftClicked();
+    }
 
 private:
 
