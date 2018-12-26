@@ -312,30 +312,55 @@ void NFWizard2::process_Thread_in_Main_cpp_File(const QString thread_name, const
 
     main_cpp_FileProcessor.setFilename(fileuVision_Path+QString("/Source/")+main_thread_name+QString(".cpp"));
 
-    main_cpp_FileProcessor.setStartLine(main_thread_name+QString("::")+main_thread_name+QString("()"));       ////inicio del contenido a eliminar
-    main_cpp_FileProcessor.setEndLine(main_thread_name+QString("::")+main_thread_name+QString("()")); ////fin del contenido a eliminar
+    if(main_cpp_FileProcessor.check_if_code_exist(thread_name+QString("Run,eObject::eThread::Priority")
+                                                  +thread_priority+QString(")"),true)==0){
+        main_cpp_FileProcessor.setStartLine(main_thread_name+QString("::")+main_thread_name+QString("()"));       ////inicio del contenido a eliminar
+        main_cpp_FileProcessor.setEndLine(main_thread_name+QString("::")+main_thread_name+QString("()")); ////fin del contenido a eliminar
 
-    if(ui->sb_thread_stack_size->value()==0){
-        main_cpp_FileProcessor.setReplacementString(main_thread_name+QString("::")+main_thread_name+QString("():\n               ")
-                                                    +thread_name+QString("(")+thread_name+QString("Run,eObject::eThread::Priority")
-                                                    +thread_priority+QString(")"));
+
+        if(main_cpp_FileProcessor.check_if_code_exist(main_thread_name+QString("::")+main_thread_name+QString("():"),false)==1){
+
+            main_cpp_FileProcessor.setStartLine(main_thread_name+QString("::")+main_thread_name+QString("():"));       ////inicio del contenido a eliminar
+            main_cpp_FileProcessor.setEndLine(main_thread_name+QString("::")+main_thread_name+QString("():")); ////fin del contenido a eliminar
+
+            if(ui->sb_thread_stack_size->value()==0){
+                main_cpp_FileProcessor.setReplacementString(main_thread_name+QString("::")+main_thread_name+QString("():\n               ")
+                                                            +thread_name+QString("(")+thread_name+QString("Run,eObject::eThread::Priority")
+                                                            +thread_priority+QString("),"));
+            }
+            else{
+                main_cpp_FileProcessor.setReplacementString(main_thread_name+QString("::")+main_thread_name+QString("():\n               ")
+                                                            +thread_name+QString("(")+thread_name+QString("Run,eObject::eThread::Priority")
+                                                            +thread_priority+QString(", ")
+                                                            +QString::number(ui->sb_thread_stack_size->value())+QString("),"));
+            }
+        }
+        else{
+            if(ui->sb_thread_stack_size->value()==0){
+                main_cpp_FileProcessor.setReplacementString(main_thread_name+QString("::")+main_thread_name+QString("():\n               ")
+                                                            +thread_name+QString("(")+thread_name+QString("Run,eObject::eThread::Priority")
+                                                            +thread_priority+QString(")"));
+            }
+            else{
+                main_cpp_FileProcessor.setReplacementString(main_thread_name+QString("::")+main_thread_name+QString("():\n               ")
+                                                            +thread_name+QString("(")+thread_name+QString("Run,eObject::eThread::Priority")
+                                                            +thread_priority+QString(", ")
+                                                            +QString::number(ui->sb_thread_stack_size->value())+QString(")"));
+            }
+        }
+        main_cpp_FileProcessor.processTextBlock();
     }
-    else{
-        main_cpp_FileProcessor.setReplacementString(main_thread_name+QString("::")+main_thread_name+QString("():\n               ")
-                                                    +thread_name+QString("(")+thread_name+QString("Run,eObject::eThread::Priority")
-                                                    +thread_priority+QString(", ")
-                                                    +QString::number(ui->sb_thread_stack_size->value())+QString(")"));
-  }
-
-    main_cpp_FileProcessor.processTextBlock();
-
-    main_cpp_FileProcessor.setStartLine("/*Threads Functions Implementation Generated Code*/");       ////inicio del contenido a eliminar
-    main_cpp_FileProcessor.setEndLine("/*Threads Functions Implementation Generated Code*/"); ////fin del contenido a eliminar
-    main_cpp_FileProcessor.setReplacementString(QString("/*Threads Functions Implementation Generated Code*/\n")
-                                                +QString("void ")+main_thread_name
-                                                +QString("::")+thread_name
-                                                +QString("Run(eObject::eThread &thread)\n{\n\n}"));
-    main_cpp_FileProcessor.processTextBlock();
+    if(main_cpp_FileProcessor.check_if_code_exist(QString("void ")+main_thread_name
+                                                  +QString("::")+thread_name
+                                                  +QString("Run(eObject::eThread &thread)"),true)==0){
+        main_cpp_FileProcessor.setStartLine("/*Threads Functions Implementation Generated Code*/");       ////inicio del contenido a eliminar
+        main_cpp_FileProcessor.setEndLine("/*Threads Functions Implementation Generated Code*/"); ////fin del contenido a eliminar
+        main_cpp_FileProcessor.setReplacementString(QString("/*Threads Functions Implementation Generated Code*/\n")
+                                                    +QString("void ")+main_thread_name
+                                                    +QString("::")+thread_name
+                                                    +QString("Run(eObject::eThread &thread)\n{\n\n}"));
+        main_cpp_FileProcessor.processTextBlock();
+    }
 
 }
 
@@ -345,20 +370,24 @@ void NFWizard2::process_Thread_in_Main_h_File(const QString thread_name, const Q
 
     main_h_FileProcessor.setFilename(fileuVision_Path+QString("/Include/")+main_thread_name+QString(".h"));
 
-    main_h_FileProcessor.setStartLine("#include <eApplicationBase.h>");       ////inicio del contenido a eliminar
-    main_h_FileProcessor.setEndLine("#include <eApplicationBase.h>"); ////fin del contenido a eliminar
-    main_h_FileProcessor.setReplacementString(QString("#include <eApplicationBase.h>\n")+QString("#include <eThread.h>\n"));
-    main_h_FileProcessor.processTextBlock();
-
-    main_h_FileProcessor.setStartLine("/*User declare thread objects*/");       ////inicio del contenido a eliminar
-    main_h_FileProcessor.setEndLine("/*User declare thread objects*/"); ////fin del contenido a eliminar
-    main_h_FileProcessor.setReplacementString(QString("/*User declare thread objects*/\n")+QString("    eObject::eThread ")+thread_name+QString(";\n"));
-    main_h_FileProcessor.processTextBlock();
-
-    main_h_FileProcessor.setStartLine("/*User declare thread objects functions*/");       ////inicio del contenido a eliminar
-    main_h_FileProcessor.setEndLine("/*User declare thread objects functions*/"); ////fin del contenido a eliminar
-    main_h_FileProcessor.setReplacementString(QString("/*User declare thread objects functions*/\n")+QString("    static void ")+thread_name+QString("Run(eObject::eThread &thread);\n"));
-    main_h_FileProcessor.processTextBlock();
+    if(main_h_FileProcessor.check_if_code_exist(QString("#include <eThread.h>"),true)==0){
+        main_h_FileProcessor.setStartLine("#include <eApplicationBase.h>");       ////inicio del contenido a eliminar
+        main_h_FileProcessor.setEndLine("#include <eApplicationBase.h>"); ////fin del contenido a eliminar
+        main_h_FileProcessor.setReplacementString(QString("#include <eApplicationBase.h>\n")+QString("#include <eThread.h>\n"));
+        main_h_FileProcessor.processTextBlock();
+    }
+    if(main_h_FileProcessor.check_if_code_exist(QString("eObject::eThread ")+thread_name,true)==0){
+        main_h_FileProcessor.setStartLine("/*User declare thread objects*/");       ////inicio del contenido a eliminar
+        main_h_FileProcessor.setEndLine("/*User declare thread objects*/"); ////fin del contenido a eliminar
+        main_h_FileProcessor.setReplacementString(QString("/*User declare thread objects*/\n")+QString("    eObject::eThread ")+thread_name+QString(";\n"));
+        main_h_FileProcessor.processTextBlock();
+    }
+    if(main_h_FileProcessor.check_if_code_exist(QString("static void ")+thread_name+QString("Run(eObject::eThread &thread)"),true)==0){
+        main_h_FileProcessor.setStartLine("/*User declare thread objects functions*/");       ////inicio del contenido a eliminar
+        main_h_FileProcessor.setEndLine("/*User declare thread objects functions*/"); ////fin del contenido a eliminar
+        main_h_FileProcessor.setReplacementString(QString("/*User declare thread objects functions*/\n")+QString("    static void ")+thread_name+QString("Run(eObject::eThread &thread);\n"));
+        main_h_FileProcessor.processTextBlock();
+    }
 }
 
 void NFWizard2::process_Main_Thread_Files(const QString thread_name){
@@ -945,6 +974,7 @@ void NFWizard2::show_update_tree_view(const bool expand, const QString item_name
 void NFWizard2::on_pushButton_Options_tag_clicked()
 {
     hide_all_objects();
+    this->setGeometry(200,200,1100,420);
     this->show_options();
 }
 
@@ -1169,7 +1199,7 @@ void NFWizard2::on_pb_add_thread_clicked()
             return;
 
         }
-        this->process_Thread_in_Main_h_File(ui->le_thread_name->text(), ui->le_main_thread_name->text());
+        process_Thread_in_Main_h_File(ui->le_thread_name->text(), ui->le_main_thread_name->text());
 
         retval = check_if_compatible(fileInfo.dir().path(), ui->le_main_thread_name->text(), "source", "/*Threads Functions Implementation Generated Code*/");
         if(retval == 0){
