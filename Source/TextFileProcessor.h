@@ -29,6 +29,7 @@ public:
     void replace_all_lines_code_instances();
     int write_string_to_document(const QString fileContent);
     const QStringList get_text_between();
+    void processTextBlock_modified();
 private:
     QString filename_;
     QString startLine_;

@@ -403,6 +403,19 @@ void NFWizard2::process_Main_Thread_Files(const QString thread_name){
     ////-------------------------------------------------------------------------------------------------------------------------------------------
 
     processMainFile_add_Main_Thread_Exec(thread_name,fileuVision_Path+QString("/Source/main.cpp"));
+
+    ////Codigo que modifica el tamaño en Pila de los Hilos********************************************************************************************
+    main_cpp_FileProcessor.setFilename(fileuVision_Path+QString("/RTE/CMSIS/RTX_Conf_CM.c"));
+    main_cpp_FileProcessor.setStartLine("#define OS_STKSIZE     50      // this stack size value is in words");       ////inicio del contenido a eliminar
+    main_cpp_FileProcessor.setEndLine("#endif"); ////fin del contenido a eliminar
+    main_cpp_FileProcessor.setReplacementString("#define OS_STKSIZE     1024      // this stack size value is in words\n#endif");
+    main_cpp_FileProcessor.processTextBlock_modified();
+
+    main_cpp_FileProcessor.setStartLine("#define OS_MAINSTKSIZE 50      // this stack size value is in words");       ////inicio del contenido a eliminar
+    main_cpp_FileProcessor.setEndLine("#endif"); ////fin del contenido a eliminar
+    main_cpp_FileProcessor.setReplacementString("#define OS_MAINSTKSIZE 8192      // this stack size value is in words\n#endif");
+    main_cpp_FileProcessor.processTextBlock_modified();
+    ///************************************************************************************************************************************************
 }
 
 void NFWizard2::processMainFile_add_Main_Thread_Exec(const QString thread_name, const QString main_cpp_dir){
@@ -493,6 +506,18 @@ void NFWizard2::process_Thread_Files(const QString thread_name){
     main_cpp_FileProcessor.processTextBlock();
     ////-------------------------------------------------------------------------------------------------------------------------------------------
 
+    ////Codigo que modifica el tamaño en Pila de los Hilos********************************************************************************************
+    main_cpp_FileProcessor.setFilename(fileuVision_Path+QString("/RTE/CMSIS/RTX_Conf_CM.c"));
+    main_cpp_FileProcessor.setStartLine("#define OS_STKSIZE     50      // this stack size value is in words");       ////inicio del contenido a eliminar
+    main_cpp_FileProcessor.setEndLine("#endif"); ////fin del contenido a eliminar
+    main_cpp_FileProcessor.setReplacementString("#define OS_STKSIZE     1024      // this stack size value is in words\n#endif");
+    main_cpp_FileProcessor.processTextBlock_modified();
+
+    main_cpp_FileProcessor.setStartLine("#define OS_MAINSTKSIZE 50      // this stack size value is in words");       ////inicio del contenido a eliminar
+    main_cpp_FileProcessor.setEndLine("#endif"); ////fin del contenido a eliminar
+    main_cpp_FileProcessor.setReplacementString("#define OS_MAINSTKSIZE 8192      // this stack size value is in words\n#endif");
+    main_cpp_FileProcessor.processTextBlock_modified();
+    ///************************************************************************************************************************************************
 
     ////Procesamiento del thread_name.cpp----------------------------------------------------------------------------------------------------------
 
@@ -1054,7 +1079,8 @@ void NFWizard2::on_pb_add_thread_clicked()
 
     QFileInfo fileInfo(fileuVision);
 
-    if(add_thread_state==Thread_in_Class){
+    if(add_thread_state==Thread_in_Class){ ///*********Muy importante - en el constructor de clase el hilo recibe eSingletonStaticBase<Thread_Name>(this)*********
+        ////Modificar esto
 
         int retval = generateTemplates_for_Thread(fileInfo.dir().path(), ui->le_thread_name->text());////copia los templates para las carpetas del projecto
         if(retval == 0 || retval == 1){
@@ -1714,13 +1740,13 @@ void NFWizard2::on_pb_ok_clicked()
         }
         else if(!ui->le_default_state_name->text().isEmpty()){
 
-            hierarchy_states[index]->set_state_default(QString("Action:")+
-                                                       ui->le_default_action_name->text());
+            hierarchy_states[index]->set_state_default(QString("Next_State:")+
+                                                       ui->le_default_state_name->text());
         }
         else if(!ui->le_default_action_name->text().isEmpty()){
 
-            hierarchy_states[index]->set_state_default(QString("Next_State:")+
-                                                       ui->le_default_state_name->text());
+            hierarchy_states[index]->set_state_default(QString("Action:")+
+                                                       ui->le_default_action_name->text());
         }
 //        QHierarchy_State::QHierarchy_State_Event_t T_event;
 //        T_event.event = "No Event"; ////Aqui agregar el evento de los listWidgets****************************************************************************
@@ -2710,14 +2736,92 @@ void NFWizard2::generate_code_for_state_machine(const QString main_thread_name){
                 if(default_state != "Empty"  && default_action != "Empty"){
 
                     default_def_toReplace = default_state + QString(",")+ default_action;
+
+                    if(!actions_names.contains(default_action)){
+
+                        /*Definition of all Actions prototypes */////********************************************************************************************************
+                        generate_definition_for_State_Machine_actions(main_thread_name, default_action);
+                        ////**********************************************************************************************************************************************
+
+                        /*Definition of all Actions *////******************************************************************************************************************
+                        {
+                            toReplace_string = default_action+QString(";\n    ")+default_action
+                                    +QString(".bind<")+main_thread_name+QString(", &")+main_thread_name
+                                    +QString("::")+default_action+QString(">(this);");
+                            if(main_cpp_FileProcessor.check_if_code_exist(toReplace_string, false)==0){
+
+                                main_cpp_FileProcessor.setStartLine("/*Definition of all eAction from State Machine*/");       ////inicio del contenido a eliminar
+                                main_cpp_FileProcessor.setEndLine("/*Definition of all eAction from State Machine*/"); ////fin del contenido a eliminar
+                                main_cpp_FileProcessor.setReplacementString(QString("/*Definition of all eAction from State Machine*/\n")
+                                                                            +QString("    eObject::eState::eAction_t ")
+                                                                            +toReplace_string);
+                                main_cpp_FileProcessor.processTextBlock();
+                            }
+                        }
+                        ///*************************************************************************************************************************************************
+
+                        /*Implementation of all Default Actions functions *////*****************************************************************************************************
+                        {
+                            toReplace_string = main_thread_name+QString("::")
+                                    +default_action+QString("(int event){\n\n}");
+                            if(main_cpp_FileProcessor.check_if_code_exist(toReplace_string, false)==0){
+
+                                main_cpp_FileProcessor.setStartLine("/*Implementation of Action Prototypes of State Machine*/");       ////inicio del contenido a eliminar
+                                main_cpp_FileProcessor.setEndLine("/*Implementation of Action Prototypes of State Machine*/"); ////fin del contenido a eliminar
+                                main_cpp_FileProcessor.setReplacementString(QString("/*Implementation of Action Prototypes of State Machine*/\n")
+                                                                            +QString("void ")+toReplace_string);
+                                main_cpp_FileProcessor.processTextBlock();
+                            }
+                        }
+                        ///**********************************************************************************************************************************************
+                    }
+
                 }
                 else if(default_action != "Empty"){
 
-                    default_def_toReplace = default_state;
+                    default_def_toReplace = default_action;
+
+                    if(!actions_names.contains(default_action)){
+
+                        /*Definition of all Actions prototypes */////********************************************************************************************************
+                        generate_definition_for_State_Machine_actions(main_thread_name, default_action);
+                        ////**********************************************************************************************************************************************
+
+                        /*Definition of all Actions *////******************************************************************************************************************
+                        {
+                            toReplace_string = default_action+QString(";\n    ")+default_action
+                                    +QString(".bind<")+main_thread_name+QString(", &")+main_thread_name
+                                    +QString("::")+default_action+QString(">(this);");
+                            if(main_cpp_FileProcessor.check_if_code_exist(toReplace_string, false)==0){
+
+                                main_cpp_FileProcessor.setStartLine("/*Definition of all eAction from State Machine*/");       ////inicio del contenido a eliminar
+                                main_cpp_FileProcessor.setEndLine("/*Definition of all eAction from State Machine*/"); ////fin del contenido a eliminar
+                                main_cpp_FileProcessor.setReplacementString(QString("/*Definition of all eAction from State Machine*/\n")
+                                                                            +QString("    eObject::eState::eAction_t ")
+                                                                            +toReplace_string);
+                                main_cpp_FileProcessor.processTextBlock();
+                            }
+                        }
+                        ///*************************************************************************************************************************************************
+                        /*Implementation of all Default Actions functions *////*****************************************************************************************************
+                        {
+                            toReplace_string = main_thread_name+QString("::")
+                                    +default_action+QString("(int event){\n\n}");
+                            if(main_cpp_FileProcessor.check_if_code_exist(toReplace_string, false)==0){
+
+                                main_cpp_FileProcessor.setStartLine("/*Implementation of Action Prototypes of State Machine*/");       ////inicio del contenido a eliminar
+                                main_cpp_FileProcessor.setEndLine("/*Implementation of Action Prototypes of State Machine*/"); ////fin del contenido a eliminar
+                                main_cpp_FileProcessor.setReplacementString(QString("/*Implementation of Action Prototypes of State Machine*/\n")
+                                                                            +QString("void ")+toReplace_string);
+                                main_cpp_FileProcessor.processTextBlock();
+                            }
+                        }
+                        ///**********************************************************************************************************************************************
+                    }
                 }
                 else if(default_state != "Empty"){
 
-                    default_def_toReplace = default_action;
+                    default_def_toReplace = default_state;
                 }
                 toReplace_string = hierarchy_states[i]->get_state_name()
                         +QString(".setDefaultEvent(")
@@ -2742,9 +2846,9 @@ void NFWizard2::generate_code_for_state_machine(const QString main_thread_name){
 
     /*Start of State Machine*////******************************************************************************************************************
     {
-        toReplace_string = QString("    hsm.start();\n\n      std::uint32_t eventId;\n\n    while(true){\n")
+        toReplace_string = QString("    hsm.start();\n\n    std::uint32_t eventId;\n\n    while(true){\n")
                 +QString("      instance().appEventQueue.get(eventId);\n")
-                +QString("      hsm.dispatch(eventId);\n}");
+                +QString("      hsm.dispatch(eventId);\n    }");
         if(main_cpp_FileProcessor.check_if_code_exist(toReplace_string, false)==0){
             main_cpp_FileProcessor.setStartLine("/*Start of State Machine*/");       ////inicio del contenido a eliminar
             main_cpp_FileProcessor.setEndLine("/*Start of State Machine*/"); ////fin del contenido a eliminar

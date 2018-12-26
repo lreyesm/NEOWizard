@@ -68,6 +68,38 @@ void TextFileProcessor::processTextBlock() //esta funcion es muy parecida a proc
     }
 }
 
+void TextFileProcessor::processTextBlock_modified() //esta funcion es los mismo q processTextBlock pero el endline inicia busqueda desde startline,
+{                                          //el otro inicia desde el principio del texto
+    QFile file(filename());   // almacena en file el archivo
+    if (!file.exists()) {
+        qWarning() << "file: " << filename() << " not found!";
+
+        return;
+    }
+    if (!file.open(QFile::ReadOnly | QFile::Text)) { //lo abre como lectura
+        qWarning() << "file: " << filename() << " could not be opened for read!";
+
+        return;
+    }
+    QTextDocument document;
+    document.setPlainText(file.readAll());
+    file.close();
+    QTextCursor cursorStart = document.find(startLine_);
+    QTextCursor cursorEnd = document.find(endLine_, cursorStart);
+    if (!cursorStart.hasSelection() || !cursorEnd.hasSelection()) {
+        qWarning() << "The text between: " << startLine_ << " and " << endLine_ << "not found";
+        return;
+    }
+    cursorStart.setPosition(cursorEnd.position(),QTextCursor::KeepAnchor);
+    cursorStart.removeSelectedText(); // delete the function
+    cursorStart.insertText(replacementString());
+    QTextDocumentWriter docWriter(filename(), "plaintext");
+    if (! docWriter.write(&document)) { // to select the "}"
+        qWarning() << "file: " << filename() << " could not be written!";
+        return;
+    }
+}
+
 const QStringList  TextFileProcessor::get_text_between(){
 
     QStringList found_list;
