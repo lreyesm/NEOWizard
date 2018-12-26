@@ -50,6 +50,7 @@ void NFWizard2::windows_widget_position(){
 
     this->setGeometry(200,200,793,389);
 
+    ui->cb_thread_priority->setCurrentIndex(3);
     //ui->widget_state_machine_name->move((int)(this->geometry().width()/2), (int)(this->geometry().height()/2));
 
     ui->widget_options->move(0,0);
