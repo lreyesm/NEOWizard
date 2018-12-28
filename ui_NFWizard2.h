@@ -1620,7 +1620,7 @@ public:
         label_generate_options_2->setToolTip(QApplication::translate("NFWizard2", "Generates files needed. If they are generated already you don't need to mark this option", Q_NULLPTR));
 #endif // QT_NO_TOOLTIP
         label_generate_options_2->setText(QString());
-        pb_open_state->setText(QApplication::translate("NFWizard2", "Open State", Q_NULLPTR));
+        pb_open_state->setText(QApplication::translate("NFWizard2", "Open States", Q_NULLPTR));
         pb_set_as_initial->setText(QApplication::translate("NFWizard2", "Set as Initial", Q_NULLPTR));
         pb_configure_state->setText(QApplication::translate("NFWizard2", "Configure State", Q_NULLPTR));
         pb_add_sub_sate->setText(QApplication::translate("NFWizard2", "Add Child ", Q_NULLPTR));

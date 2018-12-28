@@ -792,7 +792,7 @@ border-color: rgb(21, 172, 112);
 color:  rgb(21, 172, 112);</string>
        </property>
        <property name="text">
-        <string>Open State</string>
+        <string>Open States</string>
        </property>
        <property name="flat">
         <bool>true</bool>
