@@ -14,8 +14,8 @@ QHierarchy_State::QHierarchy_State(QWidget *parent, QString state_name_ref) : QP
     this->setText(n.left(3));
     this->move(0,0);
     this->setCursor(QCursor(Qt::PointingHandCursor));
-    this->setStyleSheet(QLatin1String("color: rgb(255, 245, 242); background-image: url(:/Assets/state.png); font: 10pt \"Segoe UI\";"));
-    this->setFixedSize(60,57);
+    this->setStyleSheet(QLatin1String("color: rgb(255, 245, 242); background-image: url(:/icons/state.png); font: 10pt \"Segoe UI\";"));
+    this->setFixedSize(66,66);
     this->setFlat(true);
 
     connect(this,SIGNAL(doubleClicked()),this,SLOT(send_signal_double_click()));  ////a partir de aqui agregar en NEOWizard original
@@ -47,10 +47,10 @@ bool QHierarchy_State::set_Highlight(const bool highlight){
 
         highLight = true;
         if(initial){
-            this->setStyleSheet(QLatin1String("color: rgb(255, 245, 242); background-image: url(:/Assets/state_init_highlight.png); font: 10pt \"Segoe UI\";"));
+            this->setStyleSheet(QLatin1String("color: rgb(255, 245, 242); background-image: url(:/icons/state_init_highlight.png); font: 10pt \"Segoe UI\";"));
         }
         else{
-            this->setStyleSheet(QLatin1String("color: rgb(255, 245, 242); background-image: url(:/Assets/state_highlight.png); font: 10pt \"Segoe UI\";"));
+            this->setStyleSheet(QLatin1String("color: rgb(255, 245, 242); background-image: url(:/icons/state_highlight.png); font: 10pt \"Segoe UI\";"));
         }
         return true;
     }
@@ -58,10 +58,10 @@ bool QHierarchy_State::set_Highlight(const bool highlight){
 
         highLight = false;
         if(initial){
-            this->setStyleSheet(QLatin1String("color: rgb(255, 245, 242); background-image: url(:/Assets/state_init.png); font: 10pt \"Segoe UI\";"));
+            this->setStyleSheet(QLatin1String("color: rgb(255, 245, 242); background-image: url(:/icons/state_init.png); font: 10pt \"Segoe UI\";"));
         }
         else{
-            this->setStyleSheet(QLatin1String("color: rgb(255, 245, 242); background-image: url(:/Assets/state.png); font: 10pt \"Segoe UI\";"));
+            this->setStyleSheet(QLatin1String("color: rgb(255, 245, 242); background-image: url(:/icons/state.png); font: 10pt \"Segoe UI\";"));
         }
         return false;
     }
@@ -136,10 +136,10 @@ void QHierarchy_State::read_file(QDataStream &in){
 void QHierarchy_State::setInitial(bool ini){
 
     if(ini){
-        this->setStyleSheet(QLatin1String("color: rgb(255, 245, 242); background-image: url(:/Assets/state_init.png); font: 10pt \"Segoe UI\";"));
+        this->setStyleSheet(QLatin1String("color: rgb(255, 245, 242); background-image: url(:/icons/state_init.png); font: 10pt \"Segoe UI\";"));
     }
     else{
-        this->setStyleSheet(QLatin1String("color: rgb(255, 245, 242); background-image: url(:/Assets/state.png); font: 10pt \"Segoe UI\";"));
+        this->setStyleSheet(QLatin1String("color: rgb(255, 245, 242); background-image: url(:/icons/state.png); font: 10pt \"Segoe UI\";"));
     }
     initial = ini;
 }
@@ -219,7 +219,7 @@ QList<QHierarchy_State::QHierarchy_State_Event_t>& QHierarchy_State::get_events_
 void QHierarchy_State::set_state_name(const QString &name){
 
     setObjectName(name);
-    setText(objectName().left(3).toUpper());
+    this->setText(name.toUpper().left(3));
     state_name = name;
 }
 

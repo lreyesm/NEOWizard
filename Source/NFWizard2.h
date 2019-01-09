@@ -160,6 +160,28 @@ private slots:
 
     void on_pb_cancel_state_options_clicked();
 
+    void on_pb_generate_project_folders_clicked();
+
+    void on_pb_configure_Timer_clicked();
+
+    void on_pb_configure_in_Main_thread_clicked();
+
+    void on_pb_add_Timer_clicked();
+
+    void on_pb_back_from_state_machine_clicked();
+
+    void on_pb_acept_main_thread_name_clicked();
+
+    void on_pb_cancel_main_thrad_name_clicked();
+
+    void on_le_main_thread_name_to_load_textChanged(const QString &arg1);
+
+    void on_pb_close_window_clicked();
+
+    void on_pb_max_window_clicked();
+
+    void on_pb_min_window__clicked();
+
 signals:
 
     check_warnings();
@@ -212,8 +234,11 @@ private:
     void highlight_state(const QString state_to_highlight);
     void update_table_view_events();
 
+    void configure_timer_in_main_thread(const QString path, const QString main_thread_name);
+
 
 private:
+    enum{Generate_Screen,Options_Screen,State_Machine_Screen,Help_Screen};
     Ui::NFWizard2 *ui;
     DialogConfigurationHelp *dialogConfigHelp;
 
@@ -239,6 +264,10 @@ private:
     bool isLoad;
     bool busy;
     QStandardItemModel *model;
+
+    QPoint current_win_Pos;
+    quint8 current_screen;
+    bool load_from_thread = false;
 
 };
 

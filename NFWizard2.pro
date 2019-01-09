@@ -38,3 +38,5 @@ RESOURCES += \
     templates.qrc
 
 RC_ICONS = Assets/icon.ico
+
+DISTFILES +=

@@ -28,5 +28,146 @@
         <file>Assets/state_highlight.png</file>
         <file>Assets/state_init_highlight.png</file>
         <file>Assets/label_background_line_large.png</file>
+        <file>icons/screen1/background.png</file>
+        <file>icons/screen1/browse_botom.png</file>
+        <file>icons/screen1/check_box.png</file>
+        <file>icons/screen1/check_box_state_2.png</file>
+        <file>icons/screen1/credits.png</file>
+        <file>icons/screen1/generate_botom.png</file>
+        <file>icons/screen1/generate_botom_off.png</file>
+        <file>icons/screen1/generate_botom_on.png</file>
+        <file>icons/screen1/Generation_options_text.png</file>
+        <file>icons/screen1/generation_project_text.png</file>
+        <file>icons/screen1/help_botom_off.png</file>
+        <file>icons/screen1/help_botom_on.png</file>
+        <file>icons/screen1/label_screen_1.png</file>
+        <file>icons/screen1/max_botom.png</file>
+        <file>icons/screen1/min_botom.png</file>
+        <file>icons/screen1/neowizard_logo.png</file>
+        <file>icons/screen1/options_botom_off.png</file>
+        <file>icons/screen1/options_botom_on.png</file>
+        <file>icons/screen1/quit_botom.png</file>
+        <file>icons/screen1/quit_botom_2.png</file>
+        <file>icons/screen1/STM32Cube MX Project path_text.png</file>
+        <file>icons/screen1/uVision_Projects_text.png</file>
+        <file>icons/screen5/add_botom.png</file>
+        <file>icons/screen5/background.png</file>
+        <file>icons/screen5/Configure a thread_off.png</file>
+        <file>icons/screen5/CONFIGURE STATE MACHINE_botom.png</file>
+        <file>icons/screen5/Configure thread in main_off.png</file>
+        <file>icons/screen5/credits.png</file>
+        <file>icons/screen5/generate_botom_off.png</file>
+        <file>icons/screen5/help_botom_off.png</file>
+        <file>icons/screen5/label_1.png</file>
+        <file>icons/screen5/label_2.png</file>
+        <file>icons/screen5/less_botom.png</file>
+        <file>icons/screen5/main thread name_text.png</file>
+        <file>icons/screen5/max_botom.png</file>
+        <file>icons/screen5/min_botom.png</file>
+        <file>icons/screen5/more_botom.png</file>
+        <file>icons/screen5/neowizard_logo.png</file>
+        <file>icons/screen5/options_botom_on.png</file>
+        <file>icons/screen5/quit_botom.png</file>
+        <file>icons/screen5/Thread stack size_text.png</file>
+        <file>icons/screen6/add_botom.png</file>
+        <file>icons/screen6/background.png</file>
+        <file>icons/screen6/Configure a thread_off.png</file>
+        <file>icons/screen6/Configure main thread_off.png</file>
+        <file>icons/screen6/CONFIGURE STATE MACHINE_botom.png</file>
+        <file>icons/screen6/Configure thread in main_on.png</file>
+        <file>icons/screen6/credits.png</file>
+        <file>icons/screen6/generate_botom_off.png</file>
+        <file>icons/screen6/help_botom_off.png</file>
+        <file>icons/screen6/label_1.png</file>
+        <file>icons/screen6/label_2.png</file>
+        <file>icons/screen6/label_botom.png</file>
+        <file>icons/screen6/less_botom.png</file>
+        <file>icons/screen6/main thread name_text.png</file>
+        <file>icons/screen6/max_botom.png</file>
+        <file>icons/screen6/min_botom.png</file>
+        <file>icons/screen6/more_botom.png</file>
+        <file>icons/screen6/neowizard_logo.png</file>
+        <file>icons/screen6/options_botom_on.png</file>
+        <file>icons/screen6/quit_botom.png</file>
+        <file>icons/screen6/thread priority_text.png</file>
+        <file>icons/screen6/Thread stack size_text.png</file>
+        <file>icons/screen8/acept_botom.png</file>
+        <file>icons/screen8/add thread_botom.png</file>
+        <file>icons/screen8/back_botom.png</file>
+        <file>icons/screen8/back_icon_botom.png</file>
+        <file>icons/screen8/backgroud_blur.png</file>
+        <file>icons/screen8/background.png</file>
+        <file>icons/screen8/cancel_botom.png</file>
+        <file>icons/screen8/credits.png</file>
+        <file>icons/screen8/events_text.png</file>
+        <file>icons/screen8/generate_botom.png</file>
+        <file>icons/screen8/generate_botom_off.png</file>
+        <file>icons/screen8/help_botom_off.png</file>
+        <file>icons/screen8/label.png</file>
+        <file>icons/screen8/Load from Main Thread_botom.png</file>
+        <file>icons/screen8/Load from State Machine_botom.png</file>
+        <file>icons/screen8/max_botom.png</file>
+        <file>icons/screen8/min_botom.png</file>
+        <file>icons/screen8/NEO FInal.png</file>
+        <file>icons/screen8/neowizard_logo.png</file>
+        <file>icons/screen8/Next state_text.png</file>
+        <file>icons/screen8/options_botom_on.png</file>
+        <file>icons/screen8/quit_botom.png</file>
+        <file>icons/screen8/Save State Machine_botom.png</file>
+        <file>icons/screen8/search_icon_botom.png</file>
+        <file>icons/screen8/State machine name_text.png</file>
+        <file>icons/screen8/state machine_box.png</file>
+        <file>icons/screen8/window.png</file>
+        <file>icons/screen3/window.png</file>
+        <file>icons/screen8/fondo_blanco.png</file>
+        <file>icons/screen2/action_text.png</file>
+        <file>icons/screen2/add thread_botom.png</file>
+        <file>icons/screen2/add thread_label.png</file>
+        <file>icons/screen2/apply_botom.png</file>
+        <file>icons/screen2/back_botom.png</file>
+        <file>icons/screen2/back_icon_botom.png</file>
+        <file>icons/screen2/backgroud_blur.png</file>
+        <file>icons/screen2/background.png</file>
+        <file>icons/screen2/credits.png</file>
+        <file>icons/screen2/DEFAULT EVENTS_text.png</file>
+        <file>icons/screen2/ENTRY ACTION_text.png</file>
+        <file>icons/screen2/events_botom.png</file>
+        <file>icons/screen2/EXIT ACTION_text.png</file>
+        <file>icons/screen2/generate_botom.png</file>
+        <file>icons/screen2/generate_botom_off.png</file>
+        <file>icons/screen2/help_botom_off.png</file>
+        <file>icons/screen2/initial state_text.png</file>
+        <file>icons/screen2/label_1.png</file>
+        <file>icons/screen2/label_2.png</file>
+        <file>icons/screen2/Load from Main Thread_botom.png</file>
+        <file>icons/screen2/Load from State Machine_botom.png</file>
+        <file>icons/screen2/max_botom.png</file>
+        <file>icons/screen2/min_botom.png</file>
+        <file>icons/screen2/neowizard_logo.png</file>
+        <file>icons/screen2/Next state_text.png</file>
+        <file>icons/screen2/options_botom_on.png</file>
+        <file>icons/screen2/quit_botom.png</file>
+        <file>icons/screen2/Save State Machine_botom.png</file>
+        <file>icons/screen2/search_icon_botom.png</file>
+        <file>icons/screen2/state machine_box.png</file>
+        <file>icons/screen2/STATE NAME_text.png</file>
+        <file>icons/screen2/SUPER STATE_text.png</file>
+        <file>icons/screen2/window.png</file>
+        <file>icons/screen8/fondo_transparente.png</file>
+        <file>icons/screen8/bordes.png</file>
+        <file>icons/screen8/gris_transparente.png</file>
+        <file>icons/screen8/rectangulo_central.png</file>
+        <file>icons/screen8/square.png</file>
+        <file>icons/screen8/square_blanco.png</file>
+        <file>icons/screen8/rectangulo_central_blanco.png</file>
+        <file>icons/screen7/Configure a thread_on.png</file>
+        <file>icons/state.png</file>
+        <file>icons/state_highlight.png</file>
+        <file>icons/state_init.png</file>
+        <file>icons/state_init_highlight.png</file>
+        <file>icons/screen5/Configure main thread_on.png</file>
+        <file>icons/screen5/New thread Nmae.png</file>
+        <file>icons/screen8/add_state_button.png</file>
+        <file>icons/screen8/warning.png</file>
     </qresource>
 </RCC>

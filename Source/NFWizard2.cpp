@@ -11,6 +11,7 @@
 #include <QMessageBox>
 #include <QMouseEvent>
 #include <QStandardItemModel>
+#include <QDesktopWidget>
 
 NFWizard2::NFWizard2(QWidget *parent) :
     QMainWindow(parent),
@@ -19,16 +20,20 @@ NFWizard2::NFWizard2(QWidget *parent) :
     ui->setupUi(this);
 
 
+    setWindowFlags(Qt::CustomizeWindowHint);
+
     generate_project_folders = false;
-    ui->mainToolBar->hide();
-    ui->menuBar->hide();
     //ui->statusBar->hide();
 
-    this->windows_widget_position();
+    windows_widget_position();
+
+    current_win_Pos  = QPoint(0,0);
+    current_screen = Generate_Screen;
+
     current_positions_minus_one =0;
     hide_all_objects();
-    this->show_generate();
-    this->set_points();
+    on_pushButton_Generate_tag_clicked();
+    set_points();
 
     connect(this,SIGNAL(check_warnings()),this,SLOT(check_for_warnings()));
 
@@ -48,42 +53,41 @@ NFWizard2::~NFWizard2()
 
 void NFWizard2::windows_widget_position(){
 
-    this->setGeometry(200,200,793,389);
+    this->setGeometry(200,200,1366,768);
 
     ui->cb_thread_priority->setCurrentIndex(3);
     //ui->widget_state_machine_name->move((int)(this->geometry().width()/2), (int)(this->geometry().height()/2));
 
-    ui->widget_options->move(0,0);
-    ui->widget_add_delete_event->move(500,140);
-    ui->pb_warning_state_machine->move(392,77);
-    ui->widget_state_machine_name->move(500,140);
-    ui->widget_layout_state_machine->move(370,0);
-    ui->widget_options_buttons->move(90,80);
-    ui->widget_options_thread_options->move(350,40);
-    ui->widget_event_options->move(400,90);
+//    ui->widget_options->move(current_win_Pos);
+//    ui->widget_add_delete_event->move(500,140);
+//    ui->pb_warning_state_machine->move(392,77);
+//    ui->widget_state_machine_name->move(500,140);
+//    ui->widget_layout_state_machine->move(370,0);
+//    ui->widget_options_buttons->move(90,80);
+//    ui->widget_options_thread_options->move(350,40);
+//    ui->widget_event_options->move(400,90);
 
-    ui->pb_warning_state_machine->setParent(ui->widget_states);
-    ui->pb_warning_state_machine->move(5,5);
+      ui->pb_warning_state_machine->setParent(ui->widget_states);
+      ui->pb_warning_state_machine->move(5,5);
 
-    ui->widget_wait->setParent(ui->widget_states);
-    ui->label_loading->setStyleSheet(QStringLiteral("background-color: rgb(48, 60, 77); color: rgb(21, 172, 112); font: 28pt \"Segoe UI\";"));
-    ui->widget_wait->move(ui->widget_states->geometry().width()/2-ui->widget_wait->geometry().width()/2,
-                     ui->widget_states->geometry().height()/2-ui->widget_wait->geometry().height()/2);
+//    ui->widget_wait->setParent(ui->widget_states);
+//    ui->label_loading->setStyleSheet(QStringLiteral("background-color: rgb(48, 60, 77); color: rgb(21, 172, 112); font: 28pt \"Segoe UI\";"));
+//    ui->widget_wait->move(ui->widget_states->geometry().width()/2-ui->widget_wait->geometry().width()/2,
+//                     ui->widget_states->geometry().height()/2-ui->widget_wait->geometry().height()/2);
 
-    ui->pb_configure_state_machine->setStyleSheet(QStringLiteral("color: rgb(21, 172, 112); font: 11pt \"Segoe UI\";"));
-    ui->pb_configure_Main_thread->setStyleSheet(QStringLiteral("color: rgb(21, 172, 112); font: 11pt \"Segoe UI\";"));
-    ui->pb_configure_thread_in_class->setStyleSheet(QStringLiteral("color: rgb(21, 172, 112); font: 11pt \"Segoe UI\";"));
-    ui->pb_configure_thread_in_main->setStyleSheet(QStringLiteral("color: rgb(21, 172, 112); font: 11pt \"Segoe UI\";"));
+//    ui->pb_configure_state_machine->setStyleSheet(QStringLiteral("color: rgb(21, 172, 112); font: 11pt \"Segoe UI\";"));
+//    ui->pb_configure_Main_thread->setStyleSheet(QStringLiteral("color: rgb(21, 172, 112); font: 11pt \"Segoe UI\";"));
+//    ui->pb_configure_thread_in_class->setStyleSheet(QStringLiteral("color: rgb(21, 172, 112); font: 11pt \"Segoe UI\";"));
+//    ui->pb_configure_thread_in_main->setStyleSheet(QStringLiteral("color: rgb(21, 172, 112); font: 11pt \"Segoe UI\";"));
 
-    ui->pb_back->setStyleSheet(QStringLiteral("color: rgb(21, 172, 112); font: 11pt \"Segoe UI\";"));
-    ui->pb_add_state->setStyleSheet(QStringLiteral("color: rgb(21, 172, 112); font: 11pt \"Segoe UI\";"));
-    ui->pb_generate_state_machine->setStyleSheet(QStringLiteral("color: rgb(21, 172, 112); font: 11pt \"Segoe UI\";"));
+//    ui->pb_back->setStyleSheet(QStringLiteral("color: rgb(21, 172, 112); font: 11pt \"Segoe UI\";"));
+//    ui->pb_add_state->setStyleSheet(QStringLiteral("color: rgb(21, 172, 112); font: 11pt \"Segoe UI\";"));
+//    ui->pb_generate_state_machine->setStyleSheet(QStringLiteral("color: rgb(21, 172, 112); font: 11pt \"Segoe UI\";"));
 
-    ui->pb_add_thread->setStyleSheet(QStringLiteral("color: rgb(21, 172, 112); font: 11pt \"Segoe UI\"; "));
-    ui->cb_thread_priority->setStyleSheet(QStringLiteral("color: rgb(255, 245, 242); background-color: rgb(21, 172, 112); font: 11pt \"Segoe UI\";"));
+//    ui->pb_add_thread->setStyleSheet(QStringLiteral("color: rgb(21, 172, 112); font: 11pt \"Segoe UI\"; "));
+//    ui->cb_thread_priority->setStyleSheet(QStringLiteral("color: rgb(255, 245, 242); background-color: rgb(21, 172, 112); font: 11pt \"Segoe UI\";"));
 
-    //ui->pb_ok->setStyleSheet(QStringLiteral("background-color: rgb(48, 60, 77); color: rgb(21, 172, 112); font: 11pt \"Segoe UI\";"));
-    ui->pb_warning_state_machine->setStyleSheet(QStringLiteral("background-image: url(:/Assets/warning.png); background-color: rgb(89, 99, 113);"));
+      //ui->pb_ok->setStyleSheet(QStringLiteral("background-color: rgb(48, 60, 77); color: rgb(21, 172, 112); font: 11pt \"Segoe UI\";"));
 }
 
 void NFWizard2::on_pushButton_uVisionBrowse_clicked()
@@ -180,7 +184,7 @@ void NFWizard2::checkCubeVersion(){
     fileDir.cd("Src");   // pone la direccion de Src como ruta actual para comprobar q existe main.c
 
     if (!fileDir.exists("main.c")) {
-        QMessageBox::warning(this, tr("NFWizard2"),tr("<font color = white >Error STM32CubeMx Src/%1 file not found").arg("main.c"));
+        QMessageBox::warning(this, tr("NFWizard2"),tr("<font color = black >Error STM32CubeMx Src/%1 file not found").arg("main.c"));
         return;
     }
     QString cubeMainFile = fileDir.filePath("main.c");  //almacena la direccion del main.c en cubeMainFile
@@ -203,12 +207,12 @@ void NFWizard2::checkCubeVersion(){
 
     if (cursorSysClockConfigStart.hasSelection() && cursorSysClockConfigEnd.hasSelection()) {
         MainFilesProcessor::SYSCLOCK_CONFIG_START_LINE = "  * @brief System Clock Configuration";
-        //QMessageBox::information(this, "NEOWizard", "<font color = white >Selected Version 4.26 of STCubeMx \n\nIf you do not correctly select the file \nmain.cpp it is not correctly generated"/*+MainFilesProcessor::SYSCLOCK_CONFIG_START_LINE*/);
+        //QMessageBox::information(this, "NEOWizard", "<font color = black >Selected Version 4.26 of STCubeMx \n\nIf you do not correctly select the file \nmain.cpp it is not correctly generated"/*+MainFilesProcessor::SYSCLOCK_CONFIG_START_LINE*/);
         qDebug() << "Selected Version 4.26 of STCubeMx (  \"* @brief System Clock Configuration\" en main.c) ";
         cubeVersion = QString("4.26");
     }else {
         MainFilesProcessor::SYSCLOCK_CONFIG_START_LINE = "/** System Clock Configuration";
-        //QMessageBox::information(this, "NEOWizard", "<font color = white >Selected Version 4.20 of STCubeMx \n\nIf you do not correctly select the file \nmain.cpp it is not correctly generated"/*+MainFilesProcessor::SYSCLOCK_CONFIG_START_LINE*/);
+        //QMessageBox::information(this, "NEOWizard", "<font color = black >Selected Version 4.20 of STCubeMx \n\nIf you do not correctly select the file \nmain.cpp it is not correctly generated"/*+MainFilesProcessor::SYSCLOCK_CONFIG_START_LINE*/);
         qDebug() << "Selected Version 4.20 of STCubeMx ( \"/** System Clock Configuration\" en main.c)";
         cubeVersion = QString("4.20");
     }
@@ -244,10 +248,10 @@ void NFWizard2::on_pushButton_Generate_clicked()
         processXmlFiles();         ////Modifica el archivo *.gpdsc para añadirle el *_it.h y *_it.c modificados
                                    ////Modifica el archivo *.uvprojx para añadirle direccion del main.cpp
     }else{
-        QMessageBox::warning(this, tr("NEOWizard"),tr("<font color = white >Projects path not valid"));
+        QMessageBox::warning(this, tr("NEOWizard"),tr("<font color = black >Projects path not valid"));
         return;
     }
-    QMessageBox::information(this, tr("NEOWizard"),tr("<font color = white >Project Generation complete"));
+    QMessageBox::information(this, tr("NEOWizard"),tr("<font color = black >Project Generation complete"));
 
 }
 
@@ -292,7 +296,7 @@ void NFWizard2::processInterrupFile()
     cubeInterrupDir.cd("Src");
     QStringList fileList = cubeInterrupDir.entryList(QStringList("*_it.c"));
     if (!cubeInterrupDir.exists(fileList.first())) { // Should be only one file
-        QMessageBox::warning(this, tr("NFWizard2"),tr("<font color = white >Error STM32CubeMx Src/%1 file not found").arg(fileList.first()));
+        QMessageBox::warning(this, tr("NFWizard2"),tr("<font color = black >Error STM32CubeMx Src/%1 file not found").arg(fileList.first()));
         return;
     }
     QDir::setCurrent(cubeInterrupDir.path());
@@ -471,7 +475,7 @@ void NFWizard2::processMainFile_add_Main_Thread_Exec(const QString thread_name, 
         main_cpp_FileProcessor.processTextBlock();
     }
     else{
-        QMessageBox::information(this, "NEOWizard", QString("<font color = white >The code in main.cpp to include this main thread was already in the file"));
+        QMessageBox::information(this, "NEOWizard", QString("<font color = black >The code in main.cpp to include this main thread was already in the file"));
     }
     if(main_cpp_FileProcessor.check_if_code_exist("app.exec();",false)==0){
 
@@ -481,7 +485,7 @@ void NFWizard2::processMainFile_add_Main_Thread_Exec(const QString thread_name, 
         main_cpp_FileProcessor.processTextBlock();
     }
     else{
-        QMessageBox::information(this, "NEOWizard", QString("<font color = white >The code in main.cpp to execute this main thread was already in the file"));
+        QMessageBox::information(this, "NEOWizard", QString("<font color = black >The code in main.cpp to execute this main thread was already in the file"));
     }
     if(main_cpp_FileProcessor.check_if_code_exist(thread_name+QString(" app;"),false)==0){
 
@@ -491,7 +495,7 @@ void NFWizard2::processMainFile_add_Main_Thread_Exec(const QString thread_name, 
         main_cpp_FileProcessor.processTextBlock();
     }
     else{
-        QMessageBox::information(this, "NEOWizard", QString("<font color = white >The code in main.cpp to declare an object of this main thread was already in the file"));
+        QMessageBox::information(this, "NEOWizard", QString("<font color = black >The code in main.cpp to declare an object of this main thread was already in the file"));
     }
 }
 
@@ -600,7 +604,7 @@ void NFWizard2::processMainFiles()
     fileDir.cd("Src");   // pone la direccion de Src como ruta actual para comprobar q existe main.c
 
     if (!fileDir.exists("main.c")) {
-        QMessageBox::warning(this, tr("NFWizard2"),tr("<font color = white >Error STM32CubeMx Src/%1 file not found").arg("main.c"));
+        QMessageBox::warning(this, tr("NFWizard2"),tr("<font color = black >Error STM32CubeMx Src/%1 file not found").arg("main.c"));
         return;
     }
     QString cubeMainFile = fileDir.filePath("main.c");  //almacena la direccion del main.c en cubeMainFile
@@ -612,7 +616,7 @@ void NFWizard2::processMainFiles()
     //QString maincppFile = generateMaincpp();
 
     if (!MainFilesProcessor::processFiles(cubeMainFile, maincppFile)) {  ////llama a la funcion processFiles para modificar el main.cpp
-        QMessageBox::warning(this, tr("NFWizard2"),tr("<font color = white >Error processing STM32CubeMx Src/%1 file and"
+        QMessageBox::warning(this, tr("NFWizard2"),tr("<font color = black >Error processing STM32CubeMx Src/%1 file and"
                                                       " Source/%2").arg("main.c").arg("main.cpp"));
     }
 }
@@ -633,12 +637,12 @@ void NFWizard2::processXmlFiles()
     ////fileCube tiene la direccion asignada al proyecto STCubeMX
     QDir cubeDir = QFileInfo(fileCube).dir();  ////Guarda la direccion de cubeDir (".../STCubeGenerated")
     if(!cubeDir.cdUp()){   ////Sube a la direccion (".../STM32F429ZITx")
-        QMessageBox::critical(this,tr("NFWizard2"),tr("<font color = white >Error. File not founnd."));
+        QMessageBox::critical(this,tr("NFWizard2"),tr("<font color = black >Error. File not founnd."));
         return;
     }
     QFileInfoList fileList = cubeDir.entryInfoList(QStringList("*.gpdsc"),QDir::Files,QDir::Type);  ////Busca archivos *.gpdsc (1 solo)
     if(fileList.size() != 1){   ////Solo debe haber un archivo *.gpdsc
-        QMessageBox::critical(this,tr("NFWizard2"),tr("<font color = white >Error. File not founnd."));
+        QMessageBox::critical(this,tr("NFWizard2"),tr("<font color = black >Error. File not founnd."));
         return;
     }
     XMLModifyNamespace::XMLKeilModify XmlDoc(fileuVision,fileList[0].absoluteFilePath());  ////Contructor de XMLKeilModify le pasa como parametros
@@ -657,7 +661,7 @@ void NFWizard2::processHalConfigFile()
     fileDir.cd("Inc");
     QStringList fileList = fileDir.entryList(QStringList("*_hal_conf.h"));
     if (!fileDir.exists(fileList.first())) { // Should be only one file
-        QMessageBox::warning(this, tr("NFWizard2"),tr("<font color = white >Error STM32CubeMx Src/%1 file not found").arg(fileList.first()));
+        QMessageBox::warning(this, tr("NFWizard2"),tr("<font color = black >Error STM32CubeMx Src/%1 file not found").arg(fileList.first()));
         return;
     }
     QDir::setCurrent(fileDir.path());
@@ -699,7 +703,7 @@ int NFWizard2::generateTemplates_for_Thread(const QString &projectRootRef,const 
 
     if (!QDir::setCurrent(projectRootRef)) {
         qDebug() << "could not switch to " << projectRootRef;
-        QMessageBox::warning(this, "NEOWizard", QString("<font color = white >Coud not locate project folders \n Please generate project folders \n in \"Generate\" window or set location of uVision Project"));
+        QMessageBox::warning(this, "NEOWizard", QString("<font color = black >Coud not locate project folders \n Please generate project folders \n in \"Generate\" window or set location of uVision Project"));
          return -1;
     }
     qDebug() << "Current path: " << QDir::currentPath();
@@ -725,7 +729,7 @@ int NFWizard2::generateTemplates_for_Thread(const QString &projectRootRef,const 
         if (retval) {   ////le da permisos de escritura a los templates
             QFile::setPermissions(filePair.second, QFileDevice::WriteOther);
         }else {
-            QMessageBox::warning(this, "NEOWizard", QString("<font color = white >Could not generate project folders <br>May be there is already a file with that name in the project direction"));
+            QMessageBox::warning(this, "NEOWizard", QString("<font color = black >Could not generate project folders <br>May be there is already a file with that name in the project direction"));
             return 0;
         }
     }
@@ -781,7 +785,7 @@ void NFWizard2::on_actionAbout_triggered()
 {
     QString info;
     QTextStream infoWriter(&info);
-    infoWriter << QStringLiteral("<font color = white >Released under Beerware license<br>") << endl
+    infoWriter << QStringLiteral("<font color = black >Released under Beerware license<br>") << endl
                << QStringLiteral("Contact:<br>") << endl
                << QStringLiteral("Ernesto Cruz Olivera: ecruzolivera@gmail.com<br>") << endl
                << QStringLiteral("Manuel A. Linarez Páez: manuel.linares@cneuro.edu.cu") << endl
@@ -814,12 +818,12 @@ void NFWizard2::on_actionSTM32CubeMx_Configuration_triggered()
 //    if(arg1.contains(QString("4.20"))){
 
 //        MainFilesProcessor::SYSCLOCK_CONFIG_START_LINE = "/** System Clock Configuration";
-//        QMessageBox::information(this, "NEOWizard", "<font color = white >Selected Version 4.26 of STCubeMx \n\nIf you do not correctly select the file \nmain.cpp it is not correctly generated"/*+MainFilesProcessor::SYSCLOCK_CONFIG_START_LINE*/);
+//        QMessageBox::information(this, "NEOWizard", "<font color = black >Selected Version 4.26 of STCubeMx \n\nIf you do not correctly select the file \nmain.cpp it is not correctly generated"/*+MainFilesProcessor::SYSCLOCK_CONFIG_START_LINE*/);
 //    }
 //    else if (arg1.contains(QString("4.26"))){
 
 //        MainFilesProcessor::SYSCLOCK_CONFIG_START_LINE = "  * @brief System Clock Configuration";
-//        QMessageBox::information(this, "NEOWizard", "<font color = white >Selected Version 4.26 of STCubeMx \n\nIf you do not correctly select the file \nmain.cpp it is not correctly generated"/*+MainFilesProcessor::SYSCLOCK_CONFIG_START_LINE*/);
+//        QMessageBox::information(this, "NEOWizard", "<font color = black >Selected Version 4.26 of STCubeMx \n\nIf you do not correctly select the file \nmain.cpp it is not correctly generated"/*+MainFilesProcessor::SYSCLOCK_CONFIG_START_LINE*/);
 //    }
 
 //}
@@ -831,13 +835,13 @@ void NFWizard2::on_pushButton_generate_folders_clicked()
 
          generate_project_folders = true;
          //ui->lineEdit_CubePath->setText("true");
-         ui->pushButton_generate_folders->setStyleSheet( QStringLiteral("background-color: rgb(89, 99, 113);") + "border-image: url(:/Assets/check_box_on.png);");
+         ui->pushButton_generate_folders->setStyleSheet( QStringLiteral("background-color: rgb(89, 99, 113);") + "background-image: url(:/icons/screen1/check_box_state_2.png);");
     }
     else{
 
          generate_project_folders = false;
          //ui->lineEdit_CubePath->setText("false");
-         ui->pushButton_generate_folders->setStyleSheet( QStringLiteral("background-color: rgb(89, 99, 113);") + "border-image: url(:/Assets/check_box_off.png);");
+         ui->pushButton_generate_folders->setStyleSheet( QStringLiteral("background-color: rgb(89, 99, 113);") + "background-image: url(:/icons/screen1/check_box.png);");
     }
 }
 
@@ -893,7 +897,8 @@ void NFWizard2::update_table_view_events(){
 
 void NFWizard2::on_pushButton_Help_tag_clicked()
 {
-    //hide_all_objects();
+    current_screen = Help_Screen;
+    hide_all_objects();
 
     if(ui->widget_help_buttons->isHidden()){
 
@@ -974,90 +979,107 @@ void NFWizard2::show_update_tree_view(const bool expand, const QString item_name
 
 void NFWizard2::on_pushButton_Options_tag_clicked()
 {
+    current_screen = Options_Screen;
     hide_all_objects();
-    this->setGeometry(200,200,1100,420);
     this->show_options();
+    ui->widget_options_screen_native->move(current_win_Pos);
+    ui->widget_options_thread_options->hide();
+    ui->widget_configure_in_main_thread->hide();
+
+    ui->pb_configure_Main_thread->setStyleSheet(QStringLiteral("background-image: url(:/icons/screen6/Configure main thread_off.png);"));
+    ui->pb_configure_in_Main_thread->setStyleSheet(QStringLiteral("background-image: url(:/icons/screen5/Configure thread in main_off.png);"));
+    ui->pb_configure_thread_in_class->setStyleSheet(QStringLiteral("background-image: url(:/icons/screen5/Configure a thread_off.png);"));
 }
 
 void NFWizard2::on_pushButton_Generate_tag_clicked()
 {
+     current_screen = Generate_Screen;
      hide_all_objects();
-     this->setGeometry(200,200,793,389);
      this->show_generate();
+     ui->widget_generate_screen->move(current_win_Pos);
 }
 
 void NFWizard2::hide_all_objects(){
 
-    ui->pushButton_Generate_tag->setStyleSheet( QStringLiteral("background-color: rgb(89, 99, 113);") + "border-image: url(:/Assets/generate_tag_off.png);");
-    ui->pushButton_Generate_tag->setFixedSize(56,18);
-    ui->pushButton_Generate_tag->move(20,10);
-    ui->pushButton_Help_tag->setStyleSheet( QStringLiteral("background-color: rgb(89, 99, 113);") + "border-image: url(:/Assets/help_tag_off.png);");
-    ui->pushButton_Help_tag->setFixedSize(29,19);
-    ui->pushButton_Help_tag->move(210,8);
-    ui->pushButton_Options_tag->setStyleSheet( QStringLiteral("background-color: rgb(89, 99, 113);") + "border-image: url(:/Assets/options_tag_off.png);");
-    ui->pushButton_Options_tag->setFixedSize(49,19);
-    ui->pushButton_Options_tag->move(115,8);
+    ui->pushButton_Generate_tag->setStyleSheet( QStringLiteral("background-color: rgb(89, 99, 113);") + "background-image: url(:/icons/screen1/generate_botom_off.png);");
+    ui->pushButton_Generate_tag->setFixedSize(94,28);
+    ui->pushButton_Generate_tag->move(771,121);
+    ui->pushButton_Help_tag->setStyleSheet( QStringLiteral("background-color: rgb(89, 99, 113);") + "background-image: url(:/icons/screen1/help_botom_off.png);");
+    ui->pushButton_Help_tag->setFixedSize(47,26);
+    ui->pushButton_Help_tag->move(1101,121);
+    ui->pushButton_Options_tag->setStyleSheet( QStringLiteral("background-color: rgb(89, 99, 113);") + "background-image: url(:/icons/screen1/options_botom_off.png);");
+    ui->pushButton_Options_tag->setFixedSize(84,26);
+    ui->pushButton_Options_tag->move(941,121);
 
-    ui->tw_state_machine->hide();
-    ui->widget_wait->hide();
+    ui->widget_options_screen_native->move(2048,0);
+    ui->widget_generate_screen->move(2048,0);
+    ui->widget_state_machine_screen->move(2048,0);
 
-    ui->tw_state_machine->hide();
-    ui->widget_events->hide();
-    ui->widget_add_delete_event->hide();
-
-    ui->pb_warning_state_machine->hide();
-    if(ui->pb_configure_state_machine->text()=="Back"){
-
-        on_pb_configure_state_machine_clicked();
-    }
-    ui->widget_help_buttons->hide();
-
-    ui->widget_buttons_quit->hide();
-    ui->widget_dirs->hide();
-    ui->widget_generate_options->hide();
-
-    ui->widget_options_buttons->hide();
-    ui->widget_options_thread_options->hide();
-    ui->widget_layout_state_machine->hide();
-    ui->widget_on_state_options->hide();
-
-    ui->widget_event_options->hide();
-    ui->le_state_to_search->hide();
-    ui->pb_acept_main_thread->hide();
-
+    ui->widget_main_thread_name->hide();
     ui->widget_state_machine_name->hide();
-    ui->pb_load_state_machine->hide();
-    ui->pb_load_from_Thread->hide();
-    ui->pb_save_state_machine->hide();
+    ui->widget_event_options->hide();
+
+    ui->widget_timer_parameters->hide();
+
+    //    ui->tw_state_machine->hide();
+    //    ui->widget_wait->hide();
+
+//    ui->tw_state_machine->hide();
+//    ui->widget_events->hide();
+//    ui->widget_add_delete_event->hide();
+
+//    ui->pb_warning_state_machine->hide();
+//    if(ui->pb_configure_state_machine->text()=="Back"){
+
+//        on_pb_configure_state_machine_clicked();
+//    }
+//    ui->widget_help_buttons->hide();
+
+//    ui->widget_buttons_quit->hide();
+//    ui->widget_dirs->hide();
+//    ui->widget_generate_options->hide();
+
+//    ui->widget_options_buttons->hide();
+//    ui->widget_options_thread_options->hide();
+//    ui->widget_layout_state_machine->hide();
+//    ui->widget_on_state_options->hide();
+
+//    ui->widget_event_options->hide();
+//    ui->le_state_to_search->hide();
+//    ui->pb_acept_main_thread->hide();
+
+//    ui->widget_state_machine_name->hide();
+//    ui->pb_load_state_machine->hide();
+//    ui->pb_load_from_Thread->hide();
+//    ui->pb_save_state_machine->hide();
 
 }
 
 void NFWizard2::show_generate(){
 
-    ui->widget_buttons_quit->show();
-    ui->widget_dirs->show();
-    ui->widget_generate_options->show();
+    ui->widget_generate_screen->show();
 
-    ui->pushButton_Generate_tag->setStyleSheet( QStringLiteral("background-color: rgb(89, 99, 113);") + "border-image: url(:/Assets/generate_tag_on.png);");
-    ui->pushButton_Generate_tag->setFixedSize(92,24);
-    ui->pushButton_Generate_tag->move(0,9);
+    ui->pushButton_Generate_tag->setStyleSheet( QStringLiteral("background-color: rgb(89, 99, 113);") + "background-image: url(:/icons/screen1/generate_botom_on.png);");
+    ui->pushButton_Generate_tag->setFixedSize(179,44);
+    ui->pushButton_Generate_tag->move(728,111);
+
 }
 
 void NFWizard2::show_help(){
 
     ui->widget_help_buttons->show();
 
-    ui->pushButton_Help_tag->setStyleSheet( QStringLiteral("background-color: rgb(89, 99, 113);") + "border-image: url(:/Assets/help_tag_on.png);");
-    ui->pushButton_Help_tag->setFixedSize(67,25);
-    ui->pushButton_Help_tag->move(190,8);
+    ui->pushButton_Help_tag->setStyleSheet( QStringLiteral("background-color: rgb(89, 99, 113);") + "background-image: url(:/icons/screen1/help_botom_on.png);");
+    ui->pushButton_Help_tag->setFixedSize(178,43);
+    ui->pushButton_Help_tag->move(1035,111);
 }
 
 void NFWizard2::show_options(){
 
-    ui->pushButton_Options_tag->setStyleSheet( QStringLiteral("background-color: rgb(89, 99, 113);") + "border-image: url(:/Assets/options_tag_on.png);");
-    ui->pushButton_Options_tag->setFixedSize(103,25);
-    ui->pushButton_Options_tag->move(90,8);
-    ui->widget_options_buttons->show();
+    ui->pushButton_Options_tag->setStyleSheet( QStringLiteral("background-color: rgb(89, 99, 113);") + "background-image: url(:/icons/screen1/options_botom_on.png);");
+    ui->pushButton_Options_tag->setFixedSize(179,43);
+    ui->pushButton_Options_tag->move(891,111);
+
 }
 
 void NFWizard2::on_pb_uVision_Config_clicked()
@@ -1107,14 +1129,14 @@ void NFWizard2::on_pb_add_thread_clicked()
     if(!ui->le_thread_name->isHidden()){
         if(ui->le_thread_name->text().isEmpty()){
 
-            QMessageBox::information(this, "NEOWizard", QString("<font color = white >Please add thread name"));
+            QMessageBox::information(this, "NEOWizard", QString("<font color = black >Please add thread name"));
             return;
         }
     }
     if(!ui->le_main_thread_name->isHidden()){
         if(ui->le_main_thread_name->text().isEmpty()){
 
-            QMessageBox::information(this, "NEOWizard", QString("<font color = white >Please add main thread name"));
+            QMessageBox::information(this, "NEOWizard", QString("<font color = black >Please add main thread name"));
             return;
         }
     }
@@ -1135,7 +1157,7 @@ void NFWizard2::on_pb_add_thread_clicked()
 
             process_Thread_Files(ui->le_thread_name->text());
             processXmlFiles_for_Threads(ui->le_thread_name->text()); ////modifica XML de keil
-            QMessageBox::information(this, "NEOWizard", QString("<font color = white >Thread generated correctly\nPlease save changes in uVision project"));
+            QMessageBox::information(this, "NEOWizard", QString("<font color = black >Thread generated correctly\nPlease save changes in uVision project"));
         }
     }
     if(add_thread_state==Main_Thead){
@@ -1144,7 +1166,7 @@ void NFWizard2::on_pb_add_thread_clicked()
 
             process_Main_Thread_Files(ui->le_main_thread_name->text());
             processXmlFiles_for_Threads(ui->le_main_thread_name->text()); ////modifica XML de keil
-            QMessageBox::information(this, "NEOWizard", QString("<font color = white >Main Thread is generated correctly\nPlease save changes in uVision project"));
+            QMessageBox::information(this, "NEOWizard", QString("<font color = black >Main Thread is generated correctly\nPlease save changes in uVision project"));
         }
     }
     if(add_thread_state==Thread_in_Main){
@@ -1152,38 +1174,38 @@ void NFWizard2::on_pb_add_thread_clicked()
         int retval = check_if_compatible(fileInfo.dir().path(), ui->le_main_thread_name->text(), "header", "/*User declare thread objects*/");
         if(retval==0){
 
-            QMessageBox::warning(this, "NEOWizard", QString("<font color = white >You need to add the code : /*User declare thread objects*/ <br>in the public section of your Main Thread header file.<br>NEOWizar will try to add it whitout your intervention."));
+            QMessageBox::warning(this, "NEOWizard", QString("<font color = black >You need to add the code : /*User declare thread objects*/ <br>in the public section of your Main Thread header file.<br>NEOWizar will try to add it whitout your intervention."));
             retval = generate_guide_code_Main_Thread_h(fileInfo.dir().path(), ui->le_main_thread_name->text());
             if(retval==1){
 
-                QMessageBox::information(this, "NEOWizard", QString("<font color = white >The automatic code adding worked fine"));
+                QMessageBox::information(this, "NEOWizard", QString("<font color = black >The automatic code adding worked fine"));
             }
             else if(retval ==-1){
 
-                QMessageBox::information(this, "NEOWizard", QString("<font color = white >File not found, check if the project has the generate folders <br>or check the name of your Main Thread"));
+                QMessageBox::information(this, "NEOWizard", QString("<font color = black >File not found, check if the project has the generate folders <br>or check the name of your Main Thread"));
                 return;
             }
             else if(retval ==-2){
 
-                QMessageBox::information(this, "NEOWizard", QString("<font color = white >Header File cannot be open for read, please try again"));
+                QMessageBox::information(this, "NEOWizard", QString("<font color = black >Header File cannot be open for read, please try again"));
                 return;
 
             }
             else if(retval ==-3){
 
-                QMessageBox::information(this, "NEOWizard", QString("<font color = white >The Header file could not be written, please try again"));
+                QMessageBox::information(this, "NEOWizard", QString("<font color = black >The Header file could not be written, please try again"));
                 return;
 
             }
             else if(retval ==-4){
 
-                QMessageBox::information(this, "NEOWizard", QString("<font color = white >Please remove spaces between -> \"private\" and \":\" in your main thread class, then try again"));
+                QMessageBox::information(this, "NEOWizard", QString("<font color = black >Please remove spaces between -> \"private\" and \":\" in your main thread class, then try again"));
                 return;
 
             }
             else if(retval ==0){
 
-                QMessageBox::information(this, "NEOWizard", QString("<font color = white >Please add a private seccion in your Main Thread class -> \"private:\" , then try again"));
+                QMessageBox::information(this, "NEOWizard", QString("<font color = black >Please add a private seccion in your Main Thread class -> \"private:\" , then try again"));
                 return;
 
             }
@@ -1191,12 +1213,12 @@ void NFWizard2::on_pb_add_thread_clicked()
         }
         else if(retval ==-1){
 
-            QMessageBox::information(this, "NEOWizard", QString("<font color = white >Header File not found, check if the project has the generate folders <br>or check the name of your Main Thread"));
+            QMessageBox::information(this, "NEOWizard", QString("<font color = black >Header File not found, check if the project has the generate folders <br>or check the name of your Main Thread"));
             return;
         }
         else if(retval ==-2){
 
-            QMessageBox::information(this, "NEOWizard", QString("<font color = white >Header File cannot be open for read, please try again"));
+            QMessageBox::information(this, "NEOWizard", QString("<font color = black >Header File cannot be open for read, please try again"));
             return;
 
         }
@@ -1205,31 +1227,31 @@ void NFWizard2::on_pb_add_thread_clicked()
         retval = check_if_compatible(fileInfo.dir().path(), ui->le_main_thread_name->text(), "source", "/*Threads Functions Implementation Generated Code*/");
         if(retval == 0){
 
-            QMessageBox::warning(this, "NEOWizard", QString("<font color = white >You need to add the code : /*Threads Functions Implementation Generated Code*/ <br>in your Main Thread source file.<br>NEOWizar will try to add it whitout your intervention."));
+            QMessageBox::warning(this, "NEOWizard", QString("<font color = black >You need to add the code : /*Threads Functions Implementation Generated Code*/ <br>in your Main Thread source file.<br>NEOWizar will try to add it whitout your intervention."));
 
             retval = generate_guide_code_Main_Thread_cpp(fileInfo.dir().path(), ui->le_main_thread_name->text());
             if(retval==1){
 
-                QMessageBox::information(this, "NEOWizard", QString("<font color = white >The automatic code adding worked fine"));
+                QMessageBox::information(this, "NEOWizard", QString("<font color = black >The automatic code adding worked fine"));
             }
             else if(retval==0){
 
-                QMessageBox::information(this, "NEOWizard", QString("<font color = white >Add constructor implementation to your Main Thread Class, then try again"));
+                QMessageBox::information(this, "NEOWizard", QString("<font color = black >Add constructor implementation to your Main Thread Class, then try again"));
             }
             else if(retval ==-1){
 
-                QMessageBox::information(this, "NEOWizard", QString("<font color = white >Source File not found, check if the project has the generate folders <br>or check the name of your Main Thread"));
+                QMessageBox::information(this, "NEOWizard", QString("<font color = black >Source File not found, check if the project has the generate folders <br>or check the name of your Main Thread"));
                 return;
             }
             else if(retval ==-2){
 
-                QMessageBox::information(this, "NEOWizard", QString("<font color = white >Source File cannot be open for read, please try again"));
+                QMessageBox::information(this, "NEOWizard", QString("<font color = black >Source File cannot be open for read, please try again"));
                 return;
 
             }
             else if(retval ==-3){
 
-                QMessageBox::information(this, "NEOWizard", QString("<font color = white >The Source file could not be written, please try again"));
+                QMessageBox::information(this, "NEOWizard", QString("<font color = black >The Source file could not be written, please try again"));
                 return;
 
             }
@@ -1237,18 +1259,18 @@ void NFWizard2::on_pb_add_thread_clicked()
         }
         else if(retval ==-1){
 
-            QMessageBox::information(this, "NEOWizard", QString("<font color = white >Source File not found, check if the project has the generate folders <br>or check the name of your Main Thread"));
+            QMessageBox::information(this, "NEOWizard", QString("<font color = black >Source File not found, check if the project has the generate folders <br>or check the name of your Main Thread"));
             return;
         }
         else if(retval ==-2){
 
-            QMessageBox::information(this, "NEOWizard", QString("<font color = white >Source File cannot be open for read, please try again"));
+            QMessageBox::information(this, "NEOWizard", QString("<font color = black >Source File cannot be open for read, please try again"));
             return;
 
         }
         process_Thread_in_Main_cpp_File(ui->le_thread_name->text(), ui->le_main_thread_name->text(),ui->cb_thread_priority->currentText());
 
-        QMessageBox::information(this, "NEOWizard", QString("<font color = white >Thread in Main :")+ui->le_thread_name->text()+QString(" generated correctly <br>Please save changes in uVision project"));
+        QMessageBox::information(this, "NEOWizard", QString("<font color = black >Thread in Main :")+ui->le_thread_name->text()+QString(" generated correctly <br>Please save changes in uVision project"));
     }
 }
 
@@ -1261,7 +1283,7 @@ int NFWizard2::generate_guide_code_Main_Thread_h(const QString path, const QStri
 
     if(main_FileProcessor.check_if_code_exist("eObject::eThread "+ui->le_thread_name->text(), false)==1){
 
-        QMessageBox::information(this, "NEOWizard", QString("<font color = white >Thread in Main :")+ui->le_thread_name->text()+QString(" already declare in header file of Main Thread"));
+        QMessageBox::information(this, "NEOWizard", QString("<font color = black >Thread in Main :")+ui->le_thread_name->text()+QString(" already declare in header file of Main Thread"));
         return 2;
     }
 
@@ -1287,21 +1309,29 @@ void NFWizard2::on_pb_configure_thread_in_class_clicked()
   ui->cb_thread_priority->show();
   ui->le_main_thread_name->hide();
   ui->l_main_thread_name->hide();
-  ui->widget_layout_state_machine->hide();
+
+  ui->widget_configure_in_main_thread->hide();
+
+  ui->pb_configure_Main_thread->setStyleSheet(QStringLiteral("background-image: url(:/icons/screen6/Configure main thread_off.png);"));
+  ui->pb_configure_in_Main_thread->setStyleSheet(QStringLiteral("background-image: url(:/icons/screen5/Configure thread in main_off.png);"));
+  ui->pb_configure_thread_in_class->setStyleSheet(QStringLiteral("background-image: url(:/icons/screen7/Configure a thread_on.png);"));
+
+  ui->widget_timer_parameters->hide();
+
 }
 
-void NFWizard2::on_pb_configure_thread_in_main_clicked()
-{
-   add_thread_state = Thread_in_Main;
-   ui->widget_options_thread_options->show();
-   ui->le_thread_name->show();
-   ui->l_thread_name->show();
-   ui->l_thread_priority->show();
-   ui->cb_thread_priority->show();
-   ui->le_main_thread_name->show();
-   ui->l_main_thread_name->show();
-   ui->widget_layout_state_machine->hide();
-}
+//void NFWizard2::on_pb_configure_thread_in_main_clicked()
+//{
+//   add_thread_state = Thread_in_Main;
+//   ui->widget_options_thread_options->show();
+//   ui->le_thread_name->show();
+//   ui->l_thread_name->show();
+//   ui->l_thread_priority->show();
+//   ui->cb_thread_priority->show();
+//   ui->le_main_thread_name->show();
+//   ui->l_main_thread_name->show();
+//   ui->widget_layout_state_machine->hide();
+//}
 
 void NFWizard2::on_pb_configure_Main_thread_clicked()
 {
@@ -1315,46 +1345,46 @@ void NFWizard2::on_pb_configure_Main_thread_clicked()
     ui->cb_thread_priority->hide();
     ui->widget_layout_state_machine->hide();
 
+    ui->widget_configure_in_main_thread->hide();
+
+    ui->pb_configure_Main_thread->setStyleSheet(QStringLiteral("background-image: url(:/icons/screen5/Configure main thread_on.png);"));
+    ui->pb_configure_in_Main_thread->setStyleSheet(QStringLiteral("background-image: url(:/icons/screen5/Configure thread in main_off.png);"));
+    ui->pb_configure_thread_in_class->setStyleSheet(QStringLiteral("background-image: url(:/icons/screen5/Configure a thread_off.png);"));
+
+    ui->widget_timer_parameters->hide();
 }
 
 void NFWizard2::on_pb_configure_state_machine_clicked()
 {
-    if(ui->pb_configure_state_machine->text()!="Back"){
+//    if(ui->pb_configure_state_machine->text()!="Back"){
 
-        ui->widget_layout_state_machine->show();
-        ui->widget_state_info->hide();
-        ui->widget_options_thread_options->hide();
-        ui->pb_configure_state_machine->setText("Back");
-        ui->pb_load_state_machine->show();
-        ui->pb_save_state_machine->show();
-        ui->pb_load_from_Thread->show();
+//        ui->widget_layout_state_machine->show();
+//        ui->widget_state_info->hide();
+//        ui->widget_options_thread_options->hide();
+//        ui->pb_configure_state_machine->setText("Back");
+//        ui->pb_load_state_machine->show();
+//        ui->pb_save_state_machine->show();
+//        ui->pb_load_from_Thread->show();
 
-        ui->pb_configure_thread_in_class->hide();
-        ui->pb_configure_thread_in_main->hide();
-        ui->pb_configure_Main_thread->hide();
+//        ui->pb_configure_thread_in_class->hide();
+//        ui->pb_configure_thread_in_main->hide();
+//        ui->pb_configure_Main_thread->hide();
 
-        show_update_tree_view();
-        this->setGeometry(200,200,1200,460);
+//        show_update_tree_view();
+//        this->setGeometry(200,200,1200,460);
 
-        emit check_warnings();
-    }
-    else{
-
-        ui->pb_configure_state_machine->setText("Configure State Machine");
-
-        ui->pb_configure_thread_in_class->show();
-        ui->pb_configure_thread_in_main->show();
-        ui->pb_configure_Main_thread->show();
-
-        ui->pb_load_state_machine->hide();
-        ui->pb_save_state_machine->hide();
-        ui->pb_load_from_Thread->hide();
-        ui->pb_warning_state_machine->hide();
-
-        ui->widget_layout_state_machine->hide();
-        ui->tw_state_machine->hide();
-        this->setGeometry(200,200,793,389);
-    }
+//        emit check_warnings();
+//    }
+    current_screen = State_Machine_Screen;
+    hide_all_objects();
+    show_update_tree_view();
+    ui->widget_on_state_options->hide();
+    ui->widget_add_delete_event->hide();
+    ui->widget_state_machine_screen->move(current_win_Pos);
+    ui->widget_layout_state_machine->show();
+    ui->widget_state_info->hide();
+    ui->le_state_to_search->hide();
+    emit check_warnings();
 }
 
 void NFWizard2::check_for_warnings()
@@ -1417,7 +1447,7 @@ void NFWizard2::on_pb_add_state_clicked()
     if(ui->l_name_current_state->text()=="No Parent"){
         if(current_positions_minus_one >= QHierarchy_State::MAX_SUB_STATE){
 
-            QMessageBox::information(this, "NEOWizard", QString("<font color = white >You can't add more states in this Super State"));
+            QMessageBox::information(this, "NEOWizard", QString("<font color = black >You can't add more states in this Super State"));
             return;
         }
     }
@@ -1433,14 +1463,14 @@ void NFWizard2::on_pb_add_state_clicked()
         }
 
         if(draw_super_state(current_state_parent)== QHierarchy_State::MAX_SUB_STATE){
-            QMessageBox::information(this, "NEOWizard", QString("<font color = white >You can't add more state to this parent, please change of state"));
+            QMessageBox::information(this, "NEOWizard", QString("<font color = black >You can't add more state to this parent, please change of state"));
         }
         qDebug()<<"tam :"<<QString::number(hierarchy_states.size());
 
         ui->pb_generate_state_machine->setEnabled(true);
     }
     else{
-        QMessageBox::information(this, "NEOWizard", QString("<font color = white >Please add name to the state"));
+        QMessageBox::information(this, "NEOWizard", QString("<font color = black >Please add name to the state"));
     }
 }
 
@@ -1559,7 +1589,7 @@ void NFWizard2::on_pb_generate_state_machine_clicked()
     }
     if(hierarchy_states.isEmpty()){
 
-        QMessageBox::information(this, "NEOWizard","<font color = white >You haven't enter any state");
+        QMessageBox::information(this, "NEOWizard","<font color = black >You haven't enter any state");
         return;
     }
    for(quint16 i=0; i< hierarchy_states.size(); i++)
@@ -1567,7 +1597,7 @@ void NFWizard2::on_pb_generate_state_machine_clicked()
 
    if(ui->le_main_thread_name->text().isEmpty()){
 
-       QMessageBox::information(this, "NEOWizard","<font color = white >Insert name of main thread");
+       QMessageBox::information(this, "NEOWizard","<font color = black >Insert name of main thread");
        ui->widget_options_thread_options->show();
        ui->widget_options_thread_options->move(500,140);
        ui->le_main_thread_name->show();
@@ -1588,7 +1618,7 @@ void NFWizard2::on_pb_generate_state_machine_clicked()
            generate_labels_for_state_machine(fileuVision_Path, ui->le_main_thread_name->text());
            generate_code_for_state_machine(ui->le_main_thread_name->text());
            ui->widget_options_thread_options->hide();
-           QMessageBox::information(this, "NEOWizard","<font color = white >State Machine Generated");
+           QMessageBox::information(this, "NEOWizard","<font color = black >State Machine Generated");
        }
    }
 }
@@ -1662,7 +1692,7 @@ void NFWizard2::on_pb_back_clicked()
 {
     if(ui->l_name_current_state->text()==QString("No Parent")){
 
-        QMessageBox::information(this, "NEOWizard","<font color = white >This state has\n no parent state");
+        QMessageBox::information(this, "NEOWizard","<font color = black >This state has\n no parent state");
         return;
     }
 
@@ -1757,7 +1787,21 @@ void NFWizard2::on_pb_ok_clicked()
             }
         }
         if(!ui->le_initial_state_name->text().isEmpty()){
-            if(hierarchy_states[index]->look_for_child(ui->le_initial_state_name->text())){
+
+            if(ui->le_initial_state_name->text()=="No Initial"){
+
+                hierarchy_states[index]->set_state_initial(ui->le_initial_state_name->text());
+
+                for(quint16 i=0; i< hierarchy_states[index]->get_direct_SubStates().size(); i++){
+
+                    int index_other = get_state_index_with_name(hierarchy_states[index]->get_direct_SubStates()[i]);
+                    hierarchy_states[index_other]->setInitial(false);
+                    hierarchy_states[index_other]->set_Highlight(false);
+                    ////aqui cambiar foto de fondo de todos los estado
+                }
+
+            }
+            else if(hierarchy_states[index]->look_for_child(ui->le_initial_state_name->text())){
 
                 for(quint16 i=0; i< hierarchy_states[index]->get_direct_SubStates().size(); i++){
 
@@ -1874,11 +1918,15 @@ void NFWizard2::on_pb_open_state_clicked()
 
 void NFWizard2::on_pb_configure_state_clicked()
 {
+
     clear_line_edits_and_list_widgets();
     clean_widget_state_machine();
     ui->widget_on_state_options->hide();
     ui->l_name_current_state->setText(current_state);
     ui->widget_state_info->show();
+    if(!ui->widget_events->isHidden()){
+        on_pb_change_to_event_clicked();
+    }
     ui->pb_add_state->setEnabled(false);
     ui->pb_warning_state_machine->hide();
 
@@ -1963,12 +2011,12 @@ bool NFWizard2::add_state_in_superstate(const QString &superState, const QString
 
             if(hierarchy_states[index]->get_subStates_count() >= QHierarchy_State::MAX_SUB_STATE){
 
-                QMessageBox::information(this, "NEOWizard", QString("<font color = white >You can't add more State into this superstate"));
+                QMessageBox::information(this, "NEOWizard", QString("<font color = black >You can't add more State into this superstate"));
                 return false;
             }
         }
         else{
-            QMessageBox::information(this, "NEOWizard", QString("<font color = white >Cannot find the parent State"));
+            QMessageBox::information(this, "NEOWizard", QString("<font color = black >Cannot find the parent State"));
             return false;
         }
     }
@@ -1977,14 +2025,14 @@ bool NFWizard2::add_state_in_superstate(const QString &superState, const QString
 
         if(hierarchy_states[i]->get_state_name()==ui->le_state_name->text()){
 
-            QMessageBox::information(this, "NEOWizard", QString("<font color = white >You can't have two state with the same name,\nPlease change name to the new state"));
+            QMessageBox::information(this, "NEOWizard", QString("<font color = black >You can't have two state with the same name,\nPlease change name to the new state"));
             return false;
         }
     }
     if(superState != QString("No Parent")){ ////Si no existe el estado padre no añado estado
         int index = get_state_index_with_name(superState);
         if(index == -1){
-            QMessageBox::warning(this, tr("NFWizard2"),tr("<font color = white >The parent State doesn't exist"));
+            QMessageBox::warning(this, tr("NFWizard2"),tr("<font color = black >The parent State doesn't exist"));
             return false;
         }
     }
@@ -2033,7 +2081,7 @@ void NFWizard2::on_state_right_clicked(QString state_name){
    current_state_parent = ui->l_name_current_state->text();
    highlight_state(state_name);
    ui->widget_on_state_options->show();
-   ui->widget_on_state_options->move(QWidget::mapFromGlobal(QCursor::pos()));
+   ui->widget_on_state_options->move(QWidget::mapFromGlobal(QPoint(QCursor::pos().x()-current_win_Pos.x(),QCursor::pos().y()-current_win_Pos.y())));
 }
 
 void NFWizard2::on_state_left_clicked(QString state_name){
@@ -2090,11 +2138,11 @@ void NFWizard2::on_pb_search_state_clicked()
     if(ui->le_state_to_search->isHidden()){
 
         ui->le_state_to_search->show();
-        ui->widget_add_gen_buttons->hide();
+        //ui->widget_add_gen_buttons->hide();
     }
     else{
         ui->le_state_to_search->hide();
-        ui->widget_add_gen_buttons->show();
+        //ui->widget_add_gen_buttons->show();
     }
 
 }
@@ -2102,6 +2150,8 @@ void NFWizard2::on_pb_search_state_clicked()
 void NFWizard2::on_pb_add_event_clicked()
 {
     ui->widget_event_options->hide();
+
+    ui->l_background_blur->move(2048,0);
 
     int index = get_state_index_with_name(current_state);
 
@@ -2112,7 +2162,7 @@ void NFWizard2::on_pb_add_event_clicked()
 
         if(ui->le_event_ID_name->text().isEmpty()){
 
-            QMessageBox::warning(this, tr("NFWizard2"),tr("<font color = white >Insert Event ID name"));
+            QMessageBox::warning(this, tr("NFWizard2"),tr("<font color = black >Insert Event ID name"));
             return;
         }
         if(!ui->le_action_name->text().isEmpty()){
@@ -2144,7 +2194,7 @@ void NFWizard2::on_pb_add_event_clicked()
             update_table_view_events();
         }
         else{
-            QMessageBox::warning(this, tr("NFWizard2"),tr("<font color = white >Insert Action or Next State"));
+            QMessageBox::warning(this, tr("NFWizard2"),tr("<font color = black >Insert Action or Next State"));
             return;
         }
 
@@ -2154,6 +2204,8 @@ void NFWizard2::on_pb_add_event_clicked()
 void NFWizard2::on_pb_cancel_add_event_clicked()
 {
    ui->widget_event_options->hide();
+
+   ui->l_background_blur->move(2048,0);
 }
 
 void NFWizard2::on_le_state_to_search_textChanged(const QString &arg1)
@@ -2170,6 +2222,7 @@ void NFWizard2::on_le_state_to_search_textChanged(const QString &arg1)
 
         complete_list_object_states->setCaseSensitivity(Qt::CaseInsensitive);
         complete_list_object_states->setCompletionMode(QCompleter::UnfilteredPopupCompletion);
+        complete_list_object_states->popup()->setStyleSheet(QStringLiteral("font: 15pt \"Myriad Web\"; color:  rgb(8, 113, 104);"));
         ui->le_state_to_search->setCompleter(complete_list_object_states);
 
         connect(complete_list_object_states,SIGNAL(highlighted(QString)),this, SLOT(on_selected_state_in_search(QString)));
@@ -2653,7 +2706,7 @@ void NFWizard2::generate_code_for_state_machine(const QString main_thread_name){
         }
         if(hierarchy_states[i]->get_events_list().size() == 0 && !hierarchy_states[i]->get_direct_SubStates().isEmpty()){
 
-            QMessageBox::warning(this, "NEOWizard",QString("<font color = white >The State : ")
+            QMessageBox::warning(this, "NEOWizard",QString("<font color = black >The State : ")
                                  +hierarchy_states[i]->get_state_name()
                                  +QString(" has no Next State (transitions).")
                                  +QString("<br>This will give you a compile error.")
@@ -2740,7 +2793,7 @@ void NFWizard2::generate_code_for_state_machine(const QString main_thread_name){
             else{
                 if(!hierarchy_states[i]->get_direct_SubStates().isEmpty()){
 
-                    QMessageBox::warning(this, "NEOWizard",QString("<font color = white >The State : ")
+                    QMessageBox::warning(this, "NEOWizard",QString("<font color = black >The State : ")
                                          +hierarchy_states[i]->get_state_name()
                                          +QString(" has no Initial State.")
                                          +QString("<br>This will give you a run error."));
@@ -2946,6 +2999,7 @@ void NFWizard2::on_pb_set_as_initial_clicked()
 
             index_other = get_state_index_with_name(hierarchy_states[index_parent]->get_direct_SubStates()[i]);
             hierarchy_states[index_other]->setInitial(false);
+            hierarchy_states[index_other]->set_Highlight(false);
             ////aqui cambiar foto de fondo de todos los estado
         }
         hierarchy_states[index_parent]->set_state_initial(current_state);
@@ -2978,7 +3032,7 @@ void NFWizard2::on_pb_acept_main_thread_clicked()
 {
     if(ui->le_main_thread_name->text().isEmpty()){
 
-        QMessageBox::information(this, "NEOWizard",QString("<font color = white >Insert Main Thread name"));
+        QMessageBox::information(this, "NEOWizard",QString("<font color = black >Insert Main Thread name"));
         return;
     }
     ui->pb_acept_main_thread->hide();
@@ -3006,6 +3060,7 @@ void NFWizard2::on_le_event_ID_name_textChanged(const QString &arg1)
 
         complete_list_object_events->setCaseSensitivity(Qt::CaseInsensitive);
         complete_list_object_events->setCompletionMode(QCompleter::UnfilteredPopupCompletion);
+        complete_list_object_events->popup()->setStyleSheet(QStringLiteral("font: 15pt \"Myriad Web\"; color:  rgb(8, 113, 104);"));
         ui->le_event_ID_name->setCompleter(complete_list_object_events);
 
         connect(complete_list_object_events,SIGNAL(highlighted(QString)),this, SLOT(on_selected_event(QString)));
@@ -3029,6 +3084,7 @@ void NFWizard2::on_le_next_state_name_textChanged(const QString &arg1)
 
         complete_list_object_states->setCaseSensitivity(Qt::CaseInsensitive);
         complete_list_object_states->setCompletionMode(QCompleter::UnfilteredPopupCompletion);
+        complete_list_object_states->popup()->setStyleSheet(QStringLiteral("font: 15pt \"Myriad Web\"; color:  rgb(8, 113, 104);"));
         ui->le_next_state_name->setCompleter(complete_list_object_states);
     }
 
@@ -3051,6 +3107,7 @@ void NFWizard2::on_le_action_name_textChanged(const QString &arg1)
 
         complete_list_object_actions->setCaseSensitivity(Qt::CaseInsensitive);
         complete_list_object_actions->setCompletionMode(QCompleter::UnfilteredPopupCompletion);
+        complete_list_object_actions->popup()->setStyleSheet(QStringLiteral("font: 15pt \"Myriad Web\"; color:  rgb(8, 113, 104);"));
         ui->le_action_name->setCompleter(complete_list_object_actions);
     }
 }
@@ -3072,6 +3129,7 @@ void NFWizard2::on_le_entry_action_textChanged(const QString &arg1)
 
         complete_list_object_fuctions_exits_entries->setCaseSensitivity(Qt::CaseInsensitive);
         complete_list_object_fuctions_exits_entries->setCompletionMode(QCompleter::UnfilteredPopupCompletion);
+        complete_list_object_fuctions_exits_entries->popup()->setStyleSheet(QStringLiteral("font: 15pt \"Myriad Web\"; color:  rgb(8, 113, 104);"));
         ui->le_entry_action->setCompleter(complete_list_object_fuctions_exits_entries);
 
     }
@@ -3093,6 +3151,7 @@ void NFWizard2::on_le_exit_action_textChanged(const QString &arg1)
 
         complete_list_object_fuctions_exits_entries->setCaseSensitivity(Qt::CaseInsensitive);
         complete_list_object_fuctions_exits_entries->setCompletionMode(QCompleter::UnfilteredPopupCompletion);
+        complete_list_object_fuctions_exits_entries->popup()->setStyleSheet(QStringLiteral("font: 15pt \"Myriad Web\"; color:  rgb(8, 113, 104);"));
         ui->le_exit_action->setCompleter(complete_list_object_fuctions_exits_entries);
 
     }
@@ -3112,6 +3171,7 @@ void NFWizard2::on_le_super_state_name_textChanged(const QString &arg1)
 
         complete_list_object_states->setCaseSensitivity(Qt::CaseInsensitive);
         complete_list_object_states->setCompletionMode(QCompleter::UnfilteredPopupCompletion);
+        complete_list_object_states->popup()->setStyleSheet(QStringLiteral("font: 15pt \"Myriad Web\"; color:  rgb(8, 113, 104);"));
         ui->le_super_state_name->setCompleter(complete_list_object_states);
     }
 
@@ -3132,6 +3192,7 @@ void NFWizard2::on_le_initial_state_name_textChanged(const QString &arg1)
 
         complete_list_object_states->setCaseSensitivity(Qt::CaseInsensitive);
         complete_list_object_states->setCompletionMode(QCompleter::UnfilteredPopupCompletion);
+        complete_list_object_states->popup()->setStyleSheet(QStringLiteral("font: 15pt \"Myriad Web\"; color:  rgb(8, 113, 104);"));
         ui->le_initial_state_name->setCompleter(complete_list_object_states);
     }
 }
@@ -3150,18 +3211,27 @@ void NFWizard2::on_le_default_state_name_textChanged(const QString &arg1)
 
         complete_list_object_states->setCaseSensitivity(Qt::CaseInsensitive);
         complete_list_object_states->setCompletionMode(QCompleter::UnfilteredPopupCompletion);
+        complete_list_object_states->popup()->setStyleSheet(QStringLiteral("font: 15pt \"Myriad Web\"; color:  rgb(8, 113, 104);"));
         ui->le_default_state_name->setCompleter(complete_list_object_states);
     }
 }
 
 void NFWizard2::on_pb_load_state_machine_clicked()
 {
+
+    ui->l_background_blur->move(current_win_Pos);
+    //ui->l_background_blur->show();
+    ui->widget_state_machine_name->move(current_win_Pos.x()+500,current_win_Pos.y()+300);
     ui->widget_state_machine_name->show();
     isLoad = true;
 }
 
 void NFWizard2::on_pb_save_state_machine_clicked()
 {
+
+    ui->l_background_blur->move(current_win_Pos);
+    //ui->l_background_blur->show();
+    ui->widget_state_machine_name->move(current_win_Pos.x()+500,current_win_Pos.y()+300);
     ui->widget_state_machine_name->show();
     isLoad = false;
 
@@ -3169,7 +3239,17 @@ void NFWizard2::on_pb_save_state_machine_clicked()
 
 void NFWizard2::on_pb_acept_sate_machine_name_clicked()
 {
+
+
+    if(ui->le_state_machine_name->text().isEmpty()){
+
+         QMessageBox::information(this,"Information","<font color=black>Insert the name of the State Machine ",QMessageBox::Ok);
+         return;
+    }
+
     ui->widget_state_machine_name->hide();
+    ui->l_background_blur->move(2048,0);
+    //ui->l_background_blur->hide();
 
     if(!isLoad){
 
@@ -3179,6 +3259,8 @@ void NFWizard2::on_pb_acept_sate_machine_name_clicked()
         FolderTreeGenerator::generateFileTree(fileInfo.dir().path(), projectFolderTree);
 
         QFile *data_base = new QFile(fileInfo.dir().path()+QString("/HSMs/")+ui->le_state_machine_name->text() +QString(".dat"),this);
+
+        ui->tw_state_machine->headerItem()->setText(0, QString("State Machine ")+ ui->le_state_machine_name->text().toUpper());
 
         if(data_base->open(QIODevice::WriteOnly))
         {
@@ -3194,7 +3276,7 @@ void NFWizard2::on_pb_acept_sate_machine_name_clicked()
 
             data_base->close();
 
-            QMessageBox::information(this,"Information","<font color=white>Saved State Machine:  "+hierarchy_states[0]->get_state_name(),QMessageBox::Ok);
+            QMessageBox::information(this,"Information","<font color=black>Saved State Machine:  "+hierarchy_states[0]->get_state_name(),QMessageBox::Ok);
         }
     }
     else if(isLoad){
@@ -3203,9 +3285,11 @@ void NFWizard2::on_pb_acept_sate_machine_name_clicked()
 
         if (!data_base->exists()) {
             qWarning() << "file: " << data_base->fileName() << " not found!";
-            QMessageBox::information(this,"Information","<font color=white>Cannot Load State Machine:  "+ui->le_state_machine_name->text(),QMessageBox::Ok);
+            QMessageBox::information(this,"Information","<font color=black>Cannot Load State Machine:  "+ui->le_state_machine_name->text(),QMessageBox::Ok);
             return;
         }
+
+        ui->tw_state_machine->headerItem()->setText(0, QString("State Machine ")+ ui->le_state_machine_name->text().toUpper());
 
         if(!ui->widget_on_state_options->isHidden()){
 
@@ -3245,11 +3329,11 @@ void NFWizard2::on_pb_acept_sate_machine_name_clicked()
             data_base->close();
 
             if(!hierarchy_states.isEmpty()){
-                QMessageBox::information(this,"Information","<font color=white>Load State Machine:  "+hierarchy_states[0]->get_state_name(),QMessageBox::Ok);
+                QMessageBox::information(this,"Information","<font color=black>Load State Machine:  "+hierarchy_states[0]->get_state_name(),QMessageBox::Ok);
 
             }
             else{
-                QMessageBox::information(this,"Information","<font color=white>Cannot Load State Machine <br>Maybe file is corrupt");
+                QMessageBox::information(this,"Information","<font color=black>Cannot Load State Machine <br>Maybe file is corrupt");
                 return;
             }
         }
@@ -3260,6 +3344,7 @@ void NFWizard2::on_pb_acept_sate_machine_name_clicked()
 void NFWizard2::on_pb_cancel_state_machine_name_clicked()
 {
     ui->widget_state_machine_name->hide();
+    ui->l_background_blur->move(2048,0);
     ui->le_state_machine_name->clear();
 }
 
@@ -3284,6 +3369,7 @@ void NFWizard2::on_le_state_machine_name_textChanged(const QString &arg1)
 
             complete_list_saved_states->setCaseSensitivity(Qt::CaseInsensitive);
             complete_list_saved_states->setCompletionMode(QCompleter::UnfilteredPopupCompletion);
+            complete_list_saved_states->popup()->setStyleSheet(QStringLiteral("font: 15pt \"Myriad Web\"; color:  rgb(8, 113, 104);"));
             ui->le_state_machine_name->setCompleter(complete_list_saved_states);
         }
     }
@@ -3291,8 +3377,13 @@ void NFWizard2::on_le_state_machine_name_textChanged(const QString &arg1)
 
 void NFWizard2::on_pb_add_event_action_clicked()
 {
+    ui->l_background_blur->move(current_win_Pos);
+
     ui->widget_add_delete_event->hide();
+
     ui->widget_event_options->show();
+    ui->widget_event_options->move(current_win_Pos.x()+500,current_win_Pos.y()+200);
+
     ui->pb_add_event->show();
     ui->pb_delete_event->hide();
 }
@@ -3308,12 +3399,15 @@ void NFWizard2::on_pb_delete_event_action_clicked()
         if(!hierarchy_states[index]->get_events_list().isEmpty()){
             if(hierarchy_states[index]->get_events_list()[0].event == "No Event"){
 
-                QMessageBox::warning(this, tr("NFWizard2"),tr("<font color = white >This State has no Events to erase"));
+                QMessageBox::warning(this, tr("NFWizard2"),tr("<font color = black >This State has no Events to erase"));
                 return;
             }
         }
     }
+    ui->l_background_blur->move(current_win_Pos);
+
     ui->widget_event_options->show();
+    ui->widget_event_options->move(current_win_Pos.x()+500,current_win_Pos.y()+200);
     ui->pb_add_event->hide();
     ui->pb_delete_event->show();
 }
@@ -3327,13 +3421,15 @@ void NFWizard2::on_pb_delete_event_clicked()
 {
     ui->widget_event_options->hide();
 
+    ui->l_background_blur->move(2048,0);
+
     int index = get_state_index_with_name(current_state);
 
     if(index!=-1){
 
         if(ui->le_event_ID_name->text().isEmpty()){
 
-            QMessageBox::warning(this, tr("NFWizard2"),tr("<font color = white >Insert Event ID name to Erase"));
+            QMessageBox::warning(this, tr("NFWizard2"),tr("<font color = black >Insert Event ID name to Erase"));
             return;
         }
 
@@ -3401,38 +3497,10 @@ void NFWizard2::on_selected_event(const QString &arg1){
 void NFWizard2::on_pb_load_from_Thread_clicked()
 {
 
-
-    if(ui->le_main_thread_name->text().isEmpty()){
-
-        QMessageBox::information(this, "NEOWizard","<font color = white >Insert name of main thread and try again");
-        ui->widget_options_thread_options->show();
-        ui->widget_options_thread_options->move(500,140);
-        ui->le_main_thread_name->show();
-        ui->l_main_thread_name->show();
-        ui->le_thread_name->hide();
-        ui->l_thread_name->hide();
-        ui->l_thread_priority->hide();
-        ui->cb_thread_priority->hide();
-        ui->l_thread_stack_size->hide();
-        ui->sb_thread_stack_size->hide();
-        ui->pb_add_thread->hide();
-        ui->pb_acept_main_thread->show();
-        return;
-    }
-
-    ui->widget_wait->show();
-    ui->label_loading->setText("LOADING...");
-
-    if(QMessageBox::information(this,"Confirmation","<font color=white >Load State Machine",QMessageBox::Ok,QMessageBox::Cancel)==QMessageBox::Ok){
-
-        if(!ui->widget_on_state_options->isHidden()){
-
-            ui->widget_on_state_options->hide();
-        }
-        load_state_machine_from_Thread(fileuVision_Path, ui->le_main_thread_name->text());
-    }
-
-    ui->widget_wait->hide();
+    load_from_thread = true;
+    ui->l_background_blur->move(current_win_Pos);
+    ui->widget_main_thread_name->show();
+    ui->widget_main_thread_name->move(current_win_Pos.x()+500,current_win_Pos.y()+300);
 }
 
 int NFWizard2::load_state_machine_from_Thread(const QString path, const QString main_thread_name){
@@ -3806,6 +3874,7 @@ void NFWizard2::on_le_main_thread_name_textChanged(const QString &arg1)
 
             complete_list_saved_threads->setCaseSensitivity(Qt::CaseInsensitive);
             complete_list_saved_threads->setCompletionMode(QCompleter::UnfilteredPopupCompletion);
+            complete_list_saved_threads->popup()->setStyleSheet(QStringLiteral("font: 15pt \"Myriad Web\"; color:  rgb(8, 113, 104);"));
             ui->le_main_thread_name->setCompleter(complete_list_saved_threads);
         }
     }
@@ -3817,13 +3886,14 @@ void NFWizard2::on_pb_change_to_event_clicked()
     if(ui->widget_super_initial_default_state->isHidden()){
 
         //ui->widget_default_events->show();
-        ui->label_4->show();
-        ui->label_5->show();
-        ui->label_6->show();
-        ui->le_default_action_name->show();
-        ui->le_default_state_name->show();
+//        ui->label_4->show();
+//        ui->label_5->show();
+//        ui->label_6->show();
+//        ui->le_default_action_name->show();
+//        ui->le_default_state_name->show();
 
         ui->widget_super_initial_default_state->show();
+        ui->widget_state_name_default_event->show();
         ui->widget_events->hide();
         ui->widget_state_name_entry_exit_actions->show();
         ui->pb_change_to_event->setText("EVENTS");
@@ -3832,14 +3902,15 @@ void NFWizard2::on_pb_change_to_event_clicked()
     }
     else{
         //ui->widget_default_events->hide();
-        ui->label_4->hide();
-        ui->label_5->hide();
-        ui->label_6->hide();
-        ui->le_default_action_name->hide();
-        ui->le_default_state_name->hide();
+//        ui->label_4->hide();
+//        ui->label_5->hide();
+//        ui->label_6->hide();
+//        ui->le_default_action_name->hide();
+//        ui->le_default_state_name->hide();
 
         ui->widget_state_name_entry_exit_actions->hide();
         ui->widget_super_initial_default_state->hide();
+        ui->widget_state_name_default_event->hide();
         ui->widget_events->show();
         ui->pb_change_to_event->setText("BACK");
         update_table_view_events();
@@ -3886,7 +3957,7 @@ void NFWizard2::highlight_state(const QString state_to_highlight){
 //            current_state = state_name;
 //            current_state_parent = ui->l_name_current_state->text();
 //            ui->widget_on_state_options->show();
-//            ui->widget_on_state_options->move(QWidget::mapFromGlobal(QCursor::pos()));
+//            ui->widget_on_state_options->move(QWidget::mapFromGlobal(QPoint(QCursor::pos().x()-current_win_Pos.x(),QCursor::pos().y()-current_win_Pos.y())));
 //        }
 //    }
 //    if(QApplication::mouseButtons()==Qt::LeftButton){
@@ -3947,7 +4018,8 @@ void NFWizard2::on_tw_state_machine_itemPressed(QTreeWidgetItem *item, int colum
             current_state = state_name;
             current_state_parent = ui->l_name_current_state->text();
             ui->widget_on_state_options->show();
-            ui->widget_on_state_options->move(QWidget::mapFromGlobal(QCursor::pos()));
+
+            ui->widget_on_state_options->move(QWidget::mapFromGlobal(QPoint(QCursor::pos().x()-current_win_Pos.x(),QCursor::pos().y()-current_win_Pos.y())));
         }
     }
     if(QApplication::mouseButtons()==Qt::LeftButton){
@@ -4008,7 +4080,7 @@ void NFWizard2::on_tableView_events_pressed(const QModelIndex &index)
         if(index_state !=-1){
 
             ui->widget_add_delete_event->show();
-            ui->widget_add_delete_event->move(QWidget::mapFromGlobal(QCursor::pos()));
+            ui->widget_add_delete_event->move(QWidget::mapFromGlobal(QPoint(QCursor::pos().x()-current_win_Pos.x(),QCursor::pos().y()-current_win_Pos.y())));
 
             ui->le_event_ID_name->setText(hierarchy_states[index_state]->get_events_list()[index.row()].event);
             ui->le_next_state_name->setText(hierarchy_states[index_state]->get_events_list()[index.row()].next_state);
@@ -4043,4 +4115,286 @@ void NFWizard2::on_tableView_events_pressed(const QModelIndex &index)
 void NFWizard2::on_pb_cancel_state_options_clicked()
 {
     ui->widget_on_state_options->hide();
+}
+
+
+void NFWizard2::on_pb_generate_project_folders_clicked()
+{
+    on_pushButton_generate_folders_clicked();
+}
+
+
+void NFWizard2::on_pb_configure_thread_in_main_clicked()
+{
+   add_thread_state = Thread_in_Main;
+   ui->widget_options_thread_options->show();
+   ui->le_thread_name->show();
+   ui->l_thread_name->show();
+   ui->l_thread_priority->show();
+   ui->cb_thread_priority->show();
+   ui->le_main_thread_name->show();
+   ui->l_main_thread_name->show();
+   ui->widget_layout_state_machine->hide();
+
+   ui->widget_configure_in_main_thread->hide();
+}
+
+void NFWizard2::configure_timer_in_main_thread(const QString path, const QString main_thread_name)
+{
+    TextFileProcessor main_h_FileProcessor;
+
+    main_h_FileProcessor.setFilename(path+QString("/Include/")+main_thread_name+QString(".h"));
+
+    if(main_h_FileProcessor.check_if_code_exist(QString("#include <eVirtualTimer.h>"),true)==0){
+        main_h_FileProcessor.setStartLine("#include <eApplicationBase.h>");       ////inicio del contenido a eliminar
+        main_h_FileProcessor.setEndLine("#include <eApplicationBase.h>"); ////fin del contenido a eliminar
+        main_h_FileProcessor.setReplacementString(QString("#include <eApplicationBase.h>\n")+QString("#include <eVirtualTimer.h>\n"));
+        main_h_FileProcessor.processTextBlock();
+    }
+
+    if(main_h_FileProcessor.check_if_code_exist(QString("static void ")+ui->le_timer_function->text()+QString("(void const *argument);"),true)==0){
+        main_h_FileProcessor.setStartLine("public:");       ////inicio del contenido a eliminar
+        main_h_FileProcessor.setEndLine("public:"); ////fin del contenido a eliminar
+        main_h_FileProcessor.setReplacementString(QString("public:\n")+QString("    static void ")
+                                                  +ui->le_timer_function->text()+QString("(void const *argument);"));
+        main_h_FileProcessor.processTextBlock();
+    }
+    if(main_h_FileProcessor.check_if_code_exist(QString("enum Timer_Events{"),true)==0){
+        main_h_FileProcessor.setStartLine("public:");       ////inicio del contenido a eliminar
+        main_h_FileProcessor.setEndLine("public:"); ////fin del contenido a eliminar
+        main_h_FileProcessor.setReplacementString(QString("public:\n")+QString("    enum Timer_Events{};\n"));
+        main_h_FileProcessor.processTextBlock();
+    }
+    if(main_h_FileProcessor.check_if_code_exist(QString("Timer_")+ui->le_timer_name->text()+ui->cb_timer_mode->currentText()+QString("_Complete"),true)==0){
+        main_h_FileProcessor.setStartLine("enum Timer_Events{");       ////inicio del contenido a eliminar
+        main_h_FileProcessor.setEndLine("enum Timer_Events{"); ////fin del contenido a eliminar
+        if(main_h_FileProcessor.check_if_code_exist("enum Timer_Events{};",false)==1){
+            main_h_FileProcessor.setReplacementString(QString("enum Timer_Events{\n")
+                                                      +QString("    Timer_")+ui->le_timer_name->text()
+                                                      +ui->cb_timer_mode->currentText()+QString("_Complete\n"));
+        }
+        else{
+            main_h_FileProcessor.setReplacementString(QString("enum Timer_Events{\n")
+                                                      +QString("    Timer_")+ui->le_timer_name->text()
+                                                      +ui->cb_timer_mode->currentText()+QString("_Complete,\n"));
+        }
+        main_h_FileProcessor.processTextBlock();
+    }
+
+    if(main_h_FileProcessor.check_if_code_exist(QString("static const std::uint32_t TIMER_")+ui->le_timer_name->text()+QString("_PERIOD_MS = ")+QString::number(ui->sb_timer_interval->value()),true)==0){
+        main_h_FileProcessor.setStartLine("private:");       ////inicio del contenido a eliminar
+        main_h_FileProcessor.setEndLine("private:"); ////fin del contenido a eliminar
+        main_h_FileProcessor.setReplacementString(QString("private:\n")+QString("    static const std::uint32_t TIMER_")
+                                                  +ui->le_timer_name->text()+QString("_PERIOD_MS = ")
+                                                  +QString::number(ui->sb_timer_interval->value())+QString(";\n"));
+        main_h_FileProcessor.processTextBlock();
+    }
+    if(main_h_FileProcessor.check_if_code_exist(QString("eVirtualTimer timer_")+ui->le_timer_name->text(),true)==0){
+        main_h_FileProcessor.setStartLine("private:");       ////inicio del contenido a eliminar
+        main_h_FileProcessor.setEndLine("private:"); ////fin del contenido a eliminar
+        main_h_FileProcessor.setReplacementString(QString("private:\n")+QString("    eVirtualTimer timer_")
+                                                  +ui->le_timer_name->text()+QString(";\n"));
+        main_h_FileProcessor.processTextBlock();
+    }
+
+    main_h_FileProcessor.setFilename(path+QString("/Source/")+main_thread_name+QString(".cpp"));
+
+
+}
+
+
+void NFWizard2::on_pb_configure_Timer_clicked()
+{
+    if(ui->le_main_thread_name->text().isEmpty()){
+
+        ui->l_background_blur->move(current_win_Pos);
+        ui->widget_main_thread_name->move(current_win_Pos.x()+500,current_win_Pos.y()+300);
+        ui->widget_main_thread_name->show();
+
+        return;
+    }
+    ui->widget_timer_parameters->show();
+    ui->widget_timer_parameters->move(ui->widget_configure_in_main_thread->pos().x()+100, ui->widget_configure_in_main_thread->pos().y());
+    ui->widget_configure_in_main_thread->hide();
+}
+
+void NFWizard2::on_pb_configure_in_Main_thread_clicked()
+{
+
+     ui->pb_configure_Main_thread->setStyleSheet(QStringLiteral("background-image: url(:/icons/screen6/Configure main thread_off.png);"));
+     ui->pb_configure_in_Main_thread->setStyleSheet(QStringLiteral("background-image: url(:/icons/screen6/Configure thread in main_on.png);"));
+     ui->pb_configure_thread_in_class->setStyleSheet(QStringLiteral("background-image: url(:/icons/screen5/Configure a thread_off.png);"));
+
+     ui->widget_configure_in_main_thread->show();
+     ui->widget_options_thread_options->hide();
+
+     ui->widget_timer_parameters->hide();
+}
+
+void NFWizard2::on_pb_add_Timer_clicked()
+{
+    if(ui->le_timer_name->text().isEmpty()){
+        QMessageBox::information(this, "NEOWizard","<font color = black >Insert Timer Name");
+        return;
+    }
+    if(ui->le_timer_function->text().isEmpty()){
+        QMessageBox::information(this, "NEOWizard","<font color = black >Insert TimeOut function Name");
+        return;
+    }
+    if(ui->sb_timer_interval->value()<=0){
+        QMessageBox::information(this, "NEOWizard","<font color = black >Insert Timer Interval higher than 0");
+        return;
+    }
+    configure_timer_in_main_thread(fileuVision_Path, ui->le_main_thread_name->text());
+    QMessageBox::information(this, "NEOWizard","<font color = black >Timer correctly added to project");
+
+    ui->widget_timer_parameters->hide();
+}
+
+void NFWizard2::on_pb_back_from_state_machine_clicked()
+{
+//    ui->pb_configure_state_machine->setText("Configure State Machine");
+
+//    ui->pb_configure_thread_in_class->show();
+//    ui->pb_configure_thread_in_main->show();
+//    ui->pb_configure_Main_thread->show();
+
+//    ui->pb_load_state_machine->hide();
+//    ui->pb_save_state_machine->hide();
+//    ui->pb_load_from_Thread->hide();
+//    ui->pb_warning_state_machine->hide();
+
+//    ui->widget_layout_state_machine->hide();
+//    ui->tw_state_machine->hide();
+//    this->setGeometry(200,200,793,389);
+
+    hide_all_objects();
+
+    ui->widget_options_screen_native->move(current_win_Pos);
+}
+
+void NFWizard2::on_pb_acept_main_thread_name_clicked()
+{
+
+
+//    ui->widget_wait->show();
+//    ui->label_loading->setText("LOADING...");
+    if(ui->le_main_thread_name_to_load->text().isEmpty()){
+
+        QMessageBox::information(this,"Confirmation","<font color=black >Insert the name of the main thread",QMessageBox::Ok);
+        return;
+    }
+
+    if(!load_from_thread){
+
+        ui->le_main_thread_name->setText(ui->le_main_thread_name_to_load->text());
+    }
+    ui->l_background_blur->move(2048,0);
+    ui->widget_main_thread_name->hide();
+
+    if(load_from_thread){
+
+        load_from_thread = false;
+
+        if(QMessageBox::information(this,"Confirmation","<font color=black >Load State Machine",QMessageBox::Ok,QMessageBox::Cancel)==QMessageBox::Ok){
+
+            if(!ui->widget_on_state_options->isHidden()){
+
+                ui->widget_on_state_options->hide();
+            }
+
+            load_state_machine_from_Thread(fileuVision_Path, ui->le_main_thread_name_to_load->text());
+        }
+
+        //    ui->widget_wait->hide();
+    }
+}
+
+void NFWizard2::on_pb_cancel_main_thrad_name_clicked()
+{
+    ui->l_background_blur->move(2048,0);
+    ui->widget_main_thread_name->hide();
+}
+
+void NFWizard2::on_le_main_thread_name_to_load_textChanged(const QString &arg1)
+{
+    QFileInfo fileInfo(fileuVision);
+    QDir directory(fileInfo.dir().path()+QString("/Source"));
+    QStringList saved_thread_list = directory.entryList(QStringList() << "*.cpp" << "*.CPP",QDir::Files);
+
+    if(!arg1.isEmpty()){
+        QStringList complete_list;
+        for(quint16 i=0; i< saved_thread_list.size(); i++){
+            if(saved_thread_list[i].contains(arg1, Qt::CaseInsensitive)){
+                QString n = saved_thread_list[i];
+                n.chop(4);
+                complete_list.append(n);
+            }
+        }
+
+        if(!complete_list.isEmpty()){
+            complete_list_saved_threads = new QCompleter(complete_list,this);
+
+            complete_list_saved_threads->setCaseSensitivity(Qt::CaseInsensitive);
+            complete_list_saved_threads->setCompletionMode(QCompleter::UnfilteredPopupCompletion);
+            complete_list_saved_threads->popup()->setStyleSheet(QStringLiteral("font: 15pt \"Myriad Web\"; color:  rgb(8, 113, 104);"));
+            ui->le_main_thread_name_to_load->setCompleter(complete_list_saved_threads);
+        }
+    }
+}
+
+void NFWizard2::on_pb_close_window_clicked()
+{
+    on_pushButton_Quit_clicked();
+}
+
+void NFWizard2::on_pb_max_window_clicked()
+{
+//    if(ui->widget_generate_screen->pos()==current_win_Pos){
+
+//        current_win_Pos = QPoint(0,0);
+//        ui->widget_generate_screen->move(current_win_Pos);
+//    }
+//    if(ui->widget_state_machine_screen->pos()==current_win_Pos){
+
+//        current_win_Pos = QPoint(0,0);
+//        ui->widget_state_machine_screen->move(current_win_Pos);
+//    }
+//    if(ui->widget_win_buttons->pos()==current_win_Pos){
+
+//        current_win_Pos = QPoint(0,0);
+//        ui->widget_win_buttons->move(current_win_Pos);
+//    }
+
+    if(isFullScreen()){
+
+        showNormal();
+        current_win_Pos = QPoint(0,0);
+
+    }
+    else{
+        showFullScreen();
+        current_win_Pos = QPoint((int)QApplication::desktop()->width()/10,(int)QApplication::desktop()->height()/8);
+    }
+
+
+    if(current_screen == Generate_Screen){
+
+        ui->widget_generate_screen->move(current_win_Pos);
+    }
+    else if(current_screen == Options_Screen){
+
+        ui->widget_options_screen_native->move(current_win_Pos);
+    }
+    else if(current_screen == State_Machine_Screen){
+
+        ui->widget_state_machine_screen->move(current_win_Pos);
+    }
+
+    ui->widget_win_buttons->move(current_win_Pos);
+}
+
+void NFWizard2::on_pb_min_window__clicked()
+{
+    showMinimized();
 }

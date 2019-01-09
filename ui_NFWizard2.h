@@ -19,14 +19,11 @@
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QMainWindow>
-#include <QtWidgets/QMenu>
-#include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QSpinBox>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QTableView>
-#include <QtWidgets/QToolBar>
 #include <QtWidgets/QTreeWidget>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
@@ -41,118 +38,59 @@ public:
     QAction *actionAbout;
     QAction *actionAbout_Qt;
     QWidget *centralWidget;
-    QPushButton *pushButton_Generate_tag;
-    QPushButton *pushButton_Options_tag;
-    QPushButton *pushButton_Help_tag;
-    QLabel *label_bar_background;
-    QWidget *widget_dirs;
-    QVBoxLayout *verticalLayout_3;
-    QVBoxLayout *verticalLayout_2;
-    QLabel *label_uVision;
-    QHBoxLayout *horizontalLayout_2;
-    QLineEdit *lineEdit_uVisionPath;
-    QPushButton *pushButton_uVisionBrowse;
-    QVBoxLayout *verticalLayout;
-    QLabel *label_Cube;
-    QHBoxLayout *horizontalLayout;
+    QWidget *widget_generate_screen;
+    QPushButton *pushButton_Generate;
+    QPushButton *pushButton_Quit;
     QLineEdit *lineEdit_CubePath;
     QPushButton *pushButton_CubeBrowse;
-    QWidget *widget_buttons_quit;
-    QHBoxLayout *horizontalLayout_4;
-    QSpacerItem *horizontalSpacer;
-    QHBoxLayout *horizontalLayout_3;
-    QPushButton *pushButton_Quit;
-    QPushButton *pushButton_Generate;
-    QWidget *widget_help_buttons;
-    QVBoxLayout *verticalLayout_5;
-    QPushButton *pb_uVision_Config;
-    QPushButton *pb_Stcube_Config;
-    QPushButton *pb_about_NEOW;
-    QPushButton *pb_about_QT;
-    QWidget *widget_generate_options;
-    QVBoxLayout *verticalLayout_4;
-    QLabel *label_generate_options;
-    QHBoxLayout *horizontalLayout_5;
+    QPushButton *pushButton_uVisionBrowse;
+    QLineEdit *lineEdit_uVisionPath;
+    QLabel *label_Cube;
+    QLabel *label_uVision;
     QPushButton *pushButton_generate_folders;
-    QLabel *label_generate_options_2;
-    QWidget *widget_on_state_options;
-    QVBoxLayout *verticalLayout_25;
-    QPushButton *pb_open_state;
-    QPushButton *pb_set_as_initial;
-    QPushButton *pb_configure_state;
-    QPushButton *pb_add_sub_sate;
-    QPushButton *pb_eliminate_state;
-    QPushButton *pb_cancel_state_options;
-    QWidget *widget_event_options;
-    QVBoxLayout *verticalLayout_30;
-    QVBoxLayout *verticalLayout_29;
-    QVBoxLayout *verticalLayout_26;
-    QLabel *l_EVENT;
-    QLineEdit *le_event_ID_name;
-    QVBoxLayout *verticalLayout_27;
-    QLabel *l_NEXT_STATE;
-    QLineEdit *le_next_state_name;
-    QVBoxLayout *verticalLayout_28;
-    QLabel *l_ACTION;
-    QLineEdit *le_action_name;
-    QHBoxLayout *horizontalLayout_10;
-    QPushButton *pb_cancel_add_event;
-    QPushButton *pb_add_event;
-    QPushButton *pb_delete_event;
-    QPushButton *pb_warning_state_machine;
-    QWidget *widget_add_delete_event;
-    QVBoxLayout *verticalLayout_35;
-    QPushButton *pb_add_event_action;
-    QPushButton *pb_delete_event_action;
-    QPushButton *pb_cancel_add_event_2;
-    QWidget *widget_options;
-    QHBoxLayout *horizontalLayout_14;
-    QWidget *widget_options_buttons;
-    QVBoxLayout *verticalLayout_10;
-    QPushButton *pb_configure_state_machine;
-    QSpacerItem *verticalSpacer;
-    QPushButton *pb_configure_Main_thread;
-    QPushButton *pb_configure_thread_in_main;
+    QLabel *label_generate_options;
+    QPushButton *pb_generate_project_folders;
+    QWidget *widget_options_screen_native;
     QPushButton *pb_configure_thread_in_class;
-    QPushButton *pb_load_from_Thread;
-    QPushButton *pb_load_state_machine;
-    QPushButton *pb_save_state_machine;
+    QPushButton *pb_configure_Main_thread;
+    QPushButton *pb_configure_in_Main_thread;
+    QPushButton *pb_configure_state_machine;
     QWidget *widget_options_thread_options;
-    QVBoxLayout *verticalLayout_9;
-    QVBoxLayout *verticalLayout_6;
-    QLabel *l_thread_name;
-    QLineEdit *le_thread_name;
-    QVBoxLayout *verticalLayout_32;
+    QPushButton *pb_add_thread;
     QLabel *l_main_thread_name;
     QLineEdit *le_main_thread_name;
-    QVBoxLayout *verticalLayout_8;
+    QLabel *l_thread_name;
+    QLineEdit *le_thread_name;
     QLabel *l_thread_priority;
     QComboBox *cb_thread_priority;
-    QVBoxLayout *verticalLayout_7;
-    QLabel *l_thread_stack_size;
     QSpinBox *sb_thread_stack_size;
-    QPushButton *pb_acept_main_thread;
-    QPushButton *pb_add_thread;
-    QWidget *widget_state_machine_name;
-    QVBoxLayout *verticalLayout_33;
-    QSpacerItem *verticalSpacer_4;
-    QLabel *l_state_machine_name;
-    QLineEdit *le_state_machine_name;
-    QHBoxLayout *horizontalLayout_11;
-    QPushButton *pb_cancel_state_machine_name;
-    QPushButton *pb_acept_sate_machine_name;
-    QSpacerItem *verticalSpacer_3;
-    QHBoxLayout *horizontalLayout_13;
+    QLabel *l_thread_stack_size;
+    QWidget *widget_configure_in_main_thread;
+    QPushButton *pb_configure_thread_in_main;
+    QPushButton *pb_configure_Mail;
+    QPushButton *pb_configure_Timer;
+    QPushButton *pb_configure_semaphore;
+    QPushButton *pb_configure_memoryPool;
+    QPushButton *pb_configure_mutex;
+    QWidget *widget_timer_parameters;
+    QVBoxLayout *verticalLayout_39;
+    QVBoxLayout *verticalLayout_38;
+    QLabel *l_EVENT_2;
+    QLineEdit *le_timer_name;
+    QComboBox *cb_timer_mode;
+    QVBoxLayout *verticalLayout_37;
+    QLabel *l_EVENT_3;
+    QSpinBox *sb_timer_interval;
+    QVBoxLayout *verticalLayout_36;
+    QLabel *l_EVENT_4;
+    QLineEdit *le_timer_function;
+    QPushButton *pb_add_Timer;
+    QWidget *widget_state_machine_screen;
+    QPushButton *pb_load_from_Thread;
+    QPushButton *pb_save_state_machine;
+    QPushButton *pb_load_state_machine;
     QWidget *widget_layout_state_machine;
-    QVBoxLayout *verticalLayout_11;
-    QWidget *widget_back_search;
-    QHBoxLayout *horizontalLayout_7;
-    QPushButton *pb_back;
-    QLabel *l_state_parent_tag;
-    QLabel *l_name_current_state;
-    QVBoxLayout *verticalLayout_31;
-    QPushButton *pb_search_state;
-    QLineEdit *le_state_to_search;
+    QVBoxLayout *verticalLayout;
     QWidget *widget_states;
     QVBoxLayout *verticalLayout_12;
     QWidget *widget_state_info;
@@ -166,8 +104,14 @@ public:
     QVBoxLayout *verticalLayout_18;
     QLabel *label_3;
     QLineEdit *le_initial_state_name;
+    QWidget *widget_state_name_default_event;
     QVBoxLayout *verticalLayout_19;
-    QSpacerItem *verticalSpacer_5;
+    QHBoxLayout *horizontalLayout_4;
+    QSpacerItem *horizontalSpacer_10;
+    QVBoxLayout *verticalLayout_2;
+    QLabel *label;
+    QLineEdit *le_current_state_name;
+    QSpacerItem *horizontalSpacer_11;
     QLabel *label_4;
     QHBoxLayout *horizontalLayout_16;
     QVBoxLayout *verticalLayout_15;
@@ -176,15 +120,11 @@ public:
     QVBoxLayout *verticalLayout_14;
     QLabel *label_6;
     QLineEdit *le_default_action_name;
-    QSpacerItem *verticalSpacer_6;
     QWidget *widget_events;
     QHBoxLayout *horizontalLayout_12;
     QTableView *tableView_events;
     QWidget *widget_state_name_entry_exit_actions;
     QVBoxLayout *verticalLayout_21;
-    QVBoxLayout *verticalLayout_16;
-    QLabel *label;
-    QLineEdit *le_current_state_name;
     QVBoxLayout *verticalLayout_23;
     QLabel *l_Entry_Action;
     QLineEdit *le_entry_action;
@@ -197,39 +137,101 @@ public:
     QSpacerItem *horizontalSpacer_3;
     QPushButton *pb_ok;
     QSpacerItem *horizontalSpacer_2;
-    QWidget *widget_add_gen_buttons;
-    QHBoxLayout *horizontalLayout_6;
-    QPushButton *pb_add_state;
-    QLineEdit *le_state_name;
     QPushButton *pb_generate_state_machine;
-    QVBoxLayout *verticalLayout_13;
-    QSpacerItem *verticalSpacer_2;
+    QLineEdit *le_state_name;
+    QLabel *l_name_current_state;
+    QLabel *l_state_parent_tag;
+    QPushButton *pb_back;
+    QPushButton *pb_search_state;
+    QLineEdit *le_state_to_search;
     QTreeWidget *tw_state_machine;
+    QPushButton *pb_back_from_state_machine;
+    QPushButton *pb_add_state;
+    QWidget *widget_on_state_options;
+    QVBoxLayout *verticalLayout_25;
+    QPushButton *pb_open_state;
+    QPushButton *pb_set_as_initial;
+    QPushButton *pb_configure_state;
+    QPushButton *pb_add_sub_sate;
+    QPushButton *pb_eliminate_state;
+    QPushButton *pb_cancel_state_options;
+    QPushButton *pb_warning_state_machine;
+    QWidget *widget_add_delete_event;
+    QVBoxLayout *verticalLayout_35;
+    QPushButton *pb_add_event_action;
+    QPushButton *pb_delete_event_action;
+    QPushButton *pb_cancel_add_event_2;
+    QWidget *layoutWidget;
+    QHBoxLayout *horizontalLayout;
+    QSpacerItem *horizontalSpacer;
+    QPushButton *pb_acept_main_thread;
+    QSpacerItem *horizontalSpacer_5;
     QWidget *widget_wait;
     QHBoxLayout *horizontalLayout_15;
     QLabel *label_loading;
-    QMenuBar *menuBar;
-    QMenu *menuHelp;
-    QToolBar *mainToolBar;
+    QWidget *widget_help_buttons;
+    QVBoxLayout *verticalLayout_5;
+    QPushButton *pb_uVision_Config;
+    QPushButton *pb_Stcube_Config;
+    QPushButton *pb_about_NEOW;
+    QPushButton *pb_about_QT;
+    QWidget *widget_win_buttons;
+    QPushButton *pb_close_window;
+    QPushButton *pb_max_window;
+    QPushButton *pushButton_Generate_tag;
+    QPushButton *pb_min_window_;
+    QPushButton *pushButton_Help_tag;
+    QPushButton *pushButton_Options_tag;
+    QLabel *label_bar_background;
+    QWidget *l_background_blur;
+    QWidget *widget_state_machine_name;
+    QLabel *l_state_machine_name;
+    QLineEdit *le_state_machine_name;
+    QPushButton *pb_acept_sate_machine_name;
+    QPushButton *pb_cancel_state_machine_name;
+    QWidget *widget_main_thread_name;
+    QLabel *l_main_thrad_name;
+    QLineEdit *le_main_thread_name_to_load;
+    QPushButton *pb_acept_main_thread_name;
+    QPushButton *pb_cancel_main_thrad_name;
+    QWidget *widget_event_options;
+    QWidget *layoutWidget_2;
+    QHBoxLayout *horizontalLayout_10;
+    QPushButton *pb_cancel_add_event;
+    QSpacerItem *horizontalSpacer_6;
+    QPushButton *pb_add_event;
+    QPushButton *pb_delete_event;
+    QWidget *layoutWidget_3;
+    QVBoxLayout *verticalLayout_26;
+    QLabel *l_EVENT;
+    QLineEdit *le_event_ID_name;
+    QWidget *layoutWidget_4;
+    QVBoxLayout *verticalLayout_27;
+    QLabel *l_NEXT_STATE;
+    QLineEdit *le_next_state_name;
+    QWidget *layoutWidget_5;
+    QVBoxLayout *verticalLayout_28;
+    QLabel *l_ACTION;
+    QLineEdit *le_action_name;
     QStatusBar *statusBar;
 
     void setupUi(QMainWindow *NFWizard2)
     {
         if (NFWizard2->objectName().isEmpty())
             NFWizard2->setObjectName(QStringLiteral("NFWizard2"));
-        NFWizard2->resize(1280, 800);
+        NFWizard2->resize(6800, 768);
         QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
         sizePolicy.setHeightForWidth(NFWizard2->sizePolicy().hasHeightForWidth());
         NFWizard2->setSizePolicy(sizePolicy);
         NFWizard2->setMinimumSize(QSize(793, 389));
-        NFWizard2->setMaximumSize(QSize(1280, 800));
+        NFWizard2->setMaximumSize(QSize(16777215, 16777215));
         NFWizard2->setFocusPolicy(Qt::StrongFocus);
         QIcon icon;
         icon.addFile(QStringLiteral(":/Assets/icon.ico"), QSize(), QIcon::Normal, QIcon::Off);
         NFWizard2->setWindowIcon(icon);
-        NFWizard2->setStyleSheet(QStringLiteral("background-color: rgb(48, 60, 77);"));
+        NFWizard2->setStyleSheet(QStringLiteral(""));
         actionUVision_Configuration = new QAction(NFWizard2);
         actionUVision_Configuration->setObjectName(QStringLiteral("actionUVision_Configuration"));
         actionSTM32CubeMx_Configuration = new QAction(NFWizard2);
@@ -241,191 +243,1025 @@ public:
         centralWidget = new QWidget(NFWizard2);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         centralWidget->setStyleSheet(QStringLiteral(""));
-        pushButton_Generate_tag = new QPushButton(centralWidget);
-        pushButton_Generate_tag->setObjectName(QStringLiteral("pushButton_Generate_tag"));
-        pushButton_Generate_tag->setGeometry(QRect(0, 10, 92, 24));
-        QSizePolicy sizePolicy1(QSizePolicy::Minimum, QSizePolicy::Fixed);
-        sizePolicy1.setHorizontalStretch(0);
-        sizePolicy1.setVerticalStretch(0);
-        sizePolicy1.setHeightForWidth(pushButton_Generate_tag->sizePolicy().hasHeightForWidth());
-        pushButton_Generate_tag->setSizePolicy(sizePolicy1);
-        pushButton_Generate_tag->setMinimumSize(QSize(0, 0));
-        pushButton_Generate_tag->setMaximumSize(QSize(104, 25));
-        pushButton_Generate_tag->setCursor(QCursor(Qt::PointingHandCursor));
-        pushButton_Generate_tag->setStyleSheet(QLatin1String("background-color: rgb(89, 99, 113);\n"
-"border-image: url(:/Assets/generate_tag_on.png);\n"
-""));
-        pushButton_Generate_tag->setFlat(true);
-        pushButton_Options_tag = new QPushButton(centralWidget);
-        pushButton_Options_tag->setObjectName(QStringLiteral("pushButton_Options_tag"));
-        pushButton_Options_tag->setGeometry(QRect(110, 8, 49, 19));
-        pushButton_Options_tag->setMinimumSize(QSize(49, 19));
-        pushButton_Options_tag->setMaximumSize(QSize(103, 25));
-        pushButton_Options_tag->setCursor(QCursor(Qt::PointingHandCursor));
-        pushButton_Options_tag->setStyleSheet(QLatin1String("border-image: url(:/Assets/options_tag_off.png);\n"
-"background-color: rgb(89, 99, 113);"));
-        pushButton_Options_tag->setFlat(true);
-        pushButton_Help_tag = new QPushButton(centralWidget);
-        pushButton_Help_tag->setObjectName(QStringLiteral("pushButton_Help_tag"));
-        pushButton_Help_tag->setGeometry(QRect(210, 8, 29, 19));
-        sizePolicy1.setHeightForWidth(pushButton_Help_tag->sizePolicy().hasHeightForWidth());
-        pushButton_Help_tag->setSizePolicy(sizePolicy1);
-        pushButton_Help_tag->setMinimumSize(QSize(29, 19));
-        pushButton_Help_tag->setMaximumSize(QSize(67, 25));
-        pushButton_Help_tag->setCursor(QCursor(Qt::PointingHandCursor));
-        pushButton_Help_tag->setStyleSheet(QLatin1String("background-color: rgb(89, 99, 113);\n"
-"border-image: url(:/Assets/help_tag_off.png);"));
-        pushButton_Help_tag->setFlat(true);
-        label_bar_background = new QLabel(centralWidget);
-        label_bar_background->setObjectName(QStringLiteral("label_bar_background"));
-        label_bar_background->setGeometry(QRect(-10, 0, 1280, 36));
-        label_bar_background->setMinimumSize(QSize(791, 36));
-        label_bar_background->setMaximumSize(QSize(1280, 36));
-        label_bar_background->setStyleSheet(QStringLiteral("background-image: url(:/Assets/label_background_line_large.png);"));
-        widget_dirs = new QWidget(centralWidget);
-        widget_dirs->setObjectName(QStringLiteral("widget_dirs"));
-        widget_dirs->setGeometry(QRect(110, 70, 571, 181));
-        verticalLayout_3 = new QVBoxLayout(widget_dirs);
-        verticalLayout_3->setSpacing(25);
-        verticalLayout_3->setContentsMargins(11, 11, 11, 11);
-        verticalLayout_3->setObjectName(QStringLiteral("verticalLayout_3"));
-        verticalLayout_3->setSizeConstraint(QLayout::SetFixedSize);
-        verticalLayout_2 = new QVBoxLayout();
-        verticalLayout_2->setSpacing(4);
-        verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
-        verticalLayout_2->setSizeConstraint(QLayout::SetFixedSize);
-        label_uVision = new QLabel(widget_dirs);
-        label_uVision->setObjectName(QStringLiteral("label_uVision"));
-        label_uVision->setMinimumSize(QSize(127, 24));
-        label_uVision->setMaximumSize(QSize(127, 24));
-        label_uVision->setStyleSheet(QStringLiteral("background-image: url(:/Assets/label_uVision.png);"));
-
-        verticalLayout_2->addWidget(label_uVision);
-
-        horizontalLayout_2 = new QHBoxLayout();
-        horizontalLayout_2->setSpacing(0);
-        horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
-        horizontalLayout_2->setSizeConstraint(QLayout::SetFixedSize);
-        lineEdit_uVisionPath = new QLineEdit(widget_dirs);
-        lineEdit_uVisionPath->setObjectName(QStringLiteral("lineEdit_uVisionPath"));
-        lineEdit_uVisionPath->setEnabled(true);
-        lineEdit_uVisionPath->setMinimumSize(QSize(437, 26));
-        lineEdit_uVisionPath->setMaximumSize(QSize(437, 26));
-        lineEdit_uVisionPath->setCursor(QCursor(Qt::ForbiddenCursor));
-        lineEdit_uVisionPath->setAutoFillBackground(false);
-        lineEdit_uVisionPath->setStyleSheet(QLatin1String("border-image: url(:/Assets/line_edit.png);\n"
-"color: rgb(150, 150, 150);\n"
-"font: 11pt \"Segoe UI\";"));
-        lineEdit_uVisionPath->setEchoMode(QLineEdit::Normal);
-        lineEdit_uVisionPath->setReadOnly(true);
-
-        horizontalLayout_2->addWidget(lineEdit_uVisionPath);
-
-        pushButton_uVisionBrowse = new QPushButton(widget_dirs);
-        pushButton_uVisionBrowse->setObjectName(QStringLiteral("pushButton_uVisionBrowse"));
-        pushButton_uVisionBrowse->setEnabled(true);
-        pushButton_uVisionBrowse->setMinimumSize(QSize(106, 25));
-        pushButton_uVisionBrowse->setMaximumSize(QSize(106, 25));
-        pushButton_uVisionBrowse->setCursor(QCursor(Qt::PointingHandCursor));
-        pushButton_uVisionBrowse->setStyleSheet(QStringLiteral("background-image: url(:/Assets/button_browse.png);"));
-        pushButton_uVisionBrowse->setFlat(true);
-
-        horizontalLayout_2->addWidget(pushButton_uVisionBrowse);
-
-
-        verticalLayout_2->addLayout(horizontalLayout_2);
-
-
-        verticalLayout_3->addLayout(verticalLayout_2);
-
-        verticalLayout = new QVBoxLayout();
-        verticalLayout->setSpacing(4);
-        verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
-        verticalLayout->setSizeConstraint(QLayout::SetFixedSize);
-        label_Cube = new QLabel(widget_dirs);
-        label_Cube->setObjectName(QStringLiteral("label_Cube"));
-        label_Cube->setMinimumSize(QSize(231, 24));
-        label_Cube->setMaximumSize(QSize(231, 24));
-        label_Cube->setStyleSheet(QStringLiteral("background-image: url(:/Assets/label_cube.png);"));
-
-        verticalLayout->addWidget(label_Cube);
-
-        horizontalLayout = new QHBoxLayout();
-        horizontalLayout->setSpacing(0);
-        horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
-        horizontalLayout->setSizeConstraint(QLayout::SetFixedSize);
-        lineEdit_CubePath = new QLineEdit(widget_dirs);
+        widget_generate_screen = new QWidget(centralWidget);
+        widget_generate_screen->setObjectName(QStringLiteral("widget_generate_screen"));
+        widget_generate_screen->setGeometry(QRect(0, 0, 1366, 768));
+        widget_generate_screen->setStyleSheet(QStringLiteral("background-image: url(:/icons/screen1/background.png);"));
+        pushButton_Generate = new QPushButton(widget_generate_screen);
+        pushButton_Generate->setObjectName(QStringLiteral("pushButton_Generate"));
+        pushButton_Generate->setGeometry(QRect(900, 621, 136, 35));
+        pushButton_Generate->setMinimumSize(QSize(106, 29));
+        pushButton_Generate->setMaximumSize(QSize(200, 200));
+        pushButton_Generate->setCursor(QCursor(Qt::PointingHandCursor));
+        pushButton_Generate->setStyleSheet(QStringLiteral("background-image: url(:/icons/screen1/generate_botom.png);"));
+        pushButton_Generate->setFlat(true);
+        pushButton_Quit = new QPushButton(widget_generate_screen);
+        pushButton_Quit->setObjectName(QStringLiteral("pushButton_Quit"));
+        pushButton_Quit->setGeometry(QRect(730, 621, 140, 37));
+        pushButton_Quit->setMinimumSize(QSize(105, 29));
+        pushButton_Quit->setMaximumSize(QSize(200, 200));
+        pushButton_Quit->setCursor(QCursor(Qt::PointingHandCursor));
+        pushButton_Quit->setStyleSheet(QStringLiteral("background-image: url(:/icons/screen1/quit_botom_2.png);"));
+        pushButton_Quit->setFlat(true);
+        lineEdit_CubePath = new QLineEdit(widget_generate_screen);
         lineEdit_CubePath->setObjectName(QStringLiteral("lineEdit_CubePath"));
         lineEdit_CubePath->setEnabled(true);
+        lineEdit_CubePath->setGeometry(QRect(330, 401, 595, 35));
         lineEdit_CubePath->setMinimumSize(QSize(437, 26));
-        lineEdit_CubePath->setMaximumSize(QSize(437, 26));
+        lineEdit_CubePath->setMaximumSize(QSize(600, 36));
         lineEdit_CubePath->setCursor(QCursor(Qt::ForbiddenCursor));
-        lineEdit_CubePath->setStyleSheet(QLatin1String("border-image: url(:/Assets/line_edit.png);\n"
-"font: 11pt \"Segoe UI\";\n"
-"color: rgb(150, 150, 150);"));
+        lineEdit_CubePath->setStyleSheet(QLatin1String("border-image: url(:/icons/screen1/label_screen_1.png);\n"
+"color: rgb(150, 150, 150);\n"
+"font: 14pt \"Segoe UI\";"));
         lineEdit_CubePath->setDragEnabled(false);
         lineEdit_CubePath->setReadOnly(true);
-
-        horizontalLayout->addWidget(lineEdit_CubePath);
-
-        pushButton_CubeBrowse = new QPushButton(widget_dirs);
+        pushButton_CubeBrowse = new QPushButton(widget_generate_screen);
         pushButton_CubeBrowse->setObjectName(QStringLiteral("pushButton_CubeBrowse"));
+        pushButton_CubeBrowse->setGeometry(QRect(923, 400, 116, 37));
         pushButton_CubeBrowse->setMinimumSize(QSize(106, 25));
-        pushButton_CubeBrowse->setMaximumSize(QSize(106, 25));
+        pushButton_CubeBrowse->setMaximumSize(QSize(200, 200));
         pushButton_CubeBrowse->setCursor(QCursor(Qt::PointingHandCursor));
-        pushButton_CubeBrowse->setStyleSheet(QStringLiteral("background-image: url(:/Assets/button_browse.png);"));
+        pushButton_CubeBrowse->setStyleSheet(QStringLiteral("background-image: url(:/icons/screen1/browse_botom.png);"));
         pushButton_CubeBrowse->setFlat(true);
+        pushButton_uVisionBrowse = new QPushButton(widget_generate_screen);
+        pushButton_uVisionBrowse->setObjectName(QStringLiteral("pushButton_uVisionBrowse"));
+        pushButton_uVisionBrowse->setEnabled(true);
+        pushButton_uVisionBrowse->setGeometry(QRect(920, 289, 116, 37));
+        pushButton_uVisionBrowse->setMinimumSize(QSize(106, 25));
+        pushButton_uVisionBrowse->setMaximumSize(QSize(200, 200));
+        pushButton_uVisionBrowse->setCursor(QCursor(Qt::PointingHandCursor));
+        pushButton_uVisionBrowse->setStyleSheet(QStringLiteral("background-image: url(:/icons/screen1/browse_botom.png);"));
+        pushButton_uVisionBrowse->setFlat(true);
+        lineEdit_uVisionPath = new QLineEdit(widget_generate_screen);
+        lineEdit_uVisionPath->setObjectName(QStringLiteral("lineEdit_uVisionPath"));
+        lineEdit_uVisionPath->setEnabled(true);
+        lineEdit_uVisionPath->setGeometry(QRect(329, 290, 595, 35));
+        lineEdit_uVisionPath->setMinimumSize(QSize(437, 26));
+        lineEdit_uVisionPath->setMaximumSize(QSize(600, 200));
+        lineEdit_uVisionPath->setCursor(QCursor(Qt::ForbiddenCursor));
+        lineEdit_uVisionPath->setAutoFillBackground(false);
+        lineEdit_uVisionPath->setStyleSheet(QLatin1String("border-image: url(:/icons/screen1/label_screen_1.png);\n"
+"color: rgb(150, 150, 150);\n"
+"font: 14pt \"Segoe UI\";"));
+        lineEdit_uVisionPath->setEchoMode(QLineEdit::Normal);
+        lineEdit_uVisionPath->setReadOnly(true);
+        label_Cube = new QLabel(widget_generate_screen);
+        label_Cube->setObjectName(QStringLiteral("label_Cube"));
+        label_Cube->setGeometry(QRect(329, 360, 316, 31));
+        label_Cube->setMinimumSize(QSize(231, 24));
+        label_Cube->setMaximumSize(QSize(600, 40));
+        label_Cube->setStyleSheet(QStringLiteral("background-image: url(:/icons/screen1/STM32Cube MX Project path_text.png);"));
+        label_uVision = new QLabel(widget_generate_screen);
+        label_uVision->setObjectName(QStringLiteral("label_uVision"));
+        label_uVision->setGeometry(QRect(329, 250, 164, 31));
+        label_uVision->setMinimumSize(QSize(127, 24));
+        label_uVision->setMaximumSize(QSize(600, 50));
+        label_uVision->setStyleSheet(QStringLiteral("background-image: url(:/icons/screen1/uVision_Projects_text.png);"));
+        pushButton_generate_folders = new QPushButton(widget_generate_screen);
+        pushButton_generate_folders->setObjectName(QStringLiteral("pushButton_generate_folders"));
+        pushButton_generate_folders->setGeometry(QRect(370, 553, 22, 22));
+        QSizePolicy sizePolicy1(QSizePolicy::Minimum, QSizePolicy::Fixed);
+        sizePolicy1.setHorizontalStretch(16);
+        sizePolicy1.setVerticalStretch(16);
+        sizePolicy1.setHeightForWidth(pushButton_generate_folders->sizePolicy().hasHeightForWidth());
+        pushButton_generate_folders->setSizePolicy(sizePolicy1);
+        pushButton_generate_folders->setMinimumSize(QSize(16, 16));
+        pushButton_generate_folders->setMaximumSize(QSize(40, 40));
+        pushButton_generate_folders->setCursor(QCursor(Qt::PointingHandCursor));
+        pushButton_generate_folders->setStyleSheet(QStringLiteral("background-image: url(:/icons/screen1/check_box.png);"));
+        pushButton_generate_folders->setFlat(true);
+        label_generate_options = new QLabel(widget_generate_screen);
+        label_generate_options->setObjectName(QStringLiteral("label_generate_options"));
+        label_generate_options->setGeometry(QRect(369, 510, 200, 31));
+        label_generate_options->setMinimumSize(QSize(148, 23));
+        label_generate_options->setMaximumSize(QSize(300, 200));
+        label_generate_options->setStyleSheet(QStringLiteral("background-image: url(:/icons/screen1/Generation_options_text.png);"));
+        pb_generate_project_folders = new QPushButton(widget_generate_screen);
+        pb_generate_project_folders->setObjectName(QStringLiteral("pb_generate_project_folders"));
+        pb_generate_project_folders->setGeometry(QRect(410, 550, 265, 31));
+        pb_generate_project_folders->setMinimumSize(QSize(105, 29));
+        pb_generate_project_folders->setMaximumSize(QSize(500, 200));
+        pb_generate_project_folders->setCursor(QCursor(Qt::PointingHandCursor));
+        pb_generate_project_folders->setStyleSheet(QStringLiteral("background-image: url(:/icons/screen1/generation_project_text.png);"));
+        pb_generate_project_folders->setFlat(true);
+        pushButton_Generate->raise();
+        pushButton_Quit->raise();
+        lineEdit_CubePath->raise();
+        pushButton_CubeBrowse->raise();
+        lineEdit_uVisionPath->raise();
+        label_Cube->raise();
+        label_uVision->raise();
+        pushButton_generate_folders->raise();
+        label_generate_options->raise();
+        pushButton_uVisionBrowse->raise();
+        pb_generate_project_folders->raise();
+        widget_options_screen_native = new QWidget(centralWidget);
+        widget_options_screen_native->setObjectName(QStringLiteral("widget_options_screen_native"));
+        widget_options_screen_native->setGeometry(QRect(2560, 0, 1366, 768));
+        widget_options_screen_native->setStyleSheet(QStringLiteral("background-image: url(:/icons/screen1/background.png);"));
+        pb_configure_thread_in_class = new QPushButton(widget_options_screen_native);
+        pb_configure_thread_in_class->setObjectName(QStringLiteral("pb_configure_thread_in_class"));
+        pb_configure_thread_in_class->setEnabled(true);
+        pb_configure_thread_in_class->setGeometry(QRect(315, 405, 263, 31));
+        pb_configure_thread_in_class->setMinimumSize(QSize(0, 0));
+        pb_configure_thread_in_class->setMaximumSize(QSize(500, 50));
+        pb_configure_thread_in_class->setCursor(QCursor(Qt::PointingHandCursor));
+        pb_configure_thread_in_class->setStyleSheet(QStringLiteral("background-image: url(:/icons/screen5/Configure a thread_off.png);"));
+        pb_configure_thread_in_class->setFlat(true);
+        pb_configure_Main_thread = new QPushButton(widget_options_screen_native);
+        pb_configure_Main_thread->setObjectName(QStringLiteral("pb_configure_Main_thread"));
+        pb_configure_Main_thread->setEnabled(true);
+        pb_configure_Main_thread->setGeometry(QRect(270, 250, 308, 31));
+        pb_configure_Main_thread->setMinimumSize(QSize(0, 0));
+        pb_configure_Main_thread->setMaximumSize(QSize(500, 50));
+        pb_configure_Main_thread->setCursor(QCursor(Qt::PointingHandCursor));
+        pb_configure_Main_thread->setStyleSheet(QLatin1String("background-image: url(:/icons/screen6/Configure main thread_off.png);\n"
+"\n"
+""));
+        pb_configure_Main_thread->setFlat(true);
+        pb_configure_in_Main_thread = new QPushButton(widget_options_screen_native);
+        pb_configure_in_Main_thread->setObjectName(QStringLiteral("pb_configure_in_Main_thread"));
+        pb_configure_in_Main_thread->setEnabled(true);
+        pb_configure_in_Main_thread->setGeometry(QRect(245, 330, 333, 31));
+        pb_configure_in_Main_thread->setMinimumSize(QSize(0, 0));
+        pb_configure_in_Main_thread->setMaximumSize(QSize(500, 50));
+        pb_configure_in_Main_thread->setCursor(QCursor(Qt::PointingHandCursor));
+        pb_configure_in_Main_thread->setStyleSheet(QStringLiteral("background-image: url(:/icons/screen5/Configure thread in main_off.png);"));
+        pb_configure_in_Main_thread->setFlat(true);
+        pb_configure_state_machine = new QPushButton(widget_options_screen_native);
+        pb_configure_state_machine->setObjectName(QStringLiteral("pb_configure_state_machine"));
+        pb_configure_state_machine->setEnabled(true);
+        pb_configure_state_machine->setGeometry(QRect(220, 510, 366, 65));
+        pb_configure_state_machine->setMinimumSize(QSize(150, 40));
+        pb_configure_state_machine->setMaximumSize(QSize(500, 200));
+        pb_configure_state_machine->setCursor(QCursor(Qt::PointingHandCursor));
+        pb_configure_state_machine->setStyleSheet(QLatin1String("background-image: url(:/icons/screen5/CONFIGURE STATE MACHINE_botom.png);\n"
+""));
+        pb_configure_state_machine->setFlat(true);
+        widget_options_thread_options = new QWidget(widget_options_screen_native);
+        widget_options_thread_options->setObjectName(QStringLiteral("widget_options_thread_options"));
+        widget_options_thread_options->setGeometry(QRect(630, 160, 661, 458));
+        widget_options_thread_options->setStyleSheet(QStringLiteral("background-image: url(:/icons/screen8/fondo_blanco.png);"));
+        pb_add_thread = new QPushButton(widget_options_thread_options);
+        pb_add_thread->setObjectName(QStringLiteral("pb_add_thread"));
+        pb_add_thread->setGeometry(QRect(289, 352, 214, 47));
+        pb_add_thread->setMinimumSize(QSize(214, 47));
+        pb_add_thread->setMaximumSize(QSize(214, 47));
+        pb_add_thread->setCursor(QCursor(Qt::PointingHandCursor));
+        pb_add_thread->setStyleSheet(QStringLiteral("background-image: url(:/icons/screen6/add_botom.png);"));
+        pb_add_thread->setFlat(true);
+        l_main_thread_name = new QLabel(widget_options_thread_options);
+        l_main_thread_name->setObjectName(QStringLiteral("l_main_thread_name"));
+        l_main_thread_name->setGeometry(QRect(30, 90, 203, 33));
+        l_main_thread_name->setMinimumSize(QSize(203, 33));
+        l_main_thread_name->setMaximumSize(QSize(203, 33));
+        l_main_thread_name->setStyleSheet(QStringLiteral("background-image: url(:/icons/screen6/main thread name_text.png);"));
+        le_main_thread_name = new QLineEdit(widget_options_thread_options);
+        le_main_thread_name->setObjectName(QStringLiteral("le_main_thread_name"));
+        le_main_thread_name->setGeometry(QRect(288, 85, 214, 41));
+        le_main_thread_name->setMinimumSize(QSize(214, 41));
+        le_main_thread_name->setMaximumSize(QSize(214, 41));
+        le_main_thread_name->setStyleSheet(QLatin1String("border-image: url(:/icons/screen6/label_1.png);\n"
+"font: 15pt \"Myriad Web\";\n"
+"color:  rgb(8, 113, 104);\n"
+""));
+        le_main_thread_name->setAlignment(Qt::AlignCenter);
+        l_thread_name = new QLabel(widget_options_thread_options);
+        l_thread_name->setObjectName(QStringLiteral("l_thread_name"));
+        l_thread_name->setGeometry(QRect(36, 160, 199, 31));
+        l_thread_name->setStyleSheet(QLatin1String("font: 75 18pt \"Myriad Web\";\n"
+"background-image: url(:/icons/screen5/New thread Nmae.png);\n"
+"color:  rgb(30, 30, 30);\n"
+""));
+        le_thread_name = new QLineEdit(widget_options_thread_options);
+        le_thread_name->setObjectName(QStringLiteral("le_thread_name"));
+        le_thread_name->setGeometry(QRect(288, 157, 214, 41));
+        le_thread_name->setMinimumSize(QSize(214, 41));
+        le_thread_name->setMaximumSize(QSize(214, 41));
+        le_thread_name->setStyleSheet(QLatin1String("border-image: url(:/icons/screen6/label_1.png);\n"
+"font: 15pt \"Myriad Web\";\n"
+"color:  rgb(8, 113, 104);\n"
+""));
+        le_thread_name->setAlignment(Qt::AlignCenter);
+        l_thread_priority = new QLabel(widget_options_thread_options);
+        l_thread_priority->setObjectName(QStringLiteral("l_thread_priority"));
+        l_thread_priority->setGeometry(QRect(70, 290, 164, 33));
+        l_thread_priority->setMinimumSize(QSize(164, 33));
+        l_thread_priority->setMaximumSize(QSize(164, 33));
+        l_thread_priority->setStyleSheet(QStringLiteral("background-image: url(:/icons/screen6/thread priority_text.png);"));
+        cb_thread_priority = new QComboBox(widget_options_thread_options);
+        cb_thread_priority->setObjectName(QStringLiteral("cb_thread_priority"));
+        cb_thread_priority->setGeometry(QRect(290, 290, 211, 31));
+        cb_thread_priority->setStyleSheet(QLatin1String("font: 14pt \"Myriad Web\";\n"
+"border-image: url(:/icons/screen5/label_2.png);\n"
+"color: rgb(8, 113, 104);\n"
+""));
+        sb_thread_stack_size = new QSpinBox(widget_options_thread_options);
+        sb_thread_stack_size->setObjectName(QStringLiteral("sb_thread_stack_size"));
+        sb_thread_stack_size->setGeometry(QRect(290, 232, 211, 29));
+        sb_thread_stack_size->setStyleSheet(QLatin1String("font: 12pt \"Segoe UI\";\n"
+"border-image: url(:/icons/screen5/label_2.png);\n"
+"color: rgb(8, 113, 104);\n"
+""));
+        sb_thread_stack_size->setAlignment(Qt::AlignCenter);
+        sb_thread_stack_size->setMaximum(4096);
+        sb_thread_stack_size->setSingleStep(10);
+        l_thread_stack_size = new QLabel(widget_options_thread_options);
+        l_thread_stack_size->setObjectName(QStringLiteral("l_thread_stack_size"));
+        l_thread_stack_size->setGeometry(QRect(46, 230, 189, 33));
+        l_thread_stack_size->setMinimumSize(QSize(189, 33));
+        l_thread_stack_size->setMaximumSize(QSize(189, 33));
+        l_thread_stack_size->setStyleSheet(QStringLiteral("background-image: url(:/icons/screen5/Thread stack size_text.png);"));
+        l_thread_priority->raise();
+        cb_thread_priority->raise();
+        sb_thread_stack_size->raise();
+        l_thread_stack_size->raise();
+        l_main_thread_name->raise();
+        le_main_thread_name->raise();
+        l_thread_name->raise();
+        le_thread_name->raise();
+        pb_add_thread->raise();
+        widget_configure_in_main_thread = new QWidget(widget_options_screen_native);
+        widget_configure_in_main_thread->setObjectName(QStringLiteral("widget_configure_in_main_thread"));
+        widget_configure_in_main_thread->setGeometry(QRect(710, 222, 641, 391));
+        widget_configure_in_main_thread->setStyleSheet(QStringLiteral("background-image: url(:/icons/screen8/fondo_transparente.png);"));
+        pb_configure_thread_in_main = new QPushButton(widget_configure_in_main_thread);
+        pb_configure_thread_in_main->setObjectName(QStringLiteral("pb_configure_thread_in_main"));
+        pb_configure_thread_in_main->setEnabled(true);
+        pb_configure_thread_in_main->setGeometry(QRect(67, 20, 150, 40));
+        pb_configure_thread_in_main->setMinimumSize(QSize(150, 40));
+        pb_configure_thread_in_main->setMaximumSize(QSize(200, 50));
+        pb_configure_thread_in_main->setCursor(QCursor(Qt::PointingHandCursor));
+        pb_configure_thread_in_main->setStyleSheet(QLatin1String("font: 75 18pt \"Myriad Web\";\n"
+"color:  rgb(30, 30, 30);\n"
+""));
+        pb_configure_thread_in_main->setFlat(true);
+        pb_configure_Mail = new QPushButton(widget_configure_in_main_thread);
+        pb_configure_Mail->setObjectName(QStringLiteral("pb_configure_Mail"));
+        pb_configure_Mail->setEnabled(true);
+        pb_configure_Mail->setGeometry(QRect(83, 140, 150, 41));
+        pb_configure_Mail->setMinimumSize(QSize(150, 40));
+        pb_configure_Mail->setMaximumSize(QSize(200, 50));
+        pb_configure_Mail->setCursor(QCursor(Qt::PointingHandCursor));
+        pb_configure_Mail->setStyleSheet(QLatin1String("font: 75 18pt \"Myriad Web\";\n"
+"color:  rgb(30, 30, 30);\n"
+""));
+        pb_configure_Mail->setFlat(true);
+        pb_configure_Timer = new QPushButton(widget_configure_in_main_thread);
+        pb_configure_Timer->setObjectName(QStringLiteral("pb_configure_Timer"));
+        pb_configure_Timer->setEnabled(true);
+        pb_configure_Timer->setGeometry(QRect(77, 80, 150, 40));
+        pb_configure_Timer->setMinimumSize(QSize(150, 40));
+        pb_configure_Timer->setMaximumSize(QSize(200, 50));
+        pb_configure_Timer->setCursor(QCursor(Qt::PointingHandCursor));
+        pb_configure_Timer->setStyleSheet(QLatin1String("font: 75 18pt \"Myriad Web\";\n"
+"color:  rgb(30, 30, 30);\n"
+""));
+        pb_configure_Timer->setFlat(true);
+        pb_configure_semaphore = new QPushButton(widget_configure_in_main_thread);
+        pb_configure_semaphore->setObjectName(QStringLiteral("pb_configure_semaphore"));
+        pb_configure_semaphore->setEnabled(true);
+        pb_configure_semaphore->setGeometry(QRect(20, 260, 200, 40));
+        pb_configure_semaphore->setMinimumSize(QSize(150, 40));
+        pb_configure_semaphore->setMaximumSize(QSize(200, 50));
+        pb_configure_semaphore->setCursor(QCursor(Qt::PointingHandCursor));
+        pb_configure_semaphore->setStyleSheet(QLatin1String("font: 75 18pt \"Myriad Web\";\n"
+"color:  rgb(30, 30, 30);\n"
+""));
+        pb_configure_semaphore->setFlat(true);
+        pb_configure_memoryPool = new QPushButton(widget_configure_in_main_thread);
+        pb_configure_memoryPool->setObjectName(QStringLiteral("pb_configure_memoryPool"));
+        pb_configure_memoryPool->setEnabled(true);
+        pb_configure_memoryPool->setGeometry(QRect(20, 200, 181, 40));
+        pb_configure_memoryPool->setMinimumSize(QSize(150, 40));
+        pb_configure_memoryPool->setMaximumSize(QSize(200, 50));
+        pb_configure_memoryPool->setCursor(QCursor(Qt::PointingHandCursor));
+        pb_configure_memoryPool->setStyleSheet(QLatin1String("font: 75 18pt \"Myriad Web\";\n"
+"color:  rgb(30, 30, 30);\n"
+""));
+        pb_configure_memoryPool->setFlat(true);
+        pb_configure_mutex = new QPushButton(widget_configure_in_main_thread);
+        pb_configure_mutex->setObjectName(QStringLiteral("pb_configure_mutex"));
+        pb_configure_mutex->setEnabled(true);
+        pb_configure_mutex->setGeometry(QRect(45, 320, 200, 40));
+        pb_configure_mutex->setMinimumSize(QSize(150, 40));
+        pb_configure_mutex->setMaximumSize(QSize(200, 50));
+        pb_configure_mutex->setCursor(QCursor(Qt::PointingHandCursor));
+        pb_configure_mutex->setStyleSheet(QLatin1String("font: 75 18pt \"Myriad Web\";\n"
+"color:  rgb(30, 30, 30);\n"
+""));
+        pb_configure_mutex->setFlat(true);
+        widget_timer_parameters = new QWidget(widget_options_screen_native);
+        widget_timer_parameters->setObjectName(QStringLiteral("widget_timer_parameters"));
+        widget_timer_parameters->setGeometry(QRect(30, 10, 251, 351));
+        widget_timer_parameters->setStyleSheet(QStringLiteral("background-image: url(:/icons/screen8/fondo_transparente.png);"));
+        verticalLayout_39 = new QVBoxLayout(widget_timer_parameters);
+        verticalLayout_39->setSpacing(30);
+        verticalLayout_39->setContentsMargins(11, 11, 11, 11);
+        verticalLayout_39->setObjectName(QStringLiteral("verticalLayout_39"));
+        verticalLayout_39->setSizeConstraint(QLayout::SetFixedSize);
+        verticalLayout_38 = new QVBoxLayout();
+        verticalLayout_38->setSpacing(6);
+        verticalLayout_38->setObjectName(QStringLiteral("verticalLayout_38"));
+        verticalLayout_38->setSizeConstraint(QLayout::SetFixedSize);
+        l_EVENT_2 = new QLabel(widget_timer_parameters);
+        l_EVENT_2->setObjectName(QStringLiteral("l_EVENT_2"));
+        l_EVENT_2->setStyleSheet(QLatin1String("font: 75 18pt \"Myriad Web\";\n"
+"color:  rgb(30, 30, 30);\n"
+""));
+        l_EVENT_2->setAlignment(Qt::AlignCenter);
 
-        horizontalLayout->addWidget(pushButton_CubeBrowse);
+        verticalLayout_38->addWidget(l_EVENT_2);
+
+        le_timer_name = new QLineEdit(widget_timer_parameters);
+        le_timer_name->setObjectName(QStringLiteral("le_timer_name"));
+        le_timer_name->setMinimumSize(QSize(214, 41));
+        le_timer_name->setStyleSheet(QLatin1String("border-image: url(:/icons/screen6/label_1.png);\n"
+"font: 15pt \"Myriad Web\";\n"
+"color:  rgb(8, 113, 104);\n"
+""));
+
+        verticalLayout_38->addWidget(le_timer_name);
 
 
-        verticalLayout->addLayout(horizontalLayout);
+        verticalLayout_39->addLayout(verticalLayout_38);
+
+        cb_timer_mode = new QComboBox(widget_timer_parameters);
+        cb_timer_mode->setObjectName(QStringLiteral("cb_timer_mode"));
+        cb_timer_mode->setMinimumSize(QSize(0, 31));
+        cb_timer_mode->setLayoutDirection(Qt::LeftToRight);
+        cb_timer_mode->setStyleSheet(QLatin1String("font: 14pt \"Myriad Web\";\n"
+"border-image: url(:/icons/screen5/label_2.png);\n"
+"color: rgb(8, 113, 104);\n"
+""));
+
+        verticalLayout_39->addWidget(cb_timer_mode);
+
+        verticalLayout_37 = new QVBoxLayout();
+        verticalLayout_37->setSpacing(6);
+        verticalLayout_37->setObjectName(QStringLiteral("verticalLayout_37"));
+        verticalLayout_37->setSizeConstraint(QLayout::SetFixedSize);
+        l_EVENT_3 = new QLabel(widget_timer_parameters);
+        l_EVENT_3->setObjectName(QStringLiteral("l_EVENT_3"));
+        l_EVENT_3->setStyleSheet(QLatin1String("font: 75 18pt \"Myriad Web\";\n"
+"color:  rgb(30, 30, 30);\n"
+""));
+        l_EVENT_3->setAlignment(Qt::AlignCenter);
+
+        verticalLayout_37->addWidget(l_EVENT_3);
+
+        sb_timer_interval = new QSpinBox(widget_timer_parameters);
+        sb_timer_interval->setObjectName(QStringLiteral("sb_timer_interval"));
+        sb_timer_interval->setMinimumSize(QSize(0, 25));
+        sb_timer_interval->setStyleSheet(QLatin1String("font: 12pt \"Segoe UI\";\n"
+"border-image: url(:/icons/screen5/label_2.png);\n"
+"color: rgb(8, 113, 104);\n"
+""));
+        sb_timer_interval->setAlignment(Qt::AlignCenter);
+        sb_timer_interval->setMaximum(100000);
+        sb_timer_interval->setSingleStep(10);
+        sb_timer_interval->setValue(100);
+
+        verticalLayout_37->addWidget(sb_timer_interval);
 
 
-        verticalLayout_3->addLayout(verticalLayout);
+        verticalLayout_39->addLayout(verticalLayout_37);
 
-        widget_buttons_quit = new QWidget(centralWidget);
-        widget_buttons_quit->setObjectName(QStringLiteral("widget_buttons_quit"));
-        widget_buttons_quit->setGeometry(QRect(400, 300, 271, 61));
-        horizontalLayout_4 = new QHBoxLayout(widget_buttons_quit);
+        verticalLayout_36 = new QVBoxLayout();
+        verticalLayout_36->setSpacing(6);
+        verticalLayout_36->setObjectName(QStringLiteral("verticalLayout_36"));
+        verticalLayout_36->setSizeConstraint(QLayout::SetFixedSize);
+        l_EVENT_4 = new QLabel(widget_timer_parameters);
+        l_EVENT_4->setObjectName(QStringLiteral("l_EVENT_4"));
+        l_EVENT_4->setStyleSheet(QLatin1String("font: 75 18pt \"Myriad Web\";\n"
+"color:  rgb(30, 30, 30);\n"
+""));
+        l_EVENT_4->setAlignment(Qt::AlignCenter);
+
+        verticalLayout_36->addWidget(l_EVENT_4);
+
+        le_timer_function = new QLineEdit(widget_timer_parameters);
+        le_timer_function->setObjectName(QStringLiteral("le_timer_function"));
+        le_timer_function->setMinimumSize(QSize(214, 41));
+        le_timer_function->setStyleSheet(QLatin1String("border-image: url(:/icons/screen6/label_1.png);\n"
+"font: 15pt \"Myriad Web\";\n"
+"color:  rgb(8, 113, 104);\n"
+""));
+
+        verticalLayout_36->addWidget(le_timer_function);
+
+
+        verticalLayout_39->addLayout(verticalLayout_36);
+
+        pb_add_Timer = new QPushButton(widget_timer_parameters);
+        pb_add_Timer->setObjectName(QStringLiteral("pb_add_Timer"));
+        pb_add_Timer->setEnabled(true);
+        pb_add_Timer->setMinimumSize(QSize(150, 40));
+        pb_add_Timer->setMaximumSize(QSize(200, 50));
+        pb_add_Timer->setCursor(QCursor(Qt::PointingHandCursor));
+        pb_add_Timer->setStyleSheet(QLatin1String("font: 75 18pt \"Myriad Web\";\n"
+"color:  rgb(8, 113, 104);"));
+        pb_add_Timer->setFlat(true);
+
+        verticalLayout_39->addWidget(pb_add_Timer);
+
+        widget_state_machine_screen = new QWidget(centralWidget);
+        widget_state_machine_screen->setObjectName(QStringLiteral("widget_state_machine_screen"));
+        widget_state_machine_screen->setGeometry(QRect(3930, 0, 1366, 768));
+        widget_state_machine_screen->setStyleSheet(QStringLiteral("background-image: url(:/icons/screen1/background.png);"));
+        pb_load_from_Thread = new QPushButton(widget_state_machine_screen);
+        pb_load_from_Thread->setObjectName(QStringLiteral("pb_load_from_Thread"));
+        pb_load_from_Thread->setEnabled(true);
+        pb_load_from_Thread->setGeometry(QRect(30, 268, 294, 46));
+        pb_load_from_Thread->setMinimumSize(QSize(150, 40));
+        pb_load_from_Thread->setMaximumSize(QSize(16777215, 16777215));
+        pb_load_from_Thread->setCursor(QCursor(Qt::PointingHandCursor));
+        pb_load_from_Thread->setStyleSheet(QStringLiteral("background-image: url(:/icons/screen8/Load from Main Thread_botom.png);"));
+        pb_load_from_Thread->setFlat(true);
+        pb_save_state_machine = new QPushButton(widget_state_machine_screen);
+        pb_save_state_machine->setObjectName(QStringLiteral("pb_save_state_machine"));
+        pb_save_state_machine->setEnabled(true);
+        pb_save_state_machine->setGeometry(QRect(30, 390, 294, 46));
+        pb_save_state_machine->setMinimumSize(QSize(150, 40));
+        pb_save_state_machine->setMaximumSize(QSize(1111111, 16777215));
+        pb_save_state_machine->setCursor(QCursor(Qt::PointingHandCursor));
+        pb_save_state_machine->setStyleSheet(QStringLiteral("background-image: url(:/icons/screen8/Save State Machine_botom.png);"));
+        pb_save_state_machine->setFlat(true);
+        pb_load_state_machine = new QPushButton(widget_state_machine_screen);
+        pb_load_state_machine->setObjectName(QStringLiteral("pb_load_state_machine"));
+        pb_load_state_machine->setEnabled(true);
+        pb_load_state_machine->setGeometry(QRect(30, 330, 294, 46));
+        pb_load_state_machine->setMinimumSize(QSize(150, 40));
+        pb_load_state_machine->setMaximumSize(QSize(16777215, 16777215));
+        pb_load_state_machine->setCursor(QCursor(Qt::PointingHandCursor));
+        pb_load_state_machine->setStyleSheet(QStringLiteral("background-image: url(:/icons/screen8/Load from State Machine_botom.png);"));
+        pb_load_state_machine->setFlat(true);
+        widget_layout_state_machine = new QWidget(widget_state_machine_screen);
+        widget_layout_state_machine->setObjectName(QStringLiteral("widget_layout_state_machine"));
+        widget_layout_state_machine->setGeometry(QRect(340, 270, 743, 288));
+        widget_layout_state_machine->setStyleSheet(QStringLiteral("background-image: url(:/icons/screen8/bordes.png);"));
+        verticalLayout = new QVBoxLayout(widget_layout_state_machine);
+        verticalLayout->setSpacing(6);
+        verticalLayout->setContentsMargins(11, 11, 11, 11);
+        verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
+        widget_states = new QWidget(widget_layout_state_machine);
+        widget_states->setObjectName(QStringLiteral("widget_states"));
+        widget_states->setEnabled(true);
+        widget_states->setMinimumSize(QSize(724, 270));
+        widget_states->setMaximumSize(QSize(16777215, 16777215));
+        widget_states->setStyleSheet(QStringLiteral("background-image: url(:/icons/screen8/fondo_transparente.png);"));
+        verticalLayout_12 = new QVBoxLayout(widget_states);
+        verticalLayout_12->setSpacing(1);
+        verticalLayout_12->setContentsMargins(11, 11, 11, 11);
+        verticalLayout_12->setObjectName(QStringLiteral("verticalLayout_12"));
+        widget_state_info = new QWidget(widget_states);
+        widget_state_info->setObjectName(QStringLiteral("widget_state_info"));
+        verticalLayout_22 = new QVBoxLayout(widget_state_info);
+        verticalLayout_22->setSpacing(0);
+        verticalLayout_22->setContentsMargins(11, 11, 11, 11);
+        verticalLayout_22->setObjectName(QStringLiteral("verticalLayout_22"));
+        verticalLayout_22->setSizeConstraint(QLayout::SetFixedSize);
+        horizontalLayout_8 = new QHBoxLayout();
+        horizontalLayout_8->setSpacing(70);
+        horizontalLayout_8->setObjectName(QStringLiteral("horizontalLayout_8"));
+        horizontalLayout_8->setSizeConstraint(QLayout::SetFixedSize);
+        widget_super_initial_default_state = new QWidget(widget_state_info);
+        widget_super_initial_default_state->setObjectName(QStringLiteral("widget_super_initial_default_state"));
+        verticalLayout_20 = new QVBoxLayout(widget_super_initial_default_state);
+        verticalLayout_20->setSpacing(15);
+        verticalLayout_20->setContentsMargins(11, 11, 11, 11);
+        verticalLayout_20->setObjectName(QStringLiteral("verticalLayout_20"));
+        verticalLayout_20->setSizeConstraint(QLayout::SetFixedSize);
+        verticalLayout_17 = new QVBoxLayout();
+        verticalLayout_17->setSpacing(6);
+        verticalLayout_17->setObjectName(QStringLiteral("verticalLayout_17"));
+        verticalLayout_17->setSizeConstraint(QLayout::SetFixedSize);
+        label_2 = new QLabel(widget_super_initial_default_state);
+        label_2->setObjectName(QStringLiteral("label_2"));
+        label_2->setMinimumSize(QSize(0, 12));
+        label_2->setStyleSheet(QLatin1String("font: 15pt \"Segoe UI\";\n"
+"color: rgb(128, 128, 128);"));
+
+        verticalLayout_17->addWidget(label_2);
+
+        le_super_state_name = new QLineEdit(widget_super_initial_default_state);
+        le_super_state_name->setObjectName(QStringLiteral("le_super_state_name"));
+        le_super_state_name->setMaximumSize(QSize(120, 120));
+        le_super_state_name->setStyleSheet(QLatin1String("border-image: url(:/icons/screen2/label_1.png);\n"
+"font: 11pt \"Segoe UI\";\n"
+"color:  rgb(8, 113, 104);"));
+
+        verticalLayout_17->addWidget(le_super_state_name);
+
+
+        verticalLayout_20->addLayout(verticalLayout_17);
+
+        verticalLayout_18 = new QVBoxLayout();
+        verticalLayout_18->setSpacing(6);
+        verticalLayout_18->setObjectName(QStringLiteral("verticalLayout_18"));
+        verticalLayout_18->setSizeConstraint(QLayout::SetFixedSize);
+        label_3 = new QLabel(widget_super_initial_default_state);
+        label_3->setObjectName(QStringLiteral("label_3"));
+        label_3->setMinimumSize(QSize(0, 12));
+        label_3->setStyleSheet(QLatin1String("font: 15pt \"Segoe UI\";\n"
+"color: rgb(128, 128, 128);"));
+
+        verticalLayout_18->addWidget(label_3);
+
+        le_initial_state_name = new QLineEdit(widget_super_initial_default_state);
+        le_initial_state_name->setObjectName(QStringLiteral("le_initial_state_name"));
+        le_initial_state_name->setMaximumSize(QSize(120, 1200));
+        le_initial_state_name->setStyleSheet(QLatin1String("font: 11pt \"Segoe UI\";\n"
+"color:  rgb(8, 113, 104);\n"
+"border-image: url(:/icons/screen2/label_1.png);"));
+
+        verticalLayout_18->addWidget(le_initial_state_name);
+
+
+        verticalLayout_20->addLayout(verticalLayout_18);
+
+
+        horizontalLayout_8->addWidget(widget_super_initial_default_state);
+
+        widget_state_name_default_event = new QWidget(widget_state_info);
+        widget_state_name_default_event->setObjectName(QStringLiteral("widget_state_name_default_event"));
+        verticalLayout_19 = new QVBoxLayout(widget_state_name_default_event);
+        verticalLayout_19->setSpacing(6);
+        verticalLayout_19->setContentsMargins(11, 11, 11, 11);
+        verticalLayout_19->setObjectName(QStringLiteral("verticalLayout_19"));
+        verticalLayout_19->setSizeConstraint(QLayout::SetFixedSize);
+        horizontalLayout_4 = new QHBoxLayout();
         horizontalLayout_4->setSpacing(6);
-        horizontalLayout_4->setContentsMargins(11, 11, 11, 11);
         horizontalLayout_4->setObjectName(QStringLiteral("horizontalLayout_4"));
-        horizontalLayout_4->setSizeConstraint(QLayout::SetFixedSize);
+        horizontalSpacer_10 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_4->addItem(horizontalSpacer_10);
+
+        verticalLayout_2 = new QVBoxLayout();
+        verticalLayout_2->setSpacing(6);
+        verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
+        label = new QLabel(widget_state_name_default_event);
+        label->setObjectName(QStringLiteral("label"));
+        label->setMinimumSize(QSize(0, 19));
+        label->setStyleSheet(QLatin1String("font: 15pt \"Segoe UI\";\n"
+"color: rgb(128, 128, 128);"));
+
+        verticalLayout_2->addWidget(label);
+
+        le_current_state_name = new QLineEdit(widget_state_name_default_event);
+        le_current_state_name->setObjectName(QStringLiteral("le_current_state_name"));
+        le_current_state_name->setMaximumSize(QSize(120, 34));
+        le_current_state_name->setStyleSheet(QLatin1String("border-image: url(:/icons/screen2/label_1.png);\n"
+"font: 11pt \"Segoe UI\";\n"
+"color:  rgb(8, 113, 104);"));
+
+        verticalLayout_2->addWidget(le_current_state_name);
+
+
+        horizontalLayout_4->addLayout(verticalLayout_2);
+
+        horizontalSpacer_11 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_4->addItem(horizontalSpacer_11);
+
+
+        verticalLayout_19->addLayout(horizontalLayout_4);
+
+        label_4 = new QLabel(widget_state_name_default_event);
+        label_4->setObjectName(QStringLiteral("label_4"));
+        label_4->setMinimumSize(QSize(0, 12));
+        label_4->setStyleSheet(QLatin1String("font: 15pt \"Segoe UI\";\n"
+"color: rgb(128, 128, 128);"));
+        label_4->setAlignment(Qt::AlignCenter);
+
+        verticalLayout_19->addWidget(label_4);
+
+        horizontalLayout_16 = new QHBoxLayout();
+        horizontalLayout_16->setSpacing(1);
+        horizontalLayout_16->setObjectName(QStringLiteral("horizontalLayout_16"));
+        horizontalLayout_16->setSizeConstraint(QLayout::SetFixedSize);
+        verticalLayout_15 = new QVBoxLayout();
+        verticalLayout_15->setSpacing(6);
+        verticalLayout_15->setObjectName(QStringLiteral("verticalLayout_15"));
+        verticalLayout_15->setSizeConstraint(QLayout::SetFixedSize);
+        label_5 = new QLabel(widget_state_name_default_event);
+        label_5->setObjectName(QStringLiteral("label_5"));
+        label_5->setMinimumSize(QSize(0, 12));
+        label_5->setStyleSheet(QLatin1String("font: 15pt \"Segoe UI\";\n"
+"color: rgb(128, 128, 128);"));
+        label_5->setAlignment(Qt::AlignCenter);
+
+        verticalLayout_15->addWidget(label_5);
+
+        le_default_state_name = new QLineEdit(widget_state_name_default_event);
+        le_default_state_name->setObjectName(QStringLiteral("le_default_state_name"));
+        le_default_state_name->setMaximumSize(QSize(100, 100));
+        le_default_state_name->setStyleSheet(QLatin1String("font: 11pt \"Segoe UI\";\n"
+"color:  rgb(8, 113, 104);\n"
+"border-image: url(:/icons/screen2/label_1.png);"));
+
+        verticalLayout_15->addWidget(le_default_state_name);
+
+
+        horizontalLayout_16->addLayout(verticalLayout_15);
+
+        verticalLayout_14 = new QVBoxLayout();
+        verticalLayout_14->setSpacing(6);
+        verticalLayout_14->setObjectName(QStringLiteral("verticalLayout_14"));
+        verticalLayout_14->setSizeConstraint(QLayout::SetFixedSize);
+        label_6 = new QLabel(widget_state_name_default_event);
+        label_6->setObjectName(QStringLiteral("label_6"));
+        label_6->setMinimumSize(QSize(0, 12));
+        label_6->setStyleSheet(QLatin1String("font: 15pt \"Segoe UI\";\n"
+"color: rgb(128, 128, 128);"));
+        label_6->setAlignment(Qt::AlignCenter);
+
+        verticalLayout_14->addWidget(label_6);
+
+        le_default_action_name = new QLineEdit(widget_state_name_default_event);
+        le_default_action_name->setObjectName(QStringLiteral("le_default_action_name"));
+        le_default_action_name->setMaximumSize(QSize(100, 100));
+        le_default_action_name->setStyleSheet(QLatin1String("font: 11pt \"Segoe UI\";\n"
+"color:  rgb(8, 113, 104);\n"
+"border-image: url(:/icons/screen2/label_1.png);"));
+
+        verticalLayout_14->addWidget(le_default_action_name);
+
+
+        horizontalLayout_16->addLayout(verticalLayout_14);
+
+
+        verticalLayout_19->addLayout(horizontalLayout_16);
+
+
+        horizontalLayout_8->addWidget(widget_state_name_default_event);
+
+        widget_events = new QWidget(widget_state_info);
+        widget_events->setObjectName(QStringLiteral("widget_events"));
+        widget_events->setMaximumSize(QSize(16777215, 170));
+        horizontalLayout_12 = new QHBoxLayout(widget_events);
+        horizontalLayout_12->setSpacing(1);
+        horizontalLayout_12->setContentsMargins(11, 11, 11, 11);
+        horizontalLayout_12->setObjectName(QStringLiteral("horizontalLayout_12"));
+        horizontalLayout_12->setSizeConstraint(QLayout::SetFixedSize);
+        tableView_events = new QTableView(widget_events);
+        tableView_events->setObjectName(QStringLiteral("tableView_events"));
+        tableView_events->setMinimumSize(QSize(654, 150));
+        tableView_events->setMaximumSize(QSize(16777215, 16777215));
+        tableView_events->setStyleSheet(QLatin1String("font: 11pt \"Segoe UI\";\n"
+"background-image: url(:/icons/screen8/fondo_blanco.png);\n"
+"color:  rgb(8, 113, 104);"));
+        tableView_events->setFrameShape(QFrame::Box);
+        tableView_events->setSelectionMode(QAbstractItemView::ExtendedSelection);
+        tableView_events->setTextElideMode(Qt::ElideMiddle);
+        tableView_events->setVerticalScrollMode(QAbstractItemView::ScrollPerItem);
+        tableView_events->setSortingEnabled(true);
+        tableView_events->horizontalHeader()->setDefaultSectionSize(205);
+        tableView_events->horizontalHeader()->setMinimumSectionSize(100);
+
+        horizontalLayout_12->addWidget(tableView_events);
+
+
+        horizontalLayout_8->addWidget(widget_events);
+
+        widget_state_name_entry_exit_actions = new QWidget(widget_state_info);
+        widget_state_name_entry_exit_actions->setObjectName(QStringLiteral("widget_state_name_entry_exit_actions"));
+        verticalLayout_21 = new QVBoxLayout(widget_state_name_entry_exit_actions);
+        verticalLayout_21->setSpacing(15);
+        verticalLayout_21->setContentsMargins(11, 11, 11, 11);
+        verticalLayout_21->setObjectName(QStringLiteral("verticalLayout_21"));
+        verticalLayout_21->setSizeConstraint(QLayout::SetFixedSize);
+        verticalLayout_23 = new QVBoxLayout();
+        verticalLayout_23->setSpacing(8);
+        verticalLayout_23->setObjectName(QStringLiteral("verticalLayout_23"));
+        verticalLayout_23->setSizeConstraint(QLayout::SetFixedSize);
+        l_Entry_Action = new QLabel(widget_state_name_entry_exit_actions);
+        l_Entry_Action->setObjectName(QStringLiteral("l_Entry_Action"));
+        l_Entry_Action->setMinimumSize(QSize(0, 20));
+        l_Entry_Action->setStyleSheet(QLatin1String("font: 15pt \"Segoe UI\";\n"
+"color: rgb(128, 128, 128);"));
+
+        verticalLayout_23->addWidget(l_Entry_Action);
+
+        le_entry_action = new QLineEdit(widget_state_name_entry_exit_actions);
+        le_entry_action->setObjectName(QStringLiteral("le_entry_action"));
+        le_entry_action->setMaximumSize(QSize(120, 120));
+        le_entry_action->setStyleSheet(QLatin1String("font: 11pt \"Segoe UI\";\n"
+"color:  rgb(8, 113, 104);\n"
+"border-image: url(:/icons/screen2/label_1.png);"));
+
+        verticalLayout_23->addWidget(le_entry_action);
+
+        verticalLayout_24 = new QVBoxLayout();
+        verticalLayout_24->setSpacing(6);
+        verticalLayout_24->setObjectName(QStringLiteral("verticalLayout_24"));
+        verticalLayout_24->setSizeConstraint(QLayout::SetFixedSize);
+        l_Exit_Action = new QLabel(widget_state_name_entry_exit_actions);
+        l_Exit_Action->setObjectName(QStringLiteral("l_Exit_Action"));
+        l_Exit_Action->setMinimumSize(QSize(0, 20));
+        l_Exit_Action->setStyleSheet(QLatin1String("font: 15pt \"Segoe UI\";\n"
+"color: rgb(128, 128, 128);"));
+
+        verticalLayout_24->addWidget(l_Exit_Action);
+
+        le_exit_action = new QLineEdit(widget_state_name_entry_exit_actions);
+        le_exit_action->setObjectName(QStringLiteral("le_exit_action"));
+        le_exit_action->setMaximumSize(QSize(120, 107));
+        le_exit_action->setStyleSheet(QLatin1String("font: 11pt \"Segoe UI\";\n"
+"color:  rgb(8, 113, 104);\n"
+"border-image: url(:/icons/screen2/label_1.png);"));
+
+        verticalLayout_24->addWidget(le_exit_action);
+
+
+        verticalLayout_23->addLayout(verticalLayout_24);
+
+
+        verticalLayout_21->addLayout(verticalLayout_23);
+
+
+        horizontalLayout_8->addWidget(widget_state_name_entry_exit_actions);
+
+
+        verticalLayout_22->addLayout(horizontalLayout_8);
+
+        horizontalLayout_9 = new QHBoxLayout();
+        horizontalLayout_9->setSpacing(6);
+        horizontalLayout_9->setObjectName(QStringLiteral("horizontalLayout_9"));
+        horizontalSpacer_4 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_9->addItem(horizontalSpacer_4);
+
+        pb_change_to_event = new QPushButton(widget_state_info);
+        pb_change_to_event->setObjectName(QStringLiteral("pb_change_to_event"));
+        pb_change_to_event->setMinimumSize(QSize(73, 20));
+        pb_change_to_event->setCursor(QCursor(Qt::PointingHandCursor));
+        pb_change_to_event->setStyleSheet(QLatin1String("font: 15pt \"Segoe UI\";\n"
+"color: rgb(128, 128, 128);"));
+        pb_change_to_event->setFlat(true);
+
+        horizontalLayout_9->addWidget(pb_change_to_event);
+
+        horizontalSpacer_3 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_9->addItem(horizontalSpacer_3);
+
+        pb_ok = new QPushButton(widget_state_info);
+        pb_ok->setObjectName(QStringLiteral("pb_ok"));
+        pb_ok->setCursor(QCursor(Qt::PointingHandCursor));
+        pb_ok->setStyleSheet(QLatin1String("font: 15pt \"Segoe UI\";\n"
+"color: rgb(128, 128, 128);"));
+        pb_ok->setFlat(true);
+
+        horizontalLayout_9->addWidget(pb_ok);
+
+        horizontalSpacer_2 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_9->addItem(horizontalSpacer_2);
+
+
+        verticalLayout_22->addLayout(horizontalLayout_9);
+
+
+        verticalLayout_12->addWidget(widget_state_info);
+
+
+        verticalLayout->addWidget(widget_states);
+
+        pb_generate_state_machine = new QPushButton(widget_state_machine_screen);
+        pb_generate_state_machine->setObjectName(QStringLiteral("pb_generate_state_machine"));
+        pb_generate_state_machine->setEnabled(true);
+        pb_generate_state_machine->setGeometry(QRect(900, 580, 97, 29));
+        pb_generate_state_machine->setMinimumSize(QSize(0, 0));
+        pb_generate_state_machine->setMaximumSize(QSize(133, 16777215));
+        pb_generate_state_machine->setCursor(QCursor(Qt::PointingHandCursor));
+        pb_generate_state_machine->setStyleSheet(QStringLiteral("background-image: url(:/icons/screen8/generate_botom.png);"));
+        pb_generate_state_machine->setFlat(true);
+        le_state_name = new QLineEdit(widget_state_machine_screen);
+        le_state_name->setObjectName(QStringLiteral("le_state_name"));
+        le_state_name->setGeometry(QRect(600, 580, 232, 34));
+        le_state_name->setMinimumSize(QSize(0, 0));
+        le_state_name->setMaximumSize(QSize(16777215, 16777215));
+        le_state_name->setStyleSheet(QLatin1String("border-image: url(:/icons/screen8/label.png);\n"
+"font: 15pt \"Myriad Web\";\n"
+"color:  rgb(8, 113, 104);\n"
+""));
+        l_name_current_state = new QLabel(widget_state_machine_screen);
+        l_name_current_state->setObjectName(QStringLiteral("l_name_current_state"));
+        l_name_current_state->setGeometry(QRect(720, 210, 171, 41));
+        l_name_current_state->setMinimumSize(QSize(80, 0));
+        l_name_current_state->setMaximumSize(QSize(16777215, 16777215));
+        l_name_current_state->setStyleSheet(QLatin1String("font: 75 16pt \"Myriad Web\";\n"
+"color:  rgb(8, 113, 104);\n"
+"\n"
+"background-image: url(:/icons/screen8/fondo_blanco.png);"));
+        l_state_parent_tag = new QLabel(widget_state_machine_screen);
+        l_state_parent_tag->setObjectName(QStringLiteral("l_state_parent_tag"));
+        l_state_parent_tag->setGeometry(QRect(580, 210, 131, 40));
+        l_state_parent_tag->setMaximumSize(QSize(16777215, 40));
+        l_state_parent_tag->setStyleSheet(QLatin1String("background-image: url(:/icons/screen8/fondo_blanco.png);\n"
+"font: 75 16pt \"Myriad Web\";\n"
+"color:  rgb(8, 113, 104);\n"
+"\n"
+""));
+        pb_back = new QPushButton(widget_state_machine_screen);
+        pb_back->setObjectName(QStringLiteral("pb_back"));
+        pb_back->setGeometry(QRect(340, 220, 28, 25));
+        pb_back->setMaximumSize(QSize(16777215, 30));
+        pb_back->setCursor(QCursor(Qt::PointingHandCursor));
+        pb_back->setStyleSheet(QStringLiteral("background-image: url(:/icons/screen8/back_icon_botom.png);"));
+        pb_back->setFlat(true);
+        pb_search_state = new QPushButton(widget_state_machine_screen);
+        pb_search_state->setObjectName(QStringLiteral("pb_search_state"));
+        pb_search_state->setGeometry(QRect(1040, 220, 27, 28));
+        pb_search_state->setMinimumSize(QSize(0, 20));
+        pb_search_state->setMaximumSize(QSize(16777215, 30));
+        pb_search_state->setCursor(QCursor(Qt::PointingHandCursor));
+        pb_search_state->setStyleSheet(QStringLiteral("background-image: url(:/icons/screen8/search_icon_botom.png);"));
+        pb_search_state->setFlat(true);
+        le_state_to_search = new QLineEdit(widget_state_machine_screen);
+        le_state_to_search->setObjectName(QStringLiteral("le_state_to_search"));
+        le_state_to_search->setGeometry(QRect(860, 210, 171, 41));
+        le_state_to_search->setMinimumSize(QSize(135, 20));
+        le_state_to_search->setMaximumSize(QSize(16777215, 1111111));
+        le_state_to_search->setStyleSheet(QLatin1String("border-image: url(:/icons/screen8/label.png);\n"
+"font: 15pt \"Myriad Web\";\n"
+"color:  rgb(8, 113, 104);\n"
+""));
+        tw_state_machine = new QTreeWidget(widget_state_machine_screen);
+        tw_state_machine->setObjectName(QStringLiteral("tw_state_machine"));
+        tw_state_machine->setGeometry(QRect(1100, 270, 231, 291));
+        tw_state_machine->setMaximumSize(QSize(250, 300));
+        tw_state_machine->setStyleSheet(QStringLiteral("background-image: url(:/icons/screen8/fondo_transparente.png);"));
+        pb_back_from_state_machine = new QPushButton(widget_state_machine_screen);
+        pb_back_from_state_machine->setObjectName(QStringLiteral("pb_back_from_state_machine"));
+        pb_back_from_state_machine->setEnabled(true);
+        pb_back_from_state_machine->setGeometry(QRect(150, 470, 51, 31));
+        pb_back_from_state_machine->setMinimumSize(QSize(0, 0));
+        pb_back_from_state_machine->setMaximumSize(QSize(1111111, 16777215));
+        pb_back_from_state_machine->setCursor(QCursor(Qt::PointingHandCursor));
+        pb_back_from_state_machine->setStyleSheet(QStringLiteral("background-image: url(:/icons/screen8/back_botom.png);"));
+        pb_back_from_state_machine->setFlat(true);
+        pb_add_state = new QPushButton(widget_state_machine_screen);
+        pb_add_state->setObjectName(QStringLiteral("pb_add_state"));
+        pb_add_state->setGeometry(QRect(430, 580, 102, 29));
+        pb_add_state->setMinimumSize(QSize(0, 0));
+        pb_add_state->setMaximumSize(QSize(133, 16777215));
+        pb_add_state->setCursor(QCursor(Qt::PointingHandCursor));
+        pb_add_state->setStyleSheet(QLatin1String("font: 75 18pt \"Myriad Web\";\n"
+"color:  rgb(8, 113, 104);\n"
+"background-image: url(:/icons/screen8/add_state_button.png);"));
+        pb_add_state->setFlat(true);
+        widget_on_state_options = new QWidget(widget_state_machine_screen);
+        widget_on_state_options->setObjectName(QStringLiteral("widget_on_state_options"));
+        widget_on_state_options->setGeometry(QRect(110, 570, 131, 141));
+        widget_on_state_options->setCursor(QCursor(Qt::ArrowCursor));
+        widget_on_state_options->setStyleSheet(QStringLiteral("background-image: url(:/icons/screen8/fondo_blanco.png);"));
+        verticalLayout_25 = new QVBoxLayout(widget_on_state_options);
+        verticalLayout_25->setSpacing(6);
+        verticalLayout_25->setContentsMargins(11, 11, 11, 11);
+        verticalLayout_25->setObjectName(QStringLiteral("verticalLayout_25"));
+        verticalLayout_25->setSizeConstraint(QLayout::SetFixedSize);
+        pb_open_state = new QPushButton(widget_on_state_options);
+        pb_open_state->setObjectName(QStringLiteral("pb_open_state"));
+        pb_open_state->setCursor(QCursor(Qt::PointingHandCursor));
+        pb_open_state->setStyleSheet(QLatin1String("font: 10pt \"Myriad Web\";\n"
+"color:  rgb(8, 113, 104);"));
+        pb_open_state->setFlat(true);
+
+        verticalLayout_25->addWidget(pb_open_state);
+
+        pb_set_as_initial = new QPushButton(widget_on_state_options);
+        pb_set_as_initial->setObjectName(QStringLiteral("pb_set_as_initial"));
+        pb_set_as_initial->setCursor(QCursor(Qt::PointingHandCursor));
+        pb_set_as_initial->setStyleSheet(QLatin1String("font: 10pt \"Myriad Web\";\n"
+"color:  rgb(8, 113, 104);"));
+        pb_set_as_initial->setFlat(true);
+
+        verticalLayout_25->addWidget(pb_set_as_initial);
+
+        pb_configure_state = new QPushButton(widget_on_state_options);
+        pb_configure_state->setObjectName(QStringLiteral("pb_configure_state"));
+        pb_configure_state->setCursor(QCursor(Qt::PointingHandCursor));
+        pb_configure_state->setStyleSheet(QLatin1String("font: 10pt \"Myriad Web\";\n"
+"color:  rgb(8, 113, 104);"));
+        pb_configure_state->setFlat(true);
+
+        verticalLayout_25->addWidget(pb_configure_state);
+
+        pb_add_sub_sate = new QPushButton(widget_on_state_options);
+        pb_add_sub_sate->setObjectName(QStringLiteral("pb_add_sub_sate"));
+        pb_add_sub_sate->setCursor(QCursor(Qt::PointingHandCursor));
+        pb_add_sub_sate->setStyleSheet(QLatin1String("font: 10pt \"Myriad Web\";\n"
+"color:  rgb(8, 113, 104);"));
+        pb_add_sub_sate->setFlat(true);
+
+        verticalLayout_25->addWidget(pb_add_sub_sate);
+
+        pb_eliminate_state = new QPushButton(widget_on_state_options);
+        pb_eliminate_state->setObjectName(QStringLiteral("pb_eliminate_state"));
+        pb_eliminate_state->setCursor(QCursor(Qt::PointingHandCursor));
+        pb_eliminate_state->setStyleSheet(QLatin1String("font: 10pt \"Myriad Web\";\n"
+"color:  rgb(8, 113, 104);"));
+        pb_eliminate_state->setFlat(true);
+
+        verticalLayout_25->addWidget(pb_eliminate_state);
+
+        pb_cancel_state_options = new QPushButton(widget_on_state_options);
+        pb_cancel_state_options->setObjectName(QStringLiteral("pb_cancel_state_options"));
+        pb_cancel_state_options->setCursor(QCursor(Qt::PointingHandCursor));
+        pb_cancel_state_options->setStyleSheet(QLatin1String("font: 10pt \"Myriad Web\";\n"
+"color:  rgb(8, 113, 104);"));
+        pb_cancel_state_options->setFlat(true);
+
+        verticalLayout_25->addWidget(pb_cancel_state_options);
+
+        pb_warning_state_machine = new QPushButton(widget_state_machine_screen);
+        pb_warning_state_machine->setObjectName(QStringLiteral("pb_warning_state_machine"));
+        pb_warning_state_machine->setGeometry(QRect(450, 640, 46, 42));
+        pb_warning_state_machine->setStyleSheet(QStringLiteral("background-image: url(:/icons/screen8/warning.png);"));
+        pb_warning_state_machine->setFlat(true);
+        widget_add_delete_event = new QWidget(widget_state_machine_screen);
+        widget_add_delete_event->setObjectName(QStringLiteral("widget_add_delete_event"));
+        widget_add_delete_event->setGeometry(QRect(280, 630, 121, 101));
+        widget_add_delete_event->setStyleSheet(QStringLiteral("background-image: url(:/icons/screen8/fondo_blanco.png);"));
+        verticalLayout_35 = new QVBoxLayout(widget_add_delete_event);
+        verticalLayout_35->setSpacing(6);
+        verticalLayout_35->setContentsMargins(11, 11, 11, 11);
+        verticalLayout_35->setObjectName(QStringLiteral("verticalLayout_35"));
+        verticalLayout_35->setSizeConstraint(QLayout::SetFixedSize);
+        pb_add_event_action = new QPushButton(widget_add_delete_event);
+        pb_add_event_action->setObjectName(QStringLiteral("pb_add_event_action"));
+        pb_add_event_action->setCursor(QCursor(Qt::PointingHandCursor));
+        pb_add_event_action->setStyleSheet(QLatin1String("font: 12pt \"Myriad Web\";\n"
+"color:  rgb(8, 113, 104);"));
+        pb_add_event_action->setFlat(true);
+
+        verticalLayout_35->addWidget(pb_add_event_action);
+
+        pb_delete_event_action = new QPushButton(widget_add_delete_event);
+        pb_delete_event_action->setObjectName(QStringLiteral("pb_delete_event_action"));
+        pb_delete_event_action->setCursor(QCursor(Qt::PointingHandCursor));
+        pb_delete_event_action->setStyleSheet(QLatin1String("font: 12pt \"Myriad Web\";\n"
+"color:  rgb(8, 113, 104);"));
+        pb_delete_event_action->setFlat(true);
+
+        verticalLayout_35->addWidget(pb_delete_event_action);
+
+        pb_cancel_add_event_2 = new QPushButton(widget_add_delete_event);
+        pb_cancel_add_event_2->setObjectName(QStringLiteral("pb_cancel_add_event_2"));
+        pb_cancel_add_event_2->setCursor(QCursor(Qt::PointingHandCursor));
+        pb_cancel_add_event_2->setStyleSheet(QLatin1String("font: 12pt \"Myriad Web\";\n"
+"color:  rgb(8, 113, 104);"));
+        pb_cancel_add_event_2->setFlat(true);
+
+        verticalLayout_35->addWidget(pb_cancel_add_event_2);
+
+        layoutWidget = new QWidget(centralWidget);
+        layoutWidget->setObjectName(QStringLiteral("layoutWidget"));
+        layoutWidget->setGeometry(QRect(2370, 100, 147, 30));
+        horizontalLayout = new QHBoxLayout(layoutWidget);
+        horizontalLayout->setSpacing(6);
+        horizontalLayout->setContentsMargins(11, 11, 11, 11);
+        horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
+        horizontalLayout->setContentsMargins(0, 0, 0, 0);
         horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
-        horizontalLayout_4->addItem(horizontalSpacer);
+        horizontalLayout->addItem(horizontalSpacer);
 
-        horizontalLayout_3 = new QHBoxLayout();
-        horizontalLayout_3->setSpacing(6);
-        horizontalLayout_3->setObjectName(QStringLiteral("horizontalLayout_3"));
-        horizontalLayout_3->setSizeConstraint(QLayout::SetFixedSize);
-        pushButton_Quit = new QPushButton(widget_buttons_quit);
-        pushButton_Quit->setObjectName(QStringLiteral("pushButton_Quit"));
-        pushButton_Quit->setMinimumSize(QSize(105, 29));
-        pushButton_Quit->setMaximumSize(QSize(103, 27));
-        pushButton_Quit->setCursor(QCursor(Qt::PointingHandCursor));
-        pushButton_Quit->setStyleSheet(QStringLiteral("background-image: url(:/Assets/button_quit.png);"));
-        pushButton_Quit->setFlat(true);
+        pb_acept_main_thread = new QPushButton(layoutWidget);
+        pb_acept_main_thread->setObjectName(QStringLiteral("pb_acept_main_thread"));
+        pb_acept_main_thread->setMinimumSize(QSize(53, 28));
+        pb_acept_main_thread->setMaximumSize(QSize(53, 28));
+        pb_acept_main_thread->setCursor(QCursor(Qt::PointingHandCursor));
+        pb_acept_main_thread->setStyleSheet(QStringLiteral("background-image: url(:/icons/screen8/acept_botom.png);"));
+        pb_acept_main_thread->setFlat(true);
 
-        horizontalLayout_3->addWidget(pushButton_Quit);
+        horizontalLayout->addWidget(pb_acept_main_thread);
 
+        horizontalSpacer_5 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
-        horizontalLayout_4->addLayout(horizontalLayout_3);
+        horizontalLayout->addItem(horizontalSpacer_5);
 
-        pushButton_Generate = new QPushButton(widget_buttons_quit);
-        pushButton_Generate->setObjectName(QStringLiteral("pushButton_Generate"));
-        pushButton_Generate->setMinimumSize(QSize(106, 29));
-        pushButton_Generate->setMaximumSize(QSize(104, 27));
-        pushButton_Generate->setCursor(QCursor(Qt::PointingHandCursor));
-        pushButton_Generate->setStyleSheet(QStringLiteral("background-image: url(:/Assets/generate_botom.png);"));
-        pushButton_Generate->setFlat(true);
+        widget_wait = new QWidget(centralWidget);
+        widget_wait->setObjectName(QStringLiteral("widget_wait"));
+        widget_wait->setGeometry(QRect(2370, 160, 144, 31));
+        horizontalLayout_15 = new QHBoxLayout(widget_wait);
+        horizontalLayout_15->setSpacing(6);
+        horizontalLayout_15->setContentsMargins(11, 11, 11, 11);
+        horizontalLayout_15->setObjectName(QStringLiteral("horizontalLayout_15"));
+        horizontalLayout_15->setSizeConstraint(QLayout::SetFixedSize);
+        label_loading = new QLabel(widget_wait);
+        label_loading->setObjectName(QStringLiteral("label_loading"));
+        label_loading->setStyleSheet(QLatin1String("font: 12pt \"Segoe UI\";\n"
+"color:  rgb(21, 172, 112);"));
+        label_loading->setAlignment(Qt::AlignCenter);
 
-        horizontalLayout_4->addWidget(pushButton_Generate);
+        horizontalLayout_15->addWidget(label_loading);
 
         widget_help_buttons = new QWidget(centralWidget);
         widget_help_buttons->setObjectName(QStringLiteral("widget_help_buttons"));
-        widget_help_buttons->setGeometry(QRect(180, 40, 200, 141));
+        widget_help_buttons->setGeometry(QRect(2350, 210, 200, 141));
         widget_help_buttons->setMinimumSize(QSize(0, 0));
         widget_help_buttons->setStyleSheet(QStringLiteral("background-color: rgb(21, 172, 112);"));
         verticalLayout_5 = new QVBoxLayout(widget_help_buttons);
@@ -473,1073 +1309,306 @@ public:
 
         verticalLayout_5->addWidget(pb_about_QT);
 
-        widget_generate_options = new QWidget(centralWidget);
-        widget_generate_options->setObjectName(QStringLiteral("widget_generate_options"));
-        widget_generate_options->setGeometry(QRect(115, 240, 251, 91));
-        verticalLayout_4 = new QVBoxLayout(widget_generate_options);
-        verticalLayout_4->setSpacing(6);
-        verticalLayout_4->setContentsMargins(11, 11, 11, 11);
-        verticalLayout_4->setObjectName(QStringLiteral("verticalLayout_4"));
-        verticalLayout_4->setSizeConstraint(QLayout::SetFixedSize);
-        label_generate_options = new QLabel(widget_generate_options);
-        label_generate_options->setObjectName(QStringLiteral("label_generate_options"));
-        label_generate_options->setMinimumSize(QSize(148, 23));
-        label_generate_options->setMaximumSize(QSize(148, 23));
-        label_generate_options->setStyleSheet(QStringLiteral("background-image: url(:/Assets/label_generate_options.png);"));
-
-        verticalLayout_4->addWidget(label_generate_options);
-
-        horizontalLayout_5 = new QHBoxLayout();
-        horizontalLayout_5->setSpacing(6);
-        horizontalLayout_5->setObjectName(QStringLiteral("horizontalLayout_5"));
-        horizontalLayout_5->setSizeConstraint(QLayout::SetFixedSize);
-        pushButton_generate_folders = new QPushButton(widget_generate_options);
-        pushButton_generate_folders->setObjectName(QStringLiteral("pushButton_generate_folders"));
+        widget_win_buttons = new QWidget(centralWidget);
+        widget_win_buttons->setObjectName(QStringLiteral("widget_win_buttons"));
+        widget_win_buttons->setGeometry(QRect(0, 0, 1366, 180));
+        pb_close_window = new QPushButton(widget_win_buttons);
+        pb_close_window->setObjectName(QStringLiteral("pb_close_window"));
+        pb_close_window->setGeometry(QRect(1280, 20, 51, 40));
         QSizePolicy sizePolicy2(QSizePolicy::Minimum, QSizePolicy::Fixed);
-        sizePolicy2.setHorizontalStretch(16);
-        sizePolicy2.setVerticalStretch(16);
-        sizePolicy2.setHeightForWidth(pushButton_generate_folders->sizePolicy().hasHeightForWidth());
-        pushButton_generate_folders->setSizePolicy(sizePolicy2);
-        pushButton_generate_folders->setMinimumSize(QSize(16, 16));
-        pushButton_generate_folders->setMaximumSize(QSize(16, 16));
-        pushButton_generate_folders->setCursor(QCursor(Qt::PointingHandCursor));
-        pushButton_generate_folders->setStyleSheet(QStringLiteral("border-image: url(:/Assets/check_box_off.png);"));
-        pushButton_generate_folders->setFlat(true);
-
-        horizontalLayout_5->addWidget(pushButton_generate_folders);
-
-        label_generate_options_2 = new QLabel(widget_generate_options);
-        label_generate_options_2->setObjectName(QStringLiteral("label_generate_options_2"));
-        label_generate_options_2->setMinimumSize(QSize(197, 24));
-        label_generate_options_2->setMaximumSize(QSize(197, 24));
-        label_generate_options_2->setStyleSheet(QStringLiteral("background-image: url(:/Assets/generate_folder_text.png);"));
-
-        horizontalLayout_5->addWidget(label_generate_options_2);
-
-
-        verticalLayout_4->addLayout(horizontalLayout_5);
-
-        widget_on_state_options = new QWidget(centralWidget);
-        widget_on_state_options->setObjectName(QStringLiteral("widget_on_state_options"));
-        widget_on_state_options->setGeometry(QRect(970, 40, 101, 121));
-        widget_on_state_options->setCursor(QCursor(Qt::ArrowCursor));
-        verticalLayout_25 = new QVBoxLayout(widget_on_state_options);
-        verticalLayout_25->setSpacing(6);
-        verticalLayout_25->setContentsMargins(11, 11, 11, 11);
-        verticalLayout_25->setObjectName(QStringLiteral("verticalLayout_25"));
-        verticalLayout_25->setSizeConstraint(QLayout::SetFixedSize);
-        pb_open_state = new QPushButton(widget_on_state_options);
-        pb_open_state->setObjectName(QStringLiteral("pb_open_state"));
-        pb_open_state->setCursor(QCursor(Qt::PointingHandCursor));
-        pb_open_state->setStyleSheet(QLatin1String("font:  10pt \"Segoe UI\";\n"
-"border-color: rgb(21, 172, 112);\n"
+        sizePolicy2.setHorizontalStretch(0);
+        sizePolicy2.setVerticalStretch(0);
+        sizePolicy2.setHeightForWidth(pb_close_window->sizePolicy().hasHeightForWidth());
+        pb_close_window->setSizePolicy(sizePolicy2);
+        pb_close_window->setMinimumSize(QSize(29, 19));
+        pb_close_window->setMaximumSize(QSize(67, 40));
+        pb_close_window->setCursor(QCursor(Qt::PointingHandCursor));
+        pb_close_window->setStyleSheet(QStringLiteral(""));
+        QIcon icon1;
+        icon1.addFile(QStringLiteral(":/icons/screen8/quit_botom.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pb_close_window->setIcon(icon1);
+        pb_close_window->setIconSize(QSize(40, 40));
+        pb_close_window->setFlat(true);
+        pb_max_window = new QPushButton(widget_win_buttons);
+        pb_max_window->setObjectName(QStringLiteral("pb_max_window"));
+        pb_max_window->setGeometry(QRect(1210, 21, 51, 40));
+        sizePolicy2.setHeightForWidth(pb_max_window->sizePolicy().hasHeightForWidth());
+        pb_max_window->setSizePolicy(sizePolicy2);
+        pb_max_window->setMinimumSize(QSize(29, 19));
+        pb_max_window->setMaximumSize(QSize(67, 40));
+        pb_max_window->setCursor(QCursor(Qt::PointingHandCursor));
+        pb_max_window->setStyleSheet(QStringLiteral(""));
+        QIcon icon2;
+        icon2.addFile(QStringLiteral(":/icons/screen8/max_botom.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pb_max_window->setIcon(icon2);
+        pb_max_window->setIconSize(QSize(40, 40));
+        pb_max_window->setFlat(true);
+        pushButton_Generate_tag = new QPushButton(widget_win_buttons);
+        pushButton_Generate_tag->setObjectName(QStringLiteral("pushButton_Generate_tag"));
+        pushButton_Generate_tag->setGeometry(QRect(730, 122, 91, 24));
+        sizePolicy2.setHeightForWidth(pushButton_Generate_tag->sizePolicy().hasHeightForWidth());
+        pushButton_Generate_tag->setSizePolicy(sizePolicy2);
+        pushButton_Generate_tag->setMinimumSize(QSize(0, 0));
+        pushButton_Generate_tag->setMaximumSize(QSize(104, 25));
+        pushButton_Generate_tag->setCursor(QCursor(Qt::PointingHandCursor));
+        pushButton_Generate_tag->setStyleSheet(QLatin1String("background-image: url(:/icons/screen1/generate_botom_off.png);\n"
+""));
+        pushButton_Generate_tag->setFlat(true);
+        pb_min_window_ = new QPushButton(widget_win_buttons);
+        pb_min_window_->setObjectName(QStringLiteral("pb_min_window_"));
+        pb_min_window_->setGeometry(QRect(1140, 21, 51, 40));
+        sizePolicy2.setHeightForWidth(pb_min_window_->sizePolicy().hasHeightForWidth());
+        pb_min_window_->setSizePolicy(sizePolicy2);
+        pb_min_window_->setMinimumSize(QSize(29, 19));
+        pb_min_window_->setMaximumSize(QSize(67, 40));
+        pb_min_window_->setCursor(QCursor(Qt::PointingHandCursor));
+        pb_min_window_->setStyleSheet(QStringLiteral(""));
+        QIcon icon3;
+        icon3.addFile(QStringLiteral(":/icons/screen8/min_botom.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pb_min_window_->setIcon(icon3);
+        pb_min_window_->setIconSize(QSize(40, 40));
+        pb_min_window_->setFlat(true);
+        pushButton_Help_tag = new QPushButton(widget_win_buttons);
+        pushButton_Help_tag->setObjectName(QStringLiteral("pushButton_Help_tag"));
+        pushButton_Help_tag->setGeometry(QRect(1060, 122, 47, 25));
+        sizePolicy2.setHeightForWidth(pushButton_Help_tag->sizePolicy().hasHeightForWidth());
+        pushButton_Help_tag->setSizePolicy(sizePolicy2);
+        pushButton_Help_tag->setMinimumSize(QSize(29, 19));
+        pushButton_Help_tag->setMaximumSize(QSize(67, 25));
+        pushButton_Help_tag->setCursor(QCursor(Qt::PointingHandCursor));
+        pushButton_Help_tag->setStyleSheet(QStringLiteral("background-image: url(:/icons/screen1/help_botom_off.png);"));
+        pushButton_Help_tag->setFlat(true);
+        pushButton_Options_tag = new QPushButton(widget_win_buttons);
+        pushButton_Options_tag->setObjectName(QStringLiteral("pushButton_Options_tag"));
+        pushButton_Options_tag->setGeometry(QRect(900, 122, 85, 25));
+        pushButton_Options_tag->setMinimumSize(QSize(49, 19));
+        pushButton_Options_tag->setMaximumSize(QSize(103, 25));
+        pushButton_Options_tag->setCursor(QCursor(Qt::PointingHandCursor));
+        pushButton_Options_tag->setStyleSheet(QStringLiteral("background-image: url(:/icons/screen1/options_botom_off.png);"));
+        pushButton_Options_tag->setFlat(true);
+        label_bar_background = new QLabel(widget_win_buttons);
+        label_bar_background->setObjectName(QStringLiteral("label_bar_background"));
+        label_bar_background->setGeometry(QRect(328, 102, 251, 51));
+        label_bar_background->setMinimumSize(QSize(0, 0));
+        label_bar_background->setMaximumSize(QSize(500, 200));
+        label_bar_background->setStyleSheet(QStringLiteral("background-image: url(:/icons/screen1/neowizard_logo.png);"));
+        l_background_blur = new QWidget(centralWidget);
+        l_background_blur->setObjectName(QStringLiteral("l_background_blur"));
+        l_background_blur->setGeometry(QRect(5310, -10, 1366, 768));
+        l_background_blur->setStyleSheet(QStringLiteral("background-image: url(:/icons/screen8/backgroud_blur.png);"));
+        widget_state_machine_name = new QWidget(l_background_blur);
+        widget_state_machine_name->setObjectName(QStringLiteral("widget_state_machine_name"));
+        widget_state_machine_name->setGeometry(QRect(590, 80, 391, 201));
+        widget_state_machine_name->setStyleSheet(QStringLiteral("background-image: url(:/icons/screen8/rectangulo_central_blanco.png);"));
+        l_state_machine_name = new QLabel(widget_state_machine_name);
+        l_state_machine_name->setObjectName(QStringLiteral("l_state_machine_name"));
+        l_state_machine_name->setGeometry(QRect(110, 50, 189, 21));
+        l_state_machine_name->setStyleSheet(QLatin1String("font: 12pt \"Segoe UI\";\n"
+"background-image: url(:/icons/screen8/State machine name_text.png);\n"
 "color:  rgb(21, 172, 112);"));
-        pb_open_state->setFlat(true);
-
-        verticalLayout_25->addWidget(pb_open_state);
-
-        pb_set_as_initial = new QPushButton(widget_on_state_options);
-        pb_set_as_initial->setObjectName(QStringLiteral("pb_set_as_initial"));
-        pb_set_as_initial->setCursor(QCursor(Qt::PointingHandCursor));
-        pb_set_as_initial->setStyleSheet(QLatin1String("font:  10pt \"Segoe UI\";\n"
-"border-color: rgb(21, 172, 112);\n"
+        le_state_machine_name = new QLineEdit(widget_state_machine_name);
+        le_state_machine_name->setObjectName(QStringLiteral("le_state_machine_name"));
+        le_state_machine_name->setGeometry(QRect(90, 80, 232, 34));
+        le_state_machine_name->setMaximumSize(QSize(234, 16777215));
+        le_state_machine_name->setStyleSheet(QLatin1String("font: 15pt \"Myriad Web\";\n"
+"color:  rgb(8, 113, 104);\n"
+"border-image: url(:/icons/screen8/label.png);\n"
+""));
+        le_state_machine_name->setAlignment(Qt::AlignCenter);
+        pb_acept_sate_machine_name = new QPushButton(widget_state_machine_name);
+        pb_acept_sate_machine_name->setObjectName(QStringLiteral("pb_acept_sate_machine_name"));
+        pb_acept_sate_machine_name->setGeometry(QRect(270, 120, 54, 29));
+        pb_acept_sate_machine_name->setCursor(QCursor(Qt::PointingHandCursor));
+        pb_acept_sate_machine_name->setStyleSheet(QLatin1String("font: 12pt \"Segoe UI\";\n"
+"background-image: url(:/icons/screen8/acept_botom.png);\n"
 "color:  rgb(21, 172, 112);"));
-        pb_set_as_initial->setFlat(true);
-
-        verticalLayout_25->addWidget(pb_set_as_initial);
-
-        pb_configure_state = new QPushButton(widget_on_state_options);
-        pb_configure_state->setObjectName(QStringLiteral("pb_configure_state"));
-        pb_configure_state->setCursor(QCursor(Qt::PointingHandCursor));
-        pb_configure_state->setStyleSheet(QLatin1String("font: 10pt \"Segoe UI\";\n"
-"border-color: rgb(21, 172, 112);\n"
+        pb_acept_sate_machine_name->setFlat(true);
+        pb_cancel_state_machine_name = new QPushButton(widget_state_machine_name);
+        pb_cancel_state_machine_name->setObjectName(QStringLiteral("pb_cancel_state_machine_name"));
+        pb_cancel_state_machine_name->setGeometry(QRect(90, 120, 61, 29));
+        pb_cancel_state_machine_name->setCursor(QCursor(Qt::PointingHandCursor));
+        pb_cancel_state_machine_name->setStyleSheet(QLatin1String("font: 12pt \"Segoe UI\";\n"
+"background-image: url(:/icons/screen8/cancel_botom.png);\n"
 "color:  rgb(21, 172, 112);"));
-        pb_configure_state->setFlat(true);
-
-        verticalLayout_25->addWidget(pb_configure_state);
-
-        pb_add_sub_sate = new QPushButton(widget_on_state_options);
-        pb_add_sub_sate->setObjectName(QStringLiteral("pb_add_sub_sate"));
-        pb_add_sub_sate->setCursor(QCursor(Qt::PointingHandCursor));
-        pb_add_sub_sate->setStyleSheet(QLatin1String("font: 10pt \"Segoe UI\";\n"
-"border-color: rgb(21, 172, 112);\n"
+        pb_cancel_state_machine_name->setFlat(true);
+        widget_main_thread_name = new QWidget(l_background_blur);
+        widget_main_thread_name->setObjectName(QStringLiteral("widget_main_thread_name"));
+        widget_main_thread_name->setGeometry(QRect(540, 330, 391, 201));
+        widget_main_thread_name->setStyleSheet(QStringLiteral("background-image: url(:/icons/screen8/rectangulo_central_blanco.png);"));
+        l_main_thrad_name = new QLabel(widget_main_thread_name);
+        l_main_thrad_name->setObjectName(QStringLiteral("l_main_thrad_name"));
+        l_main_thrad_name->setGeometry(QRect(120, 50, 189, 21));
+        l_main_thrad_name->setStyleSheet(QLatin1String("font: 15pt \"Segoe UI\";\n"
+"color: rgb(128, 128, 128);"));
+        le_main_thread_name_to_load = new QLineEdit(widget_main_thread_name);
+        le_main_thread_name_to_load->setObjectName(QStringLiteral("le_main_thread_name_to_load"));
+        le_main_thread_name_to_load->setGeometry(QRect(90, 80, 232, 34));
+        le_main_thread_name_to_load->setMaximumSize(QSize(234, 16777215));
+        le_main_thread_name_to_load->setStyleSheet(QLatin1String("font: 15pt \"Myriad Web\";\n"
+"color:  rgb(8, 113, 104);\n"
+"border-image: url(:/icons/screen8/label.png);\n"
+""));
+        le_main_thread_name_to_load->setAlignment(Qt::AlignCenter);
+        pb_acept_main_thread_name = new QPushButton(widget_main_thread_name);
+        pb_acept_main_thread_name->setObjectName(QStringLiteral("pb_acept_main_thread_name"));
+        pb_acept_main_thread_name->setGeometry(QRect(270, 120, 54, 29));
+        pb_acept_main_thread_name->setCursor(QCursor(Qt::PointingHandCursor));
+        pb_acept_main_thread_name->setStyleSheet(QLatin1String("font: 12pt \"Segoe UI\";\n"
+"background-image: url(:/icons/screen8/acept_botom.png);\n"
 "color:  rgb(21, 172, 112);"));
-        pb_add_sub_sate->setFlat(true);
-
-        verticalLayout_25->addWidget(pb_add_sub_sate);
-
-        pb_eliminate_state = new QPushButton(widget_on_state_options);
-        pb_eliminate_state->setObjectName(QStringLiteral("pb_eliminate_state"));
-        pb_eliminate_state->setCursor(QCursor(Qt::PointingHandCursor));
-        pb_eliminate_state->setStyleSheet(QLatin1String("font: 10pt \"Segoe UI\";\n"
-"border-color: rgb(21, 172, 112);\n"
+        pb_acept_main_thread_name->setFlat(true);
+        pb_cancel_main_thrad_name = new QPushButton(widget_main_thread_name);
+        pb_cancel_main_thrad_name->setObjectName(QStringLiteral("pb_cancel_main_thrad_name"));
+        pb_cancel_main_thrad_name->setGeometry(QRect(90, 120, 61, 29));
+        pb_cancel_main_thrad_name->setCursor(QCursor(Qt::PointingHandCursor));
+        pb_cancel_main_thrad_name->setStyleSheet(QLatin1String("font: 12pt \"Segoe UI\";\n"
+"background-image: url(:/icons/screen8/cancel_botom.png);\n"
 "color:  rgb(21, 172, 112);"));
-        pb_eliminate_state->setFlat(true);
-
-        verticalLayout_25->addWidget(pb_eliminate_state);
-
-        pb_cancel_state_options = new QPushButton(widget_on_state_options);
-        pb_cancel_state_options->setObjectName(QStringLiteral("pb_cancel_state_options"));
-        pb_cancel_state_options->setCursor(QCursor(Qt::PointingHandCursor));
-        pb_cancel_state_options->setStyleSheet(QLatin1String("font: 10pt \"Segoe UI\";\n"
-"border-color: rgb(21, 172, 112);\n"
-"color:  rgb(21, 172, 112);"));
-        pb_cancel_state_options->setFlat(true);
-
-        verticalLayout_25->addWidget(pb_cancel_state_options);
-
-        widget_event_options = new QWidget(centralWidget);
+        pb_cancel_main_thrad_name->setFlat(true);
+        widget_event_options = new QWidget(l_background_blur);
         widget_event_options->setObjectName(QStringLiteral("widget_event_options"));
-        widget_event_options->setGeometry(QRect(1100, 20, 187, 231));
-        verticalLayout_30 = new QVBoxLayout(widget_event_options);
-        verticalLayout_30->setSpacing(6);
-        verticalLayout_30->setContentsMargins(11, 11, 11, 11);
-        verticalLayout_30->setObjectName(QStringLiteral("verticalLayout_30"));
-        verticalLayout_29 = new QVBoxLayout();
-        verticalLayout_29->setSpacing(6);
-        verticalLayout_29->setObjectName(QStringLiteral("verticalLayout_29"));
-        verticalLayout_29->setSizeConstraint(QLayout::SetFixedSize);
-        verticalLayout_26 = new QVBoxLayout();
-        verticalLayout_26->setSpacing(6);
-        verticalLayout_26->setObjectName(QStringLiteral("verticalLayout_26"));
-        verticalLayout_26->setSizeConstraint(QLayout::SetFixedSize);
-        l_EVENT = new QLabel(widget_event_options);
-        l_EVENT->setObjectName(QStringLiteral("l_EVENT"));
-        l_EVENT->setStyleSheet(QLatin1String("font: 12pt \"Segoe UI\";\n"
-"color:  rgb(21, 172, 112);"));
-
-        verticalLayout_26->addWidget(l_EVENT);
-
-        le_event_ID_name = new QLineEdit(widget_event_options);
-        le_event_ID_name->setObjectName(QStringLiteral("le_event_ID_name"));
-        le_event_ID_name->setMaximumSize(QSize(165, 16777215));
-        le_event_ID_name->setStyleSheet(QLatin1String("font: 10pt \"Segoe UI\";\n"
-"color: rgb(255, 245, 242);"));
-
-        verticalLayout_26->addWidget(le_event_ID_name);
-
-
-        verticalLayout_29->addLayout(verticalLayout_26);
-
-        verticalLayout_27 = new QVBoxLayout();
-        verticalLayout_27->setSpacing(6);
-        verticalLayout_27->setObjectName(QStringLiteral("verticalLayout_27"));
-        verticalLayout_27->setSizeConstraint(QLayout::SetFixedSize);
-        l_NEXT_STATE = new QLabel(widget_event_options);
-        l_NEXT_STATE->setObjectName(QStringLiteral("l_NEXT_STATE"));
-        l_NEXT_STATE->setStyleSheet(QLatin1String("font: 12pt \"Segoe UI\";\n"
-"color:  rgb(21, 172, 112);"));
-
-        verticalLayout_27->addWidget(l_NEXT_STATE);
-
-        le_next_state_name = new QLineEdit(widget_event_options);
-        le_next_state_name->setObjectName(QStringLiteral("le_next_state_name"));
-        le_next_state_name->setMaximumSize(QSize(165, 16777215));
-        le_next_state_name->setStyleSheet(QLatin1String("font: 10pt \"Segoe UI\";\n"
-"color: rgb(255, 245, 242);"));
-
-        verticalLayout_27->addWidget(le_next_state_name);
-
-
-        verticalLayout_29->addLayout(verticalLayout_27);
-
-        verticalLayout_28 = new QVBoxLayout();
-        verticalLayout_28->setSpacing(6);
-        verticalLayout_28->setObjectName(QStringLiteral("verticalLayout_28"));
-        verticalLayout_28->setSizeConstraint(QLayout::SetFixedSize);
-        l_ACTION = new QLabel(widget_event_options);
-        l_ACTION->setObjectName(QStringLiteral("l_ACTION"));
-        l_ACTION->setStyleSheet(QLatin1String("font: 12pt \"Segoe UI\";\n"
-"color:  rgb(21, 172, 112);"));
-
-        verticalLayout_28->addWidget(l_ACTION);
-
-        le_action_name = new QLineEdit(widget_event_options);
-        le_action_name->setObjectName(QStringLiteral("le_action_name"));
-        le_action_name->setMinimumSize(QSize(165, 0));
-        le_action_name->setMaximumSize(QSize(165, 16777215));
-        le_action_name->setStyleSheet(QLatin1String("font: 10pt \"Segoe UI\";\n"
-"color: rgb(255, 245, 242);"));
-
-        verticalLayout_28->addWidget(le_action_name);
-
-
-        verticalLayout_29->addLayout(verticalLayout_28);
-
-
-        verticalLayout_30->addLayout(verticalLayout_29);
-
-        horizontalLayout_10 = new QHBoxLayout();
+        widget_event_options->setGeometry(QRect(60, 100, 401, 400));
+        widget_event_options->setStyleSheet(QStringLiteral("background-image: url(:/icons/screen8/square_blanco.png);"));
+        layoutWidget_2 = new QWidget(widget_event_options);
+        layoutWidget_2->setObjectName(QStringLiteral("layoutWidget_2"));
+        layoutWidget_2->setGeometry(QRect(88, 290, 279, 32));
+        horizontalLayout_10 = new QHBoxLayout(layoutWidget_2);
         horizontalLayout_10->setSpacing(6);
+        horizontalLayout_10->setContentsMargins(11, 11, 11, 11);
         horizontalLayout_10->setObjectName(QStringLiteral("horizontalLayout_10"));
-        pb_cancel_add_event = new QPushButton(widget_event_options);
+        horizontalLayout_10->setContentsMargins(0, 0, 0, 0);
+        pb_cancel_add_event = new QPushButton(layoutWidget_2);
         pb_cancel_add_event->setObjectName(QStringLiteral("pb_cancel_add_event"));
+        pb_cancel_add_event->setMinimumSize(QSize(61, 29));
+        pb_cancel_add_event->setMaximumSize(QSize(61, 29));
         pb_cancel_add_event->setCursor(QCursor(Qt::PointingHandCursor));
-        pb_cancel_add_event->setStyleSheet(QLatin1String("font: 12pt \"Segoe UI\";\n"
-"color:  rgb(21, 172, 112);"));
+        pb_cancel_add_event->setStyleSheet(QLatin1String("font: 14pt \"Myriad Web\";\n"
+"color:  rgb(8, 113, 104);"));
         pb_cancel_add_event->setFlat(true);
 
         horizontalLayout_10->addWidget(pb_cancel_add_event);
 
-        pb_add_event = new QPushButton(widget_event_options);
+        horizontalSpacer_6 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_10->addItem(horizontalSpacer_6);
+
+        pb_add_event = new QPushButton(layoutWidget_2);
         pb_add_event->setObjectName(QStringLiteral("pb_add_event"));
         pb_add_event->setCursor(QCursor(Qt::PointingHandCursor));
-        pb_add_event->setStyleSheet(QLatin1String("font: 12pt \"Segoe UI\";\n"
-"color:  rgb(21, 172, 112);"));
+        pb_add_event->setStyleSheet(QLatin1String("font: 14pt \"Myriad Web\";\n"
+"color:  rgb(8, 113, 104);"));
         pb_add_event->setFlat(true);
 
         horizontalLayout_10->addWidget(pb_add_event);
 
-        pb_delete_event = new QPushButton(widget_event_options);
+        pb_delete_event = new QPushButton(layoutWidget_2);
         pb_delete_event->setObjectName(QStringLiteral("pb_delete_event"));
         pb_delete_event->setCursor(QCursor(Qt::PointingHandCursor));
-        pb_delete_event->setStyleSheet(QLatin1String("font: 12pt \"Segoe UI\";\n"
-"color:  rgb(21, 172, 112);"));
+        pb_delete_event->setStyleSheet(QLatin1String("font: 14pt \"Myriad Web\";\n"
+"color:  rgb(8, 113, 104);"));
         pb_delete_event->setFlat(true);
 
         horizontalLayout_10->addWidget(pb_delete_event);
 
+        layoutWidget_3 = new QWidget(widget_event_options);
+        layoutWidget_3->setObjectName(QStringLiteral("layoutWidget_3"));
+        layoutWidget_3->setGeometry(QRect(80, 80, 234, 63));
+        verticalLayout_26 = new QVBoxLayout(layoutWidget_3);
+        verticalLayout_26->setSpacing(6);
+        verticalLayout_26->setContentsMargins(11, 11, 11, 11);
+        verticalLayout_26->setObjectName(QStringLiteral("verticalLayout_26"));
+        verticalLayout_26->setSizeConstraint(QLayout::SetFixedSize);
+        verticalLayout_26->setContentsMargins(0, 0, 0, 0);
+        l_EVENT = new QLabel(layoutWidget_3);
+        l_EVENT->setObjectName(QStringLiteral("l_EVENT"));
+        l_EVENT->setStyleSheet(QLatin1String("font: 12pt \"Segoe UI\";\n"
+"color: rgb(128, 128, 128);"));
+        l_EVENT->setAlignment(Qt::AlignCenter);
 
-        verticalLayout_30->addLayout(horizontalLayout_10);
+        verticalLayout_26->addWidget(l_EVENT);
 
-        pb_warning_state_machine = new QPushButton(centralWidget);
-        pb_warning_state_machine->setObjectName(QStringLiteral("pb_warning_state_machine"));
-        pb_warning_state_machine->setGeometry(QRect(910, 20, 46, 43));
-        pb_warning_state_machine->setStyleSheet(QStringLiteral("background-image: url(:/Assets/warning.png); background-color: rgb(89, 99, 113);"));
-        pb_warning_state_machine->setFlat(true);
-        widget_add_delete_event = new QWidget(centralWidget);
-        widget_add_delete_event->setObjectName(QStringLiteral("widget_add_delete_event"));
-        widget_add_delete_event->setGeometry(QRect(810, 10, 96, 66));
-        verticalLayout_35 = new QVBoxLayout(widget_add_delete_event);
-        verticalLayout_35->setSpacing(6);
-        verticalLayout_35->setContentsMargins(11, 11, 11, 11);
-        verticalLayout_35->setObjectName(QStringLiteral("verticalLayout_35"));
-        verticalLayout_35->setSizeConstraint(QLayout::SetFixedSize);
-        pb_add_event_action = new QPushButton(widget_add_delete_event);
-        pb_add_event_action->setObjectName(QStringLiteral("pb_add_event_action"));
-        pb_add_event_action->setCursor(QCursor(Qt::PointingHandCursor));
-        pb_add_event_action->setStyleSheet(QLatin1String("font: 12pt \"Segoe UI\";\n"
-"color:  rgb(21, 172, 112);"));
-        pb_add_event_action->setFlat(true);
-
-        verticalLayout_35->addWidget(pb_add_event_action);
-
-        pb_delete_event_action = new QPushButton(widget_add_delete_event);
-        pb_delete_event_action->setObjectName(QStringLiteral("pb_delete_event_action"));
-        pb_delete_event_action->setCursor(QCursor(Qt::PointingHandCursor));
-        pb_delete_event_action->setStyleSheet(QLatin1String("font: 12pt \"Segoe UI\";\n"
-"color:  rgb(21, 172, 112);"));
-        pb_delete_event_action->setFlat(true);
-
-        verticalLayout_35->addWidget(pb_delete_event_action);
-
-        pb_cancel_add_event_2 = new QPushButton(widget_add_delete_event);
-        pb_cancel_add_event_2->setObjectName(QStringLiteral("pb_cancel_add_event_2"));
-        pb_cancel_add_event_2->setCursor(QCursor(Qt::PointingHandCursor));
-        pb_cancel_add_event_2->setStyleSheet(QLatin1String("font: 12pt \"Segoe UI\";\n"
-"color:  rgb(21, 172, 112);"));
-        pb_cancel_add_event_2->setFlat(true);
-
-        verticalLayout_35->addWidget(pb_cancel_add_event_2);
-
-        widget_options = new QWidget(centralWidget);
-        widget_options->setObjectName(QStringLiteral("widget_options"));
-        widget_options->setGeometry(QRect(30, 310, 1261, 476));
-        horizontalLayout_14 = new QHBoxLayout(widget_options);
-        horizontalLayout_14->setSpacing(6);
-        horizontalLayout_14->setContentsMargins(11, 11, 11, 11);
-        horizontalLayout_14->setObjectName(QStringLiteral("horizontalLayout_14"));
-        widget_options_buttons = new QWidget(widget_options);
-        widget_options_buttons->setObjectName(QStringLiteral("widget_options_buttons"));
-        widget_options_buttons->setMinimumSize(QSize(300, 200));
-        widget_options_buttons->setMaximumSize(QSize(300, 460));
-        widget_options_buttons->setStyleSheet(QLatin1String("font: 12pt \"Segoe UI\";\n"
-"color: rgb(21, 172, 112);"));
-        verticalLayout_10 = new QVBoxLayout(widget_options_buttons);
-        verticalLayout_10->setSpacing(20);
-        verticalLayout_10->setContentsMargins(11, 11, 11, 11);
-        verticalLayout_10->setObjectName(QStringLiteral("verticalLayout_10"));
-        verticalLayout_10->setSizeConstraint(QLayout::SetFixedSize);
-        pb_configure_state_machine = new QPushButton(widget_options_buttons);
-        pb_configure_state_machine->setObjectName(QStringLiteral("pb_configure_state_machine"));
-        pb_configure_state_machine->setEnabled(true);
-        pb_configure_state_machine->setMinimumSize(QSize(150, 40));
-        pb_configure_state_machine->setMaximumSize(QSize(200, 50));
-        pb_configure_state_machine->setCursor(QCursor(Qt::PointingHandCursor));
-        pb_configure_state_machine->setStyleSheet(QLatin1String("font: 12pt \"Segoe UI\";\n"
-"color:  rgb(21, 172, 112);\n"
+        le_event_ID_name = new QLineEdit(layoutWidget_3);
+        le_event_ID_name->setObjectName(QStringLiteral("le_event_ID_name"));
+        le_event_ID_name->setMinimumSize(QSize(232, 34));
+        le_event_ID_name->setMaximumSize(QSize(232, 16777215));
+        le_event_ID_name->setStyleSheet(QLatin1String("font: 15pt \"Myriad Web\";\n"
+"color:  rgb(8, 113, 104);\n"
+"border-image: url(:/icons/screen8/label.png);\n"
 ""));
-        pb_configure_state_machine->setFlat(true);
+        le_event_ID_name->setAlignment(Qt::AlignCenter);
 
-        verticalLayout_10->addWidget(pb_configure_state_machine);
+        verticalLayout_26->addWidget(le_event_ID_name);
 
-        verticalSpacer = new QSpacerItem(10, 20, QSizePolicy::Minimum, QSizePolicy::Expanding);
+        layoutWidget_4 = new QWidget(widget_event_options);
+        layoutWidget_4->setObjectName(QStringLiteral("layoutWidget_4"));
+        layoutWidget_4->setGeometry(QRect(80, 150, 234, 63));
+        verticalLayout_27 = new QVBoxLayout(layoutWidget_4);
+        verticalLayout_27->setSpacing(6);
+        verticalLayout_27->setContentsMargins(11, 11, 11, 11);
+        verticalLayout_27->setObjectName(QStringLiteral("verticalLayout_27"));
+        verticalLayout_27->setSizeConstraint(QLayout::SetFixedSize);
+        verticalLayout_27->setContentsMargins(0, 0, 0, 0);
+        l_NEXT_STATE = new QLabel(layoutWidget_4);
+        l_NEXT_STATE->setObjectName(QStringLiteral("l_NEXT_STATE"));
+        l_NEXT_STATE->setStyleSheet(QLatin1String("font: 12pt \"Segoe UI\";\n"
+"color: rgb(128, 128, 128);"));
+        l_NEXT_STATE->setAlignment(Qt::AlignCenter);
 
-        verticalLayout_10->addItem(verticalSpacer);
+        verticalLayout_27->addWidget(l_NEXT_STATE);
 
-        pb_configure_Main_thread = new QPushButton(widget_options_buttons);
-        pb_configure_Main_thread->setObjectName(QStringLiteral("pb_configure_Main_thread"));
-        pb_configure_Main_thread->setEnabled(true);
-        pb_configure_Main_thread->setMinimumSize(QSize(150, 40));
-        pb_configure_Main_thread->setMaximumSize(QSize(200, 50));
-        pb_configure_Main_thread->setCursor(QCursor(Qt::PointingHandCursor));
-        pb_configure_Main_thread->setStyleSheet(QLatin1String("font: 12pt \"Segoe UI\";\n"
-"color:  rgb(21, 172, 112);;\n"
+        le_next_state_name = new QLineEdit(layoutWidget_4);
+        le_next_state_name->setObjectName(QStringLiteral("le_next_state_name"));
+        le_next_state_name->setMinimumSize(QSize(232, 34));
+        le_next_state_name->setMaximumSize(QSize(232, 16777215));
+        le_next_state_name->setStyleSheet(QLatin1String("font: 15pt \"Myriad Web\";\n"
+"color:  rgb(8, 113, 104);\n"
+"border-image: url(:/icons/screen8/label.png);\n"
 ""));
-        pb_configure_Main_thread->setFlat(true);
+        le_next_state_name->setAlignment(Qt::AlignCenter);
 
-        verticalLayout_10->addWidget(pb_configure_Main_thread);
+        verticalLayout_27->addWidget(le_next_state_name);
 
-        pb_configure_thread_in_main = new QPushButton(widget_options_buttons);
-        pb_configure_thread_in_main->setObjectName(QStringLiteral("pb_configure_thread_in_main"));
-        pb_configure_thread_in_main->setEnabled(true);
-        pb_configure_thread_in_main->setMinimumSize(QSize(150, 40));
-        pb_configure_thread_in_main->setMaximumSize(QSize(200, 50));
-        pb_configure_thread_in_main->setCursor(QCursor(Qt::PointingHandCursor));
-        pb_configure_thread_in_main->setStyleSheet(QLatin1String("font: 12pt \"Segoe UI\";\n"
-"color:  rgb(21, 172, 112);\n"
-"border-color: rgb(21, 172, 112);"));
-        pb_configure_thread_in_main->setFlat(true);
+        layoutWidget_5 = new QWidget(widget_event_options);
+        layoutWidget_5->setObjectName(QStringLiteral("layoutWidget_5"));
+        layoutWidget_5->setGeometry(QRect(80, 220, 234, 63));
+        verticalLayout_28 = new QVBoxLayout(layoutWidget_5);
+        verticalLayout_28->setSpacing(6);
+        verticalLayout_28->setContentsMargins(11, 11, 11, 11);
+        verticalLayout_28->setObjectName(QStringLiteral("verticalLayout_28"));
+        verticalLayout_28->setSizeConstraint(QLayout::SetFixedSize);
+        verticalLayout_28->setContentsMargins(0, 0, 0, 0);
+        l_ACTION = new QLabel(layoutWidget_5);
+        l_ACTION->setObjectName(QStringLiteral("l_ACTION"));
+        l_ACTION->setStyleSheet(QLatin1String("font: 12pt \"Segoe UI\";\n"
+"color: rgb(128, 128, 128);"));
+        l_ACTION->setAlignment(Qt::AlignCenter);
 
-        verticalLayout_10->addWidget(pb_configure_thread_in_main);
+        verticalLayout_28->addWidget(l_ACTION);
 
-        pb_configure_thread_in_class = new QPushButton(widget_options_buttons);
-        pb_configure_thread_in_class->setObjectName(QStringLiteral("pb_configure_thread_in_class"));
-        pb_configure_thread_in_class->setEnabled(true);
-        pb_configure_thread_in_class->setMinimumSize(QSize(150, 40));
-        pb_configure_thread_in_class->setMaximumSize(QSize(200, 50));
-        pb_configure_thread_in_class->setCursor(QCursor(Qt::PointingHandCursor));
-        pb_configure_thread_in_class->setStyleSheet(QLatin1String("font: 12pt \"Segoe UI\";\n"
-"color: rgb(21, 172, 112);\n"
+        le_action_name = new QLineEdit(layoutWidget_5);
+        le_action_name->setObjectName(QStringLiteral("le_action_name"));
+        le_action_name->setMinimumSize(QSize(232, 34));
+        le_action_name->setMaximumSize(QSize(232, 34));
+        le_action_name->setStyleSheet(QLatin1String("font: 15pt \"Myriad Web\";\n"
+"color:  rgb(8, 113, 104);\n"
+"border-image: url(:/icons/screen8/label.png);\n"
 ""));
-        pb_configure_thread_in_class->setFlat(true);
+        le_action_name->setAlignment(Qt::AlignCenter);
 
-        verticalLayout_10->addWidget(pb_configure_thread_in_class);
-
-        pb_load_from_Thread = new QPushButton(widget_options_buttons);
-        pb_load_from_Thread->setObjectName(QStringLiteral("pb_load_from_Thread"));
-        pb_load_from_Thread->setEnabled(true);
-        pb_load_from_Thread->setMinimumSize(QSize(150, 40));
-        pb_load_from_Thread->setMaximumSize(QSize(200, 50));
-        pb_load_from_Thread->setCursor(QCursor(Qt::PointingHandCursor));
-        pb_load_from_Thread->setStyleSheet(QLatin1String("font: 12pt \"Segoe UI\";\n"
-"color:  rgb(21, 172, 112);\n"
-""));
-        pb_load_from_Thread->setFlat(true);
-
-        verticalLayout_10->addWidget(pb_load_from_Thread);
-
-        pb_load_state_machine = new QPushButton(widget_options_buttons);
-        pb_load_state_machine->setObjectName(QStringLiteral("pb_load_state_machine"));
-        pb_load_state_machine->setEnabled(true);
-        pb_load_state_machine->setMinimumSize(QSize(150, 40));
-        pb_load_state_machine->setMaximumSize(QSize(200, 50));
-        pb_load_state_machine->setCursor(QCursor(Qt::PointingHandCursor));
-        pb_load_state_machine->setStyleSheet(QLatin1String("font: 12pt \"Segoe UI\";\n"
-"color:  rgb(21, 172, 112);\n"
-""));
-        pb_load_state_machine->setFlat(true);
-
-        verticalLayout_10->addWidget(pb_load_state_machine);
-
-        pb_save_state_machine = new QPushButton(widget_options_buttons);
-        pb_save_state_machine->setObjectName(QStringLiteral("pb_save_state_machine"));
-        pb_save_state_machine->setEnabled(true);
-        pb_save_state_machine->setMinimumSize(QSize(150, 40));
-        pb_save_state_machine->setMaximumSize(QSize(200, 50));
-        pb_save_state_machine->setCursor(QCursor(Qt::PointingHandCursor));
-        pb_save_state_machine->setStyleSheet(QLatin1String("font: 12pt \"Segoe UI\";\n"
-"color:  rgb(21, 172, 112);\n"
-""));
-        pb_save_state_machine->setFlat(true);
-
-        verticalLayout_10->addWidget(pb_save_state_machine);
-
-
-        horizontalLayout_14->addWidget(widget_options_buttons);
-
-        widget_options_thread_options = new QWidget(widget_options);
-        widget_options_thread_options->setObjectName(QStringLiteral("widget_options_thread_options"));
-        verticalLayout_9 = new QVBoxLayout(widget_options_thread_options);
-        verticalLayout_9->setSpacing(20);
-        verticalLayout_9->setContentsMargins(11, 11, 11, 11);
-        verticalLayout_9->setObjectName(QStringLiteral("verticalLayout_9"));
-        verticalLayout_9->setSizeConstraint(QLayout::SetFixedSize);
-        verticalLayout_6 = new QVBoxLayout();
-        verticalLayout_6->setSpacing(6);
-        verticalLayout_6->setObjectName(QStringLiteral("verticalLayout_6"));
-        verticalLayout_6->setSizeConstraint(QLayout::SetFixedSize);
-        l_thread_name = new QLabel(widget_options_thread_options);
-        l_thread_name->setObjectName(QStringLiteral("l_thread_name"));
-        l_thread_name->setStyleSheet(QLatin1String("font: 12pt \"Segoe UI\";\n"
-"color: rgb(255, 245, 242);\n"
-"border-color: rgb(21, 172, 112);"));
-
-        verticalLayout_6->addWidget(l_thread_name);
-
-        le_thread_name = new QLineEdit(widget_options_thread_options);
-        le_thread_name->setObjectName(QStringLiteral("le_thread_name"));
-        le_thread_name->setStyleSheet(QLatin1String("font: 12pt \"Segoe UI\";\n"
-"color: rgb(255, 245, 242);\n"
-"border-color: rgb(21, 172, 112);"));
-
-        verticalLayout_6->addWidget(le_thread_name);
-
-
-        verticalLayout_9->addLayout(verticalLayout_6);
-
-        verticalLayout_32 = new QVBoxLayout();
-        verticalLayout_32->setSpacing(6);
-        verticalLayout_32->setObjectName(QStringLiteral("verticalLayout_32"));
-        verticalLayout_32->setSizeConstraint(QLayout::SetFixedSize);
-        l_main_thread_name = new QLabel(widget_options_thread_options);
-        l_main_thread_name->setObjectName(QStringLiteral("l_main_thread_name"));
-        l_main_thread_name->setStyleSheet(QLatin1String("font: 12pt \"Segoe UI\";\n"
-"color: rgb(255, 245, 242);\n"
-"border-color: rgb(21, 172, 112);"));
-
-        verticalLayout_32->addWidget(l_main_thread_name);
-
-        le_main_thread_name = new QLineEdit(widget_options_thread_options);
-        le_main_thread_name->setObjectName(QStringLiteral("le_main_thread_name"));
-        le_main_thread_name->setStyleSheet(QLatin1String("font: 12pt \"Segoe UI\";\n"
-"color: rgb(255, 245, 242);\n"
-"border-color: rgb(21, 172, 112);"));
-
-        verticalLayout_32->addWidget(le_main_thread_name);
-
-
-        verticalLayout_9->addLayout(verticalLayout_32);
-
-        verticalLayout_8 = new QVBoxLayout();
-        verticalLayout_8->setSpacing(6);
-        verticalLayout_8->setObjectName(QStringLiteral("verticalLayout_8"));
-        verticalLayout_8->setSizeConstraint(QLayout::SetFixedSize);
-        l_thread_priority = new QLabel(widget_options_thread_options);
-        l_thread_priority->setObjectName(QStringLiteral("l_thread_priority"));
-        l_thread_priority->setStyleSheet(QLatin1String("font: 12pt \"Segoe UI\";\n"
-"color: rgb(255, 245, 242);\n"
-"border-color: rgb(21, 172, 112);"));
-
-        verticalLayout_8->addWidget(l_thread_priority);
-
-        cb_thread_priority = new QComboBox(widget_options_thread_options);
-        cb_thread_priority->setObjectName(QStringLiteral("cb_thread_priority"));
-        cb_thread_priority->setStyleSheet(QLatin1String("font: 12pt \"Segoe UI\";\n"
-"color: rgb(255, 245, 242);\n"
-"border-color: rgb(21, 172, 112);"));
-
-        verticalLayout_8->addWidget(cb_thread_priority);
-
-
-        verticalLayout_9->addLayout(verticalLayout_8);
-
-        verticalLayout_7 = new QVBoxLayout();
-        verticalLayout_7->setSpacing(6);
-        verticalLayout_7->setObjectName(QStringLiteral("verticalLayout_7"));
-        verticalLayout_7->setSizeConstraint(QLayout::SetFixedSize);
-        l_thread_stack_size = new QLabel(widget_options_thread_options);
-        l_thread_stack_size->setObjectName(QStringLiteral("l_thread_stack_size"));
-        l_thread_stack_size->setStyleSheet(QLatin1String("font: 12pt \"Segoe UI\";\n"
-"color: rgb(255, 245, 242);\n"
-"border-color: rgb(21, 172, 112);"));
-
-        verticalLayout_7->addWidget(l_thread_stack_size);
-
-        sb_thread_stack_size = new QSpinBox(widget_options_thread_options);
-        sb_thread_stack_size->setObjectName(QStringLiteral("sb_thread_stack_size"));
-        sb_thread_stack_size->setStyleSheet(QLatin1String("font: 12pt \"Segoe UI\";\n"
-"color: rgb(255, 245, 242);\n"
-"border-color: rgb(21, 172, 112);"));
-        sb_thread_stack_size->setMaximum(4096);
-
-        verticalLayout_7->addWidget(sb_thread_stack_size);
-
-
-        verticalLayout_9->addLayout(verticalLayout_7);
-
-        pb_acept_main_thread = new QPushButton(widget_options_thread_options);
-        pb_acept_main_thread->setObjectName(QStringLiteral("pb_acept_main_thread"));
-        pb_acept_main_thread->setCursor(QCursor(Qt::PointingHandCursor));
-        pb_acept_main_thread->setStyleSheet(QLatin1String("font: 12pt \"Segoe UI\";\n"
-"color:  rgb(21, 172, 112);"));
-        pb_acept_main_thread->setFlat(true);
-
-        verticalLayout_9->addWidget(pb_acept_main_thread);
-
-        pb_add_thread = new QPushButton(widget_options_thread_options);
-        pb_add_thread->setObjectName(QStringLiteral("pb_add_thread"));
-        pb_add_thread->setCursor(QCursor(Qt::PointingHandCursor));
-        pb_add_thread->setStyleSheet(QLatin1String("font: 12pt \"Segoe UI\";\n"
-"color:  rgb(21, 172, 112);"));
-        pb_add_thread->setFlat(true);
-
-        verticalLayout_9->addWidget(pb_add_thread);
-
-
-        horizontalLayout_14->addWidget(widget_options_thread_options);
-
-        widget_state_machine_name = new QWidget(widget_options);
-        widget_state_machine_name->setObjectName(QStringLiteral("widget_state_machine_name"));
-        verticalLayout_33 = new QVBoxLayout(widget_state_machine_name);
-        verticalLayout_33->setSpacing(6);
-        verticalLayout_33->setContentsMargins(11, 11, 11, 11);
-        verticalLayout_33->setObjectName(QStringLiteral("verticalLayout_33"));
-        verticalLayout_33->setSizeConstraint(QLayout::SetFixedSize);
-        verticalSpacer_4 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
-
-        verticalLayout_33->addItem(verticalSpacer_4);
-
-        l_state_machine_name = new QLabel(widget_state_machine_name);
-        l_state_machine_name->setObjectName(QStringLiteral("l_state_machine_name"));
-        l_state_machine_name->setStyleSheet(QLatin1String("font: 12pt \"Segoe UI\";\n"
-"color:  rgb(21, 172, 112);"));
-
-        verticalLayout_33->addWidget(l_state_machine_name);
-
-        le_state_machine_name = new QLineEdit(widget_state_machine_name);
-        le_state_machine_name->setObjectName(QStringLiteral("le_state_machine_name"));
-        le_state_machine_name->setMaximumSize(QSize(165, 16777215));
-        le_state_machine_name->setStyleSheet(QLatin1String("font: 10pt \"Segoe UI\";\n"
-"color: rgb(255, 245, 242);"));
-
-        verticalLayout_33->addWidget(le_state_machine_name);
-
-        horizontalLayout_11 = new QHBoxLayout();
-        horizontalLayout_11->setSpacing(6);
-        horizontalLayout_11->setObjectName(QStringLiteral("horizontalLayout_11"));
-        horizontalLayout_11->setSizeConstraint(QLayout::SetFixedSize);
-        pb_cancel_state_machine_name = new QPushButton(widget_state_machine_name);
-        pb_cancel_state_machine_name->setObjectName(QStringLiteral("pb_cancel_state_machine_name"));
-        pb_cancel_state_machine_name->setCursor(QCursor(Qt::PointingHandCursor));
-        pb_cancel_state_machine_name->setStyleSheet(QLatin1String("font: 12pt \"Segoe UI\";\n"
-"color:  rgb(21, 172, 112);"));
-        pb_cancel_state_machine_name->setFlat(true);
-
-        horizontalLayout_11->addWidget(pb_cancel_state_machine_name);
-
-        pb_acept_sate_machine_name = new QPushButton(widget_state_machine_name);
-        pb_acept_sate_machine_name->setObjectName(QStringLiteral("pb_acept_sate_machine_name"));
-        pb_acept_sate_machine_name->setCursor(QCursor(Qt::PointingHandCursor));
-        pb_acept_sate_machine_name->setStyleSheet(QLatin1String("font: 12pt \"Segoe UI\";\n"
-"color:  rgb(21, 172, 112);"));
-        pb_acept_sate_machine_name->setFlat(true);
-
-        horizontalLayout_11->addWidget(pb_acept_sate_machine_name);
-
-
-        verticalLayout_33->addLayout(horizontalLayout_11);
-
-        verticalSpacer_3 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
-
-        verticalLayout_33->addItem(verticalSpacer_3);
-
-
-        horizontalLayout_14->addWidget(widget_state_machine_name);
-
-        horizontalLayout_13 = new QHBoxLayout();
-        horizontalLayout_13->setSpacing(6);
-        horizontalLayout_13->setObjectName(QStringLiteral("horizontalLayout_13"));
-        horizontalLayout_13->setSizeConstraint(QLayout::SetFixedSize);
-        widget_layout_state_machine = new QWidget(widget_options);
-        widget_layout_state_machine->setObjectName(QStringLiteral("widget_layout_state_machine"));
-        verticalLayout_11 = new QVBoxLayout(widget_layout_state_machine);
-        verticalLayout_11->setSpacing(6);
-        verticalLayout_11->setContentsMargins(11, 11, 11, 11);
-        verticalLayout_11->setObjectName(QStringLiteral("verticalLayout_11"));
-        verticalLayout_11->setSizeConstraint(QLayout::SetFixedSize);
-        widget_back_search = new QWidget(widget_layout_state_machine);
-        widget_back_search->setObjectName(QStringLiteral("widget_back_search"));
-        widget_back_search->setMinimumSize(QSize(0, 0));
-        widget_back_search->setMaximumSize(QSize(500, 100));
-        horizontalLayout_7 = new QHBoxLayout(widget_back_search);
-        horizontalLayout_7->setSpacing(20);
-        horizontalLayout_7->setContentsMargins(11, 11, 11, 11);
-        horizontalLayout_7->setObjectName(QStringLiteral("horizontalLayout_7"));
-        horizontalLayout_7->setSizeConstraint(QLayout::SetFixedSize);
-        pb_back = new QPushButton(widget_back_search);
-        pb_back->setObjectName(QStringLiteral("pb_back"));
-        pb_back->setMaximumSize(QSize(16777215, 30));
-        pb_back->setCursor(QCursor(Qt::PointingHandCursor));
-        pb_back->setStyleSheet(QLatin1String("font: 12pt \"Segoe UI\";\n"
-"color:  rgb(21, 172, 112);"));
-        pb_back->setFlat(true);
-
-        horizontalLayout_7->addWidget(pb_back);
-
-        l_state_parent_tag = new QLabel(widget_back_search);
-        l_state_parent_tag->setObjectName(QStringLiteral("l_state_parent_tag"));
-        l_state_parent_tag->setMaximumSize(QSize(16777215, 20));
-        l_state_parent_tag->setStyleSheet(QLatin1String("font: 11pt \"Segoe UI\";\n"
-"color:  rgb(21, 172, 112);\n"
-""));
-
-        horizontalLayout_7->addWidget(l_state_parent_tag);
-
-        l_name_current_state = new QLabel(widget_back_search);
-        l_name_current_state->setObjectName(QStringLiteral("l_name_current_state"));
-        l_name_current_state->setMinimumSize(QSize(80, 0));
-        l_name_current_state->setMaximumSize(QSize(80, 20));
-        l_name_current_state->setStyleSheet(QLatin1String("background-color: rgb(48, 60, 77);\n"
-"font: 11pt \"Segoe UI\";\n"
-"color:  rgb(21, 172, 112);"));
-
-        horizontalLayout_7->addWidget(l_name_current_state);
-
-        verticalLayout_31 = new QVBoxLayout();
-        verticalLayout_31->setSpacing(6);
-        verticalLayout_31->setObjectName(QStringLiteral("verticalLayout_31"));
-        verticalLayout_31->setSizeConstraint(QLayout::SetFixedSize);
-        pb_search_state = new QPushButton(widget_back_search);
-        pb_search_state->setObjectName(QStringLiteral("pb_search_state"));
-        pb_search_state->setMinimumSize(QSize(0, 20));
-        pb_search_state->setMaximumSize(QSize(16777215, 30));
-        pb_search_state->setCursor(QCursor(Qt::PointingHandCursor));
-        pb_search_state->setStyleSheet(QLatin1String("font: 12pt \"Segoe UI\";\n"
-"color:  rgb(21, 172, 112);"));
-        pb_search_state->setFlat(true);
-
-        verticalLayout_31->addWidget(pb_search_state);
-
-        le_state_to_search = new QLineEdit(widget_back_search);
-        le_state_to_search->setObjectName(QStringLiteral("le_state_to_search"));
-        le_state_to_search->setMinimumSize(QSize(135, 20));
-        le_state_to_search->setMaximumSize(QSize(135, 30));
-        le_state_to_search->setStyleSheet(QLatin1String("font: 11pt \"Segoe UI\";\n"
-"color: rgb(255, 245, 242);"));
-
-        verticalLayout_31->addWidget(le_state_to_search);
-
-
-        horizontalLayout_7->addLayout(verticalLayout_31);
-
-
-        verticalLayout_11->addWidget(widget_back_search);
-
-        widget_states = new QWidget(widget_layout_state_machine);
-        widget_states->setObjectName(QStringLiteral("widget_states"));
-        widget_states->setEnabled(true);
-        widget_states->setMinimumSize(QSize(500, 260));
-        widget_states->setMaximumSize(QSize(400, 270));
-        widget_states->setStyleSheet(QStringLiteral("background-color: rgb(89, 99, 113);"));
-        verticalLayout_12 = new QVBoxLayout(widget_states);
-        verticalLayout_12->setSpacing(6);
-        verticalLayout_12->setContentsMargins(11, 11, 11, 11);
-        verticalLayout_12->setObjectName(QStringLiteral("verticalLayout_12"));
-        widget_state_info = new QWidget(widget_states);
-        widget_state_info->setObjectName(QStringLiteral("widget_state_info"));
-        verticalLayout_22 = new QVBoxLayout(widget_state_info);
-        verticalLayout_22->setSpacing(1);
-        verticalLayout_22->setContentsMargins(11, 11, 11, 11);
-        verticalLayout_22->setObjectName(QStringLiteral("verticalLayout_22"));
-        verticalLayout_22->setSizeConstraint(QLayout::SetFixedSize);
-        horizontalLayout_8 = new QHBoxLayout();
-        horizontalLayout_8->setSpacing(1);
-        horizontalLayout_8->setObjectName(QStringLiteral("horizontalLayout_8"));
-        horizontalLayout_8->setSizeConstraint(QLayout::SetFixedSize);
-        widget_super_initial_default_state = new QWidget(widget_state_info);
-        widget_super_initial_default_state->setObjectName(QStringLiteral("widget_super_initial_default_state"));
-        verticalLayout_20 = new QVBoxLayout(widget_super_initial_default_state);
-        verticalLayout_20->setSpacing(15);
-        verticalLayout_20->setContentsMargins(11, 11, 11, 11);
-        verticalLayout_20->setObjectName(QStringLiteral("verticalLayout_20"));
-        verticalLayout_20->setSizeConstraint(QLayout::SetFixedSize);
-        verticalLayout_17 = new QVBoxLayout();
-        verticalLayout_17->setSpacing(6);
-        verticalLayout_17->setObjectName(QStringLiteral("verticalLayout_17"));
-        verticalLayout_17->setSizeConstraint(QLayout::SetFixedSize);
-        label_2 = new QLabel(widget_super_initial_default_state);
-        label_2->setObjectName(QStringLiteral("label_2"));
-        label_2->setMinimumSize(QSize(0, 12));
-        label_2->setStyleSheet(QLatin1String("font: 11pt \"Segoe UI\";\n"
-"color: rgb(255, 245, 242);"));
-
-        verticalLayout_17->addWidget(label_2);
-
-        le_super_state_name = new QLineEdit(widget_super_initial_default_state);
-        le_super_state_name->setObjectName(QStringLiteral("le_super_state_name"));
-        le_super_state_name->setMaximumSize(QSize(120, 120));
-        le_super_state_name->setStyleSheet(QLatin1String("font: 11pt \"Segoe UI\";\n"
-"color: rgb(255, 245, 242);"));
-
-        verticalLayout_17->addWidget(le_super_state_name);
-
-
-        verticalLayout_20->addLayout(verticalLayout_17);
-
-        verticalLayout_18 = new QVBoxLayout();
-        verticalLayout_18->setSpacing(6);
-        verticalLayout_18->setObjectName(QStringLiteral("verticalLayout_18"));
-        verticalLayout_18->setSizeConstraint(QLayout::SetFixedSize);
-        label_3 = new QLabel(widget_super_initial_default_state);
-        label_3->setObjectName(QStringLiteral("label_3"));
-        label_3->setMinimumSize(QSize(0, 12));
-        label_3->setStyleSheet(QLatin1String("font: 11pt \"Segoe UI\";\n"
-"color: rgb(255, 245, 242);"));
-
-        verticalLayout_18->addWidget(label_3);
-
-        le_initial_state_name = new QLineEdit(widget_super_initial_default_state);
-        le_initial_state_name->setObjectName(QStringLiteral("le_initial_state_name"));
-        le_initial_state_name->setMaximumSize(QSize(120, 1200));
-        le_initial_state_name->setStyleSheet(QLatin1String("font: 11pt \"Segoe UI\";\n"
-"color: rgb(255, 245, 242);"));
-
-        verticalLayout_18->addWidget(le_initial_state_name);
-
-
-        verticalLayout_20->addLayout(verticalLayout_18);
-
-
-        horizontalLayout_8->addWidget(widget_super_initial_default_state);
-
-        verticalLayout_19 = new QVBoxLayout();
-        verticalLayout_19->setSpacing(6);
-        verticalLayout_19->setObjectName(QStringLiteral("verticalLayout_19"));
-        verticalLayout_19->setSizeConstraint(QLayout::SetFixedSize);
-        verticalSpacer_5 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
-
-        verticalLayout_19->addItem(verticalSpacer_5);
-
-        label_4 = new QLabel(widget_state_info);
-        label_4->setObjectName(QStringLiteral("label_4"));
-        label_4->setMinimumSize(QSize(0, 12));
-        label_4->setStyleSheet(QLatin1String("font: 11pt \"Segoe UI\";\n"
-"color: rgb(255, 245, 242);"));
-        label_4->setAlignment(Qt::AlignCenter);
-
-        verticalLayout_19->addWidget(label_4);
-
-        horizontalLayout_16 = new QHBoxLayout();
-        horizontalLayout_16->setSpacing(1);
-        horizontalLayout_16->setObjectName(QStringLiteral("horizontalLayout_16"));
-        horizontalLayout_16->setSizeConstraint(QLayout::SetFixedSize);
-        verticalLayout_15 = new QVBoxLayout();
-        verticalLayout_15->setSpacing(6);
-        verticalLayout_15->setObjectName(QStringLiteral("verticalLayout_15"));
-        verticalLayout_15->setSizeConstraint(QLayout::SetFixedSize);
-        label_5 = new QLabel(widget_state_info);
-        label_5->setObjectName(QStringLiteral("label_5"));
-        label_5->setMinimumSize(QSize(0, 12));
-        label_5->setStyleSheet(QLatin1String("font: 11pt \"Segoe UI\";\n"
-"color: rgb(255, 245, 242);"));
-        label_5->setAlignment(Qt::AlignCenter);
-
-        verticalLayout_15->addWidget(label_5);
-
-        le_default_state_name = new QLineEdit(widget_state_info);
-        le_default_state_name->setObjectName(QStringLiteral("le_default_state_name"));
-        le_default_state_name->setMaximumSize(QSize(100, 100));
-        le_default_state_name->setStyleSheet(QLatin1String("font: 11pt \"Segoe UI\";\n"
-"color: rgb(255, 245, 242);"));
-
-        verticalLayout_15->addWidget(le_default_state_name);
-
-
-        horizontalLayout_16->addLayout(verticalLayout_15);
-
-        verticalLayout_14 = new QVBoxLayout();
-        verticalLayout_14->setSpacing(6);
-        verticalLayout_14->setObjectName(QStringLiteral("verticalLayout_14"));
-        verticalLayout_14->setSizeConstraint(QLayout::SetFixedSize);
-        label_6 = new QLabel(widget_state_info);
-        label_6->setObjectName(QStringLiteral("label_6"));
-        label_6->setMinimumSize(QSize(0, 12));
-        label_6->setStyleSheet(QLatin1String("font: 11pt \"Segoe UI\";\n"
-"color: rgb(255, 245, 242);"));
-        label_6->setAlignment(Qt::AlignCenter);
-
-        verticalLayout_14->addWidget(label_6);
-
-        le_default_action_name = new QLineEdit(widget_state_info);
-        le_default_action_name->setObjectName(QStringLiteral("le_default_action_name"));
-        le_default_action_name->setMaximumSize(QSize(100, 100));
-        le_default_action_name->setStyleSheet(QLatin1String("font: 11pt \"Segoe UI\";\n"
-"color: rgb(255, 245, 242);"));
-
-        verticalLayout_14->addWidget(le_default_action_name);
-
-
-        horizontalLayout_16->addLayout(verticalLayout_14);
-
-
-        verticalLayout_19->addLayout(horizontalLayout_16);
-
-        verticalSpacer_6 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
-
-        verticalLayout_19->addItem(verticalSpacer_6);
-
-
-        horizontalLayout_8->addLayout(verticalLayout_19);
-
-        widget_events = new QWidget(widget_state_info);
-        widget_events->setObjectName(QStringLiteral("widget_events"));
-        horizontalLayout_12 = new QHBoxLayout(widget_events);
-        horizontalLayout_12->setSpacing(1);
-        horizontalLayout_12->setContentsMargins(11, 11, 11, 11);
-        horizontalLayout_12->setObjectName(QStringLiteral("horizontalLayout_12"));
-        horizontalLayout_12->setSizeConstraint(QLayout::SetFixedSize);
-        tableView_events = new QTableView(widget_events);
-        tableView_events->setObjectName(QStringLiteral("tableView_events"));
-        tableView_events->setMinimumSize(QSize(450, 170));
-        tableView_events->setMaximumSize(QSize(480, 175));
-        tableView_events->setStyleSheet(QLatin1String("font: 11pt \"Segoe UI\";\n"
-"color:  rgb(21, 172, 112);"));
-        tableView_events->setFrameShape(QFrame::Box);
-        tableView_events->setSelectionMode(QAbstractItemView::ExtendedSelection);
-        tableView_events->setTextElideMode(Qt::ElideMiddle);
-        tableView_events->setVerticalScrollMode(QAbstractItemView::ScrollPerItem);
-        tableView_events->setSortingEnabled(true);
-        tableView_events->horizontalHeader()->setDefaultSectionSize(150);
-        tableView_events->horizontalHeader()->setMinimumSectionSize(100);
-
-        horizontalLayout_12->addWidget(tableView_events);
-
-
-        horizontalLayout_8->addWidget(widget_events);
-
-        widget_state_name_entry_exit_actions = new QWidget(widget_state_info);
-        widget_state_name_entry_exit_actions->setObjectName(QStringLiteral("widget_state_name_entry_exit_actions"));
-        verticalLayout_21 = new QVBoxLayout(widget_state_name_entry_exit_actions);
-        verticalLayout_21->setSpacing(15);
-        verticalLayout_21->setContentsMargins(11, 11, 11, 11);
-        verticalLayout_21->setObjectName(QStringLiteral("verticalLayout_21"));
-        verticalLayout_21->setSizeConstraint(QLayout::SetFixedSize);
-        verticalLayout_16 = new QVBoxLayout();
-        verticalLayout_16->setSpacing(6);
-        verticalLayout_16->setObjectName(QStringLiteral("verticalLayout_16"));
-        verticalLayout_16->setSizeConstraint(QLayout::SetFixedSize);
-        label = new QLabel(widget_state_name_entry_exit_actions);
-        label->setObjectName(QStringLiteral("label"));
-        label->setMinimumSize(QSize(0, 12));
-        label->setStyleSheet(QLatin1String("font: 11pt \"Segoe UI\";\n"
-"color: rgb(255, 245, 242);"));
-
-        verticalLayout_16->addWidget(label);
-
-        le_current_state_name = new QLineEdit(widget_state_name_entry_exit_actions);
-        le_current_state_name->setObjectName(QStringLiteral("le_current_state_name"));
-        le_current_state_name->setMaximumSize(QSize(120, 120));
-        le_current_state_name->setStyleSheet(QLatin1String("font: 11pt \"Segoe UI\";\n"
-"color: rgb(255, 245, 242);"));
-
-        verticalLayout_16->addWidget(le_current_state_name);
-
-
-        verticalLayout_21->addLayout(verticalLayout_16);
-
-        verticalLayout_23 = new QVBoxLayout();
-        verticalLayout_23->setSpacing(8);
-        verticalLayout_23->setObjectName(QStringLiteral("verticalLayout_23"));
-        verticalLayout_23->setSizeConstraint(QLayout::SetFixedSize);
-        l_Entry_Action = new QLabel(widget_state_name_entry_exit_actions);
-        l_Entry_Action->setObjectName(QStringLiteral("l_Entry_Action"));
-        l_Entry_Action->setMinimumSize(QSize(0, 12));
-        l_Entry_Action->setStyleSheet(QLatin1String("font: 11pt \"Segoe UI\";\n"
-"color: rgb(255, 245, 242);"));
-
-        verticalLayout_23->addWidget(l_Entry_Action);
-
-        le_entry_action = new QLineEdit(widget_state_name_entry_exit_actions);
-        le_entry_action->setObjectName(QStringLiteral("le_entry_action"));
-        le_entry_action->setMaximumSize(QSize(120, 120));
-        le_entry_action->setStyleSheet(QLatin1String("font: 11pt \"Segoe UI\";\n"
-"color: rgb(255, 245, 242);"));
-
-        verticalLayout_23->addWidget(le_entry_action);
-
-        verticalLayout_24 = new QVBoxLayout();
-        verticalLayout_24->setSpacing(6);
-        verticalLayout_24->setObjectName(QStringLiteral("verticalLayout_24"));
-        verticalLayout_24->setSizeConstraint(QLayout::SetFixedSize);
-        l_Exit_Action = new QLabel(widget_state_name_entry_exit_actions);
-        l_Exit_Action->setObjectName(QStringLiteral("l_Exit_Action"));
-        l_Exit_Action->setMinimumSize(QSize(0, 12));
-        l_Exit_Action->setStyleSheet(QLatin1String("font: 11pt \"Segoe UI\";\n"
-"color: rgb(255, 245, 242);"));
-
-        verticalLayout_24->addWidget(l_Exit_Action);
-
-        le_exit_action = new QLineEdit(widget_state_name_entry_exit_actions);
-        le_exit_action->setObjectName(QStringLiteral("le_exit_action"));
-        le_exit_action->setMaximumSize(QSize(120, 120));
-        le_exit_action->setStyleSheet(QLatin1String("font: 11pt \"Segoe UI\";\n"
-"color: rgb(255, 245, 242);"));
-
-        verticalLayout_24->addWidget(le_exit_action);
-
-
-        verticalLayout_23->addLayout(verticalLayout_24);
-
-
-        verticalLayout_21->addLayout(verticalLayout_23);
-
-
-        horizontalLayout_8->addWidget(widget_state_name_entry_exit_actions);
-
-
-        verticalLayout_22->addLayout(horizontalLayout_8);
-
-        horizontalLayout_9 = new QHBoxLayout();
-        horizontalLayout_9->setSpacing(6);
-        horizontalLayout_9->setObjectName(QStringLiteral("horizontalLayout_9"));
-        horizontalSpacer_4 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
-
-        horizontalLayout_9->addItem(horizontalSpacer_4);
-
-        pb_change_to_event = new QPushButton(widget_state_info);
-        pb_change_to_event->setObjectName(QStringLiteral("pb_change_to_event"));
-        pb_change_to_event->setCursor(QCursor(Qt::PointingHandCursor));
-        pb_change_to_event->setStyleSheet(QLatin1String("font: 12pt \"Segoe UI\";\n"
-"color: rgb(255, 245, 242);"));
-        pb_change_to_event->setFlat(true);
-
-        horizontalLayout_9->addWidget(pb_change_to_event);
-
-        horizontalSpacer_3 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
-
-        horizontalLayout_9->addItem(horizontalSpacer_3);
-
-        pb_ok = new QPushButton(widget_state_info);
-        pb_ok->setObjectName(QStringLiteral("pb_ok"));
-        pb_ok->setCursor(QCursor(Qt::PointingHandCursor));
-        pb_ok->setStyleSheet(QLatin1String("font: 12pt \"Segoe UI\";\n"
-"color: rgb(255, 245, 242);"));
-        pb_ok->setFlat(true);
-
-        horizontalLayout_9->addWidget(pb_ok);
-
-        horizontalSpacer_2 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
-
-        horizontalLayout_9->addItem(horizontalSpacer_2);
-
-
-        verticalLayout_22->addLayout(horizontalLayout_9);
-
-
-        verticalLayout_12->addWidget(widget_state_info);
-
-
-        verticalLayout_11->addWidget(widget_states);
-
-        widget_add_gen_buttons = new QWidget(widget_layout_state_machine);
-        widget_add_gen_buttons->setObjectName(QStringLiteral("widget_add_gen_buttons"));
-        widget_add_gen_buttons->setStyleSheet(QLatin1String("font: 12pt \"Segoe UI\";\n"
-"color:  rgb(21, 172, 112);"));
-        horizontalLayout_6 = new QHBoxLayout(widget_add_gen_buttons);
-        horizontalLayout_6->setSpacing(10);
-        horizontalLayout_6->setContentsMargins(11, 11, 11, 11);
-        horizontalLayout_6->setObjectName(QStringLiteral("horizontalLayout_6"));
-        horizontalLayout_6->setSizeConstraint(QLayout::SetFixedSize);
-        pb_add_state = new QPushButton(widget_add_gen_buttons);
-        pb_add_state->setObjectName(QStringLiteral("pb_add_state"));
-        pb_add_state->setMinimumSize(QSize(120, 0));
-        pb_add_state->setMaximumSize(QSize(133, 16777215));
-        pb_add_state->setCursor(QCursor(Qt::PointingHandCursor));
-        pb_add_state->setStyleSheet(QLatin1String("font: 12pt \"Segoe UI\";\n"
-"color:  rgb(21, 172, 112);"));
-        pb_add_state->setFlat(true);
-
-        horizontalLayout_6->addWidget(pb_add_state);
-
-        le_state_name = new QLineEdit(widget_add_gen_buttons);
-        le_state_name->setObjectName(QStringLiteral("le_state_name"));
-        le_state_name->setMinimumSize(QSize(135, 0));
-        le_state_name->setMaximumSize(QSize(135, 16777215));
-        le_state_name->setStyleSheet(QLatin1String("font: 11pt \"Segoe UI\";\n"
-"color: rgb(255, 245, 242);"));
-
-        horizontalLayout_6->addWidget(le_state_name);
-
-        pb_generate_state_machine = new QPushButton(widget_add_gen_buttons);
-        pb_generate_state_machine->setObjectName(QStringLiteral("pb_generate_state_machine"));
-        pb_generate_state_machine->setEnabled(true);
-        pb_generate_state_machine->setMinimumSize(QSize(120, 0));
-        pb_generate_state_machine->setMaximumSize(QSize(133, 16777215));
-        pb_generate_state_machine->setCursor(QCursor(Qt::PointingHandCursor));
-        pb_generate_state_machine->setStyleSheet(QLatin1String("font: 12pt \"Segoe UI\";\n"
-"color:  rgb(21, 172, 112);"));
-        pb_generate_state_machine->setFlat(true);
-
-        horizontalLayout_6->addWidget(pb_generate_state_machine);
-
-
-        verticalLayout_11->addWidget(widget_add_gen_buttons);
-
-
-        horizontalLayout_13->addWidget(widget_layout_state_machine);
-
-        verticalLayout_13 = new QVBoxLayout();
-        verticalLayout_13->setSpacing(6);
-        verticalLayout_13->setObjectName(QStringLiteral("verticalLayout_13"));
-        verticalLayout_13->setSizeConstraint(QLayout::SetFixedSize);
-        verticalSpacer_2 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Fixed);
-
-        verticalLayout_13->addItem(verticalSpacer_2);
-
-        tw_state_machine = new QTreeWidget(widget_options);
-        tw_state_machine->setObjectName(QStringLiteral("tw_state_machine"));
-        tw_state_machine->setMaximumSize(QSize(250, 300));
-
-        verticalLayout_13->addWidget(tw_state_machine);
-
-
-        horizontalLayout_13->addLayout(verticalLayout_13);
-
-
-        horizontalLayout_14->addLayout(horizontalLayout_13);
-
-        widget_wait = new QWidget(centralWidget);
-        widget_wait->setObjectName(QStringLiteral("widget_wait"));
-        widget_wait->setGeometry(QRect(1060, 290, 144, 31));
-        horizontalLayout_15 = new QHBoxLayout(widget_wait);
-        horizontalLayout_15->setSpacing(6);
-        horizontalLayout_15->setContentsMargins(11, 11, 11, 11);
-        horizontalLayout_15->setObjectName(QStringLiteral("horizontalLayout_15"));
-        horizontalLayout_15->setSizeConstraint(QLayout::SetFixedSize);
-        label_loading = new QLabel(widget_wait);
-        label_loading->setObjectName(QStringLiteral("label_loading"));
-        label_loading->setStyleSheet(QLatin1String("font: 12pt \"Segoe UI\";\n"
-"color:  rgb(21, 172, 112);"));
-        label_loading->setAlignment(Qt::AlignCenter);
-
-        horizontalLayout_15->addWidget(label_loading);
+        verticalLayout_28->addWidget(le_action_name);
 
         NFWizard2->setCentralWidget(centralWidget);
-        widget_options->raise();
-        label_bar_background->raise();
-        pushButton_Help_tag->raise();
-        widget_dirs->raise();
-        widget_buttons_quit->raise();
-        widget_help_buttons->raise();
-        widget_generate_options->raise();
-        widget_on_state_options->raise();
-        widget_event_options->raise();
-        pb_warning_state_machine->raise();
-        widget_add_delete_event->raise();
-        pushButton_Generate_tag->raise();
-        pushButton_Options_tag->raise();
+        widget_state_machine_screen->raise();
+        widget_options_screen_native->raise();
+        widget_generate_screen->raise();
+        layoutWidget->raise();
         widget_wait->raise();
-        label_5->raise();
-        label_6->raise();
-        menuBar = new QMenuBar(NFWizard2);
-        menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 1280, 20));
-        menuHelp = new QMenu(menuBar);
-        menuHelp->setObjectName(QStringLiteral("menuHelp"));
-        NFWizard2->setMenuBar(menuBar);
-        mainToolBar = new QToolBar(NFWizard2);
-        mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
-        NFWizard2->addToolBar(Qt::TopToolBarArea, mainToolBar);
+        widget_help_buttons->raise();
+        widget_win_buttons->raise();
+        l_background_blur->raise();
         statusBar = new QStatusBar(NFWizard2);
         statusBar->setObjectName(QStringLiteral("statusBar"));
         NFWizard2->setStatusBar(statusBar);
-
-        menuBar->addAction(menuHelp->menuAction());
-        menuHelp->addAction(actionUVision_Configuration);
-        menuHelp->addAction(actionSTM32CubeMx_Configuration);
-        menuHelp->addAction(actionAbout);
-        menuHelp->addAction(actionAbout_Qt);
 
         retranslateUi(NFWizard2);
 
@@ -1556,26 +1625,14 @@ public:
         actionSTM32CubeMx_Configuration->setText(QApplication::translate("NFWizard2", "STM32CubeMx Configuration", Q_NULLPTR));
         actionAbout->setText(QApplication::translate("NFWizard2", "About NEOWizard", Q_NULLPTR));
         actionAbout_Qt->setText(QApplication::translate("NFWizard2", "About Qt", Q_NULLPTR));
-        pushButton_Generate_tag->setText(QString());
-        pushButton_Options_tag->setText(QString());
-        pushButton_Help_tag->setText(QString());
-        label_bar_background->setText(QString());
 #ifndef QT_NO_TOOLTIP
-        label_uVision->setToolTip(QApplication::translate("NFWizard2", "Keil uVision project path on your PC (*.uvprojx file)", Q_NULLPTR));
+        pushButton_Generate->setToolTip(QApplication::translate("NFWizard2", "Generate the files and modifies files needed to become compatible both projects", Q_NULLPTR));
 #endif // QT_NO_TOOLTIP
-        label_uVision->setText(QString());
+        pushButton_Generate->setText(QString());
 #ifndef QT_NO_TOOLTIP
-        lineEdit_uVisionPath->setToolTip(QApplication::translate("NFWizard2", "Keil uVision project path on your PC", Q_NULLPTR));
+        pushButton_Quit->setToolTip(QApplication::translate("NFWizard2", "Close application", Q_NULLPTR));
 #endif // QT_NO_TOOLTIP
-        lineEdit_uVisionPath->setPlaceholderText(QString());
-#ifndef QT_NO_TOOLTIP
-        pushButton_uVisionBrowse->setToolTip(QApplication::translate("NFWizard2", "Look for uVision project path in your PC", Q_NULLPTR));
-#endif // QT_NO_TOOLTIP
-        pushButton_uVisionBrowse->setText(QString());
-#ifndef QT_NO_TOOLTIP
-        label_Cube->setToolTip(QApplication::translate("NFWizard2", "STCubeMX generated project path on your PC (*.ioc file)", Q_NULLPTR));
-#endif // QT_NO_TOOLTIP
-        label_Cube->setText(QString());
+        pushButton_Quit->setText(QString());
 #ifndef QT_NO_TOOLTIP
         lineEdit_CubePath->setToolTip(QApplication::translate("NFWizard2", "STCube generated project path on your PC", Q_NULLPTR));
 #endif // QT_NO_TOOLTIP
@@ -1585,13 +1642,178 @@ public:
 #endif // QT_NO_TOOLTIP
         pushButton_CubeBrowse->setText(QString());
 #ifndef QT_NO_TOOLTIP
-        pushButton_Quit->setToolTip(QApplication::translate("NFWizard2", "Close application", Q_NULLPTR));
+        pushButton_uVisionBrowse->setToolTip(QApplication::translate("NFWizard2", "Look for uVision project path in your PC", Q_NULLPTR));
 #endif // QT_NO_TOOLTIP
-        pushButton_Quit->setText(QString());
+        pushButton_uVisionBrowse->setText(QString());
 #ifndef QT_NO_TOOLTIP
-        pushButton_Generate->setToolTip(QApplication::translate("NFWizard2", "Generate the files and modifies files needed to become compatible both projects", Q_NULLPTR));
+        lineEdit_uVisionPath->setToolTip(QApplication::translate("NFWizard2", "Keil uVision project path on your PC", Q_NULLPTR));
 #endif // QT_NO_TOOLTIP
-        pushButton_Generate->setText(QString());
+        lineEdit_uVisionPath->setPlaceholderText(QString());
+#ifndef QT_NO_TOOLTIP
+        label_Cube->setToolTip(QApplication::translate("NFWizard2", "STCubeMX generated project path on your PC (*.ioc file)", Q_NULLPTR));
+#endif // QT_NO_TOOLTIP
+        label_Cube->setText(QString());
+#ifndef QT_NO_TOOLTIP
+        label_uVision->setToolTip(QApplication::translate("NFWizard2", "Keil uVision project path on your PC (*.uvprojx file)", Q_NULLPTR));
+#endif // QT_NO_TOOLTIP
+        label_uVision->setText(QString());
+#ifndef QT_NO_TOOLTIP
+        pushButton_generate_folders->setToolTip(QApplication::translate("NFWizard2", "Generates files needed. If they are generated already you don't need to mark this option", Q_NULLPTR));
+#endif // QT_NO_TOOLTIP
+        pushButton_generate_folders->setText(QString());
+#ifndef QT_NO_TOOLTIP
+        label_generate_options->setToolTip(QApplication::translate("NFWizard2", "Generates files needed. If they are generated already you don't need to mark this option", Q_NULLPTR));
+#endif // QT_NO_TOOLTIP
+        label_generate_options->setText(QString());
+#ifndef QT_NO_TOOLTIP
+        pb_generate_project_folders->setToolTip(QApplication::translate("NFWizard2", "Close application", Q_NULLPTR));
+#endif // QT_NO_TOOLTIP
+        pb_generate_project_folders->setText(QString());
+#ifndef QT_NO_TOOLTIP
+        pb_configure_thread_in_class->setToolTip(QApplication::translate("NFWizard2", "Configure a Thread inside a Class you can name", Q_NULLPTR));
+#endif // QT_NO_TOOLTIP
+        pb_configure_thread_in_class->setText(QString());
+#ifndef QT_NO_TOOLTIP
+        pb_configure_Main_thread->setToolTip(QApplication::translate("NFWizard2", "Configure a Main Thread and execute it in main.cpp", Q_NULLPTR));
+#endif // QT_NO_TOOLTIP
+        pb_configure_Main_thread->setText(QString());
+#ifndef QT_NO_TOOLTIP
+        pb_configure_in_Main_thread->setToolTip(QApplication::translate("NFWizard2", "Configure a Main Thread and execute it in main.cpp", Q_NULLPTR));
+#endif // QT_NO_TOOLTIP
+        pb_configure_in_Main_thread->setText(QString());
+#ifndef QT_NO_TOOLTIP
+        pb_configure_state_machine->setToolTip(QApplication::translate("NFWizard2", "Configure a state machine and then generate the code in your Main Thread", Q_NULLPTR));
+#endif // QT_NO_TOOLTIP
+        pb_configure_state_machine->setText(QString());
+#ifndef QT_NO_TOOLTIP
+        pb_add_thread->setToolTip(QApplication::translate("NFWizard2", "Add the Thread configured", Q_NULLPTR));
+#endif // QT_NO_TOOLTIP
+        pb_add_thread->setText(QString());
+        l_main_thread_name->setText(QString());
+        l_thread_name->setText(QString());
+        l_thread_priority->setText(QString());
+        cb_thread_priority->clear();
+        cb_thread_priority->insertItems(0, QStringList()
+         << QApplication::translate("NFWizard2", "Idle ", Q_NULLPTR)
+         << QApplication::translate("NFWizard2", "Low ", Q_NULLPTR)
+         << QApplication::translate("NFWizard2", "BelowNormal ", Q_NULLPTR)
+         << QApplication::translate("NFWizard2", "Normal ", Q_NULLPTR)
+         << QApplication::translate("NFWizard2", "AboveNormal ", Q_NULLPTR)
+         << QApplication::translate("NFWizard2", "High ", Q_NULLPTR)
+         << QApplication::translate("NFWizard2", "Realtime ", Q_NULLPTR)
+         << QApplication::translate("NFWizard2", "Error ", Q_NULLPTR)
+        );
+        l_thread_stack_size->setText(QString());
+#ifndef QT_NO_TOOLTIP
+        pb_configure_thread_in_main->setToolTip(QApplication::translate("NFWizard2", "Configure a Thread inside the Main Thread, you can execute it whenever you desire", Q_NULLPTR));
+#endif // QT_NO_TOOLTIP
+        pb_configure_thread_in_main->setText(QApplication::translate("NFWizard2", " Thread     >", Q_NULLPTR));
+#ifndef QT_NO_TOOLTIP
+        pb_configure_Mail->setToolTip(QApplication::translate("NFWizard2", "Configure a Main Thread and execute it in main.cpp", Q_NULLPTR));
+#endif // QT_NO_TOOLTIP
+        pb_configure_Mail->setText(QApplication::translate("NFWizard2", "Mail     >", Q_NULLPTR));
+#ifndef QT_NO_TOOLTIP
+        pb_configure_Timer->setToolTip(QApplication::translate("NFWizard2", "Configure a Main Thread and execute it in main.cpp", Q_NULLPTR));
+#endif // QT_NO_TOOLTIP
+        pb_configure_Timer->setText(QApplication::translate("NFWizard2", "Timer     >", Q_NULLPTR));
+#ifndef QT_NO_TOOLTIP
+        pb_configure_semaphore->setToolTip(QApplication::translate("NFWizard2", "Configure a Main Thread and execute it in main.cpp", Q_NULLPTR));
+#endif // QT_NO_TOOLTIP
+        pb_configure_semaphore->setText(QApplication::translate("NFWizard2", "Semaphore     >", Q_NULLPTR));
+#ifndef QT_NO_TOOLTIP
+        pb_configure_memoryPool->setToolTip(QApplication::translate("NFWizard2", "Configure a Main Thread and execute it in main.cpp", Q_NULLPTR));
+#endif // QT_NO_TOOLTIP
+        pb_configure_memoryPool->setText(QApplication::translate("NFWizard2", "Memory Pool     >", Q_NULLPTR));
+#ifndef QT_NO_TOOLTIP
+        pb_configure_mutex->setToolTip(QApplication::translate("NFWizard2", "Configure a Main Thread and execute it in main.cpp", Q_NULLPTR));
+#endif // QT_NO_TOOLTIP
+        pb_configure_mutex->setText(QApplication::translate("NFWizard2", "Mutex     >", Q_NULLPTR));
+        l_EVENT_2->setText(QApplication::translate("NFWizard2", "Timer Name", Q_NULLPTR));
+        cb_timer_mode->clear();
+        cb_timer_mode->insertItems(0, QStringList()
+         << QApplication::translate("NFWizard2", "Periodic", Q_NULLPTR)
+         << QApplication::translate("NFWizard2", "NonStaticMethod", Q_NULLPTR)
+         << QApplication::translate("NFWizard2", "SingleShot", Q_NULLPTR)
+        );
+        l_EVENT_3->setText(QApplication::translate("NFWizard2", "Timer Interval  (ms)", Q_NULLPTR));
+        l_EVENT_4->setText(QApplication::translate("NFWizard2", "TimeOut  Function", Q_NULLPTR));
+#ifndef QT_NO_TOOLTIP
+        pb_add_Timer->setToolTip(QApplication::translate("NFWizard2", "Configure a Main Thread and execute it in main.cpp", Q_NULLPTR));
+#endif // QT_NO_TOOLTIP
+        pb_add_Timer->setText(QApplication::translate("NFWizard2", "Add Timer", Q_NULLPTR));
+#ifndef QT_NO_TOOLTIP
+        pb_load_from_Thread->setToolTip(QApplication::translate("NFWizard2", "Load a State Machine saved in folder HSMs into your uVision project path", Q_NULLPTR));
+#endif // QT_NO_TOOLTIP
+        pb_load_from_Thread->setText(QString());
+#ifndef QT_NO_TOOLTIP
+        pb_save_state_machine->setToolTip(QApplication::translate("NFWizard2", "Save the State Machine configured in folder HSMs into your uVision project path", Q_NULLPTR));
+#endif // QT_NO_TOOLTIP
+        pb_save_state_machine->setText(QString());
+#ifndef QT_NO_TOOLTIP
+        pb_load_state_machine->setToolTip(QApplication::translate("NFWizard2", "Load a State Machine saved in folder HSMs into your uVision project path", Q_NULLPTR));
+#endif // QT_NO_TOOLTIP
+        pb_load_state_machine->setText(QString());
+        label_2->setText(QApplication::translate("NFWizard2", "SUPER STATE", Q_NULLPTR));
+        label_3->setText(QApplication::translate("NFWizard2", "INITIAL STATE", Q_NULLPTR));
+        label->setText(QApplication::translate("NFWizard2", "STATE NAME", Q_NULLPTR));
+        label_4->setText(QApplication::translate("NFWizard2", "DEFAULT EVENT", Q_NULLPTR));
+        label_5->setText(QApplication::translate("NFWizard2", "Next State", Q_NULLPTR));
+        label_6->setText(QApplication::translate("NFWizard2", "Action", Q_NULLPTR));
+        l_Entry_Action->setText(QApplication::translate("NFWizard2", "ENTRY ACTION", Q_NULLPTR));
+        l_Exit_Action->setText(QApplication::translate("NFWizard2", "EXIT ACTION", Q_NULLPTR));
+#ifndef QT_NO_TOOLTIP
+        pb_change_to_event->setToolTip(QApplication::translate("NFWizard2", "Apply changes to the State properties", Q_NULLPTR));
+#endif // QT_NO_TOOLTIP
+        pb_change_to_event->setText(QApplication::translate("NFWizard2", "EVENTS", Q_NULLPTR));
+#ifndef QT_NO_TOOLTIP
+        pb_ok->setToolTip(QApplication::translate("NFWizard2", "Apply changes to the State properties", Q_NULLPTR));
+#endif // QT_NO_TOOLTIP
+        pb_ok->setText(QApplication::translate("NFWizard2", "APPLY", Q_NULLPTR));
+#ifndef QT_NO_TOOLTIP
+        pb_generate_state_machine->setToolTip(QApplication::translate("NFWizard2", "Generate the code for the State Machine configured or loaded inside your Main Thread", Q_NULLPTR));
+#endif // QT_NO_TOOLTIP
+        pb_generate_state_machine->setText(QString());
+        l_name_current_state->setText(QApplication::translate("NFWizard2", "No Parent", Q_NULLPTR));
+        l_state_parent_tag->setText(QApplication::translate("NFWizard2", "Super State  :", Q_NULLPTR));
+#ifndef QT_NO_TOOLTIP
+        pb_back->setToolTip(QApplication::translate("NFWizard2", "Go back to previous parent", Q_NULLPTR));
+#endif // QT_NO_TOOLTIP
+        pb_back->setText(QString());
+#ifndef QT_NO_TOOLTIP
+        pb_search_state->setToolTip(QApplication::translate("NFWizard2", "Search for a State of the State Machine configured", Q_NULLPTR));
+#endif // QT_NO_TOOLTIP
+        pb_search_state->setText(QString());
+        QTreeWidgetItem *___qtreewidgetitem = tw_state_machine->headerItem();
+        ___qtreewidgetitem->setText(0, QApplication::translate("NFWizard2", "State Machine", Q_NULLPTR));
+#ifndef QT_NO_TOOLTIP
+        pb_back_from_state_machine->setToolTip(QApplication::translate("NFWizard2", "Save the State Machine configured in folder HSMs into your uVision project path", Q_NULLPTR));
+#endif // QT_NO_TOOLTIP
+        pb_back_from_state_machine->setText(QString());
+#ifndef QT_NO_TOOLTIP
+        pb_add_state->setToolTip(QApplication::translate("NFWizard2", "Add a new State in the current Super State", Q_NULLPTR));
+#endif // QT_NO_TOOLTIP
+        pb_add_state->setText(QString());
+        pb_open_state->setText(QApplication::translate("NFWizard2", "Open State", Q_NULLPTR));
+        pb_set_as_initial->setText(QApplication::translate("NFWizard2", "Set as Initial", Q_NULLPTR));
+        pb_configure_state->setText(QApplication::translate("NFWizard2", "Configure State", Q_NULLPTR));
+        pb_add_sub_sate->setText(QApplication::translate("NFWizard2", "Add Child ", Q_NULLPTR));
+        pb_eliminate_state->setText(QApplication::translate("NFWizard2", "Eliminate State", Q_NULLPTR));
+        pb_cancel_state_options->setText(QApplication::translate("NFWizard2", "Cancel", Q_NULLPTR));
+        pb_warning_state_machine->setText(QString());
+#ifndef QT_NO_TOOLTIP
+        pb_add_event_action->setToolTip(QApplication::translate("NFWizard2", "Add the event configured", Q_NULLPTR));
+#endif // QT_NO_TOOLTIP
+        pb_add_event_action->setText(QApplication::translate("NFWizard2", "Add Event", Q_NULLPTR));
+#ifndef QT_NO_TOOLTIP
+        pb_delete_event_action->setToolTip(QApplication::translate("NFWizard2", "Add the event configured", Q_NULLPTR));
+#endif // QT_NO_TOOLTIP
+        pb_delete_event_action->setText(QApplication::translate("NFWizard2", "Erase Event", Q_NULLPTR));
+#ifndef QT_NO_TOOLTIP
+        pb_cancel_add_event_2->setToolTip(QApplication::translate("NFWizard2", "Cancel the adding of the event", Q_NULLPTR));
+#endif // QT_NO_TOOLTIP
+        pb_cancel_add_event_2->setText(QApplication::translate("NFWizard2", "Cancel", Q_NULLPTR));
+        pb_acept_main_thread->setText(QString());
+        label_loading->setText(QApplication::translate("NFWizard2", "LOADING...", Q_NULLPTR));
 #ifndef QT_NO_TOOLTIP
         pb_uVision_Config->setToolTip(QString());
 #endif // QT_NO_TOOLTIP
@@ -1608,27 +1830,25 @@ public:
         pb_about_QT->setToolTip(QString());
 #endif // QT_NO_TOOLTIP
         pb_about_QT->setText(QApplication::translate("NFWizard2", "About Qt", Q_NULLPTR));
+        pb_close_window->setText(QString());
+        pb_max_window->setText(QString());
+        pushButton_Generate_tag->setText(QString());
+        pb_min_window_->setText(QString());
+        pushButton_Help_tag->setText(QString());
+        pushButton_Options_tag->setText(QString());
+        label_bar_background->setText(QString());
+        l_state_machine_name->setText(QString());
+        pb_acept_sate_machine_name->setText(QString());
 #ifndef QT_NO_TOOLTIP
-        label_generate_options->setToolTip(QApplication::translate("NFWizard2", "Generates files needed. If they are generated already you don't need to mark this option", Q_NULLPTR));
+        pb_cancel_state_machine_name->setToolTip(QApplication::translate("NFWizard2", "Cancel the name configured", Q_NULLPTR));
 #endif // QT_NO_TOOLTIP
-        label_generate_options->setText(QString());
+        pb_cancel_state_machine_name->setText(QString());
+        l_main_thrad_name->setText(QApplication::translate("NFWizard2", "Main Thread Name", Q_NULLPTR));
+        pb_acept_main_thread_name->setText(QString());
 #ifndef QT_NO_TOOLTIP
-        pushButton_generate_folders->setToolTip(QApplication::translate("NFWizard2", "Generates files needed. If they are generated already you don't need to mark this option", Q_NULLPTR));
+        pb_cancel_main_thrad_name->setToolTip(QApplication::translate("NFWizard2", "Cancel the name configured", Q_NULLPTR));
 #endif // QT_NO_TOOLTIP
-        pushButton_generate_folders->setText(QString());
-#ifndef QT_NO_TOOLTIP
-        label_generate_options_2->setToolTip(QApplication::translate("NFWizard2", "Generates files needed. If they are generated already you don't need to mark this option", Q_NULLPTR));
-#endif // QT_NO_TOOLTIP
-        label_generate_options_2->setText(QString());
-        pb_open_state->setText(QApplication::translate("NFWizard2", "Open States", Q_NULLPTR));
-        pb_set_as_initial->setText(QApplication::translate("NFWizard2", "Set as Initial", Q_NULLPTR));
-        pb_configure_state->setText(QApplication::translate("NFWizard2", "Configure State", Q_NULLPTR));
-        pb_add_sub_sate->setText(QApplication::translate("NFWizard2", "Add Child ", Q_NULLPTR));
-        pb_eliminate_state->setText(QApplication::translate("NFWizard2", "Eliminate State", Q_NULLPTR));
-        pb_cancel_state_options->setText(QApplication::translate("NFWizard2", "Cancel", Q_NULLPTR));
-        l_EVENT->setText(QApplication::translate("NFWizard2", "EVENT ID", Q_NULLPTR));
-        l_NEXT_STATE->setText(QApplication::translate("NFWizard2", "NEXT STATE", Q_NULLPTR));
-        l_ACTION->setText(QApplication::translate("NFWizard2", "ACTION", Q_NULLPTR));
+        pb_cancel_main_thrad_name->setText(QString());
 #ifndef QT_NO_TOOLTIP
         pb_cancel_add_event->setToolTip(QApplication::translate("NFWizard2", "Cancel the adding of the event", Q_NULLPTR));
 #endif // QT_NO_TOOLTIP
@@ -1641,111 +1861,9 @@ public:
         pb_delete_event->setToolTip(QApplication::translate("NFWizard2", "Add the event configured", Q_NULLPTR));
 #endif // QT_NO_TOOLTIP
         pb_delete_event->setText(QApplication::translate("NFWizard2", "Erase Event", Q_NULLPTR));
-        pb_warning_state_machine->setText(QString());
-#ifndef QT_NO_TOOLTIP
-        pb_add_event_action->setToolTip(QApplication::translate("NFWizard2", "Add the event configured", Q_NULLPTR));
-#endif // QT_NO_TOOLTIP
-        pb_add_event_action->setText(QApplication::translate("NFWizard2", "Add Event", Q_NULLPTR));
-#ifndef QT_NO_TOOLTIP
-        pb_delete_event_action->setToolTip(QApplication::translate("NFWizard2", "Add the event configured", Q_NULLPTR));
-#endif // QT_NO_TOOLTIP
-        pb_delete_event_action->setText(QApplication::translate("NFWizard2", "Erase Event", Q_NULLPTR));
-#ifndef QT_NO_TOOLTIP
-        pb_cancel_add_event_2->setToolTip(QApplication::translate("NFWizard2", "Cancel the adding of the event", Q_NULLPTR));
-#endif // QT_NO_TOOLTIP
-        pb_cancel_add_event_2->setText(QApplication::translate("NFWizard2", "Cancel", Q_NULLPTR));
-#ifndef QT_NO_TOOLTIP
-        pb_configure_state_machine->setToolTip(QApplication::translate("NFWizard2", "Configure a state machine and then generate the code in your Main Thread", Q_NULLPTR));
-#endif // QT_NO_TOOLTIP
-        pb_configure_state_machine->setText(QApplication::translate("NFWizard2", "Configure State Machine", Q_NULLPTR));
-#ifndef QT_NO_TOOLTIP
-        pb_configure_Main_thread->setToolTip(QApplication::translate("NFWizard2", "Configure a Main Thread and execute it in main.cpp", Q_NULLPTR));
-#endif // QT_NO_TOOLTIP
-        pb_configure_Main_thread->setText(QApplication::translate("NFWizard2", "Configure Main Thread", Q_NULLPTR));
-#ifndef QT_NO_TOOLTIP
-        pb_configure_thread_in_main->setToolTip(QApplication::translate("NFWizard2", "Configure a Thread inside the Main Thread, you can execute it whenever you desire", Q_NULLPTR));
-#endif // QT_NO_TOOLTIP
-        pb_configure_thread_in_main->setText(QApplication::translate("NFWizard2", "Configure Thread in Main", Q_NULLPTR));
-#ifndef QT_NO_TOOLTIP
-        pb_configure_thread_in_class->setToolTip(QApplication::translate("NFWizard2", "Configure a Thread inside a Class you can name", Q_NULLPTR));
-#endif // QT_NO_TOOLTIP
-        pb_configure_thread_in_class->setText(QApplication::translate("NFWizard2", "Configure a Thread", Q_NULLPTR));
-#ifndef QT_NO_TOOLTIP
-        pb_load_from_Thread->setToolTip(QApplication::translate("NFWizard2", "Load a State Machine saved in folder HSMs into your uVision project path", Q_NULLPTR));
-#endif // QT_NO_TOOLTIP
-        pb_load_from_Thread->setText(QApplication::translate("NFWizard2", "Load from Main Thread", Q_NULLPTR));
-#ifndef QT_NO_TOOLTIP
-        pb_load_state_machine->setToolTip(QApplication::translate("NFWizard2", "Load a State Machine saved in folder HSMs into your uVision project path", Q_NULLPTR));
-#endif // QT_NO_TOOLTIP
-        pb_load_state_machine->setText(QApplication::translate("NFWizard2", "Load State Machine", Q_NULLPTR));
-#ifndef QT_NO_TOOLTIP
-        pb_save_state_machine->setToolTip(QApplication::translate("NFWizard2", "Save the State Machine configured in folder HSMs into your uVision project path", Q_NULLPTR));
-#endif // QT_NO_TOOLTIP
-        pb_save_state_machine->setText(QApplication::translate("NFWizard2", "Save State Machine", Q_NULLPTR));
-        l_thread_name->setText(QApplication::translate("NFWizard2", "New Thread Name", Q_NULLPTR));
-        l_main_thread_name->setText(QApplication::translate("NFWizard2", "Main Thread Name", Q_NULLPTR));
-        l_thread_priority->setText(QApplication::translate("NFWizard2", "Thread Priority", Q_NULLPTR));
-        cb_thread_priority->clear();
-        cb_thread_priority->insertItems(0, QStringList()
-         << QApplication::translate("NFWizard2", "Idle ", Q_NULLPTR)
-         << QApplication::translate("NFWizard2", "Low ", Q_NULLPTR)
-         << QApplication::translate("NFWizard2", "BelowNormal ", Q_NULLPTR)
-         << QApplication::translate("NFWizard2", "Normal ", Q_NULLPTR)
-         << QApplication::translate("NFWizard2", "AboveNormal ", Q_NULLPTR)
-         << QApplication::translate("NFWizard2", "High ", Q_NULLPTR)
-         << QApplication::translate("NFWizard2", "Realtime ", Q_NULLPTR)
-         << QApplication::translate("NFWizard2", "Error ", Q_NULLPTR)
-        );
-        l_thread_stack_size->setText(QApplication::translate("NFWizard2", "Thread Stack Size ", Q_NULLPTR));
-        pb_acept_main_thread->setText(QApplication::translate("NFWizard2", "Acept", Q_NULLPTR));
-#ifndef QT_NO_TOOLTIP
-        pb_add_thread->setToolTip(QApplication::translate("NFWizard2", "Add the Thread configured", Q_NULLPTR));
-#endif // QT_NO_TOOLTIP
-        pb_add_thread->setText(QApplication::translate("NFWizard2", "Add Thread", Q_NULLPTR));
-        l_state_machine_name->setText(QApplication::translate("NFWizard2", "State Machine Name", Q_NULLPTR));
-#ifndef QT_NO_TOOLTIP
-        pb_cancel_state_machine_name->setToolTip(QApplication::translate("NFWizard2", "Cancel the name configured", Q_NULLPTR));
-#endif // QT_NO_TOOLTIP
-        pb_cancel_state_machine_name->setText(QApplication::translate("NFWizard2", "Cancel", Q_NULLPTR));
-        pb_acept_sate_machine_name->setText(QApplication::translate("NFWizard2", "Acept", Q_NULLPTR));
-#ifndef QT_NO_TOOLTIP
-        pb_back->setToolTip(QApplication::translate("NFWizard2", "Go back to previous parent", Q_NULLPTR));
-#endif // QT_NO_TOOLTIP
-        pb_back->setText(QApplication::translate("NFWizard2", "Back", Q_NULLPTR));
-        l_state_parent_tag->setText(QApplication::translate("NFWizard2", "      Super State  :", Q_NULLPTR));
-        l_name_current_state->setText(QApplication::translate("NFWizard2", "No Parent", Q_NULLPTR));
-#ifndef QT_NO_TOOLTIP
-        pb_search_state->setToolTip(QApplication::translate("NFWizard2", "Search for a State of the State Machine configured", Q_NULLPTR));
-#endif // QT_NO_TOOLTIP
-        pb_search_state->setText(QApplication::translate("NFWizard2", "Search", Q_NULLPTR));
-        label_2->setText(QApplication::translate("NFWizard2", "SUPER STATE", Q_NULLPTR));
-        label_3->setText(QApplication::translate("NFWizard2", "INITIAL STATE", Q_NULLPTR));
-        label_4->setText(QApplication::translate("NFWizard2", "DEFAULT EVENT", Q_NULLPTR));
-        label_5->setText(QApplication::translate("NFWizard2", "Next State", Q_NULLPTR));
-        label_6->setText(QApplication::translate("NFWizard2", "Action", Q_NULLPTR));
-        label->setText(QApplication::translate("NFWizard2", "STATE NAME", Q_NULLPTR));
-        l_Entry_Action->setText(QApplication::translate("NFWizard2", "ENTRY ACTION", Q_NULLPTR));
-        l_Exit_Action->setText(QApplication::translate("NFWizard2", "EXIT ACTION", Q_NULLPTR));
-#ifndef QT_NO_TOOLTIP
-        pb_change_to_event->setToolTip(QApplication::translate("NFWizard2", "Apply changes to the State properties", Q_NULLPTR));
-#endif // QT_NO_TOOLTIP
-        pb_change_to_event->setText(QApplication::translate("NFWizard2", "EVENTS", Q_NULLPTR));
-#ifndef QT_NO_TOOLTIP
-        pb_ok->setToolTip(QApplication::translate("NFWizard2", "Apply changes to the State properties", Q_NULLPTR));
-#endif // QT_NO_TOOLTIP
-        pb_ok->setText(QApplication::translate("NFWizard2", "APPLY", Q_NULLPTR));
-#ifndef QT_NO_TOOLTIP
-        pb_add_state->setToolTip(QApplication::translate("NFWizard2", "Add a new State in the current Super State", Q_NULLPTR));
-#endif // QT_NO_TOOLTIP
-        pb_add_state->setText(QApplication::translate("NFWizard2", "Add State", Q_NULLPTR));
-#ifndef QT_NO_TOOLTIP
-        pb_generate_state_machine->setToolTip(QApplication::translate("NFWizard2", "Generate the code for the State Machine configured or loaded inside your Main Thread", Q_NULLPTR));
-#endif // QT_NO_TOOLTIP
-        pb_generate_state_machine->setText(QApplication::translate("NFWizard2", "Generate", Q_NULLPTR));
-        QTreeWidgetItem *___qtreewidgetitem = tw_state_machine->headerItem();
-        ___qtreewidgetitem->setText(0, QApplication::translate("NFWizard2", "State Machine", Q_NULLPTR));
-        label_loading->setText(QApplication::translate("NFWizard2", "LOADING...", Q_NULLPTR));
-        menuHelp->setTitle(QApplication::translate("NFWizard2", "Help", Q_NULLPTR));
+        l_EVENT->setText(QApplication::translate("NFWizard2", "EVENT ID", Q_NULLPTR));
+        l_NEXT_STATE->setText(QApplication::translate("NFWizard2", "NEXT STATE", Q_NULLPTR));
+        l_ACTION->setText(QApplication::translate("NFWizard2", "ACTION", Q_NULLPTR));
     } // retranslateUi
 
 };
