@@ -30,6 +30,7 @@ public:
     int write_string_to_document(const QString fileContent);
     const QStringList get_text_between();
     void processTextBlock_modified();
+    int add_code_to_end_of_file(const QString main_thread_name);
 private:
     QString filename_;
     QString startLine_;

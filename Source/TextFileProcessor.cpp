@@ -600,6 +600,21 @@ int TextFileProcessor::generate_code_in_main_thread_cpp(const QString main_threa
     return 1;
 }
 
+int TextFileProcessor::add_code_to_end_of_file(const QString main_thread_name){
+
+    QFile file(filename());
+    if (!file.open(QFile::ReadWrite | QFile::Text)) {
+        qWarning() << "File: " << filename() << " could not be opened for read!";
+
+        return -2;
+    }
+
+    QString fileContent = file.readAll()+replacementStr_;
+    file.close();
+
+    return write_string_to_document(fileContent);
+
+}
 void TextFileProcessor::processMethod()
 {
     QFile file(filename());

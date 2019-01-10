@@ -13,6 +13,7 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
+#include <QtWidgets/QCheckBox>
 #include <QtWidgets/QComboBox>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
@@ -74,8 +75,8 @@ public:
     QPushButton *pb_configure_mutex;
     QWidget *widget_timer_parameters;
     QVBoxLayout *verticalLayout_39;
-    QVBoxLayout *verticalLayout_38;
-    QLabel *l_EVENT_2;
+    QVBoxLayout *verticalLayout_47;
+    QLabel *l_EVENT_13;
     QLineEdit *le_timer_name;
     QComboBox *cb_timer_mode;
     QVBoxLayout *verticalLayout_37;
@@ -85,6 +86,55 @@ public:
     QLabel *l_EVENT_4;
     QLineEdit *le_timer_function;
     QPushButton *pb_add_Timer;
+    QWidget *widget_mailBox_parameters;
+    QVBoxLayout *verticalLayout_6;
+    QVBoxLayout *verticalLayout_40;
+    QLabel *l_EVENT_5;
+    QLineEdit *le_mailBox_name;
+    QVBoxLayout *verticalLayout_41;
+    QLabel *l_EVENT_9;
+    QLineEdit *le_mail_data_type;
+    QVBoxLayout *verticalLayout_4;
+    QLabel *l_EVENT_7;
+    QSpinBox *sb_mailBox_size;
+    QVBoxLayout *verticalLayout_3;
+    QLabel *l_EVENT_6;
+    QSpinBox *sb_mailBox_buffer_size;
+    QPushButton *pb_add_MailBox;
+    QWidget *widget_memory_pool_parameters;
+    QVBoxLayout *verticalLayout_9;
+    QVBoxLayout *verticalLayout_42;
+    QLabel *l_EVENT_10;
+    QLineEdit *le_memory_pool_name;
+    QVBoxLayout *verticalLayout_7;
+    QLabel *l_EVENT_11;
+    QSpinBox *sb_memory_pool_size;
+    QVBoxLayout *verticalLayout_44;
+    QLabel *l_memPool_data_type;
+    QLineEdit *le_memPool_data_type;
+    QCheckBox *cb_memoryPool_buffer;
+    QVBoxLayout *verticalLayout_45;
+    QLabel *l_memPool_buffer_type;
+    QLineEdit *le_memPool_buffer_Type;
+    QVBoxLayout *verticalLayout_8;
+    QLabel *l_memPool_buffer_size;
+    QSpinBox *sb_memory_pool_buffer_size;
+    QPushButton *pb_add_memPool;
+    QWidget *widget_semaphore_parameters;
+    QVBoxLayout *verticalLayout_10;
+    QVBoxLayout *verticalLayout_38;
+    QLabel *l_EVENT_2;
+    QLineEdit *le_semaphore_name;
+    QVBoxLayout *verticalLayout_46;
+    QLabel *l_EVENT_12;
+    QSpinBox *sb_semaphore_res_size;
+    QPushButton *pb_add_Semaphore;
+    QWidget *widget_mutex_parameters;
+    QVBoxLayout *verticalLayout_13;
+    QVBoxLayout *verticalLayout_11;
+    QLabel *l_EVENT_14;
+    QLineEdit *le_Mutex_name;
+    QPushButton *pb_add_Semaphore_2;
     QWidget *widget_state_machine_screen;
     QPushButton *pb_load_from_Thread;
     QPushButton *pb_save_state_machine;
@@ -560,18 +610,18 @@ public:
         verticalLayout_39->setContentsMargins(11, 11, 11, 11);
         verticalLayout_39->setObjectName(QStringLiteral("verticalLayout_39"));
         verticalLayout_39->setSizeConstraint(QLayout::SetFixedSize);
-        verticalLayout_38 = new QVBoxLayout();
-        verticalLayout_38->setSpacing(6);
-        verticalLayout_38->setObjectName(QStringLiteral("verticalLayout_38"));
-        verticalLayout_38->setSizeConstraint(QLayout::SetFixedSize);
-        l_EVENT_2 = new QLabel(widget_timer_parameters);
-        l_EVENT_2->setObjectName(QStringLiteral("l_EVENT_2"));
-        l_EVENT_2->setStyleSheet(QLatin1String("font: 75 18pt \"Myriad Web\";\n"
+        verticalLayout_47 = new QVBoxLayout();
+        verticalLayout_47->setSpacing(6);
+        verticalLayout_47->setObjectName(QStringLiteral("verticalLayout_47"));
+        verticalLayout_47->setSizeConstraint(QLayout::SetFixedSize);
+        l_EVENT_13 = new QLabel(widget_timer_parameters);
+        l_EVENT_13->setObjectName(QStringLiteral("l_EVENT_13"));
+        l_EVENT_13->setStyleSheet(QLatin1String("font: 75 18pt \"Myriad Web\";\n"
 "color:  rgb(30, 30, 30);\n"
 ""));
-        l_EVENT_2->setAlignment(Qt::AlignCenter);
+        l_EVENT_13->setAlignment(Qt::AlignCenter);
 
-        verticalLayout_38->addWidget(l_EVENT_2);
+        verticalLayout_47->addWidget(l_EVENT_13);
 
         le_timer_name = new QLineEdit(widget_timer_parameters);
         le_timer_name->setObjectName(QStringLiteral("le_timer_name"));
@@ -581,10 +631,10 @@ public:
 "color:  rgb(8, 113, 104);\n"
 ""));
 
-        verticalLayout_38->addWidget(le_timer_name);
+        verticalLayout_47->addWidget(le_timer_name);
 
 
-        verticalLayout_39->addLayout(verticalLayout_38);
+        verticalLayout_39->addLayout(verticalLayout_47);
 
         cb_timer_mode = new QComboBox(widget_timer_parameters);
         cb_timer_mode->setObjectName(QStringLiteral("cb_timer_mode"));
@@ -665,6 +715,428 @@ public:
 
         verticalLayout_39->addWidget(pb_add_Timer);
 
+        widget_mailBox_parameters = new QWidget(widget_options_screen_native);
+        widget_mailBox_parameters->setObjectName(QStringLiteral("widget_mailBox_parameters"));
+        widget_mailBox_parameters->setGeometry(QRect(310, -30, 234, 354));
+        widget_mailBox_parameters->setStyleSheet(QStringLiteral("background-image: url(:/icons/screen8/fondo_transparente.png);"));
+        verticalLayout_6 = new QVBoxLayout(widget_mailBox_parameters);
+        verticalLayout_6->setSpacing(30);
+        verticalLayout_6->setContentsMargins(11, 11, 11, 11);
+        verticalLayout_6->setObjectName(QStringLiteral("verticalLayout_6"));
+        verticalLayout_40 = new QVBoxLayout();
+        verticalLayout_40->setSpacing(6);
+        verticalLayout_40->setObjectName(QStringLiteral("verticalLayout_40"));
+        verticalLayout_40->setSizeConstraint(QLayout::SetFixedSize);
+        l_EVENT_5 = new QLabel(widget_mailBox_parameters);
+        l_EVENT_5->setObjectName(QStringLiteral("l_EVENT_5"));
+        l_EVENT_5->setStyleSheet(QLatin1String("font: 75 18pt \"Myriad Web\";\n"
+"color:  rgb(30, 30, 30);\n"
+""));
+        l_EVENT_5->setAlignment(Qt::AlignCenter);
+
+        verticalLayout_40->addWidget(l_EVENT_5);
+
+        le_mailBox_name = new QLineEdit(widget_mailBox_parameters);
+        le_mailBox_name->setObjectName(QStringLiteral("le_mailBox_name"));
+        le_mailBox_name->setMinimumSize(QSize(214, 41));
+        le_mailBox_name->setStyleSheet(QLatin1String("border-image: url(:/icons/screen6/label_1.png);\n"
+"font: 15pt \"Myriad Web\";\n"
+"color:  rgb(8, 113, 104);\n"
+""));
+
+        verticalLayout_40->addWidget(le_mailBox_name);
+
+
+        verticalLayout_6->addLayout(verticalLayout_40);
+
+        verticalLayout_41 = new QVBoxLayout();
+        verticalLayout_41->setSpacing(6);
+        verticalLayout_41->setObjectName(QStringLiteral("verticalLayout_41"));
+        verticalLayout_41->setSizeConstraint(QLayout::SetFixedSize);
+        l_EVENT_9 = new QLabel(widget_mailBox_parameters);
+        l_EVENT_9->setObjectName(QStringLiteral("l_EVENT_9"));
+        l_EVENT_9->setStyleSheet(QLatin1String("font: 75 18pt \"Myriad Web\";\n"
+"color:  rgb(30, 30, 30);\n"
+""));
+        l_EVENT_9->setAlignment(Qt::AlignCenter);
+
+        verticalLayout_41->addWidget(l_EVENT_9);
+
+        le_mail_data_type = new QLineEdit(widget_mailBox_parameters);
+        le_mail_data_type->setObjectName(QStringLiteral("le_mail_data_type"));
+        le_mail_data_type->setMinimumSize(QSize(214, 41));
+        le_mail_data_type->setStyleSheet(QLatin1String("border-image: url(:/icons/screen6/label_1.png);\n"
+"font: 15pt \"Myriad Web\";\n"
+"color:  rgb(8, 113, 104);\n"
+""));
+
+        verticalLayout_41->addWidget(le_mail_data_type);
+
+
+        verticalLayout_6->addLayout(verticalLayout_41);
+
+        verticalLayout_4 = new QVBoxLayout();
+        verticalLayout_4->setSpacing(6);
+        verticalLayout_4->setObjectName(QStringLiteral("verticalLayout_4"));
+        l_EVENT_7 = new QLabel(widget_mailBox_parameters);
+        l_EVENT_7->setObjectName(QStringLiteral("l_EVENT_7"));
+        l_EVENT_7->setStyleSheet(QLatin1String("font: 75 18pt \"Myriad Web\";\n"
+"color:  rgb(30, 30, 30);\n"
+""));
+        l_EVENT_7->setAlignment(Qt::AlignCenter);
+
+        verticalLayout_4->addWidget(l_EVENT_7);
+
+        sb_mailBox_size = new QSpinBox(widget_mailBox_parameters);
+        sb_mailBox_size->setObjectName(QStringLiteral("sb_mailBox_size"));
+        sb_mailBox_size->setMinimumSize(QSize(0, 25));
+        sb_mailBox_size->setStyleSheet(QLatin1String("font: 12pt \"Segoe UI\";\n"
+"border-image: url(:/icons/screen5/label_2.png);\n"
+"color: rgb(8, 113, 104);\n"
+""));
+        sb_mailBox_size->setAlignment(Qt::AlignCenter);
+        sb_mailBox_size->setMaximum(100000);
+        sb_mailBox_size->setSingleStep(1);
+        sb_mailBox_size->setValue(1);
+
+        verticalLayout_4->addWidget(sb_mailBox_size);
+
+
+        verticalLayout_6->addLayout(verticalLayout_4);
+
+        verticalLayout_3 = new QVBoxLayout();
+        verticalLayout_3->setSpacing(6);
+        verticalLayout_3->setObjectName(QStringLiteral("verticalLayout_3"));
+        l_EVENT_6 = new QLabel(widget_mailBox_parameters);
+        l_EVENT_6->setObjectName(QStringLiteral("l_EVENT_6"));
+        l_EVENT_6->setStyleSheet(QLatin1String("font: 75 18pt \"Myriad Web\";\n"
+"color:  rgb(30, 30, 30);\n"
+""));
+        l_EVENT_6->setAlignment(Qt::AlignCenter);
+
+        verticalLayout_3->addWidget(l_EVENT_6);
+
+        sb_mailBox_buffer_size = new QSpinBox(widget_mailBox_parameters);
+        sb_mailBox_buffer_size->setObjectName(QStringLiteral("sb_mailBox_buffer_size"));
+        sb_mailBox_buffer_size->setMinimumSize(QSize(0, 25));
+        sb_mailBox_buffer_size->setStyleSheet(QLatin1String("font: 12pt \"Segoe UI\";\n"
+"border-image: url(:/icons/screen5/label_2.png);\n"
+"color: rgb(8, 113, 104);\n"
+""));
+        sb_mailBox_buffer_size->setAlignment(Qt::AlignCenter);
+        sb_mailBox_buffer_size->setMaximum(100000);
+        sb_mailBox_buffer_size->setSingleStep(1);
+        sb_mailBox_buffer_size->setValue(1);
+
+        verticalLayout_3->addWidget(sb_mailBox_buffer_size);
+
+
+        verticalLayout_6->addLayout(verticalLayout_3);
+
+        pb_add_MailBox = new QPushButton(widget_mailBox_parameters);
+        pb_add_MailBox->setObjectName(QStringLiteral("pb_add_MailBox"));
+        pb_add_MailBox->setEnabled(true);
+        pb_add_MailBox->setMinimumSize(QSize(150, 40));
+        pb_add_MailBox->setMaximumSize(QSize(200, 50));
+        pb_add_MailBox->setCursor(QCursor(Qt::PointingHandCursor));
+        pb_add_MailBox->setStyleSheet(QLatin1String("font: 75 18pt \"Myriad Web\";\n"
+"color:  rgb(8, 113, 104);"));
+        pb_add_MailBox->setFlat(true);
+
+        verticalLayout_6->addWidget(pb_add_MailBox);
+
+        widget_memory_pool_parameters = new QWidget(widget_options_screen_native);
+        widget_memory_pool_parameters->setObjectName(QStringLiteral("widget_memory_pool_parameters"));
+        widget_memory_pool_parameters->setGeometry(QRect(1130, 220, 271, 461));
+        widget_memory_pool_parameters->setStyleSheet(QStringLiteral("background-image: url(:/icons/screen8/fondo_transparente.png);"));
+        verticalLayout_9 = new QVBoxLayout(widget_memory_pool_parameters);
+        verticalLayout_9->setSpacing(30);
+        verticalLayout_9->setContentsMargins(11, 11, 11, 11);
+        verticalLayout_9->setObjectName(QStringLiteral("verticalLayout_9"));
+        verticalLayout_42 = new QVBoxLayout();
+        verticalLayout_42->setSpacing(6);
+        verticalLayout_42->setObjectName(QStringLiteral("verticalLayout_42"));
+        verticalLayout_42->setSizeConstraint(QLayout::SetFixedSize);
+        l_EVENT_10 = new QLabel(widget_memory_pool_parameters);
+        l_EVENT_10->setObjectName(QStringLiteral("l_EVENT_10"));
+        l_EVENT_10->setStyleSheet(QLatin1String("font: 75 18pt \"Myriad Web\";\n"
+"color:  rgb(30, 30, 30);\n"
+""));
+        l_EVENT_10->setAlignment(Qt::AlignCenter);
+
+        verticalLayout_42->addWidget(l_EVENT_10);
+
+        le_memory_pool_name = new QLineEdit(widget_memory_pool_parameters);
+        le_memory_pool_name->setObjectName(QStringLiteral("le_memory_pool_name"));
+        le_memory_pool_name->setMinimumSize(QSize(214, 41));
+        le_memory_pool_name->setStyleSheet(QLatin1String("border-image: url(:/icons/screen6/label_1.png);\n"
+"font: 15pt \"Myriad Web\";\n"
+"color:  rgb(8, 113, 104);\n"
+""));
+
+        verticalLayout_42->addWidget(le_memory_pool_name);
+
+
+        verticalLayout_9->addLayout(verticalLayout_42);
+
+        verticalLayout_7 = new QVBoxLayout();
+        verticalLayout_7->setSpacing(6);
+        verticalLayout_7->setObjectName(QStringLiteral("verticalLayout_7"));
+        verticalLayout_7->setSizeConstraint(QLayout::SetFixedSize);
+        l_EVENT_11 = new QLabel(widget_memory_pool_parameters);
+        l_EVENT_11->setObjectName(QStringLiteral("l_EVENT_11"));
+        l_EVENT_11->setStyleSheet(QLatin1String("font: 75 18pt \"Myriad Web\";\n"
+"color:  rgb(30, 30, 30);\n"
+""));
+        l_EVENT_11->setAlignment(Qt::AlignCenter);
+
+        verticalLayout_7->addWidget(l_EVENT_11);
+
+        sb_memory_pool_size = new QSpinBox(widget_memory_pool_parameters);
+        sb_memory_pool_size->setObjectName(QStringLiteral("sb_memory_pool_size"));
+        sb_memory_pool_size->setMinimumSize(QSize(0, 25));
+        sb_memory_pool_size->setStyleSheet(QLatin1String("font: 12pt \"Segoe UI\";\n"
+"border-image: url(:/icons/screen5/label_2.png);\n"
+"color: rgb(8, 113, 104);\n"
+""));
+        sb_memory_pool_size->setAlignment(Qt::AlignCenter);
+        sb_memory_pool_size->setMinimum(1);
+        sb_memory_pool_size->setMaximum(100000);
+        sb_memory_pool_size->setSingleStep(1);
+        sb_memory_pool_size->setValue(1);
+
+        verticalLayout_7->addWidget(sb_memory_pool_size);
+
+
+        verticalLayout_9->addLayout(verticalLayout_7);
+
+        verticalLayout_44 = new QVBoxLayout();
+        verticalLayout_44->setSpacing(6);
+        verticalLayout_44->setObjectName(QStringLiteral("verticalLayout_44"));
+        verticalLayout_44->setSizeConstraint(QLayout::SetFixedSize);
+        l_memPool_data_type = new QLabel(widget_memory_pool_parameters);
+        l_memPool_data_type->setObjectName(QStringLiteral("l_memPool_data_type"));
+        l_memPool_data_type->setStyleSheet(QLatin1String("font: 75 18pt \"Myriad Web\";\n"
+"color:  rgb(30, 30, 30);\n"
+""));
+        l_memPool_data_type->setAlignment(Qt::AlignCenter);
+
+        verticalLayout_44->addWidget(l_memPool_data_type);
+
+        le_memPool_data_type = new QLineEdit(widget_memory_pool_parameters);
+        le_memPool_data_type->setObjectName(QStringLiteral("le_memPool_data_type"));
+        le_memPool_data_type->setMinimumSize(QSize(214, 41));
+        le_memPool_data_type->setStyleSheet(QLatin1String("border-image: url(:/icons/screen6/label_1.png);\n"
+"font: 15pt \"Myriad Web\";\n"
+"color:  rgb(8, 113, 104);\n"
+""));
+
+        verticalLayout_44->addWidget(le_memPool_data_type);
+
+
+        verticalLayout_9->addLayout(verticalLayout_44);
+
+        cb_memoryPool_buffer = new QCheckBox(widget_memory_pool_parameters);
+        cb_memoryPool_buffer->setObjectName(QStringLiteral("cb_memoryPool_buffer"));
+        cb_memoryPool_buffer->setStyleSheet(QLatin1String("font: 75 18pt \"Myriad Web\";\n"
+"color:  rgb(30, 30, 30);\n"
+""));
+
+        verticalLayout_9->addWidget(cb_memoryPool_buffer);
+
+        verticalLayout_45 = new QVBoxLayout();
+        verticalLayout_45->setSpacing(6);
+        verticalLayout_45->setObjectName(QStringLiteral("verticalLayout_45"));
+        verticalLayout_45->setSizeConstraint(QLayout::SetFixedSize);
+        l_memPool_buffer_type = new QLabel(widget_memory_pool_parameters);
+        l_memPool_buffer_type->setObjectName(QStringLiteral("l_memPool_buffer_type"));
+        l_memPool_buffer_type->setStyleSheet(QLatin1String("font: 75 18pt \"Myriad Web\";\n"
+"color:  rgb(30, 30, 30);\n"
+""));
+        l_memPool_buffer_type->setAlignment(Qt::AlignCenter);
+
+        verticalLayout_45->addWidget(l_memPool_buffer_type);
+
+        le_memPool_buffer_Type = new QLineEdit(widget_memory_pool_parameters);
+        le_memPool_buffer_Type->setObjectName(QStringLiteral("le_memPool_buffer_Type"));
+        le_memPool_buffer_Type->setMinimumSize(QSize(214, 41));
+        le_memPool_buffer_Type->setStyleSheet(QLatin1String("border-image: url(:/icons/screen6/label_1.png);\n"
+"font: 15pt \"Myriad Web\";\n"
+"color:  rgb(8, 113, 104);\n"
+""));
+
+        verticalLayout_45->addWidget(le_memPool_buffer_Type);
+
+
+        verticalLayout_9->addLayout(verticalLayout_45);
+
+        verticalLayout_8 = new QVBoxLayout();
+        verticalLayout_8->setSpacing(6);
+        verticalLayout_8->setObjectName(QStringLiteral("verticalLayout_8"));
+        verticalLayout_8->setSizeConstraint(QLayout::SetFixedSize);
+        l_memPool_buffer_size = new QLabel(widget_memory_pool_parameters);
+        l_memPool_buffer_size->setObjectName(QStringLiteral("l_memPool_buffer_size"));
+        l_memPool_buffer_size->setStyleSheet(QLatin1String("font: 75 18pt \"Myriad Web\";\n"
+"color:  rgb(30, 30, 30);\n"
+""));
+        l_memPool_buffer_size->setAlignment(Qt::AlignCenter);
+
+        verticalLayout_8->addWidget(l_memPool_buffer_size);
+
+        sb_memory_pool_buffer_size = new QSpinBox(widget_memory_pool_parameters);
+        sb_memory_pool_buffer_size->setObjectName(QStringLiteral("sb_memory_pool_buffer_size"));
+        sb_memory_pool_buffer_size->setMinimumSize(QSize(0, 25));
+        sb_memory_pool_buffer_size->setStyleSheet(QLatin1String("font: 12pt \"Segoe UI\";\n"
+"border-image: url(:/icons/screen5/label_2.png);\n"
+"color: rgb(8, 113, 104);\n"
+""));
+        sb_memory_pool_buffer_size->setAlignment(Qt::AlignCenter);
+        sb_memory_pool_buffer_size->setMinimum(1);
+        sb_memory_pool_buffer_size->setMaximum(100000);
+        sb_memory_pool_buffer_size->setSingleStep(1);
+        sb_memory_pool_buffer_size->setValue(1);
+
+        verticalLayout_8->addWidget(sb_memory_pool_buffer_size);
+
+
+        verticalLayout_9->addLayout(verticalLayout_8);
+
+        pb_add_memPool = new QPushButton(widget_memory_pool_parameters);
+        pb_add_memPool->setObjectName(QStringLiteral("pb_add_memPool"));
+        pb_add_memPool->setEnabled(true);
+        pb_add_memPool->setMinimumSize(QSize(150, 40));
+        pb_add_memPool->setMaximumSize(QSize(200, 50));
+        pb_add_memPool->setCursor(QCursor(Qt::PointingHandCursor));
+        pb_add_memPool->setStyleSheet(QLatin1String("font: 75 18pt \"Myriad Web\";\n"
+"color:  rgb(8, 113, 104);"));
+        pb_add_memPool->setFlat(true);
+
+        verticalLayout_9->addWidget(pb_add_memPool);
+
+        widget_semaphore_parameters = new QWidget(widget_options_screen_native);
+        widget_semaphore_parameters->setObjectName(QStringLiteral("widget_semaphore_parameters"));
+        widget_semaphore_parameters->setGeometry(QRect(10, 450, 283, 231));
+        widget_semaphore_parameters->setStyleSheet(QStringLiteral("background-image: url(:/icons/screen8/fondo_transparente.png);"));
+        verticalLayout_10 = new QVBoxLayout(widget_semaphore_parameters);
+        verticalLayout_10->setSpacing(30);
+        verticalLayout_10->setContentsMargins(11, 11, 11, 11);
+        verticalLayout_10->setObjectName(QStringLiteral("verticalLayout_10"));
+        verticalLayout_38 = new QVBoxLayout();
+        verticalLayout_38->setSpacing(6);
+        verticalLayout_38->setObjectName(QStringLiteral("verticalLayout_38"));
+        verticalLayout_38->setSizeConstraint(QLayout::SetFixedSize);
+        l_EVENT_2 = new QLabel(widget_semaphore_parameters);
+        l_EVENT_2->setObjectName(QStringLiteral("l_EVENT_2"));
+        l_EVENT_2->setStyleSheet(QLatin1String("font: 75 18pt \"Myriad Web\";\n"
+"color:  rgb(30, 30, 30);\n"
+""));
+        l_EVENT_2->setAlignment(Qt::AlignCenter);
+
+        verticalLayout_38->addWidget(l_EVENT_2);
+
+        le_semaphore_name = new QLineEdit(widget_semaphore_parameters);
+        le_semaphore_name->setObjectName(QStringLiteral("le_semaphore_name"));
+        le_semaphore_name->setMinimumSize(QSize(214, 41));
+        le_semaphore_name->setStyleSheet(QLatin1String("border-image: url(:/icons/screen6/label_1.png);\n"
+"font: 15pt \"Myriad Web\";\n"
+"color:  rgb(8, 113, 104);\n"
+""));
+
+        verticalLayout_38->addWidget(le_semaphore_name);
+
+
+        verticalLayout_10->addLayout(verticalLayout_38);
+
+        verticalLayout_46 = new QVBoxLayout();
+        verticalLayout_46->setSpacing(6);
+        verticalLayout_46->setObjectName(QStringLiteral("verticalLayout_46"));
+        verticalLayout_46->setSizeConstraint(QLayout::SetFixedSize);
+        l_EVENT_12 = new QLabel(widget_semaphore_parameters);
+        l_EVENT_12->setObjectName(QStringLiteral("l_EVENT_12"));
+        l_EVENT_12->setStyleSheet(QLatin1String("font: 75 18pt \"Myriad Web\";\n"
+"color:  rgb(30, 30, 30);\n"
+""));
+        l_EVENT_12->setAlignment(Qt::AlignCenter);
+
+        verticalLayout_46->addWidget(l_EVENT_12);
+
+        sb_semaphore_res_size = new QSpinBox(widget_semaphore_parameters);
+        sb_semaphore_res_size->setObjectName(QStringLiteral("sb_semaphore_res_size"));
+        sb_semaphore_res_size->setMinimumSize(QSize(0, 25));
+        sb_semaphore_res_size->setStyleSheet(QLatin1String("font: 12pt \"Segoe UI\";\n"
+"border-image: url(:/icons/screen5/label_2.png);\n"
+"color: rgb(8, 113, 104);\n"
+""));
+        sb_semaphore_res_size->setAlignment(Qt::AlignCenter);
+        sb_semaphore_res_size->setMinimum(1);
+        sb_semaphore_res_size->setMaximum(100000);
+        sb_semaphore_res_size->setSingleStep(10);
+        sb_semaphore_res_size->setValue(1);
+
+        verticalLayout_46->addWidget(sb_semaphore_res_size);
+
+
+        verticalLayout_10->addLayout(verticalLayout_46);
+
+        pb_add_Semaphore = new QPushButton(widget_semaphore_parameters);
+        pb_add_Semaphore->setObjectName(QStringLiteral("pb_add_Semaphore"));
+        pb_add_Semaphore->setEnabled(true);
+        pb_add_Semaphore->setMinimumSize(QSize(150, 40));
+        pb_add_Semaphore->setMaximumSize(QSize(200, 50));
+        pb_add_Semaphore->setCursor(QCursor(Qt::PointingHandCursor));
+        pb_add_Semaphore->setStyleSheet(QLatin1String("font: 75 18pt \"Myriad Web\";\n"
+"color:  rgb(8, 113, 104);"));
+        pb_add_Semaphore->setFlat(true);
+
+        verticalLayout_10->addWidget(pb_add_Semaphore);
+
+        pb_add_Semaphore->raise();
+        widget_mutex_parameters = new QWidget(widget_options_screen_native);
+        widget_mutex_parameters->setObjectName(QStringLiteral("widget_mutex_parameters"));
+        widget_mutex_parameters->setGeometry(QRect(330, 580, 234, 140));
+        widget_mutex_parameters->setStyleSheet(QStringLiteral("background-image: url(:/icons/screen8/fondo_transparente.png);"));
+        verticalLayout_13 = new QVBoxLayout(widget_mutex_parameters);
+        verticalLayout_13->setSpacing(30);
+        verticalLayout_13->setContentsMargins(11, 11, 11, 11);
+        verticalLayout_13->setObjectName(QStringLiteral("verticalLayout_13"));
+        verticalLayout_11 = new QVBoxLayout();
+        verticalLayout_11->setSpacing(6);
+        verticalLayout_11->setObjectName(QStringLiteral("verticalLayout_11"));
+        l_EVENT_14 = new QLabel(widget_mutex_parameters);
+        l_EVENT_14->setObjectName(QStringLiteral("l_EVENT_14"));
+        l_EVENT_14->setStyleSheet(QLatin1String("font: 75 18pt \"Myriad Web\";\n"
+"color:  rgb(30, 30, 30);\n"
+""));
+        l_EVENT_14->setAlignment(Qt::AlignCenter);
+
+        verticalLayout_11->addWidget(l_EVENT_14);
+
+        le_Mutex_name = new QLineEdit(widget_mutex_parameters);
+        le_Mutex_name->setObjectName(QStringLiteral("le_Mutex_name"));
+        le_Mutex_name->setMinimumSize(QSize(214, 41));
+        le_Mutex_name->setStyleSheet(QLatin1String("border-image: url(:/icons/screen6/label_1.png);\n"
+"font: 15pt \"Myriad Web\";\n"
+"color:  rgb(8, 113, 104);\n"
+""));
+
+        verticalLayout_11->addWidget(le_Mutex_name);
+
+
+        verticalLayout_13->addLayout(verticalLayout_11);
+
+        pb_add_Semaphore_2 = new QPushButton(widget_mutex_parameters);
+        pb_add_Semaphore_2->setObjectName(QStringLiteral("pb_add_Semaphore_2"));
+        pb_add_Semaphore_2->setEnabled(true);
+        pb_add_Semaphore_2->setMinimumSize(QSize(150, 40));
+        pb_add_Semaphore_2->setMaximumSize(QSize(200, 50));
+        pb_add_Semaphore_2->setCursor(QCursor(Qt::PointingHandCursor));
+        pb_add_Semaphore_2->setStyleSheet(QLatin1String("font: 75 18pt \"Myriad Web\";\n"
+"color:  rgb(8, 113, 104);"));
+        pb_add_Semaphore_2->setFlat(true);
+
+        verticalLayout_13->addWidget(pb_add_Semaphore_2);
+
+        pb_add_Semaphore_2->raise();
         widget_state_machine_screen = new QWidget(centralWidget);
         widget_state_machine_screen->setObjectName(QStringLiteral("widget_state_machine_screen"));
         widget_state_machine_screen->setGeometry(QRect(3930, 0, 1366, 768));
@@ -1728,7 +2200,7 @@ public:
         pb_configure_mutex->setToolTip(QApplication::translate("NFWizard2", "Configure a Main Thread and execute it in main.cpp", Q_NULLPTR));
 #endif // QT_NO_TOOLTIP
         pb_configure_mutex->setText(QApplication::translate("NFWizard2", "Mutex     >", Q_NULLPTR));
-        l_EVENT_2->setText(QApplication::translate("NFWizard2", "Timer Name", Q_NULLPTR));
+        l_EVENT_13->setText(QApplication::translate("NFWizard2", "Timer Name", Q_NULLPTR));
         cb_timer_mode->clear();
         cb_timer_mode->insertItems(0, QStringList()
          << QApplication::translate("NFWizard2", "Periodic", Q_NULLPTR)
@@ -1741,6 +2213,35 @@ public:
         pb_add_Timer->setToolTip(QApplication::translate("NFWizard2", "Configure a Main Thread and execute it in main.cpp", Q_NULLPTR));
 #endif // QT_NO_TOOLTIP
         pb_add_Timer->setText(QApplication::translate("NFWizard2", "Add Timer", Q_NULLPTR));
+        l_EVENT_5->setText(QApplication::translate("NFWizard2", "MailBox Name", Q_NULLPTR));
+        l_EVENT_9->setText(QApplication::translate("NFWizard2", "Mail Data Type", Q_NULLPTR));
+        l_EVENT_7->setText(QApplication::translate("NFWizard2", "MailBox Size", Q_NULLPTR));
+        l_EVENT_6->setText(QApplication::translate("NFWizard2", "Mail Buffer Size", Q_NULLPTR));
+#ifndef QT_NO_TOOLTIP
+        pb_add_MailBox->setToolTip(QApplication::translate("NFWizard2", "Configure a Main Thread and execute it in main.cpp", Q_NULLPTR));
+#endif // QT_NO_TOOLTIP
+        pb_add_MailBox->setText(QApplication::translate("NFWizard2", "Add MailBox", Q_NULLPTR));
+        l_EVENT_10->setText(QApplication::translate("NFWizard2", "Memory Pool  Name", Q_NULLPTR));
+        l_EVENT_11->setText(QApplication::translate("NFWizard2", "Memory Pool  Size", Q_NULLPTR));
+        l_memPool_data_type->setText(QApplication::translate("NFWizard2", "Memory Pool Data Type", Q_NULLPTR));
+        cb_memoryPool_buffer->setText(QApplication::translate("NFWizard2", "Memory Pool Buffer", Q_NULLPTR));
+        l_memPool_buffer_type->setText(QApplication::translate("NFWizard2", "Buffer Data Type", Q_NULLPTR));
+        l_memPool_buffer_size->setText(QApplication::translate("NFWizard2", "Buffer Size", Q_NULLPTR));
+#ifndef QT_NO_TOOLTIP
+        pb_add_memPool->setToolTip(QApplication::translate("NFWizard2", "Configure a Main Thread and execute it in main.cpp", Q_NULLPTR));
+#endif // QT_NO_TOOLTIP
+        pb_add_memPool->setText(QApplication::translate("NFWizard2", "Add Memory Pool", Q_NULLPTR));
+        l_EVENT_2->setText(QApplication::translate("NFWizard2", "Semaphore Name", Q_NULLPTR));
+        l_EVENT_12->setText(QApplication::translate("NFWizard2", "Semaphore Resource Size", Q_NULLPTR));
+#ifndef QT_NO_TOOLTIP
+        pb_add_Semaphore->setToolTip(QApplication::translate("NFWizard2", "Configure a Main Thread and execute it in main.cpp", Q_NULLPTR));
+#endif // QT_NO_TOOLTIP
+        pb_add_Semaphore->setText(QApplication::translate("NFWizard2", "Add Semaphore", Q_NULLPTR));
+        l_EVENT_14->setText(QApplication::translate("NFWizard2", "Mutex  Name", Q_NULLPTR));
+#ifndef QT_NO_TOOLTIP
+        pb_add_Semaphore_2->setToolTip(QApplication::translate("NFWizard2", "Configure a Main Thread and execute it in main.cpp", Q_NULLPTR));
+#endif // QT_NO_TOOLTIP
+        pb_add_Semaphore_2->setText(QApplication::translate("NFWizard2", "Add Mutex", Q_NULLPTR));
 #ifndef QT_NO_TOOLTIP
         pb_load_from_Thread->setToolTip(QApplication::translate("NFWizard2", "Load a State Machine saved in folder HSMs into your uVision project path", Q_NULLPTR));
 #endif // QT_NO_TOOLTIP

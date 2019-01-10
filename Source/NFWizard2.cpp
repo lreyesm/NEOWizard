@@ -1020,6 +1020,16 @@ void NFWizard2::hide_all_objects(){
     ui->widget_event_options->hide();
 
     ui->widget_timer_parameters->hide();
+    ui->widget_mailBox_parameters->hide();
+    ui->widget_memory_pool_parameters->hide();
+    ui->widget_semaphore_parameters->hide();
+    ui->widget_mutex_parameters->hide();
+
+    ui->cb_memoryPool_buffer->setChecked(false);
+    ui->l_memPool_buffer_size->hide();
+    ui->sb_memory_pool_buffer_size->hide();
+    ui->l_memPool_buffer_type->hide();
+    ui->le_memPool_buffer_Type->hide();
 
     //    ui->tw_state_machine->hide();
     //    ui->widget_wait->hide();
@@ -1317,6 +1327,10 @@ void NFWizard2::on_pb_configure_thread_in_class_clicked()
   ui->pb_configure_thread_in_class->setStyleSheet(QStringLiteral("background-image: url(:/icons/screen7/Configure a thread_on.png);"));
 
   ui->widget_timer_parameters->hide();
+  ui->widget_mailBox_parameters->hide();
+  ui->widget_memory_pool_parameters->hide();
+  ui->widget_semaphore_parameters->hide();
+  ui->widget_mutex_parameters->hide();
 
 }
 
@@ -1352,6 +1366,10 @@ void NFWizard2::on_pb_configure_Main_thread_clicked()
     ui->pb_configure_thread_in_class->setStyleSheet(QStringLiteral("background-image: url(:/icons/screen5/Configure a thread_off.png);"));
 
     ui->widget_timer_parameters->hide();
+    ui->widget_mailBox_parameters->hide();
+    ui->widget_memory_pool_parameters->hide();
+    ui->widget_semaphore_parameters->hide();
+    ui->widget_mutex_parameters->hide();
 }
 
 void NFWizard2::on_pb_configure_state_machine_clicked()
@@ -4156,27 +4174,27 @@ void NFWizard2::configure_timer_in_main_thread(const QString path, const QString
         main_h_FileProcessor.setStartLine("public:");       ////inicio del contenido a eliminar
         main_h_FileProcessor.setEndLine("public:"); ////fin del contenido a eliminar
         main_h_FileProcessor.setReplacementString(QString("public:\n")+QString("    static void ")
-                                                  +ui->le_timer_function->text()+QString("(void const *argument);"));
+                                                  +ui->le_timer_function->text()+QString("(void const *argument);    /*End of Timer public definitions*/\n    "));
         main_h_FileProcessor.processTextBlock();
     }
     if(main_h_FileProcessor.check_if_code_exist(QString("enum Timer_Events{"),true)==0){
         main_h_FileProcessor.setStartLine("public:");       ////inicio del contenido a eliminar
         main_h_FileProcessor.setEndLine("public:"); ////fin del contenido a eliminar
-        main_h_FileProcessor.setReplacementString(QString("public:\n")+QString("    enum Timer_Events{};\n"));
+        main_h_FileProcessor.setReplacementString(QString("public:\n")+QString("    /*Timer public definitions*/\n    enum Timer_Events{    };\n"));
         main_h_FileProcessor.processTextBlock();
     }
     if(main_h_FileProcessor.check_if_code_exist(QString("Timer_")+ui->le_timer_name->text()+ui->cb_timer_mode->currentText()+QString("_Complete"),true)==0){
         main_h_FileProcessor.setStartLine("enum Timer_Events{");       ////inicio del contenido a eliminar
         main_h_FileProcessor.setEndLine("enum Timer_Events{"); ////fin del contenido a eliminar
-        if(main_h_FileProcessor.check_if_code_exist("enum Timer_Events{};",false)==1){
+        if(main_h_FileProcessor.check_if_code_exist("enum Timer_Events{    };",false)==1){
             main_h_FileProcessor.setReplacementString(QString("enum Timer_Events{\n")
-                                                      +QString("    Timer_")+ui->le_timer_name->text()
-                                                      +ui->cb_timer_mode->currentText()+QString("_Complete\n"));
+                                                      +QString("        Timer_")+ui->le_timer_name->text()
+                                                      +ui->cb_timer_mode->currentText()+QString("_Complete"));
         }
         else{
             main_h_FileProcessor.setReplacementString(QString("enum Timer_Events{\n")
-                                                      +QString("    Timer_")+ui->le_timer_name->text()
-                                                      +ui->cb_timer_mode->currentText()+QString("_Complete,\n"));
+                                                      +QString("        Timer_")+ui->le_timer_name->text()
+                                                      +ui->cb_timer_mode->currentText()+QString("_Complete,"));
         }
         main_h_FileProcessor.processTextBlock();
     }
@@ -4197,9 +4215,68 @@ void NFWizard2::configure_timer_in_main_thread(const QString path, const QString
         main_h_FileProcessor.processTextBlock();
     }
 
-    main_h_FileProcessor.setFilename(path+QString("/Source/")+main_thread_name+QString(".cpp"));
+    TextFileProcessor main_cpp_FileProcessor;
 
+    main_cpp_FileProcessor.setFilename(path+QString("/Source/")+main_thread_name+QString(".cpp"));
 
+    if(main_cpp_FileProcessor.check_if_code_exist(QString("void ")+main_thread_name+QString("::")+ui->le_timer_function->text()+QString("(void const *argument)"),true)==0){
+
+        if(ui->cb_timer_mode->currentText() == QString("NonStaticMethod")){
+
+            main_cpp_FileProcessor.setReplacementString(QString("\nvoid ")+main_thread_name+QString("::")+ui->le_timer_function->text()
+                                                        +QString("(void const *argument){\n")
+                                                        +QString(" \n   ////To set slot function for this timer (Normally this is done in Constructor)\n   //")
+                                                        +QString("timer_")+ui->le_timer_name->text()+QString(".attachRunMethod<")+main_thread_name+QString(", &")+main_thread_name+QString("::")
+                                                        +ui->le_timer_function->text()+QString(">(this);")
+                                                        +QString("\n\n   ////To set Event For This timer timeOut\n   ")
+                                                        +main_thread_name+QString("::")+QString("instance().eventSet(")
+                                                        +QString("Timer_")+ui->le_timer_name->text()+ui->cb_timer_mode->currentText()+QString("_Complete")+QString(");")
+                                                        +QString("\n\n   ////To start this timer\n   //")
+                                                        +QString("timer_")+ui->le_timer_name->text()+QString(".start(")+QString("TIMER_")+ui->le_timer_name->text()+QString("_PERIOD_MS")+QString(");")
+                                                        +QString("\n\n   ////To wait for this timer timeOut event\n   //")
+                                                        +QString("eventWait(")+QString("Timer_")+ui->le_timer_name->text()+ui->cb_timer_mode->currentText()+QString("_Complete")+QString(");")
+                                                        +QString("\n}\n"));
+        }
+        else{
+            main_cpp_FileProcessor.setReplacementString(QString("\nvoid ")+main_thread_name+QString("::")+ui->le_timer_function->text()
+                                                        +QString("(void const *argument){\n")
+                                                        +QString("\n   ////To set Event For This timer timeOut\n   ")
+                                                        +main_thread_name+QString("::")+QString("instance().eventSet(")
+                                                        +QString("Timer_")+ui->le_timer_name->text()+ui->cb_timer_mode->currentText()+QString("_Complete")+QString(");")
+                                                        +QString("\n\n   ////To start this timer\n   //")
+                                                        +QString("timer_")+ui->le_timer_name->text()+QString(".start(")+QString("TIMER_")+ui->le_timer_name->text()+QString("_PERIOD_MS")+QString(");")
+                                                        +QString("\n\n   ////To wait for this timer timeOut event\n   //")
+                                                        +QString("eventWait(")+QString("Timer_")+ui->le_timer_name->text()+ui->cb_timer_mode->currentText()+QString("_Complete")+QString(");")
+                                                        +QString("\n}\n"));
+        }
+
+        main_cpp_FileProcessor.add_code_to_end_of_file(main_thread_name);
+    }
+
+    if(ui->cb_timer_mode->currentText() != QString("NonStaticMethod")){
+
+        if(main_cpp_FileProcessor.check_if_code_exist(QString("timer_")+ui->le_timer_name->text()+QString("(")+ui->le_timer_function->text()+QString(", eVirtualTimer::")
+                                                      +ui->cb_timer_mode->currentText(),false)==0){
+            if(main_cpp_FileProcessor.check_if_code_exist(main_thread_name+QString("::")+main_thread_name+QString("():"),false)==1){
+
+                main_cpp_FileProcessor.setStartLine(main_thread_name+QString("::")+main_thread_name+QString("():"));       ////inicio del contenido a eliminar
+                main_cpp_FileProcessor.setEndLine(main_thread_name+QString("::")+main_thread_name+QString("():")); ////fin del contenido a eliminar
+                main_cpp_FileProcessor.setReplacementString(main_thread_name+QString("::")+main_thread_name+QString("():\n               ")
+                                                            +QString("timer_")+ui->le_timer_name->text()+QString("(")+ui->le_timer_function->text()+QString(", eVirtualTimer::")
+                                                            +ui->cb_timer_mode->currentText()+QString("),"));
+            }
+            else{
+
+                main_cpp_FileProcessor.setStartLine(main_thread_name+QString("::")+main_thread_name+QString("()"));       ////inicio del contenido a eliminar
+                main_cpp_FileProcessor.setEndLine(main_thread_name+QString("::")+main_thread_name+QString("()")); ////fin del contenido a eliminar
+                main_cpp_FileProcessor.setReplacementString(main_thread_name+QString("::")+main_thread_name+QString("():\n               ")
+                                                            +QString("timer_")+ui->le_timer_name->text()+QString("(")+ui->le_timer_function->text()+QString(", eVirtualTimer::")
+                                                            +ui->cb_timer_mode->currentText()+QString(")"));
+
+            }
+            main_cpp_FileProcessor.processTextBlock();
+        }
+    }
 }
 
 
@@ -4229,6 +4306,10 @@ void NFWizard2::on_pb_configure_in_Main_thread_clicked()
      ui->widget_options_thread_options->hide();
 
      ui->widget_timer_parameters->hide();
+     ui->widget_mailBox_parameters->hide();
+     ui->widget_memory_pool_parameters->hide();
+     ui->widget_semaphore_parameters->hide();
+     ui->widget_mutex_parameters->hide();
 }
 
 void NFWizard2::on_pb_add_Timer_clicked()
@@ -4249,6 +4330,7 @@ void NFWizard2::on_pb_add_Timer_clicked()
     QMessageBox::information(this, "NEOWizard","<font color = black >Timer correctly added to project");
 
     ui->widget_timer_parameters->hide();
+    ui->widget_configure_in_main_thread->show();
 }
 
 void NFWizard2::on_pb_back_from_state_machine_clicked()
@@ -4397,4 +4479,383 @@ void NFWizard2::on_pb_max_window_clicked()
 void NFWizard2::on_pb_min_window__clicked()
 {
     showMinimized();
+}
+
+void NFWizard2::on_pb_configure_Mail_clicked()
+{
+    if(ui->le_main_thread_name->text().isEmpty()){
+
+        ui->l_background_blur->move(current_win_Pos);
+        ui->widget_main_thread_name->move(current_win_Pos.x()+500,current_win_Pos.y()+300);
+        ui->widget_main_thread_name->show();
+
+        return;
+    }
+    ui->widget_configure_in_main_thread->hide();
+    ui->widget_mailBox_parameters->show();
+    ui->widget_mailBox_parameters->move(ui->widget_configure_in_main_thread->pos().x()+100,ui->widget_configure_in_main_thread->pos().y());
+}
+
+void NFWizard2::on_pb_add_MailBox_clicked()
+{
+    if(ui->le_mailBox_name->text().isEmpty()){
+        QMessageBox::information(this, "NEOWizard","<font color = black >Insert MailBox Name");
+        return;
+    }
+    if(ui->le_mail_data_type->text().isEmpty()){
+        QMessageBox::information(this, "NEOWizard","<font color = black >Insert MailBox Data Type");
+        return;
+    }
+    if(ui->sb_mailBox_size->value()<=0){
+        QMessageBox::information(this, "NEOWizard","<font color = black >Insert Timer MailBox size higher than 0");
+        return;
+    }
+    add_MailBox_configuration(fileuVision_Path, ui->le_main_thread_name->text());
+    QMessageBox::information(this, "NEOWizard","<font color = black >MailBox correctly added to project");
+
+    ui->widget_mailBox_parameters->hide();
+    ui->widget_configure_in_main_thread->show();
+}
+
+void NFWizard2::add_MailBox_configuration(const QString fileuVision_Path,const QString main_thread_name){
+
+    TextFileProcessor main_h_FileProcessor;
+
+    main_h_FileProcessor.setFilename(fileuVision_Path+QString("/Include/")+main_thread_name+QString(".h"));
+
+    if(main_h_FileProcessor.check_if_code_exist(QString("#include <eMailBox.h>"),true)==0){
+        main_h_FileProcessor.setStartLine("#include <eApplicationBase.h>");       ////inicio del contenido a eliminar
+        main_h_FileProcessor.setEndLine("#include <eApplicationBase.h>"); ////fin del contenido a eliminar
+        main_h_FileProcessor.setReplacementString(QString("#include <eApplicationBase.h>\n")+QString("#include <eMailBox.h>\n"));
+        main_h_FileProcessor.processTextBlock();
+    }
+    if(main_h_FileProcessor.check_if_code_exist(QString("#include <eLinearBuffer.h>"),true)==0){
+        main_h_FileProcessor.setStartLine("#include <eApplicationBase.h>");       ////inicio del contenido a eliminar
+        main_h_FileProcessor.setEndLine("#include <eApplicationBase.h>"); ////fin del contenido a eliminar
+        main_h_FileProcessor.setReplacementString(QString("#include <eApplicationBase.h>\n")+QString("#include <eLinearBuffer.h>\n"));
+        main_h_FileProcessor.processTextBlock();
+    }
+
+    if(main_h_FileProcessor.check_if_code_exist(QString("static const std::size_t MAILBOX_SIZE"),true)==0){
+        main_h_FileProcessor.setStartLine("public:");       ////inicio del contenido a eliminar
+        main_h_FileProcessor.setEndLine("public:"); ////fin del contenido a eliminar
+        main_h_FileProcessor.setReplacementString(QString("    static const std::size_t MAILBOX_SIZE = ")
+                                                  +QString::number(ui->sb_mailBox_size->value())
+                                                  +QString(";\npublic:"));
+        main_h_FileProcessor.processTextBlock();
+    }
+    if(main_h_FileProcessor.check_if_code_exist(QString("static const std::size_t MAIL_BUFFER_SIZE"),true)==0){
+        main_h_FileProcessor.setStartLine("public:");       ////inicio del contenido a eliminar
+        main_h_FileProcessor.setEndLine("public:"); ////fin del contenido a eliminar
+        main_h_FileProcessor.setReplacementString(QString("    static const std::size_t MAIL_BUFFER_SIZE = ")
+                                                  +QString::number(ui->sb_mailBox_buffer_size->value())
+                                                  +QString(";\npublic:"));
+        main_h_FileProcessor.processTextBlock();
+    }
+
+    if(ui->sb_mailBox_buffer_size->value() > 1){
+
+        if(main_h_FileProcessor.check_if_code_exist(QString("typedef eObject::Declare::eLinearBuffer<")+ui->le_mail_data_type->text()+QString(", MAIL_BUFFER_SIZE> Mail_Data_Type;"),true)==0
+                && main_h_FileProcessor.check_if_code_exist(QString("> *Mail_Type;"),true)==0){
+
+            main_h_FileProcessor.setStartLine("public:");       ////inicio del contenido a eliminar
+            main_h_FileProcessor.setEndLine("public:"); ////fin del contenido a eliminar
+            main_h_FileProcessor.setReplacementString(QString("    typedef eObject::Declare::eLinearBuffer<")
+                                                      +ui->le_mail_data_type->text()+QString(", MAIL_BUFFER_SIZE> Mail_Data_Type;")
+                                                      +QString(";\npublic:"));
+            main_h_FileProcessor.processTextBlock();
+        }
+        if(main_h_FileProcessor.check_if_code_exist(QString("typedef eObject::eMail<Mail_Data_Type> *Mail_Type;"),true)==0){
+            main_h_FileProcessor.setStartLine("public:");       ////inicio del contenido a eliminar
+            main_h_FileProcessor.setEndLine("public:"); ////fin del contenido a eliminar
+            main_h_FileProcessor.setReplacementString(QString("    typedef eObject::eMail<")+ui->le_mail_data_type->text()+QString("> *Mail_Type;")
+                                                      +QString("\n\npublic:"));
+            main_h_FileProcessor.processTextBlock();
+        }
+        if(main_h_FileProcessor.check_if_code_exist(QString("eObject::Declare::eMailBox<Mail_Data_Type")+QString(", MAILBOX_SIZE> ")+ui->le_mailBox_name->text(),true)==0){
+            main_h_FileProcessor.setStartLine("private:");       ////inicio del contenido a eliminar
+            main_h_FileProcessor.setEndLine("private:"); ////fin del contenido a eliminar
+            main_h_FileProcessor.setReplacementString(QString("private:\n\n")
+                                                      +QString("    eObject::Declare::eMailBox<Mail_Data_Type")
+                                                      +QString(", MAILBOX_SIZE> ")+ui->le_mailBox_name->text()+QString(";\n"));
+            main_h_FileProcessor.processTextBlock();
+        }
+    }
+    else{
+
+        if(main_h_FileProcessor.check_if_code_exist(QString("typedef eObject::eMail<")+QString("> *Mail_Type;"),true)==0
+                && main_h_FileProcessor.check_if_code_exist(QString("> *Mail_Type;"),true)==0){
+
+            main_h_FileProcessor.setStartLine("public:");       ////inicio del contenido a eliminar
+            main_h_FileProcessor.setEndLine("public:"); ////fin del contenido a eliminar
+            main_h_FileProcessor.setReplacementString(QString("    typedef eObject::eMail<")+ui->le_mail_data_type->text()+QString("> *Mail_Type;")
+                                                      +QString("\n\npublic:"));
+            main_h_FileProcessor.processTextBlock();
+        }
+        if(main_h_FileProcessor.check_if_code_exist(QString("eObject::Declare::eMailBox<")+ui->le_mail_data_type->text()+QString(", MAILBOX_SIZE> ")+ui->le_mailBox_name->text(),true)==0){
+            main_h_FileProcessor.setStartLine("private:");       ////inicio del contenido a eliminar
+            main_h_FileProcessor.setEndLine("private:"); ////fin del contenido a eliminar
+            main_h_FileProcessor.setReplacementString(QString("private:\n\n")
+                                                      +QString("    eObject::Declare::eMailBox<")+ui->le_mail_data_type->text()
+                                                      +QString(", MAILBOX_SIZE> ")+ui->le_mailBox_name->text()+QString(";\n"));
+            main_h_FileProcessor.processTextBlock();
+        }
+    }
+}
+
+void NFWizard2::on_cb_memoryPool_buffer_clicked()
+{
+    if(ui->cb_memoryPool_buffer->isChecked()){
+
+        ui->le_memPool_data_type->hide();
+        ui->l_memPool_data_type->hide();
+        ui->l_memPool_buffer_size->show();
+        ui->sb_memory_pool_buffer_size->show();
+        ui->l_memPool_buffer_type->show();
+        ui->le_memPool_buffer_Type->show();
+    }
+    else{
+        ui->le_memPool_data_type->show();
+        ui->l_memPool_data_type->show();
+        ui->l_memPool_buffer_size->hide();
+        ui->sb_memory_pool_buffer_size->hide();
+        ui->l_memPool_buffer_type->hide();
+        ui->le_memPool_buffer_Type->hide();
+    }
+}
+
+void NFWizard2::on_pb_configure_memoryPool_clicked()
+{
+    if(ui->le_main_thread_name->text().isEmpty()){
+
+        ui->l_background_blur->move(current_win_Pos);
+        ui->widget_main_thread_name->move(current_win_Pos.x()+500,current_win_Pos.y()+300);
+        ui->widget_main_thread_name->show();
+
+        return;
+    }
+    ui->widget_configure_in_main_thread->hide();
+    ui->widget_memory_pool_parameters->show();
+    ui->widget_memory_pool_parameters->move(ui->widget_configure_in_main_thread->pos().x()+100,ui->widget_configure_in_main_thread->pos().y());
+}
+
+void NFWizard2::on_pb_add_memPool_clicked()
+{
+    if(ui->le_memory_pool_name->text().isEmpty()){
+        QMessageBox::information(this, "NEOWizard","<font color = black >Insert Memory Pool Name");
+        return;
+    }
+    if(ui->le_memPool_buffer_Type->text().isEmpty() && ui->le_memPool_data_type->text().isEmpty() ){
+        QMessageBox::information(this, "NEOWizard","<font color = black >Insert Type");
+        return;
+    }
+
+    if(ui->cb_memoryPool_buffer->isChecked() && ui->sb_memory_pool_buffer_size->value() <=1){
+        QMessageBox::information(this, "NEOWizard","<font color = black >Insert Memory Pool buffer higher than 1");
+        return;
+    }
+    add_memPool_configuration(fileuVision_Path, ui->le_main_thread_name->text());
+    QMessageBox::information(this, "NEOWizard","<font color = black >Memory Pool correctly added to project");
+
+    ui->widget_memory_pool_parameters->hide();
+    ui->widget_configure_in_main_thread->show();
+}
+
+void NFWizard2::add_memPool_configuration(const QString fileuVision_Path, const QString main_thread_name){
+
+    TextFileProcessor main_h_FileProcessor;
+
+    main_h_FileProcessor.setFilename(fileuVision_Path+QString("/Include/")+main_thread_name+QString(".h"));
+
+    if(main_h_FileProcessor.check_if_code_exist(QString("#include <eCore.h>"),true)==0){
+        main_h_FileProcessor.setStartLine("#include <eApplicationBase.h>");       ////inicio del contenido a eliminar
+        main_h_FileProcessor.setEndLine("#include <eApplicationBase.h>"); ////fin del contenido a eliminar
+        main_h_FileProcessor.setReplacementString(QString("#include <eApplicationBase.h>\n")+QString("#include <eCore.h>\n"));
+        main_h_FileProcessor.processTextBlock();
+    }
+    if(main_h_FileProcessor.check_if_code_exist(QString("#include <eMemoryPool.h>"),true)==0){
+        main_h_FileProcessor.setStartLine("#include <eApplicationBase.h>");       ////inicio del contenido a eliminar
+        main_h_FileProcessor.setEndLine("#include <eApplicationBase.h>"); ////fin del contenido a eliminar
+        main_h_FileProcessor.setReplacementString(QString("#include <eApplicationBase.h>\n")+QString("#include <eMemoryPool.h>\n"));
+        main_h_FileProcessor.processTextBlock();
+    }
+
+    if(ui->cb_memoryPool_buffer->isChecked()){
+
+        if(main_h_FileProcessor.check_if_code_exist(QString("Declare::eMemoryPool<Declare::eLinearBuffer<"),true)==0
+                && main_h_FileProcessor.check_if_code_exist(QString("> *MemoryPool_Type;"),true)==0){
+
+            main_h_FileProcessor.setStartLine("public:");       ////inicio del contenido a eliminar
+            main_h_FileProcessor.setEndLine("public:"); ////fin del contenido a eliminar
+            main_h_FileProcessor.setReplacementString(QString("    typedef eObject::Declare::eMemoryPool<Declare::eLinearBuffer<")
+                                                      +ui->le_memPool_buffer_Type->text()+QString(", ")+QString::number(ui->sb_memory_pool_buffer_size->value())
+                                                      +QString(">, ")+QString::number(ui->sb_memory_pool_size->value())+QString("> *MemoryPool_Type;")
+                                                      +QString("\n\npublic:"));
+            main_h_FileProcessor.processTextBlock();
+        }
+    }
+    else{
+        if(main_h_FileProcessor.check_if_code_exist(QString("Declare::eMemoryPool<"),true)==0
+                && main_h_FileProcessor.check_if_code_exist(QString("> *MemoryPool_Type;"),true)==0){
+            main_h_FileProcessor.setStartLine("public:");       ////inicio del contenido a eliminar
+            main_h_FileProcessor.setEndLine("public:"); ////fin del contenido a eliminar
+            main_h_FileProcessor.setReplacementString(QString("    typedef eObject::Declare::eMemoryPool<")
+                                                      +ui->le_memPool_data_type->text()+QString(", ")+QString::number(ui->sb_memory_pool_size->value())+QString("> *MemoryPool_Type;")
+                                                      +QString("\n\npublic:"));
+            main_h_FileProcessor.processTextBlock();
+        }
+    }
+    if(main_h_FileProcessor.check_if_code_exist(QString("static MemoryPool_Type ")+ui->le_memory_pool_name->text(),true)==0){
+        main_h_FileProcessor.setStartLine("private:");       ////inicio del contenido a eliminar
+        main_h_FileProcessor.setEndLine("private:"); ////fin del contenido a eliminar
+        main_h_FileProcessor.setReplacementString(QString("private:\n\n")
+                                                  +QString("    static MemoryPool_Type ")+ui->le_memory_pool_name->text()+QString(";\n"));
+        main_h_FileProcessor.processTextBlock();
+    }
+}
+
+void NFWizard2::on_pb_configure_semaphore_clicked()
+{
+    if(ui->le_main_thread_name->text().isEmpty()){
+
+        ui->l_background_blur->move(current_win_Pos);
+        ui->widget_main_thread_name->move(current_win_Pos.x()+500,current_win_Pos.y()+300);
+        ui->widget_main_thread_name->show();
+
+        return;
+    }
+    ui->widget_configure_in_main_thread->hide();
+    ui->widget_semaphore_parameters->show();
+    ui->widget_semaphore_parameters->move(ui->widget_configure_in_main_thread->pos().x()+80,ui->widget_configure_in_main_thread->pos().y());
+}
+
+
+void NFWizard2::on_pb_add_Semaphore_clicked()
+{
+    if(ui->le_semaphore_name->text().isEmpty()){
+        QMessageBox::information(this, "NEOWizard","<font color = black >Insert Semaphore Name");
+        return;
+    }
+
+    if(ui->sb_semaphore_res_size->value() <=0){
+        QMessageBox::information(this, "NEOWizard","<font color = black >Insert Semaphore resource size higher than 0");
+        return;
+    }
+    add_Semaphore_Configuration(fileuVision_Path, ui->le_main_thread_name->text());
+    QMessageBox::information(this, "NEOWizard","<font color = black >Semaphore correctly added to project");
+
+    ui->widget_semaphore_parameters->hide();
+    ui->widget_configure_in_main_thread->show();
+}
+
+void NFWizard2::add_Semaphore_Configuration(const QString fileuVision_Path, const QString main_thread_name){
+
+    TextFileProcessor main_h_FileProcessor;
+
+    main_h_FileProcessor.setFilename(fileuVision_Path+QString("/Include/")+main_thread_name+QString(".h"));
+
+    if(main_h_FileProcessor.check_if_code_exist(QString("#include <eSemaphore.h>"),true)==0){
+        main_h_FileProcessor.setStartLine("#include <eApplicationBase.h>");       ////inicio del contenido a eliminar
+        main_h_FileProcessor.setEndLine("#include <eApplicationBase.h>"); ////fin del contenido a eliminar
+        main_h_FileProcessor.setReplacementString(QString("#include <eApplicationBase.h>\n")+QString("#include <eSemaphore.h>\n"));
+        main_h_FileProcessor.processTextBlock();
+    }
+    if(main_h_FileProcessor.check_if_code_exist(QString("eObject::eSemaphore ")+ui->le_semaphore_name->text(),true)==0){
+        main_h_FileProcessor.setStartLine("private:");       ////inicio del contenido a eliminar
+        main_h_FileProcessor.setEndLine("private:"); ////fin del contenido a eliminar
+        main_h_FileProcessor.setReplacementString(QString("private:\n\n")
+                                                  +QString("    eObject::eSemaphore ")+ui->le_semaphore_name->text()+QString(";\n"));
+        main_h_FileProcessor.processTextBlock();
+    }
+    if(main_h_FileProcessor.check_if_code_exist(QString("static const int SEMAPHORE_RESOURSE_MAX_")+ui->le_semaphore_name->text(),true)==0){
+        main_h_FileProcessor.setStartLine("private:");       ////inicio del contenido a eliminar
+        main_h_FileProcessor.setEndLine("private:"); ////fin del contenido a eliminar
+        main_h_FileProcessor.setReplacementString(QString("private:\n\n")
+                                                  +QString("    static const int SEMAPHORE_RESOURSE_MAX_")+ui->le_semaphore_name->text()
+                                                  +QString(" = ")+QString::number(ui->sb_semaphore_res_size->value())+QString(";\n"));
+        main_h_FileProcessor.processTextBlock();
+    }
+
+    TextFileProcessor main_cpp_FileProcessor;
+
+    main_cpp_FileProcessor.setFilename(fileuVision_Path+QString("/Source/")+main_thread_name+QString(".cpp"));
+
+    if(main_cpp_FileProcessor.check_if_code_exist(ui->le_semaphore_name->text()+QString("(SEMAPHORE_RESOURSE_MAX_")+ui->le_semaphore_name->text()+QString(")"),false)==0){
+
+        if(main_cpp_FileProcessor.check_if_code_exist(main_thread_name+QString("::")+main_thread_name+QString("():"),false)==1){
+
+            main_cpp_FileProcessor.setStartLine(main_thread_name+QString("::")+main_thread_name+QString("():"));       ////inicio del contenido a eliminar
+            main_cpp_FileProcessor.setEndLine(main_thread_name+QString("::")+main_thread_name+QString("():")); ////fin del contenido a eliminar
+            main_cpp_FileProcessor.setReplacementString(main_thread_name+QString("::")+main_thread_name+QString("():\n               ")
+                                                        +ui->le_semaphore_name->text()+QString("(SEMAPHORE_RESOURSE_MAX_")+ui->le_semaphore_name->text()+QString("),"));
+        }
+        else{
+
+            main_cpp_FileProcessor.setStartLine(main_thread_name+QString("::")+main_thread_name+QString("()"));       ////inicio del contenido a eliminar
+            main_cpp_FileProcessor.setEndLine(main_thread_name+QString("::")+main_thread_name+QString("()")); ////fin del contenido a eliminar
+            main_cpp_FileProcessor.setReplacementString(main_thread_name+QString("::")+main_thread_name+QString("():\n               ")
+                                                        +ui->le_semaphore_name->text()+QString("(SEMAPHORE_RESOURSE_MAX_")+ui->le_semaphore_name->text()+QString(")"));
+
+        }
+        main_cpp_FileProcessor.processTextBlock();
+    }
+
+}
+
+void NFWizard2::on_pb_configure_mutex_clicked()
+{
+    if(ui->le_main_thread_name->text().isEmpty()){
+
+        ui->l_background_blur->move(current_win_Pos);
+        ui->widget_main_thread_name->move(current_win_Pos.x()+500,current_win_Pos.y()+300);
+        ui->widget_main_thread_name->show();
+
+        return;
+    }
+    ui->widget_configure_in_main_thread->hide();
+    ui->widget_mutex_parameters->show();
+    ui->widget_mutex_parameters->move(ui->widget_configure_in_main_thread->pos().x()+80,ui->widget_configure_in_main_thread->pos().y());
+}
+
+void NFWizard2::on_pb_add_Semaphore_2_clicked()
+{
+    if(ui->le_Mutex_name->text().isEmpty()){
+        QMessageBox::information(this, "NEOWizard","<font color = black >Insert Mutex Name");
+        return;
+    }
+
+    add_mutex_Configuration(fileuVision_Path, ui->le_main_thread_name->text());
+    QMessageBox::information(this, "NEOWizard","<font color = black >Mutex correctly added to project");
+
+    ui->widget_mutex_parameters->hide();
+    ui->widget_configure_in_main_thread->show();
+}
+
+void NFWizard2::add_mutex_Configuration(const QString fileuVision_Path, const QString main_thread_name){
+
+    TextFileProcessor main_h_FileProcessor;
+
+    main_h_FileProcessor.setFilename(fileuVision_Path+QString("/Include/")+main_thread_name+QString(".h"));
+
+    if(main_h_FileProcessor.check_if_code_exist(QString("#include <eMutexLocker.h>"),true)==0){
+        main_h_FileProcessor.setStartLine("#include <eApplicationBase.h>");       ////inicio del contenido a eliminar
+        main_h_FileProcessor.setEndLine("#include <eApplicationBase.h>"); ////fin del contenido a eliminar
+        main_h_FileProcessor.setReplacementString(QString("#include <eApplicationBase.h>\n")+QString("#include <eMutexLocker.h>\n"));
+        main_h_FileProcessor.processTextBlock();
+    }
+    if(main_h_FileProcessor.check_if_code_exist(QString("#include <eMutex.h>"),true)==0){
+        main_h_FileProcessor.setStartLine("#include <eApplicationBase.h>");       ////inicio del contenido a eliminar
+        main_h_FileProcessor.setEndLine("#include <eApplicationBase.h>"); ////fin del contenido a eliminar
+        main_h_FileProcessor.setReplacementString(QString("#include <eApplicationBase.h>\n")+QString("#include <eMutex.h>\n"));
+        main_h_FileProcessor.processTextBlock();
+    }
+
+    if(main_h_FileProcessor.check_if_code_exist(QString("eObject::eMutex ")+ui->le_Mutex_name->text(),true)==0){
+        main_h_FileProcessor.setStartLine("private:");       ////inicio del contenido a eliminar
+        main_h_FileProcessor.setEndLine("private:"); ////fin del contenido a eliminar
+        main_h_FileProcessor.setReplacementString(QString("private:\n\n")
+                                                  +QString("    eObject::eMutex ")+ui->le_Mutex_name->text()+QString(";\n"));
+        main_h_FileProcessor.processTextBlock();
+    }
+
 }

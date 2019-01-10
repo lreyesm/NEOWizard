@@ -1251,12 +1251,12 @@ color:  rgb(30, 30, 30);
        <enum>QLayout::SetFixedSize</enum>
       </property>
       <item>
-       <layout class="QVBoxLayout" name="verticalLayout_38">
+       <layout class="QVBoxLayout" name="verticalLayout_47">
         <property name="sizeConstraint">
          <enum>QLayout::SetFixedSize</enum>
         </property>
         <item>
-         <widget class="QLabel" name="l_EVENT_2">
+         <widget class="QLabel" name="l_EVENT_13">
           <property name="styleSheet">
            <string notr="true">font: 75 18pt &quot;Myriad Web&quot;;
 color:  rgb(30, 30, 30);
@@ -1446,6 +1446,752 @@ color:  rgb(8, 113, 104);</string>
        </widget>
       </item>
      </layout>
+    </widget>
+    <widget class="QWidget" name="widget_mailBox_parameters" native="true">
+     <property name="geometry">
+      <rect>
+       <x>310</x>
+       <y>-30</y>
+       <width>234</width>
+       <height>354</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-image: url(:/icons/screen8/fondo_transparente.png);</string>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_6">
+      <property name="spacing">
+       <number>30</number>
+      </property>
+      <item>
+       <layout class="QVBoxLayout" name="verticalLayout_40">
+        <property name="sizeConstraint">
+         <enum>QLayout::SetFixedSize</enum>
+        </property>
+        <item>
+         <widget class="QLabel" name="l_EVENT_5">
+          <property name="styleSheet">
+           <string notr="true">font: 75 18pt &quot;Myriad Web&quot;;
+color:  rgb(30, 30, 30);
+</string>
+          </property>
+          <property name="text">
+           <string>MailBox Name</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="le_mailBox_name">
+          <property name="minimumSize">
+           <size>
+            <width>214</width>
+            <height>41</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">border-image: url(:/icons/screen6/label_1.png);
+font: 15pt &quot;Myriad Web&quot;;
+color:  rgb(8, 113, 104);
+</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QVBoxLayout" name="verticalLayout_41">
+        <property name="sizeConstraint">
+         <enum>QLayout::SetFixedSize</enum>
+        </property>
+        <item>
+         <widget class="QLabel" name="l_EVENT_9">
+          <property name="styleSheet">
+           <string notr="true">font: 75 18pt &quot;Myriad Web&quot;;
+color:  rgb(30, 30, 30);
+</string>
+          </property>
+          <property name="text">
+           <string>Mail Data Type</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="le_mail_data_type">
+          <property name="minimumSize">
+           <size>
+            <width>214</width>
+            <height>41</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">border-image: url(:/icons/screen6/label_1.png);
+font: 15pt &quot;Myriad Web&quot;;
+color:  rgb(8, 113, 104);
+</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QVBoxLayout" name="verticalLayout_4">
+        <item>
+         <widget class="QLabel" name="l_EVENT_7">
+          <property name="styleSheet">
+           <string notr="true">font: 75 18pt &quot;Myriad Web&quot;;
+color:  rgb(30, 30, 30);
+</string>
+          </property>
+          <property name="text">
+           <string>MailBox Size</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QSpinBox" name="sb_mailBox_size">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>25</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">font: 12pt &quot;Segoe UI&quot;;
+border-image: url(:/icons/screen5/label_2.png);
+color: rgb(8, 113, 104);
+</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+          <property name="maximum">
+           <number>100000</number>
+          </property>
+          <property name="singleStep">
+           <number>1</number>
+          </property>
+          <property name="value">
+           <number>1</number>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QVBoxLayout" name="verticalLayout_3">
+        <item>
+         <widget class="QLabel" name="l_EVENT_6">
+          <property name="styleSheet">
+           <string notr="true">font: 75 18pt &quot;Myriad Web&quot;;
+color:  rgb(30, 30, 30);
+</string>
+          </property>
+          <property name="text">
+           <string>Mail Buffer Size</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QSpinBox" name="sb_mailBox_buffer_size">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>25</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">font: 12pt &quot;Segoe UI&quot;;
+border-image: url(:/icons/screen5/label_2.png);
+color: rgb(8, 113, 104);
+</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+          <property name="maximum">
+           <number>100000</number>
+          </property>
+          <property name="singleStep">
+           <number>1</number>
+          </property>
+          <property name="value">
+           <number>1</number>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <widget class="QPushButton" name="pb_add_MailBox">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>150</width>
+          <height>40</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>200</width>
+          <height>50</height>
+         </size>
+        </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
+        <property name="toolTip">
+         <string>Configure a Main Thread and execute it in main.cpp</string>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">font: 75 18pt &quot;Myriad Web&quot;;
+color:  rgb(8, 113, 104);</string>
+        </property>
+        <property name="text">
+         <string>Add MailBox</string>
+        </property>
+        <property name="flat">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QWidget" name="widget_memory_pool_parameters" native="true">
+     <property name="geometry">
+      <rect>
+       <x>1130</x>
+       <y>220</y>
+       <width>271</width>
+       <height>461</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-image: url(:/icons/screen8/fondo_transparente.png);</string>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_9">
+      <property name="spacing">
+       <number>30</number>
+      </property>
+      <item>
+       <layout class="QVBoxLayout" name="verticalLayout_42">
+        <property name="sizeConstraint">
+         <enum>QLayout::SetFixedSize</enum>
+        </property>
+        <item>
+         <widget class="QLabel" name="l_EVENT_10">
+          <property name="styleSheet">
+           <string notr="true">font: 75 18pt &quot;Myriad Web&quot;;
+color:  rgb(30, 30, 30);
+</string>
+          </property>
+          <property name="text">
+           <string>Memory Pool  Name</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="le_memory_pool_name">
+          <property name="minimumSize">
+           <size>
+            <width>214</width>
+            <height>41</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">border-image: url(:/icons/screen6/label_1.png);
+font: 15pt &quot;Myriad Web&quot;;
+color:  rgb(8, 113, 104);
+</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QVBoxLayout" name="verticalLayout_7">
+        <property name="sizeConstraint">
+         <enum>QLayout::SetFixedSize</enum>
+        </property>
+        <item>
+         <widget class="QLabel" name="l_EVENT_11">
+          <property name="styleSheet">
+           <string notr="true">font: 75 18pt &quot;Myriad Web&quot;;
+color:  rgb(30, 30, 30);
+</string>
+          </property>
+          <property name="text">
+           <string>Memory Pool  Size</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QSpinBox" name="sb_memory_pool_size">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>25</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">font: 12pt &quot;Segoe UI&quot;;
+border-image: url(:/icons/screen5/label_2.png);
+color: rgb(8, 113, 104);
+</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+          <property name="minimum">
+           <number>1</number>
+          </property>
+          <property name="maximum">
+           <number>100000</number>
+          </property>
+          <property name="singleStep">
+           <number>1</number>
+          </property>
+          <property name="value">
+           <number>1</number>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QVBoxLayout" name="verticalLayout_44">
+        <property name="sizeConstraint">
+         <enum>QLayout::SetFixedSize</enum>
+        </property>
+        <item>
+         <widget class="QLabel" name="l_memPool_data_type">
+          <property name="styleSheet">
+           <string notr="true">font: 75 18pt &quot;Myriad Web&quot;;
+color:  rgb(30, 30, 30);
+</string>
+          </property>
+          <property name="text">
+           <string>Memory Pool Data Type</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="le_memPool_data_type">
+          <property name="minimumSize">
+           <size>
+            <width>214</width>
+            <height>41</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">border-image: url(:/icons/screen6/label_1.png);
+font: 15pt &quot;Myriad Web&quot;;
+color:  rgb(8, 113, 104);
+</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="cb_memoryPool_buffer">
+        <property name="styleSheet">
+         <string notr="true">font: 75 18pt &quot;Myriad Web&quot;;
+color:  rgb(30, 30, 30);
+</string>
+        </property>
+        <property name="text">
+         <string>Memory Pool Buffer</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <layout class="QVBoxLayout" name="verticalLayout_45">
+        <property name="sizeConstraint">
+         <enum>QLayout::SetFixedSize</enum>
+        </property>
+        <item>
+         <widget class="QLabel" name="l_memPool_buffer_type">
+          <property name="styleSheet">
+           <string notr="true">font: 75 18pt &quot;Myriad Web&quot;;
+color:  rgb(30, 30, 30);
+</string>
+          </property>
+          <property name="text">
+           <string>Buffer Data Type</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="le_memPool_buffer_Type">
+          <property name="minimumSize">
+           <size>
+            <width>214</width>
+            <height>41</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">border-image: url(:/icons/screen6/label_1.png);
+font: 15pt &quot;Myriad Web&quot;;
+color:  rgb(8, 113, 104);
+</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QVBoxLayout" name="verticalLayout_8">
+        <property name="sizeConstraint">
+         <enum>QLayout::SetFixedSize</enum>
+        </property>
+        <item>
+         <widget class="QLabel" name="l_memPool_buffer_size">
+          <property name="styleSheet">
+           <string notr="true">font: 75 18pt &quot;Myriad Web&quot;;
+color:  rgb(30, 30, 30);
+</string>
+          </property>
+          <property name="text">
+           <string>Buffer Size</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QSpinBox" name="sb_memory_pool_buffer_size">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>25</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">font: 12pt &quot;Segoe UI&quot;;
+border-image: url(:/icons/screen5/label_2.png);
+color: rgb(8, 113, 104);
+</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+          <property name="minimum">
+           <number>1</number>
+          </property>
+          <property name="maximum">
+           <number>100000</number>
+          </property>
+          <property name="singleStep">
+           <number>1</number>
+          </property>
+          <property name="value">
+           <number>1</number>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <widget class="QPushButton" name="pb_add_memPool">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>150</width>
+          <height>40</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>200</width>
+          <height>50</height>
+         </size>
+        </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
+        <property name="toolTip">
+         <string>Configure a Main Thread and execute it in main.cpp</string>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">font: 75 18pt &quot;Myriad Web&quot;;
+color:  rgb(8, 113, 104);</string>
+        </property>
+        <property name="text">
+         <string>Add Memory Pool</string>
+        </property>
+        <property name="flat">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QWidget" name="widget_semaphore_parameters" native="true">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>450</y>
+       <width>283</width>
+       <height>231</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-image: url(:/icons/screen8/fondo_transparente.png);</string>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_10">
+      <property name="spacing">
+       <number>30</number>
+      </property>
+      <item>
+       <layout class="QVBoxLayout" name="verticalLayout_38">
+        <property name="sizeConstraint">
+         <enum>QLayout::SetFixedSize</enum>
+        </property>
+        <item>
+         <widget class="QLabel" name="l_EVENT_2">
+          <property name="styleSheet">
+           <string notr="true">font: 75 18pt &quot;Myriad Web&quot;;
+color:  rgb(30, 30, 30);
+</string>
+          </property>
+          <property name="text">
+           <string>Semaphore Name</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="le_semaphore_name">
+          <property name="minimumSize">
+           <size>
+            <width>214</width>
+            <height>41</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">border-image: url(:/icons/screen6/label_1.png);
+font: 15pt &quot;Myriad Web&quot;;
+color:  rgb(8, 113, 104);
+</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QVBoxLayout" name="verticalLayout_46">
+        <property name="sizeConstraint">
+         <enum>QLayout::SetFixedSize</enum>
+        </property>
+        <item>
+         <widget class="QLabel" name="l_EVENT_12">
+          <property name="styleSheet">
+           <string notr="true">font: 75 18pt &quot;Myriad Web&quot;;
+color:  rgb(30, 30, 30);
+</string>
+          </property>
+          <property name="text">
+           <string>Semaphore Resource Size</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QSpinBox" name="sb_semaphore_res_size">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>25</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">font: 12pt &quot;Segoe UI&quot;;
+border-image: url(:/icons/screen5/label_2.png);
+color: rgb(8, 113, 104);
+</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+          <property name="minimum">
+           <number>1</number>
+          </property>
+          <property name="maximum">
+           <number>100000</number>
+          </property>
+          <property name="singleStep">
+           <number>10</number>
+          </property>
+          <property name="value">
+           <number>1</number>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <widget class="QPushButton" name="pb_add_Semaphore">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>150</width>
+          <height>40</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>200</width>
+          <height>50</height>
+         </size>
+        </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
+        <property name="toolTip">
+         <string>Configure a Main Thread and execute it in main.cpp</string>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">font: 75 18pt &quot;Myriad Web&quot;;
+color:  rgb(8, 113, 104);</string>
+        </property>
+        <property name="text">
+         <string>Add Semaphore</string>
+        </property>
+        <property name="flat">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+     </layout>
+     <zorder></zorder>
+     <zorder></zorder>
+     <zorder>layoutWidget_13</zorder>
+     <zorder>pb_add_Semaphore</zorder>
+    </widget>
+    <widget class="QWidget" name="widget_mutex_parameters" native="true">
+     <property name="geometry">
+      <rect>
+       <x>330</x>
+       <y>580</y>
+       <width>234</width>
+       <height>151</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-image: url(:/icons/screen8/fondo_transparente.png);</string>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_13">
+      <property name="spacing">
+       <number>50</number>
+      </property>
+      <item>
+       <layout class="QVBoxLayout" name="verticalLayout_11">
+        <item>
+         <widget class="QLabel" name="l_EVENT_14">
+          <property name="styleSheet">
+           <string notr="true">font: 75 18pt &quot;Myriad Web&quot;;
+color:  rgb(30, 30, 30);
+</string>
+          </property>
+          <property name="text">
+           <string>Mutex  Name</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="le_Mutex_name">
+          <property name="minimumSize">
+           <size>
+            <width>214</width>
+            <height>41</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">border-image: url(:/icons/screen6/label_1.png);
+font: 15pt &quot;Myriad Web&quot;;
+color:  rgb(8, 113, 104);
+</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <widget class="QPushButton" name="pb_add_Semaphore_2">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>150</width>
+          <height>40</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>200</width>
+          <height>50</height>
+         </size>
+        </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
+        <property name="toolTip">
+         <string>Configure a Main Thread and execute it in main.cpp</string>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">font: 75 18pt &quot;Myriad Web&quot;;
+color:  rgb(8, 113, 104);</string>
+        </property>
+        <property name="text">
+         <string>Add Mutex</string>
+        </property>
+        <property name="flat">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+     </layout>
+     <zorder>pb_add_Semaphore_2</zorder>
+     <zorder></zorder>
     </widget>
    </widget>
    <widget class="QWidget" name="widget_state_machine_screen" native="true">

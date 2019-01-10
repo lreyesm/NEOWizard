@@ -182,6 +182,25 @@ private slots:
 
     void on_pb_min_window__clicked();
 
+    void on_pb_configure_Mail_clicked();
+
+    void on_pb_add_MailBox_clicked();
+
+    void on_cb_memoryPool_buffer_clicked();
+
+    void on_pb_configure_memoryPool_clicked();
+
+    void on_pb_add_memPool_clicked();
+
+    void on_pb_configure_semaphore_clicked();
+
+
+    void on_pb_add_Semaphore_clicked();
+
+    void on_pb_configure_mutex_clicked();
+
+    void on_pb_add_Semaphore_2_clicked();
+
 signals:
 
     check_warnings();
@@ -235,7 +254,11 @@ private:
     void update_table_view_events();
 
     void configure_timer_in_main_thread(const QString path, const QString main_thread_name);
+    void add_MailBox_configuration(const QString fileuVision_Path, const QString main_thread_name);
+    void add_memPool_configuration(const QString fileuVision_Path, const QString main_thread_name);
 
+    void add_Semaphore_Configuration(const QString fileuVision_Path, const QString main_thread_name);
+    void add_mutex_Configuration(const QString fileuVision_Path, const QString main_thread_name);
 
 private:
     enum{Generate_Screen,Options_Screen,State_Machine_Screen,Help_Screen};
