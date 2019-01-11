@@ -1,33 +1,7 @@
 <RCC>
     <qresource prefix="/">
-        <file>Assets/keilEditorOptions.PNG</file>
         <file>Assets/Stm32CubeMxProjectOptions.PNG</file>
         <file>Assets/icon.ico</file>
-        <file>Assets/button_browse.png</file>
-        <file>Assets/button_quit.png</file>
-        <file>Assets/check_box_on.png</file>
-        <file>Assets/generate_botom.png</file>
-        <file>Assets/generate_folder_text.png</file>
-        <file>Assets/generate_tag_off.png</file>
-        <file>Assets/generate_tag_on.png</file>
-        <file>Assets/help_tag_off.png</file>
-        <file>Assets/help_tag_on.png</file>
-        <file>Assets/label_background_line.png</file>
-        <file>Assets/label_cube.png</file>
-        <file>Assets/label_generate_options.png</file>
-        <file>Assets/label_uVision.png</file>
-        <file>Assets/line_edit.png</file>
-        <file>Assets/options_tag_off.png</file>
-        <file>Assets/options_tag_on.png</file>
-        <file>Assets/background.png</file>
-        <file>Assets/check_box_off.png</file>
-        <file>Assets/button_background.png</file>
-        <file>Assets/warning.png</file>
-        <file>Assets/state.png</file>
-        <file>Assets/state_init.png</file>
-        <file>Assets/state_highlight.png</file>
-        <file>Assets/state_init_highlight.png</file>
-        <file>Assets/label_background_line_large.png</file>
         <file>icons/screen1/background.png</file>
         <file>icons/screen1/browse_botom.png</file>
         <file>icons/screen1/check_box.png</file>
@@ -169,5 +143,13 @@
         <file>icons/screen5/New thread Nmae.png</file>
         <file>icons/screen8/add_state_button.png</file>
         <file>icons/screen8/warning.png</file>
+        <file>Assets/keilEditorOptions.PNG</file>
+        <file>Example_fotos/example_mail.png</file>
+        <file>Example_fotos/example_memPool.png</file>
+        <file>Example_fotos/example_messageQeue.png</file>
+        <file>Example_fotos/example_mutex.png</file>
+        <file>Example_fotos/example_semaphore.png</file>
+        <file>Example_fotos/example_thread.png</file>
+        <file>Example_fotos/example_timer.png</file>
     </qresource>
 </RCC>

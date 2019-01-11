@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>6800</width>
+    <width>8000</width>
     <height>768</height>
    </rect>
   </property>
@@ -714,7 +714,7 @@ font: 14pt &quot;Segoe UI&quot;;</string>
       <property name="geometry">
        <rect>
         <x>30</x>
-        <y>90</y>
+        <y>85</y>
         <width>203</width>
         <height>33</height>
        </rect>
@@ -732,10 +732,12 @@ font: 14pt &quot;Segoe UI&quot;;</string>
        </size>
       </property>
       <property name="styleSheet">
-       <string notr="true">background-image: url(:/icons/screen6/main thread name_text.png);</string>
+       <string notr="true">font: 75 18pt &quot;Segoe UI&quot;;
+color: rgb(8, 113, 104);
+</string>
       </property>
       <property name="text">
-       <string/>
+       <string>Main Thread Name</string>
       </property>
      </widget>
      <widget class="QLineEdit" name="le_main_thread_name">
@@ -761,8 +763,8 @@ font: 14pt &quot;Segoe UI&quot;;</string>
       </property>
       <property name="styleSheet">
        <string notr="true">border-image: url(:/icons/screen6/label_1.png);
-font: 15pt &quot;Myriad Web&quot;;
-color:  rgb(8, 113, 104);
+font: 75 16pt &quot;Segoe UI&quot;;
+color: rgb(8, 113, 104);
 </string>
       </property>
       <property name="alignment">
@@ -773,19 +775,18 @@ color:  rgb(8, 113, 104);
       <property name="geometry">
        <rect>
         <x>36</x>
-        <y>160</y>
+        <y>159</y>
         <width>199</width>
         <height>31</height>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">font: 75 18pt &quot;Myriad Web&quot;;
-background-image: url(:/icons/screen5/New thread Nmae.png);
-color:  rgb(30, 30, 30);
+       <string notr="true">font: 75 18pt &quot;Segoe UI&quot;;
+color: rgb(8, 113, 104);
 </string>
       </property>
       <property name="text">
-       <string/>
+       <string>New Thread Name</string>
       </property>
      </widget>
      <widget class="QLineEdit" name="le_thread_name">
@@ -811,8 +812,8 @@ color:  rgb(30, 30, 30);
       </property>
       <property name="styleSheet">
        <string notr="true">border-image: url(:/icons/screen6/label_1.png);
-font: 15pt &quot;Myriad Web&quot;;
-color:  rgb(8, 113, 104);
+font: 75 16pt &quot;Segoe UI&quot;;
+color: rgb(8, 113, 104);
 </string>
       </property>
       <property name="alignment">
@@ -823,7 +824,7 @@ color:  rgb(8, 113, 104);
       <property name="geometry">
        <rect>
         <x>70</x>
-        <y>290</y>
+        <y>287</y>
         <width>164</width>
         <height>33</height>
        </rect>
@@ -841,10 +842,12 @@ color:  rgb(8, 113, 104);
        </size>
       </property>
       <property name="styleSheet">
-       <string notr="true">background-image: url(:/icons/screen6/thread priority_text.png);</string>
+       <string notr="true">font: 75 18pt &quot;Segoe UI&quot;;
+color: rgb(8, 113, 104);
+</string>
       </property>
       <property name="text">
-       <string/>
+       <string>Thread Priority</string>
       </property>
      </widget>
      <widget class="QComboBox" name="cb_thread_priority">
@@ -857,9 +860,11 @@ color:  rgb(8, 113, 104);
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">font: 14pt &quot;Myriad Web&quot;;
+       <string notr="true">
 border-image: url(:/icons/screen5/label_2.png);
+font: 75 16pt &quot;Segoe UI&quot;;
 color: rgb(8, 113, 104);
+
 </string>
       </property>
       <item>
@@ -913,8 +918,9 @@ color: rgb(8, 113, 104);
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">font: 12pt &quot;Segoe UI&quot;;
+       <string notr="true">
 border-image: url(:/icons/screen5/label_2.png);
+font: 75 14pt &quot;Segoe UI&quot;;
 color: rgb(8, 113, 104);
 </string>
       </property>
@@ -932,7 +938,7 @@ color: rgb(8, 113, 104);
       <property name="geometry">
        <rect>
         <x>46</x>
-        <y>230</y>
+        <y>227</y>
         <width>189</width>
         <height>33</height>
        </rect>
@@ -950,10 +956,12 @@ color: rgb(8, 113, 104);
        </size>
       </property>
       <property name="styleSheet">
-       <string notr="true">background-image: url(:/icons/screen5/Thread stack size_text.png);</string>
+       <string notr="true">font: 75 18pt &quot;Segoe UI&quot;;
+color: rgb(8, 113, 104);
+</string>
       </property>
       <property name="text">
-       <string/>
+       <string>Thread Stack Size</string>
       </property>
      </widget>
      <zorder>l_thread_priority</zorder>
@@ -970,7 +978,7 @@ color: rgb(8, 113, 104);
      <property name="geometry">
       <rect>
        <x>710</x>
-       <y>222</y>
+       <y>240</y>
        <width>641</width>
        <height>391</height>
       </rect>
@@ -1009,8 +1017,9 @@ color: rgb(8, 113, 104);
        <string>Configure a Thread inside the Main Thread, you can execute it whenever you desire</string>
       </property>
       <property name="styleSheet">
-       <string notr="true">font: 75 18pt &quot;Myriad Web&quot;;
-color:  rgb(30, 30, 30);
+       <string notr="true">background-image: url(:/icons/screen8/fondo_transparente.png);
+font: 75 18pt &quot;Segoe UI&quot;;
+color: rgb(8, 113, 104);
 </string>
       </property>
       <property name="text">
@@ -1051,8 +1060,9 @@ color:  rgb(30, 30, 30);
        <string>Configure a Main Thread and execute it in main.cpp</string>
       </property>
       <property name="styleSheet">
-       <string notr="true">font: 75 18pt &quot;Myriad Web&quot;;
-color:  rgb(30, 30, 30);
+       <string notr="true">background-image: url(:/icons/screen8/fondo_transparente.png);
+font: 75 18pt &quot;Segoe UI&quot;;
+color: rgb(8, 113, 104);
 </string>
       </property>
       <property name="text">
@@ -1093,8 +1103,9 @@ color:  rgb(30, 30, 30);
        <string>Configure a Main Thread and execute it in main.cpp</string>
       </property>
       <property name="styleSheet">
-       <string notr="true">font: 75 18pt &quot;Myriad Web&quot;;
-color:  rgb(30, 30, 30);
+       <string notr="true">background-image: url(:/icons/screen8/fondo_transparente.png);
+font: 75 18pt &quot;Segoe UI&quot;;
+color: rgb(8, 113, 104);
 </string>
       </property>
       <property name="text">
@@ -1135,8 +1146,9 @@ color:  rgb(30, 30, 30);
        <string>Configure a Main Thread and execute it in main.cpp</string>
       </property>
       <property name="styleSheet">
-       <string notr="true">font: 75 18pt &quot;Myriad Web&quot;;
-color:  rgb(30, 30, 30);
+       <string notr="true">background-image: url(:/icons/screen8/fondo_transparente.png);
+font: 75 18pt &quot;Segoe UI&quot;;
+color: rgb(8, 113, 104);
 </string>
       </property>
       <property name="text">
@@ -1152,9 +1164,9 @@ color:  rgb(30, 30, 30);
       </property>
       <property name="geometry">
        <rect>
-        <x>20</x>
+        <x>15</x>
         <y>200</y>
-        <width>181</width>
+        <width>191</width>
         <height>40</height>
        </rect>
       </property>
@@ -1177,8 +1189,9 @@ color:  rgb(30, 30, 30);
        <string>Configure a Main Thread and execute it in main.cpp</string>
       </property>
       <property name="styleSheet">
-       <string notr="true">font: 75 18pt &quot;Myriad Web&quot;;
-color:  rgb(30, 30, 30);
+       <string notr="true">background-image: url(:/icons/screen8/fondo_transparente.png);
+font: 75 18pt &quot;Segoe UI&quot;;
+color: rgb(8, 113, 104);
 </string>
       </property>
       <property name="text">
@@ -1219,8 +1232,9 @@ color:  rgb(30, 30, 30);
        <string>Configure a Main Thread and execute it in main.cpp</string>
       </property>
       <property name="styleSheet">
-       <string notr="true">font: 75 18pt &quot;Myriad Web&quot;;
-color:  rgb(30, 30, 30);
+       <string notr="true">background-image: url(:/icons/screen8/fondo_transparente.png);
+font: 75 18pt &quot;Segoe UI&quot;;
+color: rgb(8, 113, 104);
 </string>
       </property>
       <property name="text">
@@ -1258,8 +1272,8 @@ color:  rgb(30, 30, 30);
         <item>
          <widget class="QLabel" name="l_EVENT_13">
           <property name="styleSheet">
-           <string notr="true">font: 75 18pt &quot;Myriad Web&quot;;
-color:  rgb(30, 30, 30);
+           <string notr="true">font: 75 18pt &quot;Segoe UI&quot;;
+color: rgb(8, 113, 104);
 </string>
           </property>
           <property name="text">
@@ -1280,8 +1294,8 @@ color:  rgb(30, 30, 30);
           </property>
           <property name="styleSheet">
            <string notr="true">border-image: url(:/icons/screen6/label_1.png);
-font: 15pt &quot;Myriad Web&quot;;
-color:  rgb(8, 113, 104);
+font: 75 16pt &quot;Segoe UI&quot;;
+color: rgb(8, 113, 104);
 </string>
           </property>
          </widget>
@@ -1300,8 +1314,9 @@ color:  rgb(8, 113, 104);
          <enum>Qt::LeftToRight</enum>
         </property>
         <property name="styleSheet">
-         <string notr="true">font: 14pt &quot;Myriad Web&quot;;
+         <string notr="true">
 border-image: url(:/icons/screen5/label_2.png);
+font: 75 14pt &quot;Segoe UI&quot;;
 color: rgb(8, 113, 104);
 </string>
         </property>
@@ -1330,8 +1345,8 @@ color: rgb(8, 113, 104);
         <item>
          <widget class="QLabel" name="l_EVENT_3">
           <property name="styleSheet">
-           <string notr="true">font: 75 18pt &quot;Myriad Web&quot;;
-color:  rgb(30, 30, 30);
+           <string notr="true">font: 75 18pt &quot;Segoe UI&quot;;
+color: rgb(8, 113, 104);
 </string>
           </property>
           <property name="text">
@@ -1351,7 +1366,7 @@ color:  rgb(30, 30, 30);
            </size>
           </property>
           <property name="styleSheet">
-           <string notr="true">font: 12pt &quot;Segoe UI&quot;;
+           <string notr="true">font: 14pt &quot;Segoe UI&quot;;
 border-image: url(:/icons/screen5/label_2.png);
 color: rgb(8, 113, 104);
 </string>
@@ -1380,8 +1395,8 @@ color: rgb(8, 113, 104);
         <item>
          <widget class="QLabel" name="l_EVENT_4">
           <property name="styleSheet">
-           <string notr="true">font: 75 18pt &quot;Myriad Web&quot;;
-color:  rgb(30, 30, 30);
+           <string notr="true">font: 75 18pt &quot;Segoe UI&quot;;
+color: rgb(8, 113, 104);
 </string>
           </property>
           <property name="text">
@@ -1402,8 +1417,8 @@ color:  rgb(30, 30, 30);
           </property>
           <property name="styleSheet">
            <string notr="true">border-image: url(:/icons/screen6/label_1.png);
-font: 15pt &quot;Myriad Web&quot;;
-color:  rgb(8, 113, 104);
+font: 75 16pt &quot;Segoe UI&quot;;
+color: rgb(8, 113, 104);
 </string>
           </property>
          </widget>
@@ -1434,7 +1449,7 @@ color:  rgb(8, 113, 104);
          <string>Configure a Main Thread and execute it in main.cpp</string>
         </property>
         <property name="styleSheet">
-         <string notr="true">font: 75 18pt &quot;Myriad Web&quot;;
+         <string notr="true">font: 63 18pt &quot;Segoe UI Semibold&quot;;
 color:  rgb(8, 113, 104);</string>
         </property>
         <property name="text">
@@ -1451,7 +1466,7 @@ color:  rgb(8, 113, 104);</string>
      <property name="geometry">
       <rect>
        <x>310</x>
-       <y>-30</y>
+       <y>0</y>
        <width>234</width>
        <height>354</height>
       </rect>
@@ -1471,8 +1486,8 @@ color:  rgb(8, 113, 104);</string>
         <item>
          <widget class="QLabel" name="l_EVENT_5">
           <property name="styleSheet">
-           <string notr="true">font: 75 18pt &quot;Myriad Web&quot;;
-color:  rgb(30, 30, 30);
+           <string notr="true">font: 75 18pt &quot;Segoe UI&quot;;
+color: rgb(8, 113, 104);
 </string>
           </property>
           <property name="text">
@@ -1493,8 +1508,8 @@ color:  rgb(30, 30, 30);
           </property>
           <property name="styleSheet">
            <string notr="true">border-image: url(:/icons/screen6/label_1.png);
-font: 15pt &quot;Myriad Web&quot;;
-color:  rgb(8, 113, 104);
+font: 75 16pt &quot;Segoe UI&quot;;
+color: rgb(8, 113, 104);
 </string>
           </property>
          </widget>
@@ -1509,8 +1524,8 @@ color:  rgb(8, 113, 104);
         <item>
          <widget class="QLabel" name="l_EVENT_9">
           <property name="styleSheet">
-           <string notr="true">font: 75 18pt &quot;Myriad Web&quot;;
-color:  rgb(30, 30, 30);
+           <string notr="true">font: 75 18pt &quot;Segoe UI&quot;;
+color: rgb(8, 113, 104);
 </string>
           </property>
           <property name="text">
@@ -1531,8 +1546,8 @@ color:  rgb(30, 30, 30);
           </property>
           <property name="styleSheet">
            <string notr="true">border-image: url(:/icons/screen6/label_1.png);
-font: 15pt &quot;Myriad Web&quot;;
-color:  rgb(8, 113, 104);
+font: 75 16pt &quot;Segoe UI&quot;;
+color: rgb(8, 113, 104);
 </string>
           </property>
          </widget>
@@ -1544,8 +1559,8 @@ color:  rgb(8, 113, 104);
         <item>
          <widget class="QLabel" name="l_EVENT_7">
           <property name="styleSheet">
-           <string notr="true">font: 75 18pt &quot;Myriad Web&quot;;
-color:  rgb(30, 30, 30);
+           <string notr="true">font: 75 18pt &quot;Segoe UI&quot;;
+color: rgb(8, 113, 104);
 </string>
           </property>
           <property name="text">
@@ -1565,8 +1580,9 @@ color:  rgb(30, 30, 30);
            </size>
           </property>
           <property name="styleSheet">
-           <string notr="true">font: 12pt &quot;Segoe UI&quot;;
+           <string notr="true">
 border-image: url(:/icons/screen5/label_2.png);
+font: 75 14pt &quot;Segoe UI&quot;;
 color: rgb(8, 113, 104);
 </string>
           </property>
@@ -1591,8 +1607,8 @@ color: rgb(8, 113, 104);
         <item>
          <widget class="QLabel" name="l_EVENT_6">
           <property name="styleSheet">
-           <string notr="true">font: 75 18pt &quot;Myriad Web&quot;;
-color:  rgb(30, 30, 30);
+           <string notr="true">font: 75 18pt &quot;Segoe UI&quot;;
+color: rgb(8, 113, 104);
 </string>
           </property>
           <property name="text">
@@ -1612,8 +1628,9 @@ color:  rgb(30, 30, 30);
            </size>
           </property>
           <property name="styleSheet">
-           <string notr="true">font: 12pt &quot;Segoe UI&quot;;
+           <string notr="true">
 border-image: url(:/icons/screen5/label_2.png);
+font: 75 14pt &quot;Segoe UI&quot;;
 color: rgb(8, 113, 104);
 </string>
           </property>
@@ -1657,7 +1674,7 @@ color: rgb(8, 113, 104);
          <string>Configure a Main Thread and execute it in main.cpp</string>
         </property>
         <property name="styleSheet">
-         <string notr="true">font: 75 18pt &quot;Myriad Web&quot;;
+         <string notr="true">font: 63 18pt &quot;Segoe UI Semibold&quot;;
 color:  rgb(8, 113, 104);</string>
         </property>
         <property name="text">
@@ -1694,8 +1711,8 @@ color:  rgb(8, 113, 104);</string>
         <item>
          <widget class="QLabel" name="l_EVENT_10">
           <property name="styleSheet">
-           <string notr="true">font: 75 18pt &quot;Myriad Web&quot;;
-color:  rgb(30, 30, 30);
+           <string notr="true">font: 75 18pt &quot;Segoe UI&quot;;
+color: rgb(8, 113, 104);
 </string>
           </property>
           <property name="text">
@@ -1716,8 +1733,8 @@ color:  rgb(30, 30, 30);
           </property>
           <property name="styleSheet">
            <string notr="true">border-image: url(:/icons/screen6/label_1.png);
-font: 15pt &quot;Myriad Web&quot;;
-color:  rgb(8, 113, 104);
+font: 75 16pt &quot;Segoe UI&quot;;
+color: rgb(8, 113, 104);
 </string>
           </property>
          </widget>
@@ -1732,8 +1749,8 @@ color:  rgb(8, 113, 104);
         <item>
          <widget class="QLabel" name="l_EVENT_11">
           <property name="styleSheet">
-           <string notr="true">font: 75 18pt &quot;Myriad Web&quot;;
-color:  rgb(30, 30, 30);
+           <string notr="true">font: 75 18pt &quot;Segoe UI&quot;;
+color: rgb(8, 113, 104);
 </string>
           </property>
           <property name="text">
@@ -1753,8 +1770,9 @@ color:  rgb(30, 30, 30);
            </size>
           </property>
           <property name="styleSheet">
-           <string notr="true">font: 12pt &quot;Segoe UI&quot;;
+           <string notr="true">
 border-image: url(:/icons/screen5/label_2.png);
+font: 75 14pt &quot;Segoe UI&quot;;
 color: rgb(8, 113, 104);
 </string>
           </property>
@@ -1785,8 +1803,8 @@ color: rgb(8, 113, 104);
         <item>
          <widget class="QLabel" name="l_memPool_data_type">
           <property name="styleSheet">
-           <string notr="true">font: 75 18pt &quot;Myriad Web&quot;;
-color:  rgb(30, 30, 30);
+           <string notr="true">font: 75 18pt &quot;Segoe UI&quot;;
+color: rgb(8, 113, 104);
 </string>
           </property>
           <property name="text">
@@ -1807,8 +1825,8 @@ color:  rgb(30, 30, 30);
           </property>
           <property name="styleSheet">
            <string notr="true">border-image: url(:/icons/screen6/label_1.png);
-font: 15pt &quot;Myriad Web&quot;;
-color:  rgb(8, 113, 104);
+font: 75 16pt &quot;Segoe UI&quot;;
+color: rgb(8, 113, 104);
 </string>
           </property>
          </widget>
@@ -1818,8 +1836,9 @@ color:  rgb(8, 113, 104);
       <item>
        <widget class="QCheckBox" name="cb_memoryPool_buffer">
         <property name="styleSheet">
-         <string notr="true">font: 75 18pt &quot;Myriad Web&quot;;
-color:  rgb(30, 30, 30);
+         <string notr="true">font: 75 18pt &quot;Segoe UI&quot;;
+color: rgb(8, 113, 104);
+
 </string>
         </property>
         <property name="text">
@@ -1835,8 +1854,8 @@ color:  rgb(30, 30, 30);
         <item>
          <widget class="QLabel" name="l_memPool_buffer_type">
           <property name="styleSheet">
-           <string notr="true">font: 75 18pt &quot;Myriad Web&quot;;
-color:  rgb(30, 30, 30);
+           <string notr="true">font: 75 18pt &quot;Segoe UI&quot;;
+color: rgb(8, 113, 104);
 </string>
           </property>
           <property name="text">
@@ -1857,8 +1876,8 @@ color:  rgb(30, 30, 30);
           </property>
           <property name="styleSheet">
            <string notr="true">border-image: url(:/icons/screen6/label_1.png);
-font: 15pt &quot;Myriad Web&quot;;
-color:  rgb(8, 113, 104);
+font: 75 16pt &quot;Segoe UI&quot;;
+color: rgb(8, 113, 104);
 </string>
           </property>
          </widget>
@@ -1873,8 +1892,8 @@ color:  rgb(8, 113, 104);
         <item>
          <widget class="QLabel" name="l_memPool_buffer_size">
           <property name="styleSheet">
-           <string notr="true">font: 75 18pt &quot;Myriad Web&quot;;
-color:  rgb(30, 30, 30);
+           <string notr="true">font: 75 18pt &quot;Segoe UI&quot;;
+color: rgb(8, 113, 104);
 </string>
           </property>
           <property name="text">
@@ -1894,8 +1913,9 @@ color:  rgb(30, 30, 30);
            </size>
           </property>
           <property name="styleSheet">
-           <string notr="true">font: 12pt &quot;Segoe UI&quot;;
+           <string notr="true">
 border-image: url(:/icons/screen5/label_2.png);
+font: 75 14pt &quot;Segoe UI&quot;;
 color: rgb(8, 113, 104);
 </string>
           </property>
@@ -1931,7 +1951,7 @@ color: rgb(8, 113, 104);
         </property>
         <property name="maximumSize">
          <size>
-          <width>200</width>
+          <width>220</width>
           <height>50</height>
          </size>
         </property>
@@ -1942,11 +1962,11 @@ color: rgb(8, 113, 104);
          <string>Configure a Main Thread and execute it in main.cpp</string>
         </property>
         <property name="styleSheet">
-         <string notr="true">font: 75 18pt &quot;Myriad Web&quot;;
+         <string notr="true">font: 63 18pt &quot;Segoe UI Semibold&quot;;
 color:  rgb(8, 113, 104);</string>
         </property>
         <property name="text">
-         <string>Add Memory Pool</string>
+         <string>   Add Memory Pool</string>
         </property>
         <property name="flat">
          <bool>true</bool>
@@ -1979,8 +1999,8 @@ color:  rgb(8, 113, 104);</string>
         <item>
          <widget class="QLabel" name="l_EVENT_2">
           <property name="styleSheet">
-           <string notr="true">font: 75 18pt &quot;Myriad Web&quot;;
-color:  rgb(30, 30, 30);
+           <string notr="true">font: 75 18pt &quot;Segoe UI&quot;;
+color: rgb(8, 113, 104);
 </string>
           </property>
           <property name="text">
@@ -2001,8 +2021,8 @@ color:  rgb(30, 30, 30);
           </property>
           <property name="styleSheet">
            <string notr="true">border-image: url(:/icons/screen6/label_1.png);
-font: 15pt &quot;Myriad Web&quot;;
-color:  rgb(8, 113, 104);
+font: 75 16pt &quot;Segoe UI&quot;;
+color: rgb(8, 113, 104);
 </string>
           </property>
          </widget>
@@ -2017,8 +2037,8 @@ color:  rgb(8, 113, 104);
         <item>
          <widget class="QLabel" name="l_EVENT_12">
           <property name="styleSheet">
-           <string notr="true">font: 75 18pt &quot;Myriad Web&quot;;
-color:  rgb(30, 30, 30);
+           <string notr="true">font: 75 18pt &quot;Segoe UI&quot;;
+color: rgb(8, 113, 104);
 </string>
           </property>
           <property name="text">
@@ -2038,8 +2058,9 @@ color:  rgb(30, 30, 30);
            </size>
           </property>
           <property name="styleSheet">
-           <string notr="true">font: 12pt &quot;Segoe UI&quot;;
+           <string notr="true">
 border-image: url(:/icons/screen5/label_2.png);
+font: 75 14pt &quot;Segoe UI&quot;;
 color: rgb(8, 113, 104);
 </string>
           </property>
@@ -2086,7 +2107,7 @@ color: rgb(8, 113, 104);
          <string>Configure a Main Thread and execute it in main.cpp</string>
         </property>
         <property name="styleSheet">
-         <string notr="true">font: 75 18pt &quot;Myriad Web&quot;;
+         <string notr="true">font: 63 18pt &quot;Segoe UI Semibold&quot;;
 color:  rgb(8, 113, 104);</string>
         </property>
         <property name="text">
@@ -2100,7 +2121,6 @@ color:  rgb(8, 113, 104);</string>
      </layout>
      <zorder></zorder>
      <zorder></zorder>
-     <zorder>layoutWidget_13</zorder>
      <zorder>pb_add_Semaphore</zorder>
     </widget>
     <widget class="QWidget" name="widget_mutex_parameters" native="true">
@@ -2124,8 +2144,8 @@ color:  rgb(8, 113, 104);</string>
         <item>
          <widget class="QLabel" name="l_EVENT_14">
           <property name="styleSheet">
-           <string notr="true">font: 75 18pt &quot;Myriad Web&quot;;
-color:  rgb(30, 30, 30);
+           <string notr="true">font: 75 18pt &quot;Segoe UI&quot;;
+color: rgb(8, 113, 104);
 </string>
           </property>
           <property name="text">
@@ -2178,7 +2198,7 @@ color:  rgb(8, 113, 104);
          <string>Configure a Main Thread and execute it in main.cpp</string>
         </property>
         <property name="styleSheet">
-         <string notr="true">font: 75 18pt &quot;Myriad Web&quot;;
+         <string notr="true">font: 63 18pt &quot;Segoe UI Semibold&quot;;
 color:  rgb(8, 113, 104);</string>
         </property>
         <property name="text">
@@ -2193,6 +2213,17 @@ color:  rgb(8, 113, 104);</string>
      <zorder>pb_add_Semaphore_2</zorder>
      <zorder></zorder>
     </widget>
+    <zorder>pb_configure_thread_in_class</zorder>
+    <zorder>pb_configure_Main_thread</zorder>
+    <zorder>pb_configure_in_Main_thread</zorder>
+    <zorder>pb_configure_state_machine</zorder>
+    <zorder>widget_options_thread_options</zorder>
+    <zorder>widget_timer_parameters</zorder>
+    <zorder>widget_mailBox_parameters</zorder>
+    <zorder>widget_memory_pool_parameters</zorder>
+    <zorder>widget_semaphore_parameters</zorder>
+    <zorder>widget_mutex_parameters</zorder>
+    <zorder>widget_configure_in_main_thread</zorder>
    </widget>
    <widget class="QWidget" name="widget_state_machine_screen" native="true">
     <property name="geometry">
@@ -2403,8 +2434,9 @@ color:  rgb(8, 113, 104);</string>
                       </size>
                      </property>
                      <property name="styleSheet">
-                      <string notr="true">font: 15pt &quot;Segoe UI&quot;;
-color: rgb(128, 128, 128);</string>
+                      <string notr="true">font: 75 14pt &quot;Segoe UI&quot;;
+color: rgb(8, 113, 104);
+</string>
                      </property>
                      <property name="text">
                       <string>SUPER STATE</string>
@@ -2442,8 +2474,9 @@ color:  rgb(8, 113, 104);</string>
                       </size>
                      </property>
                      <property name="styleSheet">
-                      <string notr="true">font: 15pt &quot;Segoe UI&quot;;
-color: rgb(128, 128, 128);</string>
+                      <string notr="true">font: 75 14pt &quot;Segoe UI&quot;;
+color: rgb(8, 113, 104);
+</string>
                      </property>
                      <property name="text">
                       <string>INITIAL STATE</string>
@@ -2502,8 +2535,9 @@ border-image: url(:/icons/screen2/label_1.png);</string>
                         </size>
                        </property>
                        <property name="styleSheet">
-                        <string notr="true">font: 15pt &quot;Segoe UI&quot;;
-color: rgb(128, 128, 128);</string>
+                        <string notr="true">font: 75 14pt &quot;Segoe UI&quot;;
+color: rgb(8, 113, 104);
+</string>
                        </property>
                        <property name="text">
                         <string>STATE NAME</string>
@@ -2551,8 +2585,9 @@ color:  rgb(8, 113, 104);</string>
                     </size>
                    </property>
                    <property name="styleSheet">
-                    <string notr="true">font: 15pt &quot;Segoe UI&quot;;
-color: rgb(128, 128, 128);</string>
+                    <string notr="true">font: 75 14pt &quot;Segoe UI&quot;;
+color: rgb(8, 113, 104);
+</string>
                    </property>
                    <property name="text">
                     <string>DEFAULT EVENT</string>
@@ -2584,8 +2619,9 @@ color: rgb(128, 128, 128);</string>
                         </size>
                        </property>
                        <property name="styleSheet">
-                        <string notr="true">font: 15pt &quot;Segoe UI&quot;;
-color: rgb(128, 128, 128);</string>
+                        <string notr="true">font: 75 14pt &quot;Segoe UI&quot;;
+color: rgb(8, 113, 104);
+</string>
                        </property>
                        <property name="text">
                         <string>Next State</string>
@@ -2626,8 +2662,9 @@ border-image: url(:/icons/screen2/label_1.png);</string>
                         </size>
                        </property>
                        <property name="styleSheet">
-                        <string notr="true">font: 15pt &quot;Segoe UI&quot;;
-color: rgb(128, 128, 128);</string>
+                        <string notr="true">font: 75 14pt &quot;Segoe UI&quot;;
+color: rgb(8, 113, 104);
+</string>
                        </property>
                        <property name="text">
                         <string>Action</string>
@@ -2745,8 +2782,9 @@ color:  rgb(8, 113, 104);</string>
                       </size>
                      </property>
                      <property name="styleSheet">
-                      <string notr="true">font: 15pt &quot;Segoe UI&quot;;
-color: rgb(128, 128, 128);</string>
+                      <string notr="true">font: 75 14pt &quot;Segoe UI&quot;;
+color: rgb(8, 113, 104);
+</string>
                      </property>
                      <property name="text">
                       <string>ENTRY ACTION</string>
@@ -2782,8 +2820,9 @@ border-image: url(:/icons/screen2/label_1.png);</string>
                         </size>
                        </property>
                        <property name="styleSheet">
-                        <string notr="true">font: 15pt &quot;Segoe UI&quot;;
-color: rgb(128, 128, 128);</string>
+                        <string notr="true">font: 75 14pt &quot;Segoe UI&quot;;
+color: rgb(8, 113, 104);
+</string>
                        </property>
                        <property name="text">
                         <string>EXIT ACTION</string>
@@ -2844,8 +2883,9 @@ border-image: url(:/icons/screen2/label_1.png);</string>
                  <string>Apply changes to the State properties</string>
                 </property>
                 <property name="styleSheet">
-                 <string notr="true">font: 15pt &quot;Segoe UI&quot;;
-color: rgb(128, 128, 128);</string>
+                 <string notr="true">font: 75 14pt &quot;Segoe UI&quot;;
+color: rgb(8, 113, 104);
+</string>
                 </property>
                 <property name="text">
                  <string>EVENTS</string>
@@ -2877,8 +2917,9 @@ color: rgb(128, 128, 128);</string>
                  <string>Apply changes to the State properties</string>
                 </property>
                 <property name="styleSheet">
-                 <string notr="true">font: 15pt &quot;Segoe UI&quot;;
-color: rgb(128, 128, 128);</string>
+                 <string notr="true">font: 75 14pt &quot;Segoe UI&quot;;
+color: rgb(8, 113, 104);
+</string>
                 </property>
                 <property name="text">
                  <string>APPLY</string>
@@ -3001,7 +3042,7 @@ color:  rgb(8, 113, 104);
       </size>
      </property>
      <property name="styleSheet">
-      <string notr="true">font: 75 16pt &quot;Myriad Web&quot;;
+      <string notr="true">font: 63 16pt &quot;Segoe UI Semibold&quot;;
 color:  rgb(8, 113, 104);
 
 background-image: url(:/icons/screen8/fondo_blanco.png);</string>
@@ -3027,7 +3068,7 @@ background-image: url(:/icons/screen8/fondo_blanco.png);</string>
      </property>
      <property name="styleSheet">
       <string notr="true">background-image: url(:/icons/screen8/fondo_blanco.png);
-font: 75 16pt &quot;Myriad Web&quot;;
+font: 63 16pt &quot;Segoe UI Semibold&quot;;
 color:  rgb(8, 113, 104);
 
 </string>
@@ -3127,7 +3168,7 @@ color:  rgb(8, 113, 104);
      </property>
      <property name="styleSheet">
       <string notr="true">border-image: url(:/icons/screen8/label.png);
-font: 15pt &quot;Myriad Web&quot;;
+font: 63 16pt &quot;Segoe UI Semibold&quot;;
 color:  rgb(8, 113, 104);
 </string>
      </property>
@@ -3137,7 +3178,7 @@ color:  rgb(8, 113, 104);
       <rect>
        <x>1100</x>
        <y>270</y>
-       <width>231</width>
+       <width>221</width>
        <height>291</height>
       </rect>
      </property>
@@ -3148,7 +3189,10 @@ color:  rgb(8, 113, 104);
       </size>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-image: url(:/icons/screen8/fondo_transparente.png);</string>
+      <string notr="true">font: 75 14pt &quot;Segoe UI&quot;;
+background-image: url(:/icons/screen8/background.png);
+color: rgb(8, 113, 104);
+</string>
      </property>
      <column>
       <property name="text">
@@ -3239,9 +3283,9 @@ background-image: url(:/icons/screen8/add_state_button.png);</string>
      <property name="geometry">
       <rect>
        <x>110</x>
-       <y>570</y>
+       <y>540</y>
        <width>131</width>
-       <height>141</height>
+       <height>191</height>
       </rect>
      </property>
      <property name="cursor">
@@ -3260,8 +3304,9 @@ background-image: url(:/icons/screen8/add_state_button.png);</string>
          <cursorShape>PointingHandCursor</cursorShape>
         </property>
         <property name="styleSheet">
-         <string notr="true">font: 10pt &quot;Myriad Web&quot;;
-color:  rgb(8, 113, 104);</string>
+         <string notr="true">font: 75 12pt &quot;Segoe UI&quot;;
+color: rgb(8, 113, 104);
+</string>
         </property>
         <property name="text">
          <string>Open State</string>
@@ -3277,8 +3322,9 @@ color:  rgb(8, 113, 104);</string>
          <cursorShape>PointingHandCursor</cursorShape>
         </property>
         <property name="styleSheet">
-         <string notr="true">font: 10pt &quot;Myriad Web&quot;;
-color:  rgb(8, 113, 104);</string>
+         <string notr="true">font: 75 12pt &quot;Segoe UI&quot;;
+color: rgb(8, 113, 104);
+</string>
         </property>
         <property name="text">
          <string>Set as Initial</string>
@@ -3294,8 +3340,9 @@ color:  rgb(8, 113, 104);</string>
          <cursorShape>PointingHandCursor</cursorShape>
         </property>
         <property name="styleSheet">
-         <string notr="true">font: 10pt &quot;Myriad Web&quot;;
-color:  rgb(8, 113, 104);</string>
+         <string notr="true">font: 75 12pt &quot;Segoe UI&quot;;
+color: rgb(8, 113, 104);
+</string>
         </property>
         <property name="text">
          <string>Configure State</string>
@@ -3311,8 +3358,9 @@ color:  rgb(8, 113, 104);</string>
          <cursorShape>PointingHandCursor</cursorShape>
         </property>
         <property name="styleSheet">
-         <string notr="true">font: 10pt &quot;Myriad Web&quot;;
-color:  rgb(8, 113, 104);</string>
+         <string notr="true">font: 75 12pt &quot;Segoe UI&quot;;
+color: rgb(8, 113, 104);
+</string>
         </property>
         <property name="text">
          <string>Add Child </string>
@@ -3328,8 +3376,9 @@ color:  rgb(8, 113, 104);</string>
          <cursorShape>PointingHandCursor</cursorShape>
         </property>
         <property name="styleSheet">
-         <string notr="true">font: 10pt &quot;Myriad Web&quot;;
-color:  rgb(8, 113, 104);</string>
+         <string notr="true">font: 75 12pt &quot;Segoe UI&quot;;
+color: rgb(8, 113, 104);
+</string>
         </property>
         <property name="text">
          <string>Eliminate State</string>
@@ -3345,8 +3394,9 @@ color:  rgb(8, 113, 104);</string>
          <cursorShape>PointingHandCursor</cursorShape>
         </property>
         <property name="styleSheet">
-         <string notr="true">font: 10pt &quot;Myriad Web&quot;;
-color:  rgb(8, 113, 104);</string>
+         <string notr="true">font: 75 12pt &quot;Segoe UI&quot;;
+color: rgb(8, 113, 104);
+</string>
         </property>
         <property name="text">
          <string>Cancel</string>
@@ -3381,9 +3431,9 @@ color:  rgb(8, 113, 104);</string>
      <property name="geometry">
       <rect>
        <x>280</x>
-       <y>630</y>
+       <y>610</y>
        <width>121</width>
-       <height>101</height>
+       <height>121</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -3402,8 +3452,9 @@ color:  rgb(8, 113, 104);</string>
          <string>Add the event configured</string>
         </property>
         <property name="styleSheet">
-         <string notr="true">font: 12pt &quot;Myriad Web&quot;;
-color:  rgb(8, 113, 104);</string>
+         <string notr="true">font: 75 14pt &quot;Segoe UI&quot;;
+color: rgb(8, 113, 104);
+</string>
         </property>
         <property name="text">
          <string>Add Event</string>
@@ -3422,8 +3473,9 @@ color:  rgb(8, 113, 104);</string>
          <string>Add the event configured</string>
         </property>
         <property name="styleSheet">
-         <string notr="true">font: 12pt &quot;Myriad Web&quot;;
-color:  rgb(8, 113, 104);</string>
+         <string notr="true">font: 75 14pt &quot;Segoe UI&quot;;
+color: rgb(8, 113, 104);
+</string>
         </property>
         <property name="text">
          <string>Erase Event</string>
@@ -3442,8 +3494,9 @@ color:  rgb(8, 113, 104);</string>
          <string>Cancel the adding of the event</string>
         </property>
         <property name="styleSheet">
-         <string notr="true">font: 12pt &quot;Myriad Web&quot;;
-color:  rgb(8, 113, 104);</string>
+         <string notr="true">font: 75 14pt &quot;Segoe UI&quot;;
+color: rgb(8, 113, 104);
+</string>
         </property>
         <property name="text">
          <string>Cancel</string>
@@ -3546,120 +3599,6 @@ color:  rgb(21, 172, 112);</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </widget>
-   <widget class="QWidget" name="widget_help_buttons" native="true">
-    <property name="geometry">
-     <rect>
-      <x>2350</x>
-      <y>210</y>
-      <width>200</width>
-      <height>141</height>
-     </rect>
-    </property>
-    <property name="minimumSize">
-     <size>
-      <width>0</width>
-      <height>0</height>
-     </size>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: rgb(21, 172, 112);</string>
-    </property>
-    <layout class="QVBoxLayout" name="verticalLayout_5">
-     <property name="spacing">
-      <number>10</number>
-     </property>
-     <property name="sizeConstraint">
-      <enum>QLayout::SetFixedSize</enum>
-     </property>
-     <item>
-      <widget class="QPushButton" name="pb_uVision_Config">
-       <property name="cursor">
-        <cursorShape>PointingHandCursor</cursorShape>
-       </property>
-       <property name="toolTip">
-        <string/>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">font: 12pt &quot;Segoe UI&quot;;
-color: rgb(255, 245, 242);
-background-color: rgb(21, 172, 112);</string>
-       </property>
-       <property name="text">
-        <string>uVision Configuration</string>
-       </property>
-       <property name="flat">
-        <bool>true</bool>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="pb_Stcube_Config">
-       <property name="cursor">
-        <cursorShape>PointingHandCursor</cursorShape>
-       </property>
-       <property name="toolTip">
-        <string/>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">font: 12pt &quot;Segoe UI&quot;;
-color: rgb(255, 245, 242);
-border-color: rgb(21, 172, 112);</string>
-       </property>
-       <property name="text">
-        <string>STM32CubeMx Configuration</string>
-       </property>
-       <property name="flat">
-        <bool>true</bool>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="pb_about_NEOW">
-       <property name="cursor">
-        <cursorShape>PointingHandCursor</cursorShape>
-       </property>
-       <property name="toolTip">
-        <string/>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">font: 12pt &quot;Segoe UI&quot;;
-color: rgb(255, 245, 242);
-background-color: rgb(21, 172, 112);</string>
-       </property>
-       <property name="text">
-        <string>About NEOWizard</string>
-       </property>
-       <property name="flat">
-        <bool>true</bool>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="pb_about_QT">
-       <property name="cursor">
-        <cursorShape>PointingHandCursor</cursorShape>
-       </property>
-       <property name="toolTip">
-        <string/>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">font: 12pt &quot;Segoe UI&quot;;
-color: rgb(255, 245, 242);
-background-color: rgb(21, 172, 112);</string>
-       </property>
-       <property name="text">
-        <string>About Qt</string>
-       </property>
-       <property name="default">
-        <bool>false</bool>
-       </property>
-       <property name="flat">
-        <bool>true</bool>
        </property>
       </widget>
      </item>
@@ -4210,7 +4149,7 @@ color:  rgb(21, 172, 112);</string>
        <rect>
         <x>88</x>
         <y>290</y>
-        <width>279</width>
+        <width>221</width>
         <height>32</height>
        </rect>
       </property>
@@ -4466,14 +4405,438 @@ border-image: url(:/icons/screen8/label.png);
      </widget>
     </widget>
    </widget>
+   <widget class="QWidget" name="widget_help_screen" native="true">
+    <property name="geometry">
+     <rect>
+      <x>6680</x>
+      <y>0</y>
+      <width>1366</width>
+      <height>768</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-image: url(:/icons/screen8/background.png);</string>
+    </property>
+    <widget class="QPushButton" name="pb_Stcube_Config">
+     <property name="geometry">
+      <rect>
+       <x>240</x>
+       <y>320</y>
+       <width>433</width>
+       <height>53</height>
+      </rect>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="toolTip">
+      <string/>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-image: url(:/icons/screen8/fondo_transparente.png);
+font: 63 20pt &quot;Segoe UI Semibold&quot;;
+color: rgb(8, 113, 104);
+</string>
+     </property>
+     <property name="text">
+      <string>STM32CubeMx Configuration</string>
+     </property>
+     <property name="flat">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pb_about_NEOW">
+     <property name="geometry">
+      <rect>
+       <x>240</x>
+       <y>390</y>
+       <width>433</width>
+       <height>53</height>
+      </rect>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="toolTip">
+      <string/>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-image: url(:/icons/screen8/fondo_transparente.png);
+font: 63 20pt &quot;Segoe UI Semibold&quot;;
+color: rgb(8, 113, 104);
+</string>
+     </property>
+     <property name="text">
+      <string>About NEOWizard</string>
+     </property>
+     <property name="flat">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pb_about_QT">
+     <property name="geometry">
+      <rect>
+       <x>240</x>
+       <y>460</y>
+       <width>433</width>
+       <height>53</height>
+      </rect>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="toolTip">
+      <string/>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-image: url(:/icons/screen8/fondo_transparente.png);
+font: 63 20pt &quot;Segoe UI Semibold&quot;;
+color: rgb(8, 113, 104);
+</string>
+     </property>
+     <property name="text">
+      <string>About Qt</string>
+     </property>
+     <property name="default">
+      <bool>false</bool>
+     </property>
+     <property name="flat">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pb_uVision_Config">
+     <property name="geometry">
+      <rect>
+       <x>240</x>
+       <y>250</y>
+       <width>433</width>
+       <height>53</height>
+      </rect>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="toolTip">
+      <string/>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-image: url(:/icons/screen8/fondo_transparente.png);
+font: 63 20pt &quot;Segoe UI Semibold&quot;;
+color: rgb(8, 113, 104);
+</string>
+     </property>
+     <property name="text">
+      <string>uVision Configuration</string>
+     </property>
+     <property name="flat">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_7">
+     <property name="geometry">
+      <rect>
+       <x>770</x>
+       <y>254</y>
+       <width>161</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-image: url(:/icons/screen8/fondo_transparente.png);
+font: 63 20pt &quot;Segoe UI Semibold&quot;;
+color: rgb(8, 113, 104);
+</string>
+     </property>
+     <property name="text">
+      <string>Examples</string>
+     </property>
+    </widget>
+    <widget class="QWidget" name="widget_examples" native="true">
+     <property name="geometry">
+      <rect>
+       <x>850</x>
+       <y>290</y>
+       <width>241</width>
+       <height>321</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-image: url(:/icons/screen8/fondo_transparente.png);</string>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_29">
+      <property name="sizeConstraint">
+       <enum>QLayout::SetFixedSize</enum>
+      </property>
+      <item>
+       <widget class="QPushButton" name="pb_thread_example">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>150</width>
+          <height>40</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>200</width>
+          <height>50</height>
+         </size>
+        </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
+        <property name="toolTip">
+         <string>Configure a Thread inside the Main Thread, you can execute it whenever you desire</string>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-image: url(:/icons/screen8/fondo_transparente.png);
+font: 75 20pt &quot;Segoe UI&quot;;
+color: rgb(8, 113, 104);
+</string>
+        </property>
+        <property name="text">
+         <string> Thread</string>
+        </property>
+        <property name="flat">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="pb_timer_example">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>150</width>
+          <height>40</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>200</width>
+          <height>50</height>
+         </size>
+        </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
+        <property name="toolTip">
+         <string>Configure a Main Thread and execute it in main.cpp</string>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-image: url(:/icons/screen8/fondo_transparente.png);
+font: 75 20pt &quot;Segoe UI&quot;;
+color: rgb(8, 113, 104);
+</string>
+        </property>
+        <property name="text">
+         <string>Timer</string>
+        </property>
+        <property name="flat">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="pb_mail_example">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>150</width>
+          <height>40</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>200</width>
+          <height>50</height>
+         </size>
+        </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
+        <property name="toolTip">
+         <string>Configure a Main Thread and execute it in main.cpp</string>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-image: url(:/icons/screen8/fondo_transparente.png);
+font: 75 20pt &quot;Segoe UI&quot;;
+color: rgb(8, 113, 104);
+</string>
+        </property>
+        <property name="text">
+         <string>Mail</string>
+        </property>
+        <property name="flat">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="pb_memoryPool_example">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>150</width>
+          <height>40</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>200</width>
+          <height>50</height>
+         </size>
+        </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
+        <property name="toolTip">
+         <string>Configure a Main Thread and execute it in main.cpp</string>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-image: url(:/icons/screen8/fondo_transparente.png);
+font: 75 20pt &quot;Segoe UI&quot;;
+color: rgb(8, 113, 104);
+</string>
+        </property>
+        <property name="text">
+         <string>Memory Pool</string>
+        </property>
+        <property name="flat">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="pb_semaphore_example">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>150</width>
+          <height>40</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>200</width>
+          <height>50</height>
+         </size>
+        </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
+        <property name="toolTip">
+         <string>Configure a Main Thread and execute it in main.cpp</string>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-image: url(:/icons/screen8/fondo_transparente.png);
+font: 75 20pt &quot;Segoe UI&quot;;
+color: rgb(8, 113, 104);
+</string>
+        </property>
+        <property name="text">
+         <string>Semaphore</string>
+        </property>
+        <property name="flat">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="pb_mutex_example">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>150</width>
+          <height>40</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>200</width>
+          <height>50</height>
+         </size>
+        </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
+        <property name="toolTip">
+         <string>Configure a Main Thread and execute it in main.cpp</string>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-image: url(:/icons/screen8/fondo_transparente.png);
+font: 75 20pt &quot;Segoe UI&quot;;
+color: rgb(8, 113, 104);
+</string>
+        </property>
+        <property name="text">
+         <string>Mutex</string>
+        </property>
+        <property name="flat">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="pb_messQueue_example">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>150</width>
+          <height>40</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>220</width>
+          <height>50</height>
+         </size>
+        </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
+        <property name="toolTip">
+         <string>Configure a Main Thread and execute it in main.cpp</string>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-image: url(:/icons/screen8/fondo_transparente.png);
+font: 75 20pt &quot;Segoe UI&quot;;
+color: rgb(8, 113, 104);
+</string>
+        </property>
+        <property name="text">
+         <string>Message Queue</string>
+        </property>
+        <property name="flat">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </widget>
+   <zorder>widget_help_screen</zorder>
    <zorder>widget_state_machine_screen</zorder>
    <zorder>widget_options_screen_native</zorder>
    <zorder>widget_generate_screen</zorder>
    <zorder>layoutWidget</zorder>
    <zorder>widget_wait</zorder>
-   <zorder>widget_help_buttons</zorder>
-   <zorder>widget_win_buttons</zorder>
    <zorder>l_background_blur</zorder>
+   <zorder>widget_win_buttons</zorder>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionUVision_Configuration">

@@ -6,6 +6,7 @@ DialogConfigurationHelp::DialogConfigurationHelp(QWidget *parent) :   //Clase en
     ui(new Ui::DialogConfigurationHelp)
 {
     ui->setupUi(this);
+    ui->label_HelpTextHolder->setStyleSheet(QStringLiteral("font: 75 24pt \"Segoe UI\"; color: rgb(8, 113, 104"));
 }
 
 DialogConfigurationHelp::~DialogConfigurationHelp()
@@ -25,4 +26,6 @@ void DialogConfigurationHelp::setHelpImage(const QString& imageName)
 void DialogConfigurationHelp::setHelpText(const QString& text)
 {
     ui->label_HelpTextHolder->setText(text);
+
+
 }

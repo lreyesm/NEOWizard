@@ -788,7 +788,7 @@ void NFWizard2::on_actionAbout_triggered()
     infoWriter << QStringLiteral("<font color = black >Released under Beerware license<br>") << endl
                << QStringLiteral("Contact:<br>") << endl
                << QStringLiteral("Ernesto Cruz Olivera: ecruzolivera@gmail.com<br>") << endl
-               << QStringLiteral("Manuel A. Linarez Páez: manuel.linares@cneuro.edu.cu") << endl
+               << QStringLiteral("Manuel A. Linarez Páez: manuel.linares@cneuro.edu.cu<br>") << endl
                << QStringLiteral("Luis A. Reyes Morales: luis.reyes@cneuro.edu.cu") << endl;
     QMessageBox::information(this, "NEOWizard", info);
 }
@@ -899,21 +899,14 @@ void NFWizard2::on_pushButton_Help_tag_clicked()
 {
     current_screen = Help_Screen;
     hide_all_objects();
-
-    if(ui->widget_help_buttons->isHidden()){
-
-        this->show_help();
-    }
-    else{
-        ui->widget_help_buttons->hide();
-    }
+    show_help();
+    ui->widget_help_screen->move(current_win_Pos);
 }
 
 void NFWizard2::show_update_tree_view(const bool expand, const QString item_name_parent, const QString item_name){
 
     ui->tw_state_machine->show();
     ui->tw_state_machine->clear();
-    ui->tw_state_machine->setStyleSheet(QStringLiteral("color: rgb(21, 172, 112); font: 10pt \"Segoe UI\";"));
 
     QList<QTreeWidgetItem*> items;
 
@@ -986,9 +979,6 @@ void NFWizard2::on_pushButton_Options_tag_clicked()
     ui->widget_options_thread_options->hide();
     ui->widget_configure_in_main_thread->hide();
 
-    ui->pb_configure_Main_thread->setStyleSheet(QStringLiteral("background-image: url(:/icons/screen6/Configure main thread_off.png);"));
-    ui->pb_configure_in_Main_thread->setStyleSheet(QStringLiteral("background-image: url(:/icons/screen5/Configure thread in main_off.png);"));
-    ui->pb_configure_thread_in_class->setStyleSheet(QStringLiteral("background-image: url(:/icons/screen5/Configure a thread_off.png);"));
 }
 
 void NFWizard2::on_pushButton_Generate_tag_clicked()
@@ -1077,7 +1067,7 @@ void NFWizard2::show_generate(){
 
 void NFWizard2::show_help(){
 
-    ui->widget_help_buttons->show();
+    ui->widget_help_screen->show();
 
     ui->pushButton_Help_tag->setStyleSheet( QStringLiteral("background-color: rgb(89, 99, 113);") + "background-image: url(:/icons/screen1/help_botom_on.png);");
     ui->pushButton_Help_tag->setFixedSize(178,43);
@@ -4858,4 +4848,74 @@ void NFWizard2::add_mutex_Configuration(const QString fileuVision_Path, const QS
         main_h_FileProcessor.processTextBlock();
     }
 
+}
+
+void NFWizard2::on_pb_thread_example_clicked()
+{
+    dialogConfigHelp->setWindowTitle("eThread Example");
+    dialogConfigHelp->setHelpImage(":/Example_fotos/example_thread.png");
+    dialogConfigHelp->setHelpText("Code Example");
+    dialogConfigHelp->adjustSize();
+    dialogConfigHelp->show();
+    dialogConfigHelp->move(0,0);
+}
+
+void NFWizard2::on_pb_timer_example_clicked()
+{
+    dialogConfigHelp->setWindowTitle("eTimer Example");
+    dialogConfigHelp->setHelpImage(":/Example_fotos/example_timer.png");
+    dialogConfigHelp->setHelpText("Code Example");
+    dialogConfigHelp->adjustSize();
+    dialogConfigHelp->show();
+    dialogConfigHelp->move(0,0);
+}
+
+void NFWizard2::on_pb_mail_example_clicked()
+{
+    dialogConfigHelp->setWindowTitle("eMail Example");
+    dialogConfigHelp->setHelpImage(":/Example_fotos/example_mail.png");
+    dialogConfigHelp->setHelpText("Code Example");
+    dialogConfigHelp->adjustSize();
+    dialogConfigHelp->show();
+    dialogConfigHelp->move(0,0);
+}
+
+void NFWizard2::on_pb_memoryPool_example_clicked()
+{
+    dialogConfigHelp->setWindowTitle("eMemoryPool Example");
+    dialogConfigHelp->setHelpImage(":/Example_fotos/example_memPool.png");
+    dialogConfigHelp->setHelpText("Code Example");
+    dialogConfigHelp->adjustSize();
+    dialogConfigHelp->show();
+    dialogConfigHelp->move(0,0);
+}
+
+void NFWizard2::on_pb_semaphore_example_clicked()
+{
+    dialogConfigHelp->setWindowTitle("eSemaphore Example");
+    dialogConfigHelp->setHelpImage(":/Example_fotos/example_semaphore.png");
+    dialogConfigHelp->setHelpText("Code Example");
+    dialogConfigHelp->adjustSize();
+    dialogConfigHelp->show();
+    dialogConfigHelp->move(0,0);
+}
+
+void NFWizard2::on_pb_mutex_example_clicked()
+{
+    dialogConfigHelp->setWindowTitle("eMutex Example");
+    dialogConfigHelp->setHelpImage(":/Example_fotos/example_mutex.png");
+    dialogConfigHelp->setHelpText("Code Example");
+    dialogConfigHelp->adjustSize();
+    dialogConfigHelp->show();
+    dialogConfigHelp->move(0,0);
+}
+
+void NFWizard2::on_pb_messQueue_example_clicked()
+{
+    dialogConfigHelp->setWindowTitle("eMessageQueue Example");
+    dialogConfigHelp->setHelpImage(":/Example_fotos/example_messageQeue.png");
+    dialogConfigHelp->setHelpText("Code Example");
+    dialogConfigHelp->adjustSize();
+    dialogConfigHelp->show();
+    dialogConfigHelp->move(0,0);
 }

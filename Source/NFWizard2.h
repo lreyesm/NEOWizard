@@ -201,6 +201,20 @@ private slots:
 
     void on_pb_add_Semaphore_2_clicked();
 
+    void on_pb_thread_example_clicked();
+
+    void on_pb_timer_example_clicked();
+
+    void on_pb_mail_example_clicked();
+
+    void on_pb_memoryPool_example_clicked();
+
+    void on_pb_semaphore_example_clicked();
+
+    void on_pb_mutex_example_clicked();
+
+    void on_pb_messQueue_example_clicked();
+
 signals:
 
     check_warnings();
