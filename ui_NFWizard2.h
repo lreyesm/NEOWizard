@@ -2088,7 +2088,7 @@ public:
         widget_help_screen->setStyleSheet(QStringLiteral("background-image: url(:/icons/screen8/background.png);"));
         pb_Stcube_Config = new QPushButton(widget_help_screen);
         pb_Stcube_Config->setObjectName(QStringLiteral("pb_Stcube_Config"));
-        pb_Stcube_Config->setGeometry(QRect(240, 320, 433, 53));
+        pb_Stcube_Config->setGeometry(QRect(238, 320, 433, 53));
         pb_Stcube_Config->setCursor(QCursor(Qt::PointingHandCursor));
         pb_Stcube_Config->setStyleSheet(QLatin1String("background-image: url(:/icons/screen8/fondo_transparente.png);\n"
 "font: 63 20pt \"Segoe UI Semibold\";\n"
@@ -2097,7 +2097,7 @@ public:
         pb_Stcube_Config->setFlat(true);
         pb_about_NEOW = new QPushButton(widget_help_screen);
         pb_about_NEOW->setObjectName(QStringLiteral("pb_about_NEOW"));
-        pb_about_NEOW->setGeometry(QRect(240, 390, 433, 53));
+        pb_about_NEOW->setGeometry(QRect(238, 390, 433, 53));
         pb_about_NEOW->setCursor(QCursor(Qt::PointingHandCursor));
         pb_about_NEOW->setStyleSheet(QLatin1String("background-image: url(:/icons/screen8/fondo_transparente.png);\n"
 "font: 63 20pt \"Segoe UI Semibold\";\n"
@@ -2106,7 +2106,7 @@ public:
         pb_about_NEOW->setFlat(true);
         pb_about_QT = new QPushButton(widget_help_screen);
         pb_about_QT->setObjectName(QStringLiteral("pb_about_QT"));
-        pb_about_QT->setGeometry(QRect(240, 460, 433, 53));
+        pb_about_QT->setGeometry(QRect(238, 460, 433, 53));
         pb_about_QT->setCursor(QCursor(Qt::PointingHandCursor));
         pb_about_QT->setStyleSheet(QLatin1String("background-image: url(:/icons/screen8/fondo_transparente.png);\n"
 "font: 63 20pt \"Segoe UI Semibold\";\n"
@@ -2115,7 +2115,7 @@ public:
         pb_about_QT->setFlat(true);
         pb_uVision_Config = new QPushButton(widget_help_screen);
         pb_uVision_Config->setObjectName(QStringLiteral("pb_uVision_Config"));
-        pb_uVision_Config->setGeometry(QRect(240, 250, 433, 53));
+        pb_uVision_Config->setGeometry(QRect(238, 250, 433, 53));
         pb_uVision_Config->setCursor(QCursor(Qt::PointingHandCursor));
         pb_uVision_Config->setStyleSheet(QLatin1String("background-image: url(:/icons/screen8/fondo_transparente.png);\n"
 "font: 63 20pt \"Segoe UI Semibold\";\n"
@@ -2124,14 +2124,14 @@ public:
         pb_uVision_Config->setFlat(true);
         label_7 = new QLabel(widget_help_screen);
         label_7->setObjectName(QStringLiteral("label_7"));
-        label_7->setGeometry(QRect(770, 254, 161, 41));
+        label_7->setGeometry(QRect(769, 254, 161, 41));
         label_7->setStyleSheet(QLatin1String("background-image: url(:/icons/screen8/fondo_transparente.png);\n"
 "font: 63 20pt \"Segoe UI Semibold\";\n"
 "color: rgb(8, 113, 104);\n"
 ""));
         widget_examples = new QWidget(widget_help_screen);
         widget_examples->setObjectName(QStringLiteral("widget_examples"));
-        widget_examples->setGeometry(QRect(850, 290, 241, 321));
+        widget_examples->setGeometry(QRect(880, 290, 241, 321));
         widget_examples->setStyleSheet(QStringLiteral("background-image: url(:/icons/screen8/fondo_transparente.png);"));
         verticalLayout_29 = new QVBoxLayout(widget_examples);
         verticalLayout_29->setSpacing(6);

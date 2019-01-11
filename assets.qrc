@@ -144,12 +144,12 @@
         <file>icons/screen8/add_state_button.png</file>
         <file>icons/screen8/warning.png</file>
         <file>Assets/keilEditorOptions.PNG</file>
-        <file>Example_fotos/example_mail.png</file>
         <file>Example_fotos/example_memPool.png</file>
         <file>Example_fotos/example_messageQeue.png</file>
         <file>Example_fotos/example_mutex.png</file>
         <file>Example_fotos/example_semaphore.png</file>
         <file>Example_fotos/example_thread.png</file>
+        <file>Example_fotos/example_mail.png</file>
         <file>Example_fotos/example_timer.png</file>
     </qresource>
 </RCC>
