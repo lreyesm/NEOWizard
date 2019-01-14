@@ -28,7 +28,6 @@
         <file>icons/screen5/background.png</file>
         <file>icons/screen5/Configure a thread_off.png</file>
         <file>icons/screen5/CONFIGURE STATE MACHINE_botom.png</file>
-        <file>icons/screen5/Configure thread in main_off.png</file>
         <file>icons/screen5/credits.png</file>
         <file>icons/screen5/generate_botom_off.png</file>
         <file>icons/screen5/help_botom_off.png</file>
@@ -48,7 +47,6 @@
         <file>icons/screen6/Configure a thread_off.png</file>
         <file>icons/screen6/Configure main thread_off.png</file>
         <file>icons/screen6/CONFIGURE STATE MACHINE_botom.png</file>
-        <file>icons/screen6/Configure thread in main_on.png</file>
         <file>icons/screen6/credits.png</file>
         <file>icons/screen6/generate_botom_off.png</file>
         <file>icons/screen6/help_botom_off.png</file>
@@ -90,8 +88,6 @@
         <file>icons/screen8/Save State Machine_botom.png</file>
         <file>icons/screen8/search_icon_botom.png</file>
         <file>icons/screen8/State machine name_text.png</file>
-        <file>icons/screen8/state machine_box.png</file>
-        <file>icons/screen8/window.png</file>
         <file>icons/screen3/window.png</file>
         <file>icons/screen8/fondo_blanco.png</file>
         <file>icons/screen2/action_text.png</file>
@@ -133,7 +129,6 @@
         <file>icons/screen8/rectangulo_central.png</file>
         <file>icons/screen8/square.png</file>
         <file>icons/screen8/square_blanco.png</file>
-        <file>icons/screen8/rectangulo_central_blanco.png</file>
         <file>icons/screen7/Configure a thread_on.png</file>
         <file>icons/state.png</file>
         <file>icons/state_highlight.png</file>
@@ -149,7 +144,12 @@
         <file>Example_fotos/example_mutex.png</file>
         <file>Example_fotos/example_semaphore.png</file>
         <file>Example_fotos/example_thread.png</file>
-        <file>Example_fotos/example_mail.png</file>
         <file>Example_fotos/example_timer.png</file>
+        <file>Example_fotos/example_mail.png</file>
+        <file>icons/screen8/state machine_box.png</file>
+        <file>icons/screen5/Configure thread in main_off.png</file>
+        <file>icons/screen6/Configure thread in main_on.png</file>
+        <file>icons/screen8/rectangulo_central_blanco.png</file>
+        <file>icons/screen8/window.png</file>
     </qresource>
 </RCC>

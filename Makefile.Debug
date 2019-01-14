@@ -134,38 +134,70 @@ compiler_rcc_clean:
 	-$(DEL_FILE) debug\qrc_assets.cpp debug\qrc_templates.cpp
 debug/qrc_assets.cpp: assets.qrc \
 		C:/Qt/Qt5.9.0/5.9/mingw53_32/bin/rcc.exe \
-		Assets/state_init.png \
-		Assets/label_cube.png \
-		Assets/help_tag_on.png \
-		Assets/label_background_line.png \
-		Assets/help_tag_off.png \
-		Assets/background.png \
-		Assets/label_uVision.png \
-		Assets/button_browse.png \
-		Assets/warning.png \
-		Assets/state_init_highlight.png \
-		Assets/check_box_on.png \
-		Assets/options_tag_on.png \
-		Assets/label_background_line_large.png \
-		Assets/label_generate_options.png \
-		Assets/generate_botom.png \
-		Assets/generate_folder_text.png \
-		Assets/generate_tag_on.png \
-		Assets/options_tag_off.png \
-		Assets/check_box_off.png \
-		Assets/button_quit.png \
-		Assets/state.png \
-		Assets/button_background.png \
-		Assets/generate_tag_off.png \
+		Assets/Stm32CubeMxProjectOptions.PNG \
 		Assets/keilEditorOptions.PNG \
 		Assets/icon.ico \
-		Assets/Stm32CubeMxProjectOptions.PNG \
-		Assets/line_edit.png \
-		Assets/state_highlight.png \
+		Example_fotos/example_mutex.png \
+		Example_fotos/example_messageQeue.png \
+		Example_fotos/example_mail.png \
+		Example_fotos/example_timer.png \
+		Example_fotos/example_thread.png \
+		Example_fotos/example_semaphore.png \
+		Example_fotos/example_memPool.png \
 		icons/state_init.png \
 		icons/state.png \
 		icons/state_init_highlight.png \
 		icons/state_highlight.png \
+		icons/screen6/options_botom_on.png \
+		icons/screen6/generate_botom_off.png \
+		icons/screen6/background.png \
+		icons/screen6/more_botom.png \
+		icons/screen6/add_botom.png \
+		icons/screen6/label_1.png \
+		icons/screen6/min_botom.png \
+		icons/screen6/label_2.png \
+		icons/screen6/quit_botom.png \
+		icons/screen6/less_botom.png \
+		icons/screen6/max_botom.png \
+		icons/screen6/neowizard_logo.png \
+		icons/screen6/label_botom.png \
+		icons/screen6/credits.png \
+		icons/screen6/help_botom_off.png \
+		icons/screen5/options_botom_on.png \
+		icons/screen5/generate_botom_off.png \
+		icons/screen5/background.png \
+		icons/screen5/more_botom.png \
+		icons/screen5/add_botom.png \
+		icons/screen5/label_1.png \
+		icons/screen5/min_botom.png \
+		icons/screen5/label_2.png \
+		icons/screen5/quit_botom.png \
+		icons/screen5/less_botom.png \
+		icons/screen5/max_botom.png \
+		icons/screen5/neowizard_logo.png \
+		icons/screen5/credits.png \
+		icons/screen5/help_botom_off.png \
+		icons/screen3/window.png \
+		icons/screen2/options_botom_on.png \
+		icons/screen2/generate_botom_off.png \
+		icons/screen2/background.png \
+		icons/screen2/window.png \
+		icons/screen2/backgroud_blur.png \
+		icons/screen2/action_text.png \
+		icons/screen2/back_botom.png \
+		icons/screen2/back_icon_botom.png \
+		icons/screen2/generate_botom.png \
+		icons/screen2/label_1.png \
+		icons/screen2/min_botom.png \
+		icons/screen2/label_2.png \
+		icons/screen2/quit_botom.png \
+		icons/screen2/search_icon_botom.png \
+		icons/screen2/max_botom.png \
+		icons/screen2/neowizard_logo.png \
+		icons/screen2/credits.png \
+		icons/screen2/apply_botom.png \
+		icons/screen2/events_botom.png \
+		icons/screen2/help_botom_off.png \
 		icons/screen1/options_botom_on.png \
 		icons/screen1/generate_botom_off.png \
 		icons/screen1/help_botom_on.png \
@@ -186,7 +218,36 @@ debug/qrc_assets.cpp: assets.qrc \
 		icons/screen1/generate_botom_on.png \
 		icons/screen1/credits.png \
 		icons/screen1/Generation_options_text.png \
-		icons/screen1/help_botom_off.png
+		icons/screen1/help_botom_off.png \
+		icons/screen8/options_botom_on.png \
+		icons/screen8/bordes.png \
+		icons/screen8/generate_botom_off.png \
+		icons/screen8/square_blanco.png \
+		icons/screen8/background.png \
+		icons/screen8/window.png \
+		icons/screen8/backgroud_blur.png \
+		icons/screen8/label.png \
+		icons/screen8/rectangulo_central.png \
+		icons/screen8/gris_transparente.png \
+		icons/screen8/warning.png \
+		icons/screen8/rectangulo_central_blanco.png \
+		icons/screen8/back_botom.png \
+		icons/screen8/fondo_blanco.png \
+		icons/screen8/add_state_button.png \
+		icons/screen8/acept_botom.png \
+		icons/screen8/back_icon_botom.png \
+		icons/screen8/generate_botom.png \
+		icons/screen8/min_botom.png \
+		icons/screen8/cancel_botom.png \
+		icons/screen8/events_text.png \
+		icons/screen8/quit_botom.png \
+		icons/screen8/search_icon_botom.png \
+		icons/screen8/max_botom.png \
+		icons/screen8/fondo_transparente.png \
+		icons/screen8/neowizard_logo.png \
+		icons/screen8/credits.png \
+		icons/screen8/square.png \
+		icons/screen8/help_botom_off.png
 	C:\Qt\Qt5.9.0\5.9\mingw53_32\bin\rcc.exe -name assets assets.qrc -o debug\qrc_assets.cpp
 
 debug/qrc_templates.cpp: templates.qrc \
@@ -454,6 +515,7 @@ debug/moc_NFWizard2.cpp: C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/QMainWin
 		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qtabbar.h \
 		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qrubberband.h \
 		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qtreewidgetitemiterator.h \
+		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtCore/QTimer \
 		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtGui/QStandardItemModel \
 		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtGui/qstandarditemmodel.h \
 		Source/NFWizard2.h \
@@ -1059,6 +1121,7 @@ debug/main.o: Source/main.cpp Source/NFWizard2.h \
 		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qtabbar.h \
 		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qrubberband.h \
 		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qtreewidgetitemiterator.h \
+		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtCore/QTimer \
 		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtGui/QStandardItemModel \
 		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtGui/qstandarditemmodel.h \
 		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/QApplication \
@@ -1312,6 +1375,7 @@ debug/NFWizard2.o: Source/NFWizard2.cpp Source/NFWizard2.h \
 		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qtabbar.h \
 		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qrubberband.h \
 		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qtreewidgetitemiterator.h \
+		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtCore/QTimer \
 		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtGui/QStandardItemModel \
 		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtGui/qstandarditemmodel.h \
 		ui_NFWizard2.h \
@@ -1326,6 +1390,8 @@ debug/NFWizard2.o: Source/NFWizard2.cpp Source/NFWizard2.h \
 		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtGui/qinputmethod.h \
 		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/QButtonGroup \
 		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qbuttongroup.h \
+		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/QCheckBox \
+		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qcheckbox.h \
 		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/QComboBox \
 		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qcombobox.h \
 		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/QHBoxLayout \
@@ -1343,10 +1409,6 @@ debug/NFWizard2.o: Source/NFWizard2.cpp Source/NFWizard2.h \
 		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtGui/qtextformat.h \
 		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtGui/qpen.h \
 		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtGui/qtextoption.h \
-		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/QMenu \
-		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qmenu.h \
-		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/QMenuBar \
-		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qmenubar.h \
 		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/QSpacerItem \
 		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/QSpinBox \
 		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qspinbox.h \
@@ -1354,8 +1416,6 @@ debug/NFWizard2.o: Source/NFWizard2.cpp Source/NFWizard2.h \
 		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qstatusbar.h \
 		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/QTableView \
 		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qtableview.h \
-		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/QToolBar \
-		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qtoolbar.h \
 		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/QTreeWidget \
 		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/QVBoxLayout \
 		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/QWidget \
@@ -1379,7 +1439,8 @@ debug/NFWizard2.o: Source/NFWizard2.cpp Source/NFWizard2.h \
 		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/QFileDialog \
 		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qfiledialog.h \
 		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/QMessageBox \
-		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qmessagebox.h
+		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qmessagebox.h \
+		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/QDesktopWidget
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\NFWizard2.o Source\NFWizard2.cpp
 
 debug/FolderTreeGenerator.o: Source/FolderTreeGenerator.cpp Source/FolderTreeGenerator.h \

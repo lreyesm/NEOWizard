@@ -7,7 +7,9 @@
 #include "qhierarchy_state.h"
 #include <QCompleter>
 #include <QTreeWidgetItem>
+#include <QTimer>
 #include <QStandardItemModel>
+#include <QMouseEvent>
 
 namespace Ui {
 class NFWizard2;
@@ -28,6 +30,18 @@ public:
     ~NFWizard2();
 
 private slots:
+
+    void mousePressEvent(QMouseEvent *e) ///al reimplementar esta funcion deja de funcionar el evento pressed
+    {
+        emit mouse_pressed();
+    }
+
+    void mouseReleaseEvent(QMouseEvent *e) ///al reimplementar esta funcion deja de funcionar el evento pressed
+    {
+
+        emit mouse_Release();
+    }
+
     void on_pushButton_uVisionBrowse_clicked();
 
     void on_pushButton_CubeBrowse_clicked();
@@ -199,8 +213,6 @@ private slots:
 
     void on_pb_configure_mutex_clicked();
 
-    void on_pb_add_Semaphore_2_clicked();
-
     void on_pb_thread_example_clicked();
 
     void on_pb_timer_example_clicked();
@@ -215,9 +227,29 @@ private slots:
 
     void on_pb_messQueue_example_clicked();
 
+    void on_pb_configure_messQueue_clicked();
+
+    void on_pb_add_messQueue_clicked();
+
+    void on_pb_add_Mutex_clicked();
+
+    void on_start_moving_screen_timeout();
+
+    void on_pb_minimize_option_clicked();
+
+    void on_pb_maximize_option_clicked();
+
+    void on_pb_cancel_option_clicked();
+
+    void on_pb_close_option_clicked();
+
+    void on_drag_screen();
+    void on_drag_screen_released();
 signals:
 
     check_warnings();
+    void mouse_pressed();
+    void mouse_Release();
 
 private:
     void generateProjectFileTree();
@@ -273,6 +305,7 @@ private:
 
     void add_Semaphore_Configuration(const QString fileuVision_Path, const QString main_thread_name);
     void add_mutex_Configuration(const QString fileuVision_Path, const QString main_thread_name);
+    void add_messageQueue_configuration(const QString fileuVision_Path, const QString main_thread_name);
 
 private:
     enum{Generate_Screen,Options_Screen,State_Machine_Screen,Help_Screen};
@@ -306,6 +339,10 @@ private:
     quint8 current_screen;
     bool load_from_thread = false;
 
+    QTimer start_moving_screen;
+    int init_pos_x;
+    int init_pos_y;
+    bool first_move;
 };
 
 #endif // NFWIZARD2_H

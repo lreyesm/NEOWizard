@@ -977,10 +977,10 @@ color: rgb(8, 113, 104);
     <widget class="QWidget" name="widget_configure_in_main_thread" native="true">
      <property name="geometry">
       <rect>
-       <x>710</x>
-       <y>240</y>
-       <width>641</width>
-       <height>391</height>
+       <x>680</x>
+       <y>220</y>
+       <width>671</width>
+       <height>431</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -992,7 +992,7 @@ color: rgb(8, 113, 104);
       </property>
       <property name="geometry">
        <rect>
-        <x>67</x>
+        <x>80</x>
         <y>20</y>
         <width>150</width>
         <height>40</height>
@@ -1035,7 +1035,7 @@ color: rgb(8, 113, 104);
       </property>
       <property name="geometry">
        <rect>
-        <x>83</x>
+        <x>96</x>
         <y>140</y>
         <width>150</width>
         <height>41</height>
@@ -1078,7 +1078,7 @@ color: rgb(8, 113, 104);
       </property>
       <property name="geometry">
        <rect>
-        <x>77</x>
+        <x>90</x>
         <y>80</y>
         <width>150</width>
         <height>40</height>
@@ -1121,7 +1121,7 @@ color: rgb(8, 113, 104);
       </property>
       <property name="geometry">
        <rect>
-        <x>20</x>
+        <x>33</x>
         <y>260</y>
         <width>200</width>
         <height>40</height>
@@ -1164,7 +1164,7 @@ color: rgb(8, 113, 104);
       </property>
       <property name="geometry">
        <rect>
-        <x>15</x>
+        <x>28</x>
         <y>200</y>
         <width>191</width>
         <height>40</height>
@@ -1207,7 +1207,7 @@ color: rgb(8, 113, 104);
       </property>
       <property name="geometry">
        <rect>
-        <x>45</x>
+        <x>58</x>
         <y>320</y>
         <width>200</width>
         <height>40</height>
@@ -1244,6 +1244,49 @@ color: rgb(8, 113, 104);
        <bool>true</bool>
       </property>
      </widget>
+     <widget class="QPushButton" name="pb_configure_messQueue">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>380</y>
+        <width>220</width>
+        <height>40</height>
+       </rect>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>150</width>
+        <height>40</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>220</width>
+        <height>50</height>
+       </size>
+      </property>
+      <property name="cursor">
+       <cursorShape>PointingHandCursor</cursorShape>
+      </property>
+      <property name="toolTip">
+       <string>Configure a Main Thread and execute it in main.cpp</string>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-image: url(:/icons/screen8/fondo_transparente.png);
+font: 75 18pt &quot;Segoe UI&quot;;
+color: rgb(8, 113, 104);
+</string>
+      </property>
+      <property name="text">
+       <string>Message Queue    &gt;</string>
+      </property>
+      <property name="flat">
+       <bool>true</bool>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="widget_timer_parameters" native="true">
      <property name="geometry">
@@ -1251,7 +1294,7 @@ color: rgb(8, 113, 104);
        <x>30</x>
        <y>10</y>
        <width>251</width>
-       <height>351</height>
+       <height>381</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -1438,7 +1481,7 @@ color: rgb(8, 113, 104);
         </property>
         <property name="maximumSize">
          <size>
-          <width>200</width>
+          <width>16777215</width>
           <height>50</height>
          </size>
         </property>
@@ -1468,7 +1511,7 @@ color:  rgb(8, 113, 104);</string>
        <x>310</x>
        <y>0</y>
        <width>234</width>
-       <height>354</height>
+       <height>401</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -1663,7 +1706,7 @@ color: rgb(8, 113, 104);
         </property>
         <property name="maximumSize">
          <size>
-          <width>200</width>
+          <width>16777215</width>
           <height>50</height>
          </size>
         </property>
@@ -1693,7 +1736,7 @@ color:  rgb(8, 113, 104);</string>
        <x>1130</x>
        <y>220</y>
        <width>271</width>
-       <height>461</height>
+       <height>491</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -1951,7 +1994,7 @@ color: rgb(8, 113, 104);
         </property>
         <property name="maximumSize">
          <size>
-          <width>220</width>
+          <width>16777215</width>
           <height>50</height>
          </size>
         </property>
@@ -1966,7 +2009,7 @@ color: rgb(8, 113, 104);
 color:  rgb(8, 113, 104);</string>
         </property>
         <property name="text">
-         <string>   Add Memory Pool</string>
+         <string>Add Memory Pool</string>
         </property>
         <property name="flat">
          <bool>true</bool>
@@ -1981,7 +2024,7 @@ color:  rgb(8, 113, 104);</string>
        <x>10</x>
        <y>450</y>
        <width>283</width>
-       <height>231</height>
+       <height>271</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -2074,7 +2117,7 @@ color: rgb(8, 113, 104);
            <number>100000</number>
           </property>
           <property name="singleStep">
-           <number>10</number>
+           <number>1</number>
           </property>
           <property name="value">
            <number>1</number>
@@ -2096,7 +2139,7 @@ color: rgb(8, 113, 104);
         </property>
         <property name="maximumSize">
          <size>
-          <width>200</width>
+          <width>16777215</width>
           <height>50</height>
          </size>
         </property>
@@ -2127,9 +2170,9 @@ color:  rgb(8, 113, 104);</string>
      <property name="geometry">
       <rect>
        <x>330</x>
-       <y>580</y>
+       <y>560</y>
        <width>234</width>
-       <height>151</height>
+       <height>171</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -2175,7 +2218,7 @@ color:  rgb(8, 113, 104);
        </layout>
       </item>
       <item>
-       <widget class="QPushButton" name="pb_add_Semaphore_2">
+       <widget class="QPushButton" name="pb_add_Mutex">
         <property name="enabled">
          <bool>true</bool>
         </property>
@@ -2187,7 +2230,7 @@ color:  rgb(8, 113, 104);
         </property>
         <property name="maximumSize">
          <size>
-          <width>200</width>
+          <width>11111111</width>
           <height>50</height>
          </size>
         </property>
@@ -2210,7 +2253,155 @@ color:  rgb(8, 113, 104);</string>
        </widget>
       </item>
      </layout>
-     <zorder>pb_add_Semaphore_2</zorder>
+     <zorder>pb_add_Mutex</zorder>
+     <zorder></zorder>
+    </widget>
+    <widget class="QWidget" name="widget_messQueue_parameters" native="true">
+     <property name="geometry">
+      <rect>
+       <x>590</x>
+       <y>10</y>
+       <width>283</width>
+       <height>271</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-image: url(:/icons/screen8/fondo_transparente.png);</string>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_30">
+      <property name="spacing">
+       <number>30</number>
+      </property>
+      <item>
+       <layout class="QVBoxLayout" name="verticalLayout_43">
+        <property name="sizeConstraint">
+         <enum>QLayout::SetFixedSize</enum>
+        </property>
+        <item>
+         <widget class="QLabel" name="l_EVENT_8">
+          <property name="styleSheet">
+           <string notr="true">font: 75 18pt &quot;Segoe UI&quot;;
+color: rgb(8, 113, 104);
+</string>
+          </property>
+          <property name="text">
+           <string>Message Queue Name</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="le_messQueue_name">
+          <property name="minimumSize">
+           <size>
+            <width>214</width>
+            <height>41</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">border-image: url(:/icons/screen6/label_1.png);
+font: 75 16pt &quot;Segoe UI&quot;;
+color: rgb(8, 113, 104);
+</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QVBoxLayout" name="verticalLayout_48">
+        <property name="sizeConstraint">
+         <enum>QLayout::SetFixedSize</enum>
+        </property>
+        <item>
+         <widget class="QLabel" name="l_EVENT_15">
+          <property name="styleSheet">
+           <string notr="true">font: 75 18pt &quot;Segoe UI&quot;;
+color: rgb(8, 113, 104);
+</string>
+          </property>
+          <property name="text">
+           <string>Message Queue Size</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QSpinBox" name="sb_messQueue_size">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>25</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">
+border-image: url(:/icons/screen5/label_2.png);
+font: 75 14pt &quot;Segoe UI&quot;;
+color: rgb(8, 113, 104);
+</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+          <property name="minimum">
+           <number>1</number>
+          </property>
+          <property name="maximum">
+           <number>100000</number>
+          </property>
+          <property name="singleStep">
+           <number>1</number>
+          </property>
+          <property name="value">
+           <number>1</number>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <widget class="QPushButton" name="pb_add_messQueue">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>150</width>
+          <height>40</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>50</height>
+         </size>
+        </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
+        <property name="toolTip">
+         <string>Configure a Main Thread and execute it in main.cpp</string>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">font: 63 18pt &quot;Segoe UI Semibold&quot;;
+color:  rgb(8, 113, 104);</string>
+        </property>
+        <property name="text">
+         <string>Add Message Queue</string>
+        </property>
+        <property name="flat">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+     </layout>
+     <zorder>pb_add_messQueue</zorder>
+     <zorder></zorder>
      <zorder></zorder>
     </widget>
     <zorder>pb_configure_thread_in_class</zorder>
@@ -2224,6 +2415,7 @@ color:  rgb(8, 113, 104);</string>
     <zorder>widget_semaphore_parameters</zorder>
     <zorder>widget_mutex_parameters</zorder>
     <zorder>widget_configure_in_main_thread</zorder>
+    <zorder>widget_messQueue_parameters</zorder>
    </widget>
    <widget class="QWidget" name="widget_state_machine_screen" native="true">
     <property name="geometry">
@@ -2362,12 +2554,12 @@ color:  rgb(8, 113, 104);</string>
       <rect>
        <x>340</x>
        <y>270</y>
-       <width>743</width>
-       <height>288</height>
+       <width>745</width>
+       <height>290</height>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-image: url(:/icons/screen8/bordes.png);</string>
+      <string notr="true">background-image: url(:/icons/screen8/window.png);</string>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout">
       <item>
@@ -3178,19 +3370,19 @@ color:  rgb(8, 113, 104);
       <rect>
        <x>1100</x>
        <y>270</y>
-       <width>221</width>
+       <width>219</width>
        <height>291</height>
       </rect>
      </property>
      <property name="maximumSize">
       <size>
-       <width>250</width>
-       <height>300</height>
+       <width>16777215</width>
+       <height>16777215</height>
       </size>
      </property>
      <property name="styleSheet">
-      <string notr="true">font: 75 14pt &quot;Segoe UI&quot;;
-background-image: url(:/icons/screen8/background.png);
+      <string notr="true">font: 75 13pt &quot;Segoe UI&quot;;
+background-image: url(:/icons/screen8/state machine_box.png);
 color: rgb(8, 113, 104);
 </string>
      </property>
@@ -3418,7 +3610,8 @@ color: rgb(8, 113, 104);
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-image: url(:/icons/screen8/warning.png);</string>
+      <string notr="true">background-image: url(:/icons/screen8/warning.png);
+font: 75 12pt &quot;Segoe UI&quot;;</string>
      </property>
      <property name="text">
       <string/>
@@ -3923,9 +4116,9 @@ color:  rgb(21, 172, 112);</string>
      <property name="geometry">
       <rect>
        <x>590</x>
-       <y>80</y>
-       <width>391</width>
-       <height>201</height>
+       <y>76</y>
+       <width>348</width>
+       <height>155</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -3934,8 +4127,8 @@ color:  rgb(21, 172, 112);</string>
      <widget class="QLabel" name="l_state_machine_name">
       <property name="geometry">
        <rect>
-        <x>110</x>
-        <y>50</y>
+        <x>80</x>
+        <y>30</y>
         <width>189</width>
         <height>21</height>
        </rect>
@@ -3952,8 +4145,8 @@ color:  rgb(21, 172, 112);</string>
      <widget class="QLineEdit" name="le_state_machine_name">
       <property name="geometry">
        <rect>
-        <x>90</x>
-        <y>80</y>
+        <x>60</x>
+        <y>60</y>
         <width>232</width>
         <height>34</height>
        </rect>
@@ -3977,8 +4170,8 @@ border-image: url(:/icons/screen8/label.png);
      <widget class="QPushButton" name="pb_acept_sate_machine_name">
       <property name="geometry">
        <rect>
-        <x>270</x>
-        <y>120</y>
+        <x>240</x>
+        <y>100</y>
         <width>54</width>
         <height>29</height>
        </rect>
@@ -4001,8 +4194,8 @@ color:  rgb(21, 172, 112);</string>
      <widget class="QPushButton" name="pb_cancel_state_machine_name">
       <property name="geometry">
        <rect>
-        <x>90</x>
-        <y>120</y>
+        <x>60</x>
+        <y>100</y>
         <width>61</width>
         <height>29</height>
        </rect>
@@ -4031,8 +4224,8 @@ color:  rgb(21, 172, 112);</string>
       <rect>
        <x>540</x>
        <y>330</y>
-       <width>391</width>
-       <height>201</height>
+       <width>348</width>
+       <height>155</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -4041,8 +4234,8 @@ color:  rgb(21, 172, 112);</string>
      <widget class="QLabel" name="l_main_thrad_name">
       <property name="geometry">
        <rect>
-        <x>120</x>
-        <y>50</y>
+        <x>90</x>
+        <y>30</y>
         <width>189</width>
         <height>21</height>
        </rect>
@@ -4058,8 +4251,8 @@ color: rgb(128, 128, 128);</string>
      <widget class="QLineEdit" name="le_main_thread_name_to_load">
       <property name="geometry">
        <rect>
-        <x>90</x>
-        <y>80</y>
+        <x>60</x>
+        <y>60</y>
         <width>232</width>
         <height>34</height>
        </rect>
@@ -4083,8 +4276,8 @@ border-image: url(:/icons/screen8/label.png);
      <widget class="QPushButton" name="pb_acept_main_thread_name">
       <property name="geometry">
        <rect>
-        <x>270</x>
-        <y>120</y>
+        <x>240</x>
+        <y>100</y>
         <width>54</width>
         <height>29</height>
        </rect>
@@ -4107,8 +4300,8 @@ color:  rgb(21, 172, 112);</string>
      <widget class="QPushButton" name="pb_cancel_main_thrad_name">
       <property name="geometry">
        <rect>
-        <x>90</x>
-        <y>120</y>
+        <x>60</x>
+        <y>100</y>
         <width>61</width>
         <height>29</height>
        </rect>
@@ -4829,6 +5022,98 @@ color: rgb(8, 113, 104);
      </layout>
     </widget>
    </widget>
+   <widget class="QWidget" name="widget_win_options" native="true">
+    <property name="geometry">
+     <rect>
+      <x>2420</x>
+      <y>230</y>
+      <width>111</width>
+      <height>152</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(250, 250, 250);</string>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout_5">
+     <item>
+      <widget class="QPushButton" name="pb_minimize_option">
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">font: 75 12pt &quot;Segoe UI&quot;;
+color: rgb(8, 113, 104);
+</string>
+       </property>
+       <property name="text">
+        <string>Minimize</string>
+       </property>
+       <property name="flat">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pb_maximize_option">
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">font: 75 12pt &quot;Segoe UI&quot;;
+color: rgb(8, 113, 104);
+</string>
+       </property>
+       <property name="text">
+        <string>Maximize</string>
+       </property>
+       <property name="flat">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pb_cancel_option">
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">font: 75 12pt &quot;Segoe UI&quot;;
+color: rgb(8, 113, 104);
+</string>
+       </property>
+       <property name="text">
+        <string>Close</string>
+       </property>
+       <property name="flat">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pb_close_option">
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">font: 75 12pt &quot;Segoe UI&quot;;
+color: rgb(8, 113, 104);
+</string>
+       </property>
+       <property name="text">
+        <string>Cancel</string>
+       </property>
+       <property name="flat">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+    </layout>
+    <zorder>pb_minimize_option</zorder>
+    <zorder>pb_drag_screen_generate</zorder>
+    <zorder>pb_maximize_option</zorder>
+    <zorder>pb_cancel_option</zorder>
+    <zorder>pb_close_option</zorder>
+   </widget>
    <zorder>widget_help_screen</zorder>
    <zorder>widget_state_machine_screen</zorder>
    <zorder>widget_options_screen_native</zorder>
@@ -4837,6 +5122,7 @@ color: rgb(8, 113, 104);
    <zorder>widget_wait</zorder>
    <zorder>l_background_blur</zorder>
    <zorder>widget_win_buttons</zorder>
+   <zorder>widget_win_options</zorder>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionUVision_Configuration">

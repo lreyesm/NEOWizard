@@ -9,7 +9,7 @@
 #include <QtCore>
 #include <QFileDialog>
 #include <QMessageBox>
-#include <QMouseEvent>
+
 #include <QStandardItemModel>
 #include <QDesktopWidget>
 
@@ -23,7 +23,7 @@ NFWizard2::NFWizard2(QWidget *parent) :
     setWindowFlags(Qt::CustomizeWindowHint);
 
     generate_project_folders = false;
-    //ui->statusBar->hide();
+    ui->statusBar->hide();
 
     windows_widget_position();
 
@@ -36,6 +36,9 @@ NFWizard2::NFWizard2(QWidget *parent) :
     set_points();
 
     connect(this,SIGNAL(check_warnings()),this,SLOT(check_for_warnings()));
+    connect(this,SIGNAL(mouse_pressed()),this,SLOT(on_drag_screen()));
+    connect(this,SIGNAL(mouse_Release()),this,SLOT(on_drag_screen_released()));
+    connect(&start_moving_screen,SIGNAL(timeout()),this,SLOT(on_start_moving_screen_timeout()));
 
     dialogConfigHelp = new DialogConfigurationHelp(this);
     //dialogConfigHelp->layout()->setSizeConstraint(QLayout::SetFixedSize);
@@ -979,6 +982,9 @@ void NFWizard2::on_pushButton_Options_tag_clicked()
     ui->widget_options_thread_options->hide();
     ui->widget_configure_in_main_thread->hide();
 
+    ui->pb_configure_Main_thread->setStyleSheet( QStringLiteral("background-image: url(:/icons/screen6/Configure main thread_off.png);"));
+    ui->pb_configure_in_Main_thread->setStyleSheet( QStringLiteral("background-image: url(:/icons/screen5/Configure thread in main_off.png);"));
+    ui->pb_configure_thread_in_class->setStyleSheet( QStringLiteral("background-image: url(:/icons/screen5/Configure a thread_off.png);"));
 }
 
 void NFWizard2::on_pushButton_Generate_tag_clicked()
@@ -1004,6 +1010,7 @@ void NFWizard2::hide_all_objects(){
     ui->widget_options_screen_native->move(2048,0);
     ui->widget_generate_screen->move(2048,0);
     ui->widget_state_machine_screen->move(2048,0);
+    ui->widget_help_screen->move(2048,0);
 
     ui->widget_main_thread_name->hide();
     ui->widget_state_machine_name->hide();
@@ -1014,6 +1021,7 @@ void NFWizard2::hide_all_objects(){
     ui->widget_memory_pool_parameters->hide();
     ui->widget_semaphore_parameters->hide();
     ui->widget_mutex_parameters->hide();
+    ui->widget_messQueue_parameters->hide();
 
     ui->cb_memoryPool_buffer->setChecked(false);
     ui->l_memPool_buffer_size->hide();
@@ -1021,6 +1029,7 @@ void NFWizard2::hide_all_objects(){
     ui->l_memPool_buffer_type->hide();
     ui->le_memPool_buffer_Type->hide();
 
+    ui->widget_win_options->hide();
     //    ui->tw_state_machine->hide();
     //    ui->widget_wait->hide();
 
@@ -1321,6 +1330,7 @@ void NFWizard2::on_pb_configure_thread_in_class_clicked()
   ui->widget_memory_pool_parameters->hide();
   ui->widget_semaphore_parameters->hide();
   ui->widget_mutex_parameters->hide();
+  ui->widget_messQueue_parameters->hide();
 
 }
 
@@ -1360,6 +1370,7 @@ void NFWizard2::on_pb_configure_Main_thread_clicked()
     ui->widget_memory_pool_parameters->hide();
     ui->widget_semaphore_parameters->hide();
     ui->widget_mutex_parameters->hide();
+    ui->widget_messQueue_parameters->hide();
 }
 
 void NFWizard2::on_pb_configure_state_machine_clicked()
@@ -1431,6 +1442,7 @@ void NFWizard2::check_for_warnings()
                                                          +QString("<font color=green> The State: ")
                                                          +hierarchy_states[i]->get_state_name()
                                                          +QString(" has no next State<br><br>"));
+
                 deploy_warning = true;
             }
         }
@@ -1605,24 +1617,20 @@ void NFWizard2::on_pb_generate_state_machine_clicked()
 
    if(ui->le_main_thread_name->text().isEmpty()){
 
-       QMessageBox::information(this, "NEOWizard","<font color = black >Insert name of main thread");
-       ui->widget_options_thread_options->show();
-       ui->widget_options_thread_options->move(500,140);
-       ui->le_main_thread_name->show();
-       ui->l_main_thread_name->show();
-       ui->le_thread_name->hide();
-       ui->l_thread_name->hide();
-       ui->l_thread_priority->hide();
-       ui->cb_thread_priority->hide();
-       ui->l_thread_stack_size->hide();
-       ui->sb_thread_stack_size->hide();
-       ui->pb_add_thread->hide();
-       ui->pb_acept_main_thread->show();
+       ui->l_background_blur->move(current_win_Pos);  ui->l_background_blur->raise();
+       if(isFullScreen()){
+           ui->widget_main_thread_name->move(current_win_Pos.x()+200,current_win_Pos.y()+200);
+       }
+       else{
+           ui->widget_main_thread_name->move(current_win_Pos.x()+520,current_win_Pos.y()+350);
+       }
+       ui->widget_main_thread_name->show();
+
        return;
    }
    else{
 
-       if(QMessageBox::information(this,"Confirmation","<font color=white >Generate State Machine?",QMessageBox::Ok,QMessageBox::Cancel)==QMessageBox::Ok){
+       if(QMessageBox::information(this,"Confirmation","<font color=black >Generate State Machine?",QMessageBox::Ok,QMessageBox::Cancel)==QMessageBox::Ok){
            generate_labels_for_state_machine(fileuVision_Path, ui->le_main_thread_name->text());
            generate_code_for_state_machine(ui->le_main_thread_name->text());
            ui->widget_options_thread_options->hide();
@@ -1769,7 +1777,7 @@ void NFWizard2::on_pb_ok_clicked()
                 }
             }
             else{
-                QMessageBox::information(this, "NEOWizard", QString("<font green = white >Superstate not found, the State will mantain his old parent"));
+                QMessageBox::information(this, "NEOWizard", QString("<font color=black >Superstate not found, the State will mantain his old parent"));
             }
         }
         if(!ui->le_current_state_name->text().isEmpty()){
@@ -2717,7 +2725,6 @@ void NFWizard2::generate_code_for_state_machine(const QString main_thread_name){
             QMessageBox::warning(this, "NEOWizard",QString("<font color = black >The State : ")
                                  +hierarchy_states[i]->get_state_name()
                                  +QString(" has no Next State (transitions).")
-                                 +QString("<br>This will give you a compile error.")
                                  +QString("<br>Please set a transition to this state"));
         }
         ///*********************************************************************************************************************************************************
@@ -2803,8 +2810,8 @@ void NFWizard2::generate_code_for_state_machine(const QString main_thread_name){
 
                     QMessageBox::warning(this, "NEOWizard",QString("<font color = black >The State : ")
                                          +hierarchy_states[i]->get_state_name()
-                                         +QString(" has no Initial State.")
-                                         +QString("<br>This will give you a run error."));
+                                         +QString(" has no Initial State."));
+
                 }
             }
         }
@@ -3227,9 +3234,14 @@ void NFWizard2::on_le_default_state_name_textChanged(const QString &arg1)
 void NFWizard2::on_pb_load_state_machine_clicked()
 {
 
-    ui->l_background_blur->move(current_win_Pos);
+    ui->l_background_blur->move(current_win_Pos);  ui->l_background_blur->raise();
     //ui->l_background_blur->show();
-    ui->widget_state_machine_name->move(current_win_Pos.x()+500,current_win_Pos.y()+300);
+    if(isFullScreen()){
+        ui->widget_state_machine_name->move(current_win_Pos.x()+200,current_win_Pos.y()+200);
+    }
+    else{
+        ui->widget_state_machine_name->move(current_win_Pos.x()+520,current_win_Pos.y()+350);
+    }
     ui->widget_state_machine_name->show();
     isLoad = true;
 }
@@ -3237,9 +3249,14 @@ void NFWizard2::on_pb_load_state_machine_clicked()
 void NFWizard2::on_pb_save_state_machine_clicked()
 {
 
-    ui->l_background_blur->move(current_win_Pos);
+    ui->l_background_blur->move(current_win_Pos);  ui->l_background_blur->raise();
     //ui->l_background_blur->show();
-    ui->widget_state_machine_name->move(current_win_Pos.x()+500,current_win_Pos.y()+300);
+    if(isFullScreen()){
+        ui->widget_state_machine_name->move(current_win_Pos.x()+200,current_win_Pos.y()+200);
+    }
+    else{
+        ui->widget_state_machine_name->move(current_win_Pos.x()+520,current_win_Pos.y()+350);
+    }
     ui->widget_state_machine_name->show();
     isLoad = false;
 
@@ -3385,7 +3402,7 @@ void NFWizard2::on_le_state_machine_name_textChanged(const QString &arg1)
 
 void NFWizard2::on_pb_add_event_action_clicked()
 {
-    ui->l_background_blur->move(current_win_Pos);
+    ui->l_background_blur->move(current_win_Pos);  ui->l_background_blur->raise();
 
     ui->widget_add_delete_event->hide();
 
@@ -3412,7 +3429,7 @@ void NFWizard2::on_pb_delete_event_action_clicked()
             }
         }
     }
-    ui->l_background_blur->move(current_win_Pos);
+    ui->l_background_blur->move(current_win_Pos);  ui->l_background_blur->raise();
 
     ui->widget_event_options->show();
     ui->widget_event_options->move(current_win_Pos.x()+500,current_win_Pos.y()+200);
@@ -3506,9 +3523,14 @@ void NFWizard2::on_pb_load_from_Thread_clicked()
 {
 
     load_from_thread = true;
-    ui->l_background_blur->move(current_win_Pos);
+    ui->l_background_blur->move(current_win_Pos);  ui->l_background_blur->raise();
     ui->widget_main_thread_name->show();
-    ui->widget_main_thread_name->move(current_win_Pos.x()+500,current_win_Pos.y()+300);
+    if(isFullScreen()){
+        ui->widget_main_thread_name->move(current_win_Pos.x()+200,current_win_Pos.y()+200);
+    }
+    else{
+        ui->widget_main_thread_name->move(current_win_Pos.x()+520,current_win_Pos.y()+350);
+    }
 }
 
 int NFWizard2::load_state_machine_from_Thread(const QString path, const QString main_thread_name){
@@ -4274,8 +4296,13 @@ void NFWizard2::on_pb_configure_Timer_clicked()
 {
     if(ui->le_main_thread_name->text().isEmpty()){
 
-        ui->l_background_blur->move(current_win_Pos);
-        ui->widget_main_thread_name->move(current_win_Pos.x()+500,current_win_Pos.y()+300);
+        ui->l_background_blur->move(current_win_Pos);  ui->l_background_blur->raise();
+        if(isFullScreen()){
+            ui->widget_main_thread_name->move(current_win_Pos.x()+200,current_win_Pos.y()+200);
+        }
+        else{
+            ui->widget_main_thread_name->move(current_win_Pos.x()+520,current_win_Pos.y()+350);
+        }
         ui->widget_main_thread_name->show();
 
         return;
@@ -4300,6 +4327,7 @@ void NFWizard2::on_pb_configure_in_Main_thread_clicked()
      ui->widget_memory_pool_parameters->hide();
      ui->widget_semaphore_parameters->hide();
      ui->widget_mutex_parameters->hide();
+     ui->widget_messQueue_parameters->hide();
 }
 
 void NFWizard2::on_pb_add_Timer_clicked()
@@ -4452,18 +4480,39 @@ void NFWizard2::on_pb_max_window_clicked()
 
     if(current_screen == Generate_Screen){
 
+        ui->widget_help_screen->move(current_win_Pos);
+        ui->widget_options_screen_native->move(current_win_Pos);
+        ui->widget_state_machine_screen->move(current_win_Pos);
         ui->widget_generate_screen->move(current_win_Pos);
+        ui->widget_generate_screen->raise();
     }
     else if(current_screen == Options_Screen){
 
+        ui->widget_help_screen->move(current_win_Pos);
+        ui->widget_state_machine_screen->move(current_win_Pos);
+        ui->widget_generate_screen->move(current_win_Pos);
         ui->widget_options_screen_native->move(current_win_Pos);
+        ui->widget_options_screen_native->raise();
     }
     else if(current_screen == State_Machine_Screen){
 
+        ui->widget_generate_screen->move(current_win_Pos);
+        ui->widget_options_screen_native->move(current_win_Pos);
+        ui->widget_help_screen->move(current_win_Pos);
         ui->widget_state_machine_screen->move(current_win_Pos);
+        ui->widget_state_machine_screen->raise();
+    }
+    else if(current_screen == Help_Screen){
+
+        ui->widget_options_screen_native->move(current_win_Pos);
+        ui->widget_state_machine_screen->move(current_win_Pos);
+        ui->widget_generate_screen->move(current_win_Pos);
+        ui->widget_help_screen->move(current_win_Pos);
+        ui->widget_help_screen->raise();
     }
 
     ui->widget_win_buttons->move(current_win_Pos);
+    ui->widget_win_buttons->raise();
 }
 
 void NFWizard2::on_pb_min_window__clicked()
@@ -4475,8 +4524,13 @@ void NFWizard2::on_pb_configure_Mail_clicked()
 {
     if(ui->le_main_thread_name->text().isEmpty()){
 
-        ui->l_background_blur->move(current_win_Pos);
-        ui->widget_main_thread_name->move(current_win_Pos.x()+500,current_win_Pos.y()+300);
+        ui->l_background_blur->move(current_win_Pos);  ui->l_background_blur->raise();
+        if(isFullScreen()){
+            ui->widget_main_thread_name->move(current_win_Pos.x()+200,current_win_Pos.y()+200);
+        }
+        else{
+            ui->widget_main_thread_name->move(current_win_Pos.x()+520,current_win_Pos.y()+350);
+        }
         ui->widget_main_thread_name->show();
 
         return;
@@ -4618,8 +4672,13 @@ void NFWizard2::on_pb_configure_memoryPool_clicked()
 {
     if(ui->le_main_thread_name->text().isEmpty()){
 
-        ui->l_background_blur->move(current_win_Pos);
-        ui->widget_main_thread_name->move(current_win_Pos.x()+500,current_win_Pos.y()+300);
+        ui->l_background_blur->move(current_win_Pos);  ui->l_background_blur->raise();
+        if(isFullScreen()){
+            ui->widget_main_thread_name->move(current_win_Pos.x()+200,current_win_Pos.y()+200);
+        }
+        else{
+            ui->widget_main_thread_name->move(current_win_Pos.x()+520,current_win_Pos.y()+350);
+        }
         ui->widget_main_thread_name->show();
 
         return;
@@ -4708,8 +4767,13 @@ void NFWizard2::on_pb_configure_semaphore_clicked()
 {
     if(ui->le_main_thread_name->text().isEmpty()){
 
-        ui->l_background_blur->move(current_win_Pos);
-        ui->widget_main_thread_name->move(current_win_Pos.x()+500,current_win_Pos.y()+300);
+        ui->l_background_blur->move(current_win_Pos);  ui->l_background_blur->raise();
+        if(isFullScreen()){
+            ui->widget_main_thread_name->move(current_win_Pos.x()+200,current_win_Pos.y()+200);
+        }
+        else{
+            ui->widget_main_thread_name->move(current_win_Pos.x()+520,current_win_Pos.y()+350);
+        }
         ui->widget_main_thread_name->show();
 
         return;
@@ -4796,8 +4860,13 @@ void NFWizard2::on_pb_configure_mutex_clicked()
 {
     if(ui->le_main_thread_name->text().isEmpty()){
 
-        ui->l_background_blur->move(current_win_Pos);
-        ui->widget_main_thread_name->move(current_win_Pos.x()+500,current_win_Pos.y()+300);
+        ui->l_background_blur->move(current_win_Pos);  ui->l_background_blur->raise();
+        if(isFullScreen()){
+            ui->widget_main_thread_name->move(current_win_Pos.x()+200,current_win_Pos.y()+200);
+        }
+        else{
+            ui->widget_main_thread_name->move(current_win_Pos.x()+520,current_win_Pos.y()+350);
+        }
         ui->widget_main_thread_name->show();
 
         return;
@@ -4807,7 +4876,7 @@ void NFWizard2::on_pb_configure_mutex_clicked()
     ui->widget_mutex_parameters->move(ui->widget_configure_in_main_thread->pos().x()+80,ui->widget_configure_in_main_thread->pos().y());
 }
 
-void NFWizard2::on_pb_add_Semaphore_2_clicked()
+void NFWizard2::on_pb_add_Mutex_clicked()
 {
     if(ui->le_Mutex_name->text().isEmpty()){
         QMessageBox::information(this, "NEOWizard","<font color = black >Insert Mutex Name");
@@ -4918,4 +4987,151 @@ void NFWizard2::on_pb_messQueue_example_clicked()
     dialogConfigHelp->adjustSize();
     dialogConfigHelp->show();
     dialogConfigHelp->move(0,0);
+}
+
+void NFWizard2::on_pb_configure_messQueue_clicked()
+{
+    if(ui->le_main_thread_name->text().isEmpty()){
+
+        ui->l_background_blur->move(current_win_Pos);  ui->l_background_blur->raise();
+        if(isFullScreen()){
+            ui->widget_main_thread_name->move(current_win_Pos.x()+200,current_win_Pos.y()+200);
+        }
+        else{
+            ui->widget_main_thread_name->move(current_win_Pos.x()+520,current_win_Pos.y()+350);
+        }
+        ui->widget_main_thread_name->show();
+
+        return;
+    }
+    ui->widget_configure_in_main_thread->hide();
+    ui->widget_messQueue_parameters->show();
+    ui->widget_messQueue_parameters->move(ui->widget_configure_in_main_thread->pos().x()+80,ui->widget_configure_in_main_thread->pos().y());
+}
+
+void NFWizard2::add_messageQueue_configuration(const QString fileuVision_Path, const QString main_thread_name){
+
+    TextFileProcessor main_h_FileProcessor;
+
+    main_h_FileProcessor.setFilename(fileuVision_Path+QString("/Include/")+main_thread_name+QString(".h"));
+
+    if(main_h_FileProcessor.check_if_code_exist(QString("#include <eMessageQueue.h>"),true)==0){
+        main_h_FileProcessor.setStartLine("#include <eApplicationBase.h>");       ////inicio del contenido a eliminar
+        main_h_FileProcessor.setEndLine("#include <eApplicationBase.h>"); ////fin del contenido a eliminar
+        main_h_FileProcessor.setReplacementString(QString("#include <eApplicationBase.h>\n")+QString("#include <eMessageQueue.h>\n"));
+        main_h_FileProcessor.processTextBlock();
+    }
+
+    if(main_h_FileProcessor.check_if_code_exist(QString("eObject::Declare::eMessageQueue<QUEUE_SIZE> ")+ui->le_messQueue_name->text(),true)==0){
+        main_h_FileProcessor.setStartLine("private:");       ////inicio del contenido a eliminar
+        main_h_FileProcessor.setEndLine("private:"); ////fin del contenido a eliminar
+        main_h_FileProcessor.setReplacementString(QString("private:\n\n")
+                                                  +QString("    eObject::Declare::eMessageQueue<QUEUE_SIZE> ")+ui->le_messQueue_name->text()+QString(";\n"));
+        main_h_FileProcessor.processTextBlock();
+    }
+
+    if(main_h_FileProcessor.check_if_code_exist(QString("static const std::uint32_t QUEUE_SIZE ="),true)==0){
+        main_h_FileProcessor.setStartLine("private:");       ////inicio del contenido a eliminar
+        main_h_FileProcessor.setEndLine("private:"); ////fin del contenido a eliminar
+        main_h_FileProcessor.setReplacementString(QString("private:\n")
+                                                  +QString("    static const std::uint32_t QUEUE_SIZE = ")+QString::number(ui->sb_messQueue_size->value())+QString(";"));
+        main_h_FileProcessor.processTextBlock();
+    }
+}
+
+void NFWizard2::on_pb_add_messQueue_clicked()
+{
+    if(ui->le_messQueue_name->text().isEmpty()){
+        QMessageBox::information(this, "NEOWizard","<font color = black >Insert Message Queue Name");
+        return;
+    }
+
+    add_messageQueue_configuration(fileuVision_Path, ui->le_main_thread_name->text());
+    QMessageBox::information(this, "NEOWizard","<font color = black >Message Queue correctly added to project");
+
+    ui->widget_messQueue_parameters->hide();
+    ui->widget_configure_in_main_thread->show();
+}
+
+void NFWizard2::on_drag_screen(){
+
+    if(isFullScreen()){
+        if(QApplication::mouseButtons()==Qt::RightButton){
+
+            ui->statusBar->showMessage("RightButton");
+            ui->widget_win_options->show();
+            ui->widget_win_options->move(QWidget::mapFromGlobal(QCursor::pos()));
+            ui->widget_win_options->raise();
+        }
+        return;
+    }
+    ui->statusBar->showMessage("Moviendo");
+    if(QApplication::mouseButtons()==Qt::LeftButton){
+
+        ui->statusBar->showMessage("start");
+        start_moving_screen.start(10);
+        bool first_move = true;
+        init_pos_x = (QWidget::mapFromGlobal(QCursor::pos())).x();
+        init_pos_y = (QWidget::mapFromGlobal(QCursor::pos())).y();
+    }
+    else if(QApplication::mouseButtons()==Qt::RightButton){
+
+        ui->statusBar->showMessage("RightButton");
+        ui->widget_win_options->show();
+        ui->widget_win_options->move(QWidget::mapFromGlobal(QCursor::pos()));
+        ui->widget_win_options->raise();
+    }
+}
+void NFWizard2::on_start_moving_screen_timeout(){
+
+    int x_pos = (int)this->pos().x()+((QWidget::mapFromGlobal(QCursor::pos())).x() - init_pos_x);
+    int y_pos = (int)this->pos().y()+((QWidget::mapFromGlobal(QCursor::pos())).y() - init_pos_y);
+    x_pos = (x_pos < 0)?0:x_pos;
+    y_pos = (y_pos < 0)?0:y_pos;
+
+    x_pos = (x_pos > QApplication::desktop()->width()-100)?QApplication::desktop()->width()-100:x_pos;
+    y_pos = (y_pos > QApplication::desktop()->height()-180)?QApplication::desktop()->height()-180:y_pos;
+
+
+
+    this->move(x_pos,y_pos);
+
+    init_pos_x = (QWidget::mapFromGlobal(QCursor::pos())).x();
+    init_pos_y = (QWidget::mapFromGlobal(QCursor::pos())).y();
+}
+
+void NFWizard2::on_drag_screen_released()
+{
+    if(isFullScreen()){
+
+        return;
+    }
+    start_moving_screen.stop();
+    init_pos_x = 0;
+    init_pos_y = 0;
+    //current_win_Pos = QPoint(this->pos().x()-200,this->pos().y()-200);
+}
+
+void NFWizard2::on_pb_minimize_option_clicked()
+{
+    on_pb_min_window__clicked();
+    ui->widget_win_options->hide();
+}
+
+
+void NFWizard2::on_pb_maximize_option_clicked()
+{
+    on_pb_max_window_clicked();
+    ui->widget_win_options->hide();
+}
+
+void NFWizard2::on_pb_cancel_option_clicked()
+{
+    on_pb_close_window_clicked();
+    ui->widget_win_options->hide();
+}
+
+void NFWizard2::on_pb_close_option_clicked()
+{
+     ui->widget_win_options->hide();
 }
