@@ -1394,6 +1394,8 @@ debug/NFWizard2.o: Source/NFWizard2.cpp Source/NFWizard2.h \
 		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qcheckbox.h \
 		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/QComboBox \
 		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qcombobox.h \
+		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/QGroupBox \
+		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qgroupbox.h \
 		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/QHBoxLayout \
 		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qboxlayout.h \
 		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qlayout.h \

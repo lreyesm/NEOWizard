@@ -15,6 +15,7 @@
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QCheckBox>
 #include <QtWidgets/QComboBox>
+#include <QtWidgets/QGroupBox>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
@@ -272,7 +273,7 @@ public:
     QPushButton *pb_about_NEOW;
     QPushButton *pb_about_QT;
     QPushButton *pb_uVision_Config;
-    QLabel *label_7;
+    QGroupBox *groupBox;
     QWidget *widget_examples;
     QVBoxLayout *verticalLayout_29;
     QPushButton *pb_thread_example;
@@ -1293,7 +1294,7 @@ public:
         pb_load_from_Thread = new QPushButton(widget_state_machine_screen);
         pb_load_from_Thread->setObjectName(QStringLiteral("pb_load_from_Thread"));
         pb_load_from_Thread->setEnabled(true);
-        pb_load_from_Thread->setGeometry(QRect(30, 268, 294, 46));
+        pb_load_from_Thread->setGeometry(QRect(30, 328, 294, 46));
         pb_load_from_Thread->setMinimumSize(QSize(150, 40));
         pb_load_from_Thread->setMaximumSize(QSize(16777215, 16777215));
         pb_load_from_Thread->setCursor(QCursor(Qt::PointingHandCursor));
@@ -1302,7 +1303,7 @@ public:
         pb_save_state_machine = new QPushButton(widget_state_machine_screen);
         pb_save_state_machine->setObjectName(QStringLiteral("pb_save_state_machine"));
         pb_save_state_machine->setEnabled(true);
-        pb_save_state_machine->setGeometry(QRect(30, 390, 294, 46));
+        pb_save_state_machine->setGeometry(QRect(30, 450, 294, 46));
         pb_save_state_machine->setMinimumSize(QSize(150, 40));
         pb_save_state_machine->setMaximumSize(QSize(1111111, 16777215));
         pb_save_state_machine->setCursor(QCursor(Qt::PointingHandCursor));
@@ -1311,7 +1312,7 @@ public:
         pb_load_state_machine = new QPushButton(widget_state_machine_screen);
         pb_load_state_machine->setObjectName(QStringLiteral("pb_load_state_machine"));
         pb_load_state_machine->setEnabled(true);
-        pb_load_state_machine->setGeometry(QRect(30, 330, 294, 46));
+        pb_load_state_machine->setGeometry(QRect(30, 390, 294, 46));
         pb_load_state_machine->setMinimumSize(QSize(150, 40));
         pb_load_state_machine->setMaximumSize(QSize(16777215, 16777215));
         pb_load_state_machine->setCursor(QCursor(Qt::PointingHandCursor));
@@ -1730,7 +1731,7 @@ public:
         pb_back_from_state_machine = new QPushButton(widget_state_machine_screen);
         pb_back_from_state_machine->setObjectName(QStringLiteral("pb_back_from_state_machine"));
         pb_back_from_state_machine->setEnabled(true);
-        pb_back_from_state_machine->setGeometry(QRect(150, 470, 51, 31));
+        pb_back_from_state_machine->setGeometry(QRect(150, 280, 51, 31));
         pb_back_from_state_machine->setMinimumSize(QSize(0, 0));
         pb_back_from_state_machine->setMaximumSize(QSize(1111111, 16777215));
         pb_back_from_state_machine->setCursor(QCursor(Qt::PointingHandCursor));
@@ -1939,7 +1940,7 @@ public:
         pb_max_window->setFlat(true);
         pushButton_Generate_tag = new QPushButton(widget_win_buttons);
         pushButton_Generate_tag->setObjectName(QStringLiteral("pushButton_Generate_tag"));
-        pushButton_Generate_tag->setGeometry(QRect(730, 122, 91, 24));
+        pushButton_Generate_tag->setGeometry(QRect(710, 122, 91, 24));
         sizePolicy2.setHeightForWidth(pushButton_Generate_tag->sizePolicy().hasHeightForWidth());
         pushButton_Generate_tag->setSizePolicy(sizePolicy2);
         pushButton_Generate_tag->setMinimumSize(QSize(0, 0));
@@ -2065,7 +2066,7 @@ public:
         widget_event_options->setStyleSheet(QStringLiteral("background-image: url(:/icons/screen8/square_blanco.png);"));
         layoutWidget_2 = new QWidget(widget_event_options);
         layoutWidget_2->setObjectName(QStringLiteral("layoutWidget_2"));
-        layoutWidget_2->setGeometry(QRect(88, 290, 221, 32));
+        layoutWidget_2->setGeometry(QRect(88, 290, 279, 32));
         horizontalLayout_10 = new QHBoxLayout(layoutWidget_2);
         horizontalLayout_10->setSpacing(6);
         horizontalLayout_10->setContentsMargins(11, 11, 11, 11);
@@ -2197,7 +2198,7 @@ public:
         widget_help_screen->setStyleSheet(QStringLiteral("background-image: url(:/icons/screen8/background.png);"));
         pb_Stcube_Config = new QPushButton(widget_help_screen);
         pb_Stcube_Config->setObjectName(QStringLiteral("pb_Stcube_Config"));
-        pb_Stcube_Config->setGeometry(QRect(238, 320, 433, 53));
+        pb_Stcube_Config->setGeometry(QRect(177, 320, 433, 53));
         pb_Stcube_Config->setCursor(QCursor(Qt::PointingHandCursor));
         pb_Stcube_Config->setStyleSheet(QLatin1String("background-image: url(:/icons/screen8/fondo_transparente.png);\n"
 "font: 63 20pt \"Segoe UI Semibold\";\n"
@@ -2206,7 +2207,7 @@ public:
         pb_Stcube_Config->setFlat(true);
         pb_about_NEOW = new QPushButton(widget_help_screen);
         pb_about_NEOW->setObjectName(QStringLiteral("pb_about_NEOW"));
-        pb_about_NEOW->setGeometry(QRect(238, 390, 433, 53));
+        pb_about_NEOW->setGeometry(QRect(246, 390, 433, 53));
         pb_about_NEOW->setCursor(QCursor(Qt::PointingHandCursor));
         pb_about_NEOW->setStyleSheet(QLatin1String("background-image: url(:/icons/screen8/fondo_transparente.png);\n"
 "font: 63 20pt \"Segoe UI Semibold\";\n"
@@ -2215,7 +2216,7 @@ public:
         pb_about_NEOW->setFlat(true);
         pb_about_QT = new QPushButton(widget_help_screen);
         pb_about_QT->setObjectName(QStringLiteral("pb_about_QT"));
-        pb_about_QT->setGeometry(QRect(238, 460, 433, 53));
+        pb_about_QT->setGeometry(QRect(300, 460, 433, 53));
         pb_about_QT->setCursor(QCursor(Qt::PointingHandCursor));
         pb_about_QT->setStyleSheet(QLatin1String("background-image: url(:/icons/screen8/fondo_transparente.png);\n"
 "font: 63 20pt \"Segoe UI Semibold\";\n"
@@ -2224,23 +2225,23 @@ public:
         pb_about_QT->setFlat(true);
         pb_uVision_Config = new QPushButton(widget_help_screen);
         pb_uVision_Config->setObjectName(QStringLiteral("pb_uVision_Config"));
-        pb_uVision_Config->setGeometry(QRect(238, 250, 433, 53));
+        pb_uVision_Config->setGeometry(QRect(225, 250, 433, 53));
         pb_uVision_Config->setCursor(QCursor(Qt::PointingHandCursor));
         pb_uVision_Config->setStyleSheet(QLatin1String("background-image: url(:/icons/screen8/fondo_transparente.png);\n"
 "font: 63 20pt \"Segoe UI Semibold\";\n"
 "color: rgb(8, 113, 104);\n"
 ""));
         pb_uVision_Config->setFlat(true);
-        label_7 = new QLabel(widget_help_screen);
-        label_7->setObjectName(QStringLiteral("label_7"));
-        label_7->setGeometry(QRect(769, 254, 161, 41));
-        label_7->setStyleSheet(QLatin1String("background-image: url(:/icons/screen8/fondo_transparente.png);\n"
+        groupBox = new QGroupBox(widget_help_screen);
+        groupBox->setObjectName(QStringLiteral("groupBox"));
+        groupBox->setGeometry(QRect(800, 250, 271, 431));
+        groupBox->setStyleSheet(QLatin1String("background-image: url(:/icons/screen8/fondo_transparente.png);\n"
 "font: 63 20pt \"Segoe UI Semibold\";\n"
 "color: rgb(8, 113, 104);\n"
 ""));
-        widget_examples = new QWidget(widget_help_screen);
+        widget_examples = new QWidget(groupBox);
         widget_examples->setObjectName(QStringLiteral("widget_examples"));
-        widget_examples->setGeometry(QRect(880, 290, 241, 321));
+        widget_examples->setGeometry(QRect(20, 40, 241, 321));
         widget_examples->setStyleSheet(QStringLiteral("background-image: url(:/icons/screen8/fondo_transparente.png);"));
         verticalLayout_29 = new QVBoxLayout(widget_examples);
         verticalLayout_29->setSpacing(6);
@@ -2393,10 +2394,6 @@ public:
 
         verticalLayout_5->addWidget(pb_close_option);
 
-        pb_minimize_option->raise();
-        pb_maximize_option->raise();
-        pb_cancel_option->raise();
-        pb_close_option->raise();
         NFWizard2->setCentralWidget(centralWidget);
         widget_help_screen->raise();
         widget_state_machine_screen->raise();
@@ -2704,7 +2701,7 @@ public:
         pb_uVision_Config->setToolTip(QString());
 #endif // QT_NO_TOOLTIP
         pb_uVision_Config->setText(QApplication::translate("NFWizard2", "uVision Configuration", Q_NULLPTR));
-        label_7->setText(QApplication::translate("NFWizard2", "Examples", Q_NULLPTR));
+        groupBox->setTitle(QApplication::translate("NFWizard2", "Examples", Q_NULLPTR));
 #ifndef QT_NO_TOOLTIP
         pb_thread_example->setToolTip(QApplication::translate("NFWizard2", "Configure a Thread inside the Main Thread, you can execute it whenever you desire", Q_NULLPTR));
 #endif // QT_NO_TOOLTIP

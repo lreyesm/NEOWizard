@@ -20,6 +20,7 @@ NFWizard2::NFWizard2(QWidget *parent) :
     ui->setupUi(this);
 
 
+    this->setMaximumSize(1366,768);
     setWindowFlags(Qt::CustomizeWindowHint);
 
     generate_project_folders = false;
@@ -999,10 +1000,10 @@ void NFWizard2::hide_all_objects(){
 
     ui->pushButton_Generate_tag->setStyleSheet( QStringLiteral("background-color: rgb(89, 99, 113);") + "background-image: url(:/icons/screen1/generate_botom_off.png);");
     ui->pushButton_Generate_tag->setFixedSize(94,28);
-    ui->pushButton_Generate_tag->move(771,121);
+    ui->pushButton_Generate_tag->move(751,121);
     ui->pushButton_Help_tag->setStyleSheet( QStringLiteral("background-color: rgb(89, 99, 113);") + "background-image: url(:/icons/screen1/help_botom_off.png);");
     ui->pushButton_Help_tag->setFixedSize(47,26);
-    ui->pushButton_Help_tag->move(1101,121);
+    ui->pushButton_Help_tag->move(1126,121);
     ui->pushButton_Options_tag->setStyleSheet( QStringLiteral("background-color: rgb(89, 99, 113);") + "background-image: url(:/icons/screen1/options_botom_off.png);");
     ui->pushButton_Options_tag->setFixedSize(84,26);
     ui->pushButton_Options_tag->move(941,121);
@@ -1070,7 +1071,7 @@ void NFWizard2::show_generate(){
 
     ui->pushButton_Generate_tag->setStyleSheet( QStringLiteral("background-color: rgb(89, 99, 113);") + "background-image: url(:/icons/screen1/generate_botom_on.png);");
     ui->pushButton_Generate_tag->setFixedSize(179,44);
-    ui->pushButton_Generate_tag->move(728,111);
+    ui->pushButton_Generate_tag->move(708,111);
 
 }
 
@@ -1080,7 +1081,7 @@ void NFWizard2::show_help(){
 
     ui->pushButton_Help_tag->setStyleSheet( QStringLiteral("background-color: rgb(89, 99, 113);") + "background-image: url(:/icons/screen1/help_botom_on.png);");
     ui->pushButton_Help_tag->setFixedSize(178,43);
-    ui->pushButton_Help_tag->move(1035,111);
+    ui->pushButton_Help_tag->move(1060,111);
 }
 
 void NFWizard2::show_options(){
@@ -4474,7 +4475,15 @@ void NFWizard2::on_pb_max_window_clicked()
     }
     else{
         showFullScreen();
-        current_win_Pos = QPoint((int)QApplication::desktop()->width()/10,(int)QApplication::desktop()->height()/8);
+        int x = 0;
+        int y = 0;
+        if(QApplication::desktop()->screen(this->current_screen)->height()>768){
+            y = (int)((QApplication::desktop()->screen(this->current_screen)->height()-768)/2);
+        }
+        if(QApplication::desktop()->screen(this->current_screen)->width()>1366){
+            x = (int)((QApplication::desktop()->screen(this->current_screen)->width()-1366)/2);
+        }
+        current_win_Pos = QPoint(x,y);
     }
 
 
