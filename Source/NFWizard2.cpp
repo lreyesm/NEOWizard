@@ -367,7 +367,7 @@ void NFWizard2::process_Thread_in_Main_cpp_File(const QString thread_name, const
         main_cpp_FileProcessor.setReplacementString(QString("/*Threads Functions Implementation Generated Code*/\n")
                                                     +QString("void ")+main_thread_name
                                                     +QString("::")+thread_name
-                                                    +QString("Run(eObject::eThread &thread)\n{\n\n}"));
+                                                    +QString("Run(eObject::eThread &thread)\n{\n	while(true){\n	}\n}"));
         main_cpp_FileProcessor.processTextBlock();
     }
 
@@ -4202,12 +4202,12 @@ void NFWizard2::configure_timer_in_main_thread(const QString path, const QString
         if(main_h_FileProcessor.check_if_code_exist("enum Timer_Events{    };",false)==1){
             main_h_FileProcessor.setReplacementString(QString("enum Timer_Events{\n")
                                                       +QString("        Timer_")+ui->le_timer_name->text()
-                                                      +ui->cb_timer_mode->currentText()+QString("_Complete"));
+                                                      +ui->cb_timer_mode->currentText()+QString("_Complete /*Put the correct number to the event (binary number 1,2,4,8...)*/"));
         }
         else{
             main_h_FileProcessor.setReplacementString(QString("enum Timer_Events{\n")
                                                       +QString("        Timer_")+ui->le_timer_name->text()
-                                                      +ui->cb_timer_mode->currentText()+QString("_Complete,"));
+                                                      +ui->cb_timer_mode->currentText()+QString("_Complete, /*Put the correct number to the event (binary number 1,2,4,8...)*/"));
         }
         main_h_FileProcessor.processTextBlock();
     }
