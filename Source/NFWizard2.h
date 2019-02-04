@@ -36,9 +36,12 @@ private slots:
         emit mouse_pressed();
     }
 
+    void mouseDoubleClickEvent(QMouseEvent *e){
+
+        emit mouse_DoubleClick();
+    }
     void mouseReleaseEvent(QMouseEvent *e) ///al reimplementar esta funcion deja de funcionar el evento pressed
     {
-
         emit mouse_Release();
     }
 
@@ -245,11 +248,13 @@ private slots:
 
     void on_drag_screen();
     void on_drag_screen_released();
+    void on_mouse_DoubleClick();
 signals:
 
     check_warnings();
     void mouse_pressed();
     void mouse_Release();
+    void mouse_DoubleClick();
 
 private:
     void generateProjectFileTree();

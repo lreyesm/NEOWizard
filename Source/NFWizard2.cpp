@@ -39,6 +39,7 @@ NFWizard2::NFWizard2(QWidget *parent) :
     connect(this,SIGNAL(check_warnings()),this,SLOT(check_for_warnings()));
     connect(this,SIGNAL(mouse_pressed()),this,SLOT(on_drag_screen()));
     connect(this,SIGNAL(mouse_Release()),this,SLOT(on_drag_screen_released()));
+    connect(this,SIGNAL(mouse_DoubleClick()),this,SLOT(on_mouse_DoubleClick()));
     connect(&start_moving_screen,SIGNAL(timeout()),this,SLOT(on_start_moving_screen_timeout()));
 
     dialogConfigHelp = new DialogConfigurationHelp(this);
@@ -2099,6 +2100,10 @@ void NFWizard2::on_state_right_clicked(QString state_name){
    highlight_state(state_name);
    ui->widget_on_state_options->show();
    ui->widget_on_state_options->move(QWidget::mapFromGlobal(QPoint(QCursor::pos().x()-current_win_Pos.x(),QCursor::pos().y()-current_win_Pos.y())));
+   if(!ui->widget_win_options->isHidden()){
+       ui->widget_win_options->hide();
+   }
+
 }
 
 void NFWizard2::on_state_left_clicked(QString state_name){
@@ -5067,6 +5072,10 @@ void NFWizard2::on_drag_screen(){
     if(isFullScreen()){
         if(QApplication::mouseButtons()==Qt::RightButton){
 
+            if(!ui->widget_on_state_options->isHidden() || !ui->widget_add_delete_event->isHidden()){
+                ui->widget_win_options->hide();
+                return;
+            }
             ui->statusBar->showMessage("RightButton");
             ui->widget_win_options->show();
             ui->widget_win_options->move(QWidget::mapFromGlobal(QCursor::pos()));
@@ -5077,6 +5086,15 @@ void NFWizard2::on_drag_screen(){
     ui->statusBar->showMessage("Moviendo");
     if(QApplication::mouseButtons()==Qt::LeftButton){
 
+        if(!ui->widget_on_state_options->isHidden()){
+            ui->widget_on_state_options->hide();
+        }
+        if(!ui->widget_add_delete_event->isHidden()){
+            ui->widget_add_delete_event->hide();
+        }
+        if(!ui->widget_win_options->isHidden()){
+            ui->widget_win_options->hide();
+        }
         ui->statusBar->showMessage("start");
         start_moving_screen.start(10);
         bool first_move = true;
@@ -5119,6 +5137,22 @@ void NFWizard2::on_drag_screen_released()
     init_pos_x = 0;
     init_pos_y = 0;
     //current_win_Pos = QPoint(this->pos().x()-200,this->pos().y()-200);
+}
+
+void NFWizard2::on_mouse_DoubleClick()
+{
+//    if(!ui->widget_on_state_options->isHidden() || !ui->widget_add_delete_event->isHidden()){
+//        ui->widget_win_options->hide();
+//        return;
+//    }
+//    if(!ui->widget_on_state_options->isHidden() || !ui->widget_add_delete_event->isHidden()){
+//        ui->widget_win_options->hide();
+//        return;
+//    }
+    if(!ui->widget_win_options->isHidden()){
+        ui->widget_win_options->hide();
+        return;
+    }
 }
 
 void NFWizard2::on_pb_minimize_option_clicked()
