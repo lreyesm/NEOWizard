@@ -88,7 +88,6 @@
         <file>icons/screen8/Save State Machine_botom.png</file>
         <file>icons/screen8/search_icon_botom.png</file>
         <file>icons/screen8/State machine name_text.png</file>
-        <file>icons/screen3/window.png</file>
         <file>icons/screen8/fondo_blanco.png</file>
         <file>icons/screen2/action_text.png</file>
         <file>icons/screen2/add thread_botom.png</file>
@@ -152,5 +151,6 @@
         <file>icons/screen8/rectangulo_central_blanco.png</file>
         <file>icons/screen8/window.png</file>
         <file>Example_fotos/example_serialPort.png</file>
+        <file>icons/screen3/window.png</file>
     </qresource>
 </RCC>

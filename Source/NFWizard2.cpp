@@ -49,7 +49,7 @@ NFWizard2::NFWizard2(QWidget *parent) :
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     simulated_state = new QHierarchy_State(ui->widget_simulate_HSM, "Simulated");
     simulated_state->move((int)(ui->widget_simulate_HSM->geometry().width()/2)-(int)(simulated_state->geometry().width()/2),
-                          (int)(ui->widget_simulate_HSM->geometry().height()/2)-(int)(simulated_state->geometry().height())/2);
+                          (int)(ui->widget_simulate_HSM->geometry().height()/3)-(int)(simulated_state->geometry().height())/3);
     simulated_state->show();
 
     initialState_simulated = "No Initial";
@@ -5295,6 +5295,10 @@ int NFWizard2::handleEvent(int state_index, QString event_ID_name){
                                  +hierarchy_states[state_index]->get_events_list()[event_pos].state_action
                                  +QString("<font color = black > of state ")
                                  +hierarchy_states[state_index]->get_state_name());
+        ui->lw_simulated_log_messages->addItem(QString("Executed action function ")
+                                               +hierarchy_states[state_index]->get_events_list()[event_pos].state_action
+                                               +QString(" of state ")
+                                               +hierarchy_states[state_index]->get_state_name());
         retval = TriggerActionMantainState;
     }
     else if(hierarchy_states[state_index]->get_events_list()[event_pos].next_state == hierarchy_states[state_index]->get_state_name()
@@ -5307,6 +5311,10 @@ int NFWizard2::handleEvent(int state_index, QString event_ID_name){
                                  +hierarchy_states[state_index]->get_events_list()[event_pos].state_action
                                  +QString("<font color = black > of state ")
                                  +hierarchy_states[state_index]->get_state_name());
+        ui->lw_simulated_log_messages->addItem(QString("Executed action function ")
+                                               +hierarchy_states[state_index]->get_events_list()[event_pos].state_action
+                                               +QString(" of state ")
+                                               +hierarchy_states[state_index]->get_state_name());
         hierarchy_states[state_index]->set_next_state_simulating(hierarchy_states[state_index]->get_events_list()[event_pos].next_state);
         retval = TriggerActionAndTransition;
     }else if (hierarchy_states[state_index]->get_events_list()[event_pos].next_state != "No Next State") {
@@ -5317,6 +5325,10 @@ int NFWizard2::handleEvent(int state_index, QString event_ID_name){
                                  +hierarchy_states[state_index]->get_events_list()[event_pos].state_action
                                  +QString("<font color = black > of state ")
                                  +hierarchy_states[state_index]->get_state_name());
+        ui->lw_simulated_log_messages->addItem(QString("Executed action function ")
+                                               +hierarchy_states[state_index]->get_events_list()[event_pos].state_action
+                                               +QString(" of state ")
+                                               +hierarchy_states[state_index]->get_state_name());
         retval = TriggerAction;
     }
     return retval;
@@ -5336,6 +5348,11 @@ int NFWizard2::handleDefaultEvent(int state_index, QString event_ID_name){
                                  +hierarchy_states[state_index]->get_default_action()
                                  +QString("<font color = black > of state ")
                                  +hierarchy_states[state_index]->get_state_name());
+        ui->lw_simulated_log_messages->addItem(QString("Executed action function ")
+                                               +hierarchy_states[state_index]->get_default_action()
+                                               +QString(" of state ")
+                                               +hierarchy_states[state_index]->get_state_name());
+
         hierarchy_states[state_index]->set_next_state_simulating(hierarchy_states[state_index]->get_default_next_state());
         retval = TriggerActionAndTransition;
     }else if (hierarchy_states[state_index]->get_default_next_state() != "No Default Next State") {
@@ -5346,6 +5363,10 @@ int NFWizard2::handleDefaultEvent(int state_index, QString event_ID_name){
                                  +hierarchy_states[state_index]->get_default_action()
                                  +QString("<font color = black > of state ")
                                  +hierarchy_states[state_index]->get_state_name());
+        ui->lw_simulated_log_messages->addItem(QString("Executed action function ")
+                                               +hierarchy_states[state_index]->get_default_action()
+                                               +QString(" of state ")
+                                               +hierarchy_states[state_index]->get_state_name());
         retval = TriggerAction;
     }
     return retval;
@@ -5369,7 +5390,7 @@ void NFWizard2::dispatch(QString event_ID_name){
         thisState = superstate;
         thisState_index = get_state_index_with_name(thisState);////
         retValue = handleEvent(thisState_index, event_ID_name);////modified 72
-        if(retValue == DoNothingEventIgnored || retValue == DoNothingEventIgnored){
+        if(retValue == TriggerActionMantainState || retValue == DoNothingEventIgnored){
             return;
         }
         exitPath[exitIndex] = thisState;
@@ -5401,6 +5422,10 @@ void NFWizard2::dispatch(QString event_ID_name){
                                      +hierarchy_states[index_i]->get_state_on_exit_Action()
                                      +QString("<font color = black > of state ")
                                      +hierarchy_states[index_i]->get_state_name());
+            ui->lw_simulated_log_messages->addItem(QString("Executed exit function ")
+                                                   +hierarchy_states[index_i]->get_state_on_exit_Action()
+                                                   +QString(" of state ")
+                                                   +hierarchy_states[index_i]->get_state_name());
         }
 
         currentState_simulated = thisState;
@@ -5448,6 +5473,10 @@ void NFWizard2::dispatch(QString event_ID_name){
                                      +hierarchy_states[index_i]->get_state_on_exit_Action()
                                      +QString("<font color = black > of state ")
                                      +hierarchy_states[index_i]->get_state_name());
+            ui->lw_simulated_log_messages->addItem(QString("Executed exit function ")
+                                                   +hierarchy_states[index_i]->get_state_on_exit_Action()
+                                                   +QString(" of state ")
+                                                   +hierarchy_states[index_i]->get_state_name());
         }
         for(int i=entryIndex-1; i>=0; i--){
             ////entryPath[i]->signalEntered.notify();
@@ -5457,6 +5486,10 @@ void NFWizard2::dispatch(QString event_ID_name){
                                      +hierarchy_states[index_i]->get_state_on_entry_Action()
                                      +QString("<font color = black > of state ")
                                      +hierarchy_states[index_i]->get_state_name());
+            ui->lw_simulated_log_messages->addItem(QString("Executed entry function ")
+                                                   +hierarchy_states[index_i]->get_state_on_entry_Action()
+                                                   +QString(" of state ")
+                                                   +hierarchy_states[index_i]->get_state_name());
         }
 
         //Set current state
@@ -5475,11 +5508,17 @@ void NFWizard2::dispatch(QString event_ID_name){
                                      +hierarchy_states[currentState_index]->get_state_on_entry_Action()
                                      +QString("<font color = black > of state ")
                                      +hierarchy_states[currentState_index]->get_state_name());
+            ui->lw_simulated_log_messages->addItem(QString("Executed entry function ")
+                                                   +hierarchy_states[currentState_index]->get_state_on_entry_Action()
+                                                   +QString(" of state ")
+                                                   +hierarchy_states[currentState_index]->get_state_name());
         }
 
         currentState_index = get_state_index_with_name(currentState_simulated);
-        if(currentState_index != -1)
+        if(currentState_index != -1){
             simulated_state->copy(hierarchy_states[currentState_index]);
+            ui->l_current_state_simulated->setText(simulated_state->get_state_name());
+        }
 
     }
 
@@ -5497,14 +5536,17 @@ void NFWizard2::on_pb_Simulate_HSM_clicked()
     ui->l_background_blur->raise();
     //ui->l_background_blur->show();
     if(isFullScreen()){
-        ui->widget_simulate_HSM->move(current_win_Pos.x()+310,current_win_Pos.y()+230);
+        ui->widget_simulate_HSM->move(current_win_Pos.x()+310,current_win_Pos.y()+200);
     }
     else{
-        ui->widget_simulate_HSM->move(current_win_Pos.x()+310,current_win_Pos.y()+230);
+        ui->widget_simulate_HSM->move(current_win_Pos.x()+310,current_win_Pos.y()+200);
     }
     ui->widget_simulate_HSM->show();
 
     simulated_state->copy(hierarchy_states[0]);
+
+    ui->l_current_state_simulated->setText("State");
+    ui->lw_simulated_log_messages->clear();
 
     initialState_simulated = "No Initial";
     currentState_simulated = "No Current State";
@@ -5564,6 +5606,7 @@ void NFWizard2::on_pb_simulate_dispatch_clicked()
 {
     if(ui->pb_simulate_dispatch->text() == "Start"){
 
+        ui->lw_simulated_log_messages->clear();
 
         start_simulating();
 
@@ -5574,14 +5617,18 @@ void NFWizard2::on_pb_simulate_dispatch_clicked()
 
             complete_list.append(hierarchy_states[currentState_simulated_index]->get_events_list()[n].event);
         }
+
         ui->lw_simulated_events->clear();
         ui->lw_simulated_events->addItems(complete_list);
 
         ui->pb_simulate_dispatch->setText("Dispatch");
+
     }
     else if(ui->pb_simulate_dispatch->text() == "Dispatch"){
 
         if(!ui->le_simulated_event_ID_name->text().isEmpty()){
+
+            ui->lw_simulated_log_messages->clear();
 
             dispatch(ui->le_simulated_event_ID_name->text());
 
@@ -5593,8 +5640,12 @@ void NFWizard2::on_pb_simulate_dispatch_clicked()
 
                 complete_list.append(hierarchy_states[current_state_simulated_index]->get_events_list()[n].event);
             }
+
             ui->lw_simulated_events->clear();
             ui->lw_simulated_events->addItems(complete_list);
+        }
+        else{
+             QMessageBox::information(this, "Simulator",QString("<font color = black >Please add event to dispatch"));
         }
     }
 }
@@ -5645,6 +5696,10 @@ bool NFWizard2::start_simulating(){
                                          +hierarchy_states[index_path_index]->get_state_on_entry_Action()
                                          +QString("<font color = black > of state ")
                                          +hierarchy_states[index_path_index]->get_state_name());
+                ui->lw_simulated_log_messages->addItem(QString("Executed entry function ")
+                                                       +hierarchy_states[index_path_index]->get_state_on_entry_Action()
+                                                       +QString(" of state ")
+                                                       +hierarchy_states[index_path_index]->get_state_name());
             }
         }
 //        path[0]->signalEntered.notify();
@@ -5655,6 +5710,10 @@ bool NFWizard2::start_simulating(){
                                      +hierarchy_states[index_path_index]->get_state_on_entry_Action()
                                      +QString("<font color = black > of state ")
                                      +hierarchy_states[index_path_index]->get_state_name());
+            ui->lw_simulated_log_messages->addItem(QString("Executed entry function ")
+                                                   +hierarchy_states[index_path_index]->get_state_on_entry_Action()
+                                                   +QString(" of state ")
+                                                   +hierarchy_states[index_path_index]->get_state_name());
         }
 
         currentState_simulated = initialState_simulated;
@@ -5673,14 +5732,21 @@ bool NFWizard2::start_simulating(){
                                          +hierarchy_states[currentState_simulated_index]->get_state_on_entry_Action()
                                          +QString("<font color = black > of state ")
                                          +hierarchy_states[currentState_simulated_index]->get_state_name());
+                ui->lw_simulated_log_messages->addItem(QString("Executed entry function ")
+                                                       +hierarchy_states[currentState_simulated_index]->get_state_on_entry_Action()
+                                                       +QString(" of state ")
+                                                       +hierarchy_states[currentState_simulated_index]->get_state_name());
             }
 
             currentState_simulated_index = get_state_index_with_name(currentState_simulated);
-            if(currentState_simulated_index != -1)
+            if(currentState_simulated_index != -1){
                 simulated_state->copy(hierarchy_states[currentState_simulated_index]);
+                ui->l_current_state_simulated->setText(simulated_state->get_state_name());
+            }
         }
         else{
             QMessageBox::information(this, "Simulator",QString("<font color = black >Not Found Initial State of State Machine "));
+            ui->lw_simulated_log_messages->addItem(QString("Not Found Initial State of State Machine "));
         }
     }
 }

@@ -299,6 +299,7 @@ public:
     QLabel *l_EVENT_19;
     QLabel *l_EVENT_20;
     QLabel *l_current_state_simulated;
+    QListWidget *lw_simulated_log_messages;
     QWidget *widget_help_screen;
     QPushButton *pb_Stcube_Config;
     QPushButton *pb_about_NEOW;
@@ -2196,6 +2197,10 @@ public:
 "background-image: url(:/icons/screen8/cancel_botom.png);\n"
 "color:  rgb(21, 172, 112);"));
         pb_cancel_main_thrad_name->setFlat(true);
+        l_main_thrad_name->raise();
+        le_main_thread_name_to_load->raise();
+        pb_acept_main_thread_name->raise();
+        pb_cancel_main_thrad_name->raise();
         widget_event_options = new QWidget(l_background_blur);
         widget_event_options->setObjectName(QStringLiteral("widget_event_options"));
         widget_event_options->setGeometry(QRect(-20, -50, 401, 400));
@@ -2330,7 +2335,7 @@ public:
 
         widget_simulate_HSM = new QWidget(l_background_blur);
         widget_simulate_HSM->setObjectName(QStringLiteral("widget_simulate_HSM"));
-        widget_simulate_HSM->setGeometry(QRect(310, 230, 743, 288));
+        widget_simulate_HSM->setGeometry(QRect(310, 230, 742, 430));
         widget_simulate_HSM->setStyleSheet(QLatin1String("background-image: url(:/icons/screen8/window.png);\n"
 "background-image: url(:/icons/screen3/window.png);"));
         pb_back_from_HSM_simulate = new QPushButton(widget_simulate_HSM);
@@ -2460,6 +2465,9 @@ public:
         l_current_state_simulated->setStyleSheet(QLatin1String("font: 14pt \"Myriad Web\";\n"
 "color:  rgb(8, 113, 104);"));
         l_current_state_simulated->setAlignment(Qt::AlignCenter);
+        lw_simulated_log_messages = new QListWidget(widget_simulate_HSM);
+        lw_simulated_log_messages->setObjectName(QStringLiteral("lw_simulated_log_messages"));
+        lw_simulated_log_messages->setGeometry(QRect(30, 290, 683, 111));
         widget_help_screen = new QWidget(centralWidget);
         widget_help_screen->setObjectName(QStringLiteral("widget_help_screen"));
         widget_help_screen->setGeometry(QRect(6680, 0, 1366, 768));

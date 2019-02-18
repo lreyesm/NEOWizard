@@ -4556,6 +4556,11 @@ color:  rgb(21, 172, 112);</string>
        <bool>true</bool>
       </property>
      </widget>
+     <zorder>l_main_thrad_name</zorder>
+     <zorder>le_main_thread_name_to_load</zorder>
+     <zorder>pb_acept_main_thread_name</zorder>
+     <zorder>pb_cancel_main_thrad_name</zorder>
+     <zorder>widget_simulate_HSM</zorder>
     </widget>
     <widget class="QWidget" name="widget_event_options" native="true">
      <property name="geometry">
@@ -4834,8 +4839,8 @@ border-image: url(:/icons/screen8/label.png);
       <rect>
        <x>310</x>
        <y>230</y>
-       <width>743</width>
-       <height>288</height>
+       <width>742</width>
+       <height>430</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -5135,6 +5140,16 @@ color:  rgb(8, 113, 104);</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QListWidget" name="lw_simulated_log_messages">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>290</y>
+        <width>683</width>
+        <height>111</height>
+       </rect>
       </property>
      </widget>
     </widget>
