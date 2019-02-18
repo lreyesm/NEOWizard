@@ -33,6 +33,14 @@ QHierarchy_State::QHierarchy_State(QWidget *parent, QString state_name_ref) : QP
     highLight = false;
     initial=false;
     configured=false;
+
+    /////////////////////////////////////////////////////////////////////////////////////////////////////
+    next_state_simulating = "NULL";
+    default_event.event = "Default";
+    default_event.next_state = "No Default Next State";
+    default_event.state_action = "No Default Action";
+    /////////////////////////////////////////////////////////////////////////////////////////////////////
+
 }
 
 
@@ -103,6 +111,9 @@ void QHierarchy_State::read_file(QDataStream &in){
     in>>this->state_parent;
     in>>this->state_initial;
     in>>this->state_default;
+
+    set_state_default(this->state_default);
+
     in>>this->on_entry_Action;
     in>>this->on_exit_Action;
 
@@ -128,9 +139,21 @@ void QHierarchy_State::read_file(QDataStream &in){
 
     this->setObjectName(state_name);
     QString n = objectName().toUpper();
-    n.remove("state",Qt::CaseInsensitive);
+    n.remove("state",Qt::CaseInsensitive);///////////////////////////////////////////////////////////////++++++++++++++++++++++++++
     this->setText(n.left(3));
     this->setInitial(initial);
+}
+
+void QHierarchy_State::set_default_event(const QString default_next_state, const QString default_action)
+{
+    set_default_next_state(default_next_state);
+    set_default_action(default_action);
+}
+
+void QHierarchy_State::set_default_event(const QHierarchy_State::QHierarchy_State_Event_t &event)
+{
+    set_default_next_state(event.next_state);
+    set_default_action(event.state_action);
 }
 
 void QHierarchy_State::setInitial(bool ini){
@@ -219,8 +242,9 @@ QList<QHierarchy_State::QHierarchy_State_Event_t>& QHierarchy_State::get_events_
 void QHierarchy_State::set_state_name(const QString &name){
 
     setObjectName(name);
-    this->setText(name.toUpper().left(3));
     state_name = name;
+    this->setText(name.toUpper().remove("STATE").left(3));
+
 }
 
 void QHierarchy_State::set_state_parent(const QString &parent){
@@ -236,6 +260,32 @@ void QHierarchy_State::set_state_initial(const QString &initial){
 void QHierarchy_State::set_state_default(const QString &defaults){
 
     state_default = defaults;
+
+    QString definition_default = defaults;
+
+    QString default_action = "Empty";
+    QString default_state = "Empty";
+
+    if(definition_default.contains(",")){
+
+        default_state = definition_default.section(',',0,0);
+        default_action = definition_default.section(',',1,1);
+
+        default_event.next_state = default_state.remove("Next_State:");
+        default_event.state_action = default_action.remove("Action:");
+    }
+    else{
+
+        if(definition_default.contains("Next_State:")){
+
+            default_event.next_state = definition_default.remove("Next_State:");
+
+        }
+        else if(definition_default.contains("Action:")){
+
+            default_event.state_action = definition_default.remove("Action:");
+        }
+    }
 }
 
 void QHierarchy_State::add_Event(const QHierarchy_State_Event_t event){
@@ -301,4 +351,102 @@ bool QHierarchy_State::eliminate_child(const QString &child_state){ ////Modifica
     }
 }
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+int QHierarchy_State::hasEvent(QString event)
+{
+    for(quint16 i=0; i< events_list.size(); i++){
 
+        if(events_list.at(i).event == event ||
+                events_list.at(i).event.split("::", QString::SkipEmptyParts).last() == event){
+            return i;
+        }
+    }
+    return -1;
+}
+
+bool QHierarchy_State::is_equal(QHierarchy_State *state)
+{
+    if( this->get_state_name() != state->get_state_name()){
+        return false;
+    }
+    if( this->get_state_parent() != state->get_state_parent()){
+        return false;
+    }
+    if( this->get_state_initial() != state->get_state_initial()){
+        return false;
+    }
+    if( this->get_state_default() != state->get_state_default()){
+        return false;
+    }
+    if( this->get_state_on_entry_Action() != state->get_state_on_entry_Action()){
+        return false;
+    }
+    if( this->get_state_on_exit_Action() != state->get_state_on_exit_Action()){
+        return false;
+    }
+
+    //QList<QHierarchy_State_Event_t> events_list;
+
+    if( this->get_subStates_count() != state->get_subStates_count()){
+        return false;
+    }
+    if( position_in_superstate != state->get_position_in_superstate()){
+        return false;
+    }
+    if( this->get_subStates_count() != state->get_subStates_count()){
+        return false;
+    }
+    if( initial != state->isInitial()){
+        return false;
+    }
+
+    /////////////////////////////////////////////////////////////////////////////////////////////////////
+    //QHierarchy_State_Event_t default_event;
+    /////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    /////////////////////////////////////////////////////////////////////////////////////////////////////
+    if( next_state_simulating != state->get_next_state_simulating()){
+        return false;
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    return true;
+}
+
+bool QHierarchy_State::copy(QHierarchy_State *state)
+{
+     set_state_name(state->get_state_name());
+     set_state_parent(state->get_state_parent());
+     set_state_initial(state->get_state_initial());
+     set_state_default(state->get_state_default());
+     set_state_entryAction(state->get_state_on_entry_Action());
+     set_state_exitAction(state->get_state_on_exit_Action());
+
+     events_list.clear();
+
+     for(quint8 i = 0; i < state->get_events_list().size();i++){
+         add_Event(state->get_events_list()[i]);
+     }
+
+     direct_subStates.clear();
+     for(quint8 i = 0; i < state->get_direct_SubStates().size();i++){
+         direct_subStates.append(state->get_direct_SubStates()[i]);
+     }
+
+     position_in_superstate = state->get_position_in_superstate();
+     subState_count = state->get_subStates_count();
+     setInitial(state->isInitial());
+
+    /////////////////////////////////////////////////////////////////////////////////////////////////////
+     set_default_event(state->get_default_event());
+    /////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    /////////////////////////////////////////////////////////////////////////////////////////////////////
+     set_next_state_simulating(state->get_next_state_simulating());
+    /////////////////////////////////////////////////////////////////////////////////////////////////////
+
+     setToolTip(state->toolTip());
+
+    return this->is_equal(state);
+}
+/////////////////////////////////////////////////////////////////////////////////////////////////////

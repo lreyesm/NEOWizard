@@ -151,5 +151,6 @@
         <file>icons/screen6/Configure thread in main_on.png</file>
         <file>icons/screen8/rectangulo_central_blanco.png</file>
         <file>icons/screen8/window.png</file>
+        <file>Example_fotos/example_serialPort.png</file>
     </qresource>
 </RCC>

@@ -144,6 +144,7 @@ release/qrc_assets.cpp: assets.qrc \
 		Example_fotos/example_thread.png \
 		Example_fotos/example_semaphore.png \
 		Example_fotos/example_memPool.png \
+		Example_fotos/example_serialPort.png \
 		icons/state_init.png \
 		icons/state.png \
 		icons/state_init_highlight.png \
@@ -518,10 +519,13 @@ release/moc_NFWizard2.cpp: C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/QMainW
 		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtCore/QTimer \
 		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtGui/QStandardItemModel \
 		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtGui/qstandarditemmodel.h \
+		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/QListWidgetItem \
+		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qlistwidget.h \
+		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qlistview.h \
 		Source/NFWizard2.h \
 		release/moc_predefs.h \
 		C:/Qt/Qt5.9.0/5.9/mingw53_32/bin/moc.exe
-	C:\Qt\Qt5.9.0\5.9\mingw53_32\bin\moc.exe $(DEFINES) --include release/moc_predefs.h -IC:/Qt/Qt5.9.0/5.9/mingw53_32/mkspecs/win32-g++ -ID:/PROJECTS_MINE/proyecto_finalizados/NFWizard2 -ID:/PROJECTS_MINE/proyecto_finalizados/NFWizard2/Source -IC:/Qt/Qt5.9.0/5.9/mingw53_32/include -IC:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets -IC:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtGui -IC:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtANGLE -IC:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtXml -IC:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtCore -IC:/Qt/Qt5.9.0/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include -IC:/Qt/Qt5.9.0/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include-fixed -IC:/Qt/Qt5.9.0/Tools/mingw530_32/i686-w64-mingw32/include -IC:/Qt/Qt5.9.0/Tools/mingw530_32/i686-w64-mingw32/include/c++ -IC:/Qt/Qt5.9.0/Tools/mingw530_32/i686-w64-mingw32/include/c++/i686-w64-mingw32 -IC:/Qt/Qt5.9.0/Tools/mingw530_32/i686-w64-mingw32/include/c++/backward Source\NFWizard2.h -o release\moc_NFWizard2.cpp
+	C:\Qt\Qt5.9.0\5.9\mingw53_32\bin\moc.exe $(DEFINES) --include release/moc_predefs.h -IC:/Qt/Qt5.9.0/5.9/mingw53_32/mkspecs/win32-g++ -IG:/Trabajo/NFWizard2 -IG:/Trabajo/NFWizard2/Source -IC:/Qt/Qt5.9.0/5.9/mingw53_32/include -IC:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets -IC:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtGui -IC:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtANGLE -IC:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtXml -IC:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtCore -IC:/Qt/Qt5.9.0/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include -IC:/Qt/Qt5.9.0/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include-fixed -IC:/Qt/Qt5.9.0/Tools/mingw530_32/i686-w64-mingw32/include -IC:/Qt/Qt5.9.0/Tools/mingw530_32/i686-w64-mingw32/include/c++ -IC:/Qt/Qt5.9.0/Tools/mingw530_32/i686-w64-mingw32/include/c++/i686-w64-mingw32 -IC:/Qt/Qt5.9.0/Tools/mingw530_32/i686-w64-mingw32/include/c++/backward Source\NFWizard2.h -o release\moc_NFWizard2.cpp
 
 release/moc_DialogConfigurationHelp.cpp: C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/QDialog \
 		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qdialog.h \
@@ -741,7 +745,7 @@ release/moc_DialogConfigurationHelp.cpp: C:/Qt/Qt5.9.0/5.9/mingw53_32/include/Qt
 		Source/DialogConfigurationHelp.h \
 		release/moc_predefs.h \
 		C:/Qt/Qt5.9.0/5.9/mingw53_32/bin/moc.exe
-	C:\Qt\Qt5.9.0\5.9\mingw53_32\bin\moc.exe $(DEFINES) --include release/moc_predefs.h -IC:/Qt/Qt5.9.0/5.9/mingw53_32/mkspecs/win32-g++ -ID:/PROJECTS_MINE/proyecto_finalizados/NFWizard2 -ID:/PROJECTS_MINE/proyecto_finalizados/NFWizard2/Source -IC:/Qt/Qt5.9.0/5.9/mingw53_32/include -IC:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets -IC:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtGui -IC:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtANGLE -IC:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtXml -IC:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtCore -IC:/Qt/Qt5.9.0/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include -IC:/Qt/Qt5.9.0/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include-fixed -IC:/Qt/Qt5.9.0/Tools/mingw530_32/i686-w64-mingw32/include -IC:/Qt/Qt5.9.0/Tools/mingw530_32/i686-w64-mingw32/include/c++ -IC:/Qt/Qt5.9.0/Tools/mingw530_32/i686-w64-mingw32/include/c++/i686-w64-mingw32 -IC:/Qt/Qt5.9.0/Tools/mingw530_32/i686-w64-mingw32/include/c++/backward Source\DialogConfigurationHelp.h -o release\moc_DialogConfigurationHelp.cpp
+	C:\Qt\Qt5.9.0\5.9\mingw53_32\bin\moc.exe $(DEFINES) --include release/moc_predefs.h -IC:/Qt/Qt5.9.0/5.9/mingw53_32/mkspecs/win32-g++ -IG:/Trabajo/NFWizard2 -IG:/Trabajo/NFWizard2/Source -IC:/Qt/Qt5.9.0/5.9/mingw53_32/include -IC:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets -IC:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtGui -IC:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtANGLE -IC:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtXml -IC:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtCore -IC:/Qt/Qt5.9.0/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include -IC:/Qt/Qt5.9.0/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include-fixed -IC:/Qt/Qt5.9.0/Tools/mingw530_32/i686-w64-mingw32/include -IC:/Qt/Qt5.9.0/Tools/mingw530_32/i686-w64-mingw32/include/c++ -IC:/Qt/Qt5.9.0/Tools/mingw530_32/i686-w64-mingw32/include/c++/i686-w64-mingw32 -IC:/Qt/Qt5.9.0/Tools/mingw530_32/i686-w64-mingw32/include/c++/backward Source\DialogConfigurationHelp.h -o release\moc_DialogConfigurationHelp.cpp
 
 release/moc_qhierarchy_state.cpp: C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/QPushButton \
 		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qpushbutton.h \
@@ -850,7 +854,7 @@ release/moc_qhierarchy_state.cpp: C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets
 		Source/qhierarchy_state.h \
 		release/moc_predefs.h \
 		C:/Qt/Qt5.9.0/5.9/mingw53_32/bin/moc.exe
-	C:\Qt\Qt5.9.0\5.9\mingw53_32\bin\moc.exe $(DEFINES) --include release/moc_predefs.h -IC:/Qt/Qt5.9.0/5.9/mingw53_32/mkspecs/win32-g++ -ID:/PROJECTS_MINE/proyecto_finalizados/NFWizard2 -ID:/PROJECTS_MINE/proyecto_finalizados/NFWizard2/Source -IC:/Qt/Qt5.9.0/5.9/mingw53_32/include -IC:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets -IC:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtGui -IC:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtANGLE -IC:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtXml -IC:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtCore -IC:/Qt/Qt5.9.0/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include -IC:/Qt/Qt5.9.0/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include-fixed -IC:/Qt/Qt5.9.0/Tools/mingw530_32/i686-w64-mingw32/include -IC:/Qt/Qt5.9.0/Tools/mingw530_32/i686-w64-mingw32/include/c++ -IC:/Qt/Qt5.9.0/Tools/mingw530_32/i686-w64-mingw32/include/c++/i686-w64-mingw32 -IC:/Qt/Qt5.9.0/Tools/mingw530_32/i686-w64-mingw32/include/c++/backward Source\qhierarchy_state.h -o release\moc_qhierarchy_state.cpp
+	C:\Qt\Qt5.9.0\5.9\mingw53_32\bin\moc.exe $(DEFINES) --include release/moc_predefs.h -IC:/Qt/Qt5.9.0/5.9/mingw53_32/mkspecs/win32-g++ -IG:/Trabajo/NFWizard2 -IG:/Trabajo/NFWizard2/Source -IC:/Qt/Qt5.9.0/5.9/mingw53_32/include -IC:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets -IC:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtGui -IC:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtANGLE -IC:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtXml -IC:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtCore -IC:/Qt/Qt5.9.0/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include -IC:/Qt/Qt5.9.0/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include-fixed -IC:/Qt/Qt5.9.0/Tools/mingw530_32/i686-w64-mingw32/include -IC:/Qt/Qt5.9.0/Tools/mingw530_32/i686-w64-mingw32/include/c++ -IC:/Qt/Qt5.9.0/Tools/mingw530_32/i686-w64-mingw32/include/c++/i686-w64-mingw32 -IC:/Qt/Qt5.9.0/Tools/mingw530_32/i686-w64-mingw32/include/c++/backward Source\qhierarchy_state.h -o release\moc_qhierarchy_state.cpp
 
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
@@ -1124,6 +1128,9 @@ release/main.o: Source/main.cpp Source/NFWizard2.h \
 		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtCore/QTimer \
 		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtGui/QStandardItemModel \
 		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtGui/qstandarditemmodel.h \
+		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/QListWidgetItem \
+		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qlistwidget.h \
+		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qlistview.h \
 		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/QApplication \
 		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qapplication.h \
 		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qdesktopwidget.h \
@@ -1378,6 +1385,9 @@ release/NFWizard2.o: Source/NFWizard2.cpp Source/NFWizard2.h \
 		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtCore/QTimer \
 		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtGui/QStandardItemModel \
 		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtGui/qstandarditemmodel.h \
+		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/QListWidgetItem \
+		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qlistwidget.h \
+		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qlistview.h \
 		ui_NFWizard2.h \
 		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtCore/QVariant \
 		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/QAction \
@@ -1411,6 +1421,7 @@ release/NFWizard2.o: Source/NFWizard2.cpp Source/NFWizard2.h \
 		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtGui/qtextformat.h \
 		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtGui/qpen.h \
 		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtGui/qtextoption.h \
+		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/QListWidget \
 		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/QSpacerItem \
 		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/QSpinBox \
 		C:/Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qspinbox.h \

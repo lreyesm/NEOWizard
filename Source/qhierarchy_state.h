@@ -40,9 +40,18 @@ public:
     bool eliminate_child(const QString &child_state); ////Modificar esta funcion /Que hacer con estados hijos del eliminado
     bool isInitial(){ return initial;}
     bool set_Highlight(const bool highlight);
-    //    const QStringList get_events();
-    //    const QStringList get_next_states();
-    //    const QStringList get_state_actions();
+
+    /////////////////////////////////////////////////////////////////////////////////////////////////////
+    int hasEvent(QString event);
+    const QString get_next_state_simulating(){ return next_state_simulating;}
+
+    const QHierarchy_State_Event_t get_default_event(){return default_event;}
+    const QString get_default_next_state(){ return default_event.next_state;}
+    const QString get_default_action(){ return default_event.state_action;}
+
+    bool is_equal(QHierarchy_State *state);
+    bool copy(QHierarchy_State *state);
+    /////////////////////////////////////////////////////////////////////////////////////////////////////
 
     void set_state_name(const QString &name);
     void set_state_parent(const QString &parent);
@@ -57,13 +66,20 @@ public:
     void setInitial(bool ini);
     void write_file(QDataStream &out);
     void read_file(QDataStream &in);
-    //    void add_state_event(const QString event);
-    //    void add_next_state(const QString next);
-    //    void add_state_action(const QString action);
+
+    /////////////////////////////////////////////////////////////////////////////////////////////////////
+    void set_next_state_simulating(QString state_name){ next_state_simulating = state_name;}
+
+    void set_default_event(const QString default_next_state, const QString default_action);
+    void set_default_event(const QHierarchy_State_Event_t &event);
+    void set_default_next_state(const QString default_next_state){ default_event.next_state = default_next_state;}
+    void set_default_action(const QString default_action){ default_event.state_action = default_action;}
+
+    /////////////////////////////////////////////////////////////////////////////////////////////////////
 
     void set_configured(bool config);
     bool is_configured();
-    const bool isHighLight(){return highLight;}
+    bool isHighLight(){return highLight;}
 
 signals:
     void signal_clicked(QString clicked_state_name = "unknow");
@@ -89,7 +105,7 @@ protected: ////a partir de aqui agregar en NEOWizard original
 
     void mouseDoubleClickEvent(QMouseEvent *)
     {
-            emit doubleClicked();
+        emit doubleClicked();
     }
 private slots: ////a partir de aqui agregar en NEOWizard original
 
@@ -117,9 +133,13 @@ private:
     bool initial;
     bool highLight;
 
-    //    QStringList events;
-    //    QStringList next_states;
-    //    QStringList state_actions;
+    /////////////////////////////////////////////////////////////////////////////////////////////////////
+    QHierarchy_State_Event_t default_event;
+    /////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    /////////////////////////////////////////////////////////////////////////////////////////////////////
+    QString next_state_simulating;
+    /////////////////////////////////////////////////////////////////////////////////////////////////////
 
     bool configured;
 

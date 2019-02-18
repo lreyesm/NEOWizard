@@ -20,6 +20,7 @@
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
+#include <QtWidgets/QListWidget>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QSpacerItem>
@@ -75,6 +76,7 @@ public:
     QPushButton *pb_configure_memoryPool;
     QPushButton *pb_configure_mutex;
     QPushButton *pb_configure_messQueue;
+    QPushButton *pb_configure_serialPort;
     QWidget *widget_timer_parameters;
     QVBoxLayout *verticalLayout_39;
     QVBoxLayout *verticalLayout_47;
@@ -146,6 +148,15 @@ public:
     QLabel *l_EVENT_15;
     QSpinBox *sb_messQueue_size;
     QPushButton *pb_add_messQueue;
+    QWidget *widget_serialPort_parameters;
+    QVBoxLayout *verticalLayout_16;
+    QVBoxLayout *verticalLayout_49;
+    QLabel *l_EVENT_16;
+    QLineEdit *le_serialport_name;
+    QVBoxLayout *verticalLayout_50;
+    QLabel *l_EVENT_17;
+    QSpinBox *sb_serialport_usart_number;
+    QPushButton *pb_add_SerialPort;
     QWidget *widget_state_machine_screen;
     QPushButton *pb_load_from_Thread;
     QPushButton *pb_save_state_machine;
@@ -222,6 +233,7 @@ public:
     QPushButton *pb_add_event_action;
     QPushButton *pb_delete_event_action;
     QPushButton *pb_cancel_add_event_2;
+    QPushButton *pb_Simulate_HSM;
     QWidget *layoutWidget;
     QHBoxLayout *horizontalLayout;
     QSpacerItem *horizontalSpacer;
@@ -268,12 +280,32 @@ public:
     QVBoxLayout *verticalLayout_28;
     QLabel *l_ACTION;
     QLineEdit *le_action_name;
+    QWidget *widget_simulate_HSM;
+    QPushButton *pb_back_from_HSM_simulate;
+    QWidget *layoutWidget_6;
+    QVBoxLayout *verticalLayout_32;
+    QLabel *l_EVENT_18;
+    QLineEdit *le_simulated_event_ID_name;
+    QWidget *layoutWidget_7;
+    QVBoxLayout *verticalLayout_33;
+    QLabel *l_NEXT_STATE_2;
+    QLineEdit *le_simulated_next_state_name;
+    QWidget *layoutWidget_8;
+    QVBoxLayout *verticalLayout_34;
+    QLabel *l_ACTION_2;
+    QLineEdit *le_simulated_action_name;
+    QPushButton *pb_simulate_dispatch;
+    QListWidget *lw_simulated_events;
+    QLabel *l_EVENT_19;
+    QLabel *l_EVENT_20;
+    QLabel *l_current_state_simulated;
     QWidget *widget_help_screen;
     QPushButton *pb_Stcube_Config;
     QPushButton *pb_about_NEOW;
     QPushButton *pb_about_QT;
     QPushButton *pb_uVision_Config;
     QGroupBox *groupBox;
+    QVBoxLayout *verticalLayout_31;
     QWidget *widget_examples;
     QVBoxLayout *verticalLayout_29;
     QPushButton *pb_thread_example;
@@ -283,6 +315,7 @@ public:
     QPushButton *pb_semaphore_example;
     QPushButton *pb_mutex_example;
     QPushButton *pb_messQueue_example;
+    QPushButton *pb_serialPort_example;
     QWidget *widget_win_options;
     QVBoxLayout *verticalLayout_5;
     QPushButton *pb_minimize_option;
@@ -567,7 +600,7 @@ public:
         pb_add_thread->raise();
         widget_configure_in_main_thread = new QWidget(widget_options_screen_native);
         widget_configure_in_main_thread->setObjectName(QStringLiteral("widget_configure_in_main_thread"));
-        widget_configure_in_main_thread->setGeometry(QRect(680, 220, 671, 431));
+        widget_configure_in_main_thread->setGeometry(QRect(680, 220, 671, 501));
         widget_configure_in_main_thread->setStyleSheet(QStringLiteral("background-image: url(:/icons/screen8/fondo_transparente.png);"));
         pb_configure_thread_in_main = new QPushButton(widget_configure_in_main_thread);
         pb_configure_thread_in_main->setObjectName(QStringLiteral("pb_configure_thread_in_main"));
@@ -653,6 +686,18 @@ public:
 "color: rgb(8, 113, 104);\n"
 ""));
         pb_configure_messQueue->setFlat(true);
+        pb_configure_serialPort = new QPushButton(widget_configure_in_main_thread);
+        pb_configure_serialPort->setObjectName(QStringLiteral("pb_configure_serialPort"));
+        pb_configure_serialPort->setEnabled(true);
+        pb_configure_serialPort->setGeometry(QRect(34, 440, 220, 40));
+        pb_configure_serialPort->setMinimumSize(QSize(150, 40));
+        pb_configure_serialPort->setMaximumSize(QSize(220, 50));
+        pb_configure_serialPort->setCursor(QCursor(Qt::PointingHandCursor));
+        pb_configure_serialPort->setStyleSheet(QLatin1String("background-image: url(:/icons/screen8/fondo_transparente.png);\n"
+"font: 75 18pt \"Segoe UI\";\n"
+"color: rgb(8, 113, 104);\n"
+""));
+        pb_configure_serialPort->setFlat(true);
         widget_timer_parameters = new QWidget(widget_options_screen_native);
         widget_timer_parameters->setObjectName(QStringLiteral("widget_timer_parameters"));
         widget_timer_parameters->setGeometry(QRect(30, 10, 251, 381));
@@ -1275,6 +1320,85 @@ public:
         verticalLayout_30->addWidget(pb_add_messQueue);
 
         pb_add_messQueue->raise();
+        widget_serialPort_parameters = new QWidget(widget_options_screen_native);
+        widget_serialPort_parameters->setObjectName(QStringLiteral("widget_serialPort_parameters"));
+        widget_serialPort_parameters->setGeometry(QRect(980, 10, 283, 271));
+        widget_serialPort_parameters->setStyleSheet(QStringLiteral("background-image: url(:/icons/screen8/fondo_transparente.png);"));
+        verticalLayout_16 = new QVBoxLayout(widget_serialPort_parameters);
+        verticalLayout_16->setSpacing(30);
+        verticalLayout_16->setContentsMargins(11, 11, 11, 11);
+        verticalLayout_16->setObjectName(QStringLiteral("verticalLayout_16"));
+        verticalLayout_49 = new QVBoxLayout();
+        verticalLayout_49->setSpacing(6);
+        verticalLayout_49->setObjectName(QStringLiteral("verticalLayout_49"));
+        verticalLayout_49->setSizeConstraint(QLayout::SetFixedSize);
+        l_EVENT_16 = new QLabel(widget_serialPort_parameters);
+        l_EVENT_16->setObjectName(QStringLiteral("l_EVENT_16"));
+        l_EVENT_16->setStyleSheet(QLatin1String("font: 75 18pt \"Segoe UI\";\n"
+"color: rgb(8, 113, 104);\n"
+""));
+        l_EVENT_16->setAlignment(Qt::AlignCenter);
+
+        verticalLayout_49->addWidget(l_EVENT_16);
+
+        le_serialport_name = new QLineEdit(widget_serialPort_parameters);
+        le_serialport_name->setObjectName(QStringLiteral("le_serialport_name"));
+        le_serialport_name->setMinimumSize(QSize(214, 41));
+        le_serialport_name->setStyleSheet(QLatin1String("border-image: url(:/icons/screen6/label_1.png);\n"
+"font: 75 16pt \"Segoe UI\";\n"
+"color: rgb(8, 113, 104);\n"
+""));
+
+        verticalLayout_49->addWidget(le_serialport_name);
+
+
+        verticalLayout_16->addLayout(verticalLayout_49);
+
+        verticalLayout_50 = new QVBoxLayout();
+        verticalLayout_50->setSpacing(6);
+        verticalLayout_50->setObjectName(QStringLiteral("verticalLayout_50"));
+        verticalLayout_50->setSizeConstraint(QLayout::SetFixedSize);
+        l_EVENT_17 = new QLabel(widget_serialPort_parameters);
+        l_EVENT_17->setObjectName(QStringLiteral("l_EVENT_17"));
+        l_EVENT_17->setStyleSheet(QLatin1String("font: 75 18pt \"Segoe UI\";\n"
+"color: rgb(8, 113, 104);\n"
+""));
+        l_EVENT_17->setAlignment(Qt::AlignCenter);
+
+        verticalLayout_50->addWidget(l_EVENT_17);
+
+        sb_serialport_usart_number = new QSpinBox(widget_serialPort_parameters);
+        sb_serialport_usart_number->setObjectName(QStringLiteral("sb_serialport_usart_number"));
+        sb_serialport_usart_number->setMinimumSize(QSize(0, 25));
+        sb_serialport_usart_number->setStyleSheet(QLatin1String("\n"
+"border-image: url(:/icons/screen5/label_2.png);\n"
+"font: 75 14pt \"Segoe UI\";\n"
+"color: rgb(8, 113, 104);\n"
+""));
+        sb_serialport_usart_number->setAlignment(Qt::AlignCenter);
+        sb_serialport_usart_number->setMinimum(1);
+        sb_serialport_usart_number->setMaximum(100000);
+        sb_serialport_usart_number->setSingleStep(1);
+        sb_serialport_usart_number->setValue(1);
+
+        verticalLayout_50->addWidget(sb_serialport_usart_number);
+
+
+        verticalLayout_16->addLayout(verticalLayout_50);
+
+        pb_add_SerialPort = new QPushButton(widget_serialPort_parameters);
+        pb_add_SerialPort->setObjectName(QStringLiteral("pb_add_SerialPort"));
+        pb_add_SerialPort->setEnabled(true);
+        pb_add_SerialPort->setMinimumSize(QSize(150, 40));
+        pb_add_SerialPort->setMaximumSize(QSize(16777215, 50));
+        pb_add_SerialPort->setCursor(QCursor(Qt::PointingHandCursor));
+        pb_add_SerialPort->setStyleSheet(QLatin1String("font: 63 18pt \"Segoe UI Semibold\";\n"
+"color:  rgb(8, 113, 104);"));
+        pb_add_SerialPort->setFlat(true);
+
+        verticalLayout_16->addWidget(pb_add_SerialPort);
+
+        pb_add_SerialPort->raise();
         pb_configure_thread_in_class->raise();
         pb_configure_Main_thread->raise();
         pb_configure_in_Main_thread->raise();
@@ -1287,6 +1411,7 @@ public:
         widget_mutex_parameters->raise();
         widget_configure_in_main_thread->raise();
         widget_messQueue_parameters->raise();
+        widget_serialPort_parameters->raise();
         widget_state_machine_screen = new QWidget(centralWidget);
         widget_state_machine_screen->setObjectName(QStringLiteral("widget_state_machine_screen"));
         widget_state_machine_screen->setGeometry(QRect(3930, 0, 1366, 768));
@@ -1749,7 +1874,7 @@ public:
         pb_add_state->setFlat(true);
         widget_on_state_options = new QWidget(widget_state_machine_screen);
         widget_on_state_options->setObjectName(QStringLiteral("widget_on_state_options"));
-        widget_on_state_options->setGeometry(QRect(110, 540, 131, 191));
+        widget_on_state_options->setGeometry(QRect(110, 550, 131, 191));
         widget_on_state_options->setCursor(QCursor(Qt::ArrowCursor));
         widget_on_state_options->setStyleSheet(QStringLiteral("background-image: url(:/icons/screen8/fondo_blanco.png);"));
         verticalLayout_25 = new QVBoxLayout(widget_on_state_options);
@@ -1862,6 +1987,17 @@ public:
 
         verticalLayout_35->addWidget(pb_cancel_add_event_2);
 
+        pb_Simulate_HSM = new QPushButton(widget_state_machine_screen);
+        pb_Simulate_HSM->setObjectName(QStringLiteral("pb_Simulate_HSM"));
+        pb_Simulate_HSM->setGeometry(QRect(130, 520, 102, 29));
+        pb_Simulate_HSM->setMinimumSize(QSize(0, 0));
+        pb_Simulate_HSM->setMaximumSize(QSize(133, 16777215));
+        pb_Simulate_HSM->setCursor(QCursor(Qt::PointingHandCursor));
+        pb_Simulate_HSM->setStyleSheet(QLatin1String("font: 75 18pt \"Myriad Web\";\n"
+"background-image: url(:/icons/screen8/fondo_transparente.png);\n"
+"color:  rgb(8, 113, 104);\n"
+""));
+        pb_Simulate_HSM->setFlat(true);
         layoutWidget = new QWidget(centralWidget);
         layoutWidget->setObjectName(QStringLiteral("layoutWidget"));
         layoutWidget->setGeometry(QRect(2370, 100, 147, 30));
@@ -1993,7 +2129,7 @@ public:
         l_background_blur->setStyleSheet(QStringLiteral("background-image: url(:/icons/screen8/backgroud_blur.png);"));
         widget_state_machine_name = new QWidget(l_background_blur);
         widget_state_machine_name->setObjectName(QStringLiteral("widget_state_machine_name"));
-        widget_state_machine_name->setGeometry(QRect(590, 76, 348, 155));
+        widget_state_machine_name->setGeometry(QRect(590, 0, 348, 155));
         widget_state_machine_name->setStyleSheet(QStringLiteral("background-image: url(:/icons/screen8/rectangulo_central_blanco.png);"));
         l_state_machine_name = new QLabel(widget_state_machine_name);
         l_state_machine_name->setObjectName(QStringLiteral("l_state_machine_name"));
@@ -2028,7 +2164,7 @@ public:
         pb_cancel_state_machine_name->setFlat(true);
         widget_main_thread_name = new QWidget(l_background_blur);
         widget_main_thread_name->setObjectName(QStringLiteral("widget_main_thread_name"));
-        widget_main_thread_name->setGeometry(QRect(540, 330, 348, 155));
+        widget_main_thread_name->setGeometry(QRect(540, 590, 348, 155));
         widget_main_thread_name->setStyleSheet(QStringLiteral("background-image: url(:/icons/screen8/rectangulo_central_blanco.png);"));
         l_main_thrad_name = new QLabel(widget_main_thread_name);
         l_main_thrad_name->setObjectName(QStringLiteral("l_main_thrad_name"));
@@ -2062,11 +2198,11 @@ public:
         pb_cancel_main_thrad_name->setFlat(true);
         widget_event_options = new QWidget(l_background_blur);
         widget_event_options->setObjectName(QStringLiteral("widget_event_options"));
-        widget_event_options->setGeometry(QRect(60, 100, 401, 400));
+        widget_event_options->setGeometry(QRect(-20, -50, 401, 400));
         widget_event_options->setStyleSheet(QStringLiteral("background-image: url(:/icons/screen8/square_blanco.png);"));
         layoutWidget_2 = new QWidget(widget_event_options);
         layoutWidget_2->setObjectName(QStringLiteral("layoutWidget_2"));
-        layoutWidget_2->setGeometry(QRect(88, 290, 279, 32));
+        layoutWidget_2->setGeometry(QRect(88, 290, 282, 33));
         horizontalLayout_10 = new QHBoxLayout(layoutWidget_2);
         horizontalLayout_10->setSpacing(6);
         horizontalLayout_10->setContentsMargins(11, 11, 11, 11);
@@ -2192,13 +2328,145 @@ public:
 
         verticalLayout_28->addWidget(le_action_name);
 
+        widget_simulate_HSM = new QWidget(l_background_blur);
+        widget_simulate_HSM->setObjectName(QStringLiteral("widget_simulate_HSM"));
+        widget_simulate_HSM->setGeometry(QRect(310, 230, 743, 288));
+        widget_simulate_HSM->setStyleSheet(QLatin1String("background-image: url(:/icons/screen8/window.png);\n"
+"background-image: url(:/icons/screen3/window.png);"));
+        pb_back_from_HSM_simulate = new QPushButton(widget_simulate_HSM);
+        pb_back_from_HSM_simulate->setObjectName(QStringLiteral("pb_back_from_HSM_simulate"));
+        pb_back_from_HSM_simulate->setGeometry(QRect(20, 10, 91, 51));
+        pb_back_from_HSM_simulate->setCursor(QCursor(Qt::PointingHandCursor));
+        pb_back_from_HSM_simulate->setStyleSheet(QLatin1String("font: 14pt \"Myriad Web\";\n"
+"color:  rgb(8, 113, 104);\n"
+""));
+        QIcon icon4;
+        icon4.addFile(QStringLiteral(":/icons/screen8/back_icon_botom.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pb_back_from_HSM_simulate->setIcon(icon4);
+        pb_back_from_HSM_simulate->setIconSize(QSize(100, 100));
+        pb_back_from_HSM_simulate->setFlat(true);
+        layoutWidget_6 = new QWidget(widget_simulate_HSM);
+        layoutWidget_6->setObjectName(QStringLiteral("layoutWidget_6"));
+        layoutWidget_6->setGeometry(QRect(480, 30, 234, 63));
+        verticalLayout_32 = new QVBoxLayout(layoutWidget_6);
+        verticalLayout_32->setSpacing(6);
+        verticalLayout_32->setContentsMargins(11, 11, 11, 11);
+        verticalLayout_32->setObjectName(QStringLiteral("verticalLayout_32"));
+        verticalLayout_32->setSizeConstraint(QLayout::SetFixedSize);
+        verticalLayout_32->setContentsMargins(0, 0, 0, 0);
+        l_EVENT_18 = new QLabel(layoutWidget_6);
+        l_EVENT_18->setObjectName(QStringLiteral("l_EVENT_18"));
+        l_EVENT_18->setStyleSheet(QLatin1String("font: 12pt \"Segoe UI\";\n"
+"color: rgb(128, 128, 128);"));
+        l_EVENT_18->setAlignment(Qt::AlignCenter);
+
+        verticalLayout_32->addWidget(l_EVENT_18);
+
+        le_simulated_event_ID_name = new QLineEdit(layoutWidget_6);
+        le_simulated_event_ID_name->setObjectName(QStringLiteral("le_simulated_event_ID_name"));
+        le_simulated_event_ID_name->setMinimumSize(QSize(232, 34));
+        le_simulated_event_ID_name->setMaximumSize(QSize(232, 16777215));
+        le_simulated_event_ID_name->setStyleSheet(QLatin1String("font: 15pt \"Myriad Web\";\n"
+"color:  rgb(8, 113, 104);\n"
+"border-image: url(:/icons/screen8/label.png);\n"
+""));
+        le_simulated_event_ID_name->setAlignment(Qt::AlignCenter);
+
+        verticalLayout_32->addWidget(le_simulated_event_ID_name);
+
+        layoutWidget_7 = new QWidget(widget_simulate_HSM);
+        layoutWidget_7->setObjectName(QStringLiteral("layoutWidget_7"));
+        layoutWidget_7->setGeometry(QRect(480, 110, 234, 63));
+        verticalLayout_33 = new QVBoxLayout(layoutWidget_7);
+        verticalLayout_33->setSpacing(6);
+        verticalLayout_33->setContentsMargins(11, 11, 11, 11);
+        verticalLayout_33->setObjectName(QStringLiteral("verticalLayout_33"));
+        verticalLayout_33->setSizeConstraint(QLayout::SetFixedSize);
+        verticalLayout_33->setContentsMargins(0, 0, 0, 0);
+        l_NEXT_STATE_2 = new QLabel(layoutWidget_7);
+        l_NEXT_STATE_2->setObjectName(QStringLiteral("l_NEXT_STATE_2"));
+        l_NEXT_STATE_2->setStyleSheet(QLatin1String("font: 12pt \"Segoe UI\";\n"
+"color: rgb(128, 128, 128);"));
+        l_NEXT_STATE_2->setAlignment(Qt::AlignCenter);
+
+        verticalLayout_33->addWidget(l_NEXT_STATE_2);
+
+        le_simulated_next_state_name = new QLineEdit(layoutWidget_7);
+        le_simulated_next_state_name->setObjectName(QStringLiteral("le_simulated_next_state_name"));
+        le_simulated_next_state_name->setMinimumSize(QSize(232, 34));
+        le_simulated_next_state_name->setMaximumSize(QSize(232, 16777215));
+        le_simulated_next_state_name->setStyleSheet(QLatin1String("font: 15pt \"Myriad Web\";\n"
+"color:  rgb(8, 113, 104);\n"
+"border-image: url(:/icons/screen8/label.png);\n"
+""));
+        le_simulated_next_state_name->setAlignment(Qt::AlignCenter);
+
+        verticalLayout_33->addWidget(le_simulated_next_state_name);
+
+        layoutWidget_8 = new QWidget(widget_simulate_HSM);
+        layoutWidget_8->setObjectName(QStringLiteral("layoutWidget_8"));
+        layoutWidget_8->setGeometry(QRect(480, 190, 234, 63));
+        verticalLayout_34 = new QVBoxLayout(layoutWidget_8);
+        verticalLayout_34->setSpacing(6);
+        verticalLayout_34->setContentsMargins(11, 11, 11, 11);
+        verticalLayout_34->setObjectName(QStringLiteral("verticalLayout_34"));
+        verticalLayout_34->setSizeConstraint(QLayout::SetFixedSize);
+        verticalLayout_34->setContentsMargins(0, 0, 0, 0);
+        l_ACTION_2 = new QLabel(layoutWidget_8);
+        l_ACTION_2->setObjectName(QStringLiteral("l_ACTION_2"));
+        l_ACTION_2->setStyleSheet(QLatin1String("font: 12pt \"Segoe UI\";\n"
+"color: rgb(128, 128, 128);"));
+        l_ACTION_2->setAlignment(Qt::AlignCenter);
+
+        verticalLayout_34->addWidget(l_ACTION_2);
+
+        le_simulated_action_name = new QLineEdit(layoutWidget_8);
+        le_simulated_action_name->setObjectName(QStringLiteral("le_simulated_action_name"));
+        le_simulated_action_name->setMinimumSize(QSize(232, 34));
+        le_simulated_action_name->setMaximumSize(QSize(232, 34));
+        le_simulated_action_name->setStyleSheet(QLatin1String("font: 15pt \"Myriad Web\";\n"
+"color:  rgb(8, 113, 104);\n"
+"border-image: url(:/icons/screen8/label.png);\n"
+""));
+        le_simulated_action_name->setAlignment(Qt::AlignCenter);
+
+        verticalLayout_34->addWidget(le_simulated_action_name);
+
+        pb_simulate_dispatch = new QPushButton(widget_simulate_HSM);
+        pb_simulate_dispatch->setObjectName(QStringLiteral("pb_simulate_dispatch"));
+        pb_simulate_dispatch->setGeometry(QRect(315, 220, 107, 31));
+        pb_simulate_dispatch->setCursor(QCursor(Qt::PointingHandCursor));
+        pb_simulate_dispatch->setStyleSheet(QLatin1String("font: 14pt \"Myriad Web\";\n"
+"color:  rgb(8, 113, 104);"));
+        pb_simulate_dispatch->setFlat(true);
+        lw_simulated_events = new QListWidget(widget_simulate_HSM);
+        lw_simulated_events->setObjectName(QStringLiteral("lw_simulated_events"));
+        lw_simulated_events->setGeometry(QRect(30, 111, 231, 141));
+        l_EVENT_19 = new QLabel(widget_simulate_HSM);
+        l_EVENT_19->setObjectName(QStringLiteral("l_EVENT_19"));
+        l_EVENT_19->setGeometry(QRect(30, 70, 232, 21));
+        l_EVENT_19->setStyleSheet(QLatin1String("font: 12pt \"Segoe UI\";\n"
+"color: rgb(128, 128, 128);"));
+        l_EVENT_19->setAlignment(Qt::AlignCenter);
+        l_EVENT_20 = new QLabel(widget_simulate_HSM);
+        l_EVENT_20->setObjectName(QStringLiteral("l_EVENT_20"));
+        l_EVENT_20->setGeometry(QRect(280, 40, 181, 21));
+        l_EVENT_20->setStyleSheet(QLatin1String("font: 12pt \"Segoe UI\";\n"
+"color: rgb(128, 128, 128);"));
+        l_EVENT_20->setAlignment(Qt::AlignCenter);
+        l_current_state_simulated = new QLabel(widget_simulate_HSM);
+        l_current_state_simulated->setObjectName(QStringLiteral("l_current_state_simulated"));
+        l_current_state_simulated->setGeometry(QRect(280, 70, 181, 21));
+        l_current_state_simulated->setStyleSheet(QLatin1String("font: 14pt \"Myriad Web\";\n"
+"color:  rgb(8, 113, 104);"));
+        l_current_state_simulated->setAlignment(Qt::AlignCenter);
         widget_help_screen = new QWidget(centralWidget);
         widget_help_screen->setObjectName(QStringLiteral("widget_help_screen"));
         widget_help_screen->setGeometry(QRect(6680, 0, 1366, 768));
         widget_help_screen->setStyleSheet(QStringLiteral("background-image: url(:/icons/screen8/background.png);"));
         pb_Stcube_Config = new QPushButton(widget_help_screen);
         pb_Stcube_Config->setObjectName(QStringLiteral("pb_Stcube_Config"));
-        pb_Stcube_Config->setGeometry(QRect(177, 320, 433, 53));
+        pb_Stcube_Config->setGeometry(QRect(177, 290, 433, 53));
         pb_Stcube_Config->setCursor(QCursor(Qt::PointingHandCursor));
         pb_Stcube_Config->setStyleSheet(QLatin1String("background-image: url(:/icons/screen8/fondo_transparente.png);\n"
 "font: 63 20pt \"Segoe UI Semibold\";\n"
@@ -2207,7 +2475,7 @@ public:
         pb_Stcube_Config->setFlat(true);
         pb_about_NEOW = new QPushButton(widget_help_screen);
         pb_about_NEOW->setObjectName(QStringLiteral("pb_about_NEOW"));
-        pb_about_NEOW->setGeometry(QRect(246, 390, 433, 53));
+        pb_about_NEOW->setGeometry(QRect(246, 360, 433, 53));
         pb_about_NEOW->setCursor(QCursor(Qt::PointingHandCursor));
         pb_about_NEOW->setStyleSheet(QLatin1String("background-image: url(:/icons/screen8/fondo_transparente.png);\n"
 "font: 63 20pt \"Segoe UI Semibold\";\n"
@@ -2216,7 +2484,7 @@ public:
         pb_about_NEOW->setFlat(true);
         pb_about_QT = new QPushButton(widget_help_screen);
         pb_about_QT->setObjectName(QStringLiteral("pb_about_QT"));
-        pb_about_QT->setGeometry(QRect(300, 460, 433, 53));
+        pb_about_QT->setGeometry(QRect(300, 430, 433, 53));
         pb_about_QT->setCursor(QCursor(Qt::PointingHandCursor));
         pb_about_QT->setStyleSheet(QLatin1String("background-image: url(:/icons/screen8/fondo_transparente.png);\n"
 "font: 63 20pt \"Segoe UI Semibold\";\n"
@@ -2225,7 +2493,7 @@ public:
         pb_about_QT->setFlat(true);
         pb_uVision_Config = new QPushButton(widget_help_screen);
         pb_uVision_Config->setObjectName(QStringLiteral("pb_uVision_Config"));
-        pb_uVision_Config->setGeometry(QRect(225, 250, 433, 53));
+        pb_uVision_Config->setGeometry(QRect(225, 220, 433, 53));
         pb_uVision_Config->setCursor(QCursor(Qt::PointingHandCursor));
         pb_uVision_Config->setStyleSheet(QLatin1String("background-image: url(:/icons/screen8/fondo_transparente.png);\n"
 "font: 63 20pt \"Segoe UI Semibold\";\n"
@@ -2234,14 +2502,17 @@ public:
         pb_uVision_Config->setFlat(true);
         groupBox = new QGroupBox(widget_help_screen);
         groupBox->setObjectName(QStringLiteral("groupBox"));
-        groupBox->setGeometry(QRect(800, 250, 271, 431));
+        groupBox->setGeometry(QRect(800, 230, 231, 484));
         groupBox->setStyleSheet(QLatin1String("background-image: url(:/icons/screen8/fondo_transparente.png);\n"
 "font: 63 20pt \"Segoe UI Semibold\";\n"
 "color: rgb(8, 113, 104);\n"
 ""));
+        verticalLayout_31 = new QVBoxLayout(groupBox);
+        verticalLayout_31->setSpacing(6);
+        verticalLayout_31->setContentsMargins(11, 11, 11, 11);
+        verticalLayout_31->setObjectName(QStringLiteral("verticalLayout_31"));
         widget_examples = new QWidget(groupBox);
         widget_examples->setObjectName(QStringLiteral("widget_examples"));
-        widget_examples->setGeometry(QRect(20, 40, 241, 321));
         widget_examples->setStyleSheet(QStringLiteral("background-image: url(:/icons/screen8/fondo_transparente.png);"));
         verticalLayout_29 = new QVBoxLayout(widget_examples);
         verticalLayout_29->setSpacing(6);
@@ -2345,6 +2616,23 @@ public:
         pb_messQueue_example->setFlat(true);
 
         verticalLayout_29->addWidget(pb_messQueue_example);
+
+        pb_serialPort_example = new QPushButton(widget_examples);
+        pb_serialPort_example->setObjectName(QStringLiteral("pb_serialPort_example"));
+        pb_serialPort_example->setEnabled(true);
+        pb_serialPort_example->setMinimumSize(QSize(150, 40));
+        pb_serialPort_example->setMaximumSize(QSize(220, 50));
+        pb_serialPort_example->setCursor(QCursor(Qt::PointingHandCursor));
+        pb_serialPort_example->setStyleSheet(QLatin1String("background-image: url(:/icons/screen8/fondo_transparente.png);\n"
+"font: 75 20pt \"Segoe UI\";\n"
+"color: rgb(8, 113, 104);\n"
+""));
+        pb_serialPort_example->setFlat(true);
+
+        verticalLayout_29->addWidget(pb_serialPort_example);
+
+
+        verticalLayout_31->addWidget(widget_examples);
 
         widget_win_options = new QWidget(centralWidget);
         widget_win_options->setObjectName(QStringLiteral("widget_win_options"));
@@ -2530,6 +2818,10 @@ public:
         pb_configure_messQueue->setToolTip(QApplication::translate("NFWizard2", "Configure a Main Thread and execute it in main.cpp", Q_NULLPTR));
 #endif // QT_NO_TOOLTIP
         pb_configure_messQueue->setText(QApplication::translate("NFWizard2", "Message Queue    >", Q_NULLPTR));
+#ifndef QT_NO_TOOLTIP
+        pb_configure_serialPort->setToolTip(QApplication::translate("NFWizard2", "Configure a Main Thread and execute it in main.cpp", Q_NULLPTR));
+#endif // QT_NO_TOOLTIP
+        pb_configure_serialPort->setText(QApplication::translate("NFWizard2", "Serial Port   >", Q_NULLPTR));
         l_EVENT_13->setText(QApplication::translate("NFWizard2", "Timer Name", Q_NULLPTR));
         cb_timer_mode->clear();
         cb_timer_mode->insertItems(0, QStringList()
@@ -2578,6 +2870,12 @@ public:
         pb_add_messQueue->setToolTip(QApplication::translate("NFWizard2", "Configure a Main Thread and execute it in main.cpp", Q_NULLPTR));
 #endif // QT_NO_TOOLTIP
         pb_add_messQueue->setText(QApplication::translate("NFWizard2", "Add Message Queue", Q_NULLPTR));
+        l_EVENT_16->setText(QApplication::translate("NFWizard2", "SerialPort variable Name", Q_NULLPTR));
+        l_EVENT_17->setText(QApplication::translate("NFWizard2", "USART Number", Q_NULLPTR));
+#ifndef QT_NO_TOOLTIP
+        pb_add_SerialPort->setToolTip(QApplication::translate("NFWizard2", "Configure a Main Thread and execute it in main.cpp", Q_NULLPTR));
+#endif // QT_NO_TOOLTIP
+        pb_add_SerialPort->setText(QApplication::translate("NFWizard2", "Add SerialPort", Q_NULLPTR));
 #ifndef QT_NO_TOOLTIP
         pb_load_from_Thread->setToolTip(QApplication::translate("NFWizard2", "Load a State Machine saved in folder HSMs into your uVision project path", Q_NULLPTR));
 #endif // QT_NO_TOOLTIP
@@ -2649,6 +2947,10 @@ public:
         pb_cancel_add_event_2->setToolTip(QApplication::translate("NFWizard2", "Cancel the adding of the event", Q_NULLPTR));
 #endif // QT_NO_TOOLTIP
         pb_cancel_add_event_2->setText(QApplication::translate("NFWizard2", "Cancel", Q_NULLPTR));
+#ifndef QT_NO_TOOLTIP
+        pb_Simulate_HSM->setToolTip(QApplication::translate("NFWizard2", "Add a new State in the current Super State", Q_NULLPTR));
+#endif // QT_NO_TOOLTIP
+        pb_Simulate_HSM->setText(QApplication::translate("NFWizard2", "Simulate", Q_NULLPTR));
         pb_acept_main_thread->setText(QString());
         label_loading->setText(QApplication::translate("NFWizard2", "LOADING...", Q_NULLPTR));
         pb_close_window->setText(QString());
@@ -2685,6 +2987,20 @@ public:
         l_EVENT->setText(QApplication::translate("NFWizard2", "EVENT ID", Q_NULLPTR));
         l_NEXT_STATE->setText(QApplication::translate("NFWizard2", "NEXT STATE", Q_NULLPTR));
         l_ACTION->setText(QApplication::translate("NFWizard2", "ACTION", Q_NULLPTR));
+#ifndef QT_NO_TOOLTIP
+        pb_back_from_HSM_simulate->setToolTip(QApplication::translate("NFWizard2", "Add the event configured", Q_NULLPTR));
+#endif // QT_NO_TOOLTIP
+        pb_back_from_HSM_simulate->setText(QString());
+        l_EVENT_18->setText(QApplication::translate("NFWizard2", "EVENT ID", Q_NULLPTR));
+        l_NEXT_STATE_2->setText(QApplication::translate("NFWizard2", "NEXT STATE", Q_NULLPTR));
+        l_ACTION_2->setText(QApplication::translate("NFWizard2", "ACTION", Q_NULLPTR));
+#ifndef QT_NO_TOOLTIP
+        pb_simulate_dispatch->setToolTip(QApplication::translate("NFWizard2", "Add the event configured", Q_NULLPTR));
+#endif // QT_NO_TOOLTIP
+        pb_simulate_dispatch->setText(QApplication::translate("NFWizard2", "Start", Q_NULLPTR));
+        l_EVENT_19->setText(QApplication::translate("NFWizard2", "CURRENT STATE EVENTS", Q_NULLPTR));
+        l_EVENT_20->setText(QApplication::translate("NFWizard2", "CURRENT STATE", Q_NULLPTR));
+        l_current_state_simulated->setText(QApplication::translate("NFWizard2", "State", Q_NULLPTR));
 #ifndef QT_NO_TOOLTIP
         pb_Stcube_Config->setToolTip(QString());
 #endif // QT_NO_TOOLTIP
@@ -2730,6 +3046,10 @@ public:
         pb_messQueue_example->setToolTip(QApplication::translate("NFWizard2", "Configure a Main Thread and execute it in main.cpp", Q_NULLPTR));
 #endif // QT_NO_TOOLTIP
         pb_messQueue_example->setText(QApplication::translate("NFWizard2", "Message Queue", Q_NULLPTR));
+#ifndef QT_NO_TOOLTIP
+        pb_serialPort_example->setToolTip(QApplication::translate("NFWizard2", "Configure a Main Thread and execute it in main.cpp", Q_NULLPTR));
+#endif // QT_NO_TOOLTIP
+        pb_serialPort_example->setText(QApplication::translate("NFWizard2", "Serial Port", Q_NULLPTR));
         pb_minimize_option->setText(QApplication::translate("NFWizard2", "Minimize", Q_NULLPTR));
         pb_maximize_option->setText(QApplication::translate("NFWizard2", "Maximize", Q_NULLPTR));
         pb_cancel_option->setText(QApplication::translate("NFWizard2", "Close", Q_NULLPTR));

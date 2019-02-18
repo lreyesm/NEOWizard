@@ -10,6 +10,9 @@
 #include <QTimer>
 #include <QStandardItemModel>
 #include <QMouseEvent>
+#include <QListWidgetItem>
+
+#define EHSM_MAX_NEST_STATES 16
 
 namespace Ui {
 class NFWizard2;
@@ -25,6 +28,27 @@ class NFWizard2 : public QMainWindow
         QString mssg;
     };
     enum{Main_Thead,Thread_in_Main,Thread_in_Class};
+
+    /////////////////////////////////////////////////////////////////////////////////////////////////////
+    enum EventHandlerType{
+        EventIgnored, //The event does nothing
+        TriggerAction, //The event trigered an action
+        TriggerTransition, //The event triggered a transition
+        TriggerActionAndTransition, //The event triggered a action and a transition
+        TriggerActionMantainState,
+        DoNothingEventIgnored
+    };
+
+
+    QString currentState_simulated;
+    QString initialState_simulated;
+    //QString nextStatePtr_;
+
+    int handleEvent(int state_index, QString event_ID_name);
+    int handleDefaultEvent(int state_index, QString event_ID_name);
+    void dispatch(QString event_ID_name);
+    /////////////////////////////////////////////////////////////////////////////////////////////////////
+
 public:
     explicit NFWizard2(QWidget *parent = 0);
     ~NFWizard2();
@@ -161,6 +185,8 @@ private slots:
 
     void on_selected_event(const QString &arg1);
 
+    void on_selected_simulated_event(const QString &arg1);
+
     void on_pb_load_from_Thread_clicked();
 
     void on_le_main_thread_name_textChanged(const QString &arg1);
@@ -249,6 +275,24 @@ private slots:
     void on_drag_screen();
     void on_drag_screen_released();
     void on_mouse_DoubleClick();
+
+
+    void on_pb_configure_serialPort_clicked();
+
+    void on_pb_add_SerialPort_clicked();
+
+    void on_pb_serialPort_example_clicked();
+
+    void on_pb_Simulate_HSM_clicked();
+
+    void on_pb_back_from_HSM_simulate_clicked();
+
+    void on_le_simulated_event_ID_name_textChanged(const QString &arg1);
+
+    void on_pb_simulate_dispatch_clicked();
+
+    void on_lw_simulated_events_itemClicked(QListWidgetItem *item);
+
 signals:
 
     check_warnings();
@@ -257,6 +301,7 @@ signals:
     void mouse_DoubleClick();
 
 private:
+    bool start_simulating();
     void generateProjectFileTree();
     void generateTemplates(const QString& projectRootRef);
     int generateTemplates_for_Thread(const QString& projectRootRef, const QString thread_name);
@@ -311,6 +356,7 @@ private:
     void add_Semaphore_Configuration(const QString fileuVision_Path, const QString main_thread_name);
     void add_mutex_Configuration(const QString fileuVision_Path, const QString main_thread_name);
     void add_messageQueue_configuration(const QString fileuVision_Path, const QString main_thread_name);
+    void add_SerialPort_Configuration(const QString fileuVision_Path, const QString main_thread_name);
 
 private:
     enum{Generate_Screen,Options_Screen,State_Machine_Screen,Help_Screen};
@@ -333,6 +379,7 @@ private:
     QCompleter *complete_list_object_states;
     QCompleter *complete_list_object_actions;
     QCompleter *complete_list_object_events;
+    QCompleter *complete_list_object_simulated_events;
     QCompleter *complete_list_object_fuctions_exits_entries;
     QCompleter *complete_list_saved_states;
     QCompleter *complete_list_saved_threads;
@@ -348,6 +395,8 @@ private:
     int init_pos_x;
     int init_pos_y;
     bool first_move;
+
+    QHierarchy_State* simulated_state;
 };
 
 #endif // NFWIZARD2_H
