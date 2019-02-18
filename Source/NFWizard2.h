@@ -47,6 +47,8 @@ class NFWizard2 : public QMainWindow
     int handleEvent(int state_index, QString event_ID_name);
     int handleDefaultEvent(int state_index, QString event_ID_name);
     void dispatch(QString event_ID_name);
+
+    QString State_Machine_name;
     /////////////////////////////////////////////////////////////////////////////////////////////////////
 
 public:

@@ -227,13 +227,13 @@ public:
     QPushButton *pb_add_sub_sate;
     QPushButton *pb_eliminate_state;
     QPushButton *pb_cancel_state_options;
-    QPushButton *pb_warning_state_machine;
     QWidget *widget_add_delete_event;
     QVBoxLayout *verticalLayout_35;
     QPushButton *pb_add_event_action;
     QPushButton *pb_delete_event_action;
     QPushButton *pb_cancel_add_event_2;
     QPushButton *pb_Simulate_HSM;
+    QLabel *pb_warning_state_machine;
     QWidget *layoutWidget;
     QHBoxLayout *horizontalLayout;
     QSpacerItem *horizontalSpacer;
@@ -1848,10 +1848,10 @@ public:
 ""));
         tw_state_machine = new QTreeWidget(widget_state_machine_screen);
         tw_state_machine->setObjectName(QStringLiteral("tw_state_machine"));
-        tw_state_machine->setGeometry(QRect(1100, 270, 219, 291));
+        tw_state_machine->setGeometry(QRect(1090, 270, 271, 291));
         tw_state_machine->setMaximumSize(QSize(16777215, 16777215));
         tw_state_machine->setStyleSheet(QLatin1String("font: 75 13pt \"Segoe UI\";\n"
-"background-image: url(:/icons/screen8/state machine_box.png);\n"
+"background-image: url(:/icons/screen8/fondo_transparente.png);\n"
 "color: rgb(8, 113, 104);\n"
 ""));
         pb_back_from_state_machine = new QPushButton(widget_state_machine_screen);
@@ -1943,12 +1943,6 @@ public:
 
         verticalLayout_25->addWidget(pb_cancel_state_options);
 
-        pb_warning_state_machine = new QPushButton(widget_state_machine_screen);
-        pb_warning_state_machine->setObjectName(QStringLiteral("pb_warning_state_machine"));
-        pb_warning_state_machine->setGeometry(QRect(450, 640, 46, 42));
-        pb_warning_state_machine->setStyleSheet(QLatin1String("background-image: url(:/icons/screen8/warning.png);\n"
-"font: 75 12pt \"Segoe UI\";"));
-        pb_warning_state_machine->setFlat(true);
         widget_add_delete_event = new QWidget(widget_state_machine_screen);
         widget_add_delete_event->setObjectName(QStringLiteral("widget_add_delete_event"));
         widget_add_delete_event->setGeometry(QRect(280, 610, 121, 121));
@@ -1999,6 +1993,11 @@ public:
 "color:  rgb(8, 113, 104);\n"
 ""));
         pb_Simulate_HSM->setFlat(true);
+        pb_warning_state_machine = new QLabel(widget_state_machine_screen);
+        pb_warning_state_machine->setObjectName(QStringLiteral("pb_warning_state_machine"));
+        pb_warning_state_machine->setGeometry(QRect(450, 640, 44, 39));
+        pb_warning_state_machine->setStyleSheet(QLatin1String("background-image: url(:/icons/screen8/warning.png);\n"
+"font: 75 12pt \"Segoe UI\";"));
         layoutWidget = new QWidget(centralWidget);
         layoutWidget->setObjectName(QStringLiteral("layoutWidget"));
         layoutWidget->setGeometry(QRect(2370, 100, 147, 30));
@@ -2197,10 +2196,6 @@ public:
 "background-image: url(:/icons/screen8/cancel_botom.png);\n"
 "color:  rgb(21, 172, 112);"));
         pb_cancel_main_thrad_name->setFlat(true);
-        l_main_thrad_name->raise();
-        le_main_thread_name_to_load->raise();
-        pb_acept_main_thread_name->raise();
-        pb_cancel_main_thrad_name->raise();
         widget_event_options = new QWidget(l_background_blur);
         widget_event_options->setObjectName(QStringLiteral("widget_event_options"));
         widget_event_options->setGeometry(QRect(-20, -50, 401, 400));
@@ -2942,7 +2937,6 @@ public:
         pb_add_sub_sate->setText(QApplication::translate("NFWizard2", "Add Child ", Q_NULLPTR));
         pb_eliminate_state->setText(QApplication::translate("NFWizard2", "Eliminate State", Q_NULLPTR));
         pb_cancel_state_options->setText(QApplication::translate("NFWizard2", "Cancel", Q_NULLPTR));
-        pb_warning_state_machine->setText(QString());
 #ifndef QT_NO_TOOLTIP
         pb_add_event_action->setToolTip(QApplication::translate("NFWizard2", "Add the event configured", Q_NULLPTR));
 #endif // QT_NO_TOOLTIP
@@ -2959,6 +2953,7 @@ public:
         pb_Simulate_HSM->setToolTip(QApplication::translate("NFWizard2", "Add a new State in the current Super State", Q_NULLPTR));
 #endif // QT_NO_TOOLTIP
         pb_Simulate_HSM->setText(QApplication::translate("NFWizard2", "Simulate", Q_NULLPTR));
+        pb_warning_state_machine->setText(QString());
         pb_acept_main_thread->setText(QString());
         label_loading->setText(QApplication::translate("NFWizard2", "LOADING...", Q_NULLPTR));
         pb_close_window->setText(QString());

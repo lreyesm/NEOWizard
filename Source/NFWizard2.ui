@@ -3560,9 +3560,9 @@ color:  rgb(8, 113, 104);
     <widget class="QTreeWidget" name="tw_state_machine">
      <property name="geometry">
       <rect>
-       <x>1100</x>
+       <x>1090</x>
        <y>270</y>
-       <width>219</width>
+       <width>271</width>
        <height>291</height>
       </rect>
      </property>
@@ -3574,7 +3574,7 @@ color:  rgb(8, 113, 104);
      </property>
      <property name="styleSheet">
       <string notr="true">font: 75 13pt &quot;Segoe UI&quot;;
-background-image: url(:/icons/screen8/state machine_box.png);
+background-image: url(:/icons/screen8/fondo_transparente.png);
 color: rgb(8, 113, 104);
 </string>
      </property>
@@ -3792,26 +3792,6 @@ color: rgb(8, 113, 104);
       </item>
      </layout>
     </widget>
-    <widget class="QPushButton" name="pb_warning_state_machine">
-     <property name="geometry">
-      <rect>
-       <x>450</x>
-       <y>640</y>
-       <width>46</width>
-       <height>42</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">background-image: url(:/icons/screen8/warning.png);
-font: 75 12pt &quot;Segoe UI&quot;;</string>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-     <property name="flat">
-      <bool>true</bool>
-     </property>
-    </widget>
     <widget class="QWidget" name="widget_add_delete_event" native="true">
      <property name="geometry">
       <rect>
@@ -3931,6 +3911,23 @@ color:  rgb(8, 113, 104);
      </property>
      <property name="flat">
       <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QLabel" name="pb_warning_state_machine">
+     <property name="geometry">
+      <rect>
+       <x>450</x>
+       <y>640</y>
+       <width>44</width>
+       <height>39</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-image: url(:/icons/screen8/warning.png);
+font: 75 12pt &quot;Segoe UI&quot;;</string>
+     </property>
+     <property name="text">
+      <string/>
      </property>
     </widget>
    </widget>
@@ -4556,11 +4553,6 @@ color:  rgb(21, 172, 112);</string>
        <bool>true</bool>
       </property>
      </widget>
-     <zorder>l_main_thrad_name</zorder>
-     <zorder>le_main_thread_name_to_load</zorder>
-     <zorder>pb_acept_main_thread_name</zorder>
-     <zorder>pb_cancel_main_thrad_name</zorder>
-     <zorder>widget_simulate_HSM</zorder>
     </widget>
     <widget class="QWidget" name="widget_event_options" native="true">
      <property name="geometry">
