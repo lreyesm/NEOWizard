@@ -42,6 +42,10 @@ NFWizard2::NFWizard2(QWidget *parent) :
     connect(this,SIGNAL(mouse_DoubleClick()),this,SLOT(on_mouse_DoubleClick()));
     connect(&start_moving_screen,SIGNAL(timeout()),this,SLOT(on_start_moving_screen_timeout()));
 
+    ///////para que funcionen Slot the listwidget//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ui->lw_coeficients->addItem("No coefficients");
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
     dialogConfigHelp = new DialogConfigurationHelp(this);
     //dialogConfigHelp->layout()->setSizeConstraint(QLayout::SetFixedSize);
     loadSettings();
@@ -57,6 +61,8 @@ NFWizard2::NFWizard2(QWidget *parent) :
 
     State_Machine_name = "Unknow";
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    //on_pb_load_coefficient_clicked();
 }
 
 NFWizard2::~NFWizard2()
@@ -136,19 +142,27 @@ void NFWizard2::processMain_H_file(const QString& main_h_path){
 
 void NFWizard2::processMain_cpp_Error_function(const QString &main_cpp_path){
 
-    TextFileProcessor main_cpp_FileProcessor;
+    TextFileProcessor main_cpp_FileProcessor, main_h_FileProcessor;
     main_cpp_FileProcessor.setFilename(main_cpp_path);
-    //// ignora espacios en blanco antes de la linea de codigo
-    main_cpp_FileProcessor.setStartLine("void SystemClock_Config(void);");       ////inicio del contenido a eliminar
-    main_cpp_FileProcessor.setEndLine("void Error_Handler(void);"); ////fin del contenido a eliminar
-    main_cpp_FileProcessor.setReplacementString("/*Start of replaced code of NEOWizard*/\nvoid SystemClock_Config(void);\n/*End of replaced code of NEOWizard*/\n\n");
-    main_cpp_FileProcessor.replace_all_lines_code_instances();
 
-    main_cpp_FileProcessor.setStartLine("void Error_Handler(void)");       ////inicio del contenido a eliminar
-    main_cpp_FileProcessor.setEndLine("void Error_Handler(void)"); ////fin del contenido a eliminar
-    main_cpp_FileProcessor.setReplacementString("/*Start of replaced code of NEOWizard*/\nvoid _Error_Handler(char *file, int line)\n/*End of replaced code of NEOWizard*/\n{\n");
-    main_cpp_FileProcessor.replace_all_lines_code_instances();
+    QString n = fileCube;
+    n= n.remove("/STCubeGenerated.ioc") + QString("/Inc/main.h");
 
+    main_h_FileProcessor.setFilename(n);
+
+    if(main_h_FileProcessor.check_if_code_exist("_Error_Handler", true) == 1){
+
+        //// ignora espacios en blanco antes de la linea de codigo
+        main_cpp_FileProcessor.setStartLine("void SystemClock_Config(void);");       ////inicio del contenido a eliminar
+        main_cpp_FileProcessor.setEndLine("void Error_Handler(void);"); ////fin del contenido a eliminar
+        main_cpp_FileProcessor.setReplacementString("/*Start of replaced code of NEOWizard*/\nvoid SystemClock_Config(void);\n/*End of replaced code of NEOWizard*/\n\n");
+        main_cpp_FileProcessor.replace_all_lines_code_instances();
+
+        main_cpp_FileProcessor.setStartLine("void Error_Handler(void)");       ////inicio del contenido a eliminar
+        main_cpp_FileProcessor.setEndLine("void Error_Handler(void)"); ////fin del contenido a eliminar
+        main_cpp_FileProcessor.setReplacementString("/*Start of replaced code of NEOWizard*/\nvoid _Error_Handler(char *file, int line)\n/*End of replaced code of NEOWizard*/\n{\n");
+        main_cpp_FileProcessor.replace_all_lines_code_instances();
+    }
 }
 
 void NFWizard2::processMain_cpp_Clock_error_code(const QString &main_cpp_path){
@@ -715,7 +729,7 @@ int NFWizard2::generateTemplates_for_Thread(const QString &projectRootRef,const 
         if (retval) {   ////le da permisos de escritura a los templates
             QFile::setPermissions(filePair.second, QFileDevice::WriteOther);
         }else {
-            QMessageBox::warning(this, "NEOWizard", QString("<font color = black >Could not generate project folders <br>May be there is already a file with that name in the project direction"));
+            QMessageBox::warning(this, "NEOWizard", QString("<font color = black >Please generate project folders <br>or May be there is already a file with that name in the project direction"));
             return 0;
         }
     }
@@ -915,7 +929,7 @@ void NFWizard2::show_update_tree_view(const bool expand, const QString item_name
             int index = get_state_index_with_name(hierarchy_states[i]->get_direct_SubStates()[n]);
 
             items[i]->addChild(items[index]);
-        }   
+        }
     }
     quint16 c=0;
     if(expand){
@@ -996,6 +1010,7 @@ void NFWizard2::hide_all_objects(){
 
     ui->widget_main_thread_name->hide();
     ui->widget_state_machine_name->hide();
+    ui->widget_state_machine_function_name->hide();
     ui->widget_event_options->hide();
     ui->widget_simulate_HSM->hide();
 
@@ -1006,6 +1021,7 @@ void NFWizard2::hide_all_objects(){
     ui->widget_mutex_parameters->hide();
     ui->widget_messQueue_parameters->hide();
     ui->widget_serialPort_parameters->hide();
+    ui->widget_filter_parameters->hide();
 
     ui->cb_memoryPool_buffer->setChecked(false);
     ui->l_memPool_buffer_size->hide();
@@ -1160,6 +1176,9 @@ void NFWizard2::on_pb_add_thread_clicked()
             process_Main_Thread_Files(ui->le_main_thread_name->text());
             processXmlFiles_for_Threads(ui->le_main_thread_name->text()); ////modifica XML de keil
             QMessageBox::information(this, "NEOWizard", QString("<font color = black >Main Thread is generated correctly\nPlease save changes in uVision project"));
+        }
+        else{
+            return;
         }
     }
     if(add_thread_state==Thread_in_Main){
@@ -1316,6 +1335,7 @@ void NFWizard2::on_pb_configure_thread_in_class_clicked()
     ui->widget_mutex_parameters->hide();
     ui->widget_messQueue_parameters->hide();
     ui->widget_serialPort_parameters->hide();
+    ui->widget_filter_parameters->hide();
 
 }
 
@@ -1357,6 +1377,7 @@ void NFWizard2::on_pb_configure_Main_thread_clicked()
     ui->widget_mutex_parameters->hide();
     ui->widget_messQueue_parameters->hide();
     ui->widget_serialPort_parameters->hide();
+    ui->widget_filter_parameters->hide();
 }
 
 void NFWizard2::on_pb_configure_state_machine_clicked()
@@ -1601,23 +1622,26 @@ void NFWizard2::on_pb_generate_state_machine_clicked()
     for(quint16 i=0; i< hierarchy_states.size(); i++)
         qDebug()<<"State :  "<<hierarchy_states[i]->get_state_name()<<"   Superstate : "<<hierarchy_states[i]->get_state_parent();
 
-    if(ui->le_main_thread_name->text().isEmpty()){
+    if(ui->le_state_machine_function_name->text().isEmpty() || ui->le_main_thread_name_to_load->text().isEmpty()){
 
-        ui->l_background_blur->move(current_win_Pos);  ui->l_background_blur->raise();
+        ui->l_background_blur->move(current_win_Pos);
+        ui->l_background_blur->raise();
+
         if(isFullScreen()){
-            ui->widget_main_thread_name->move(current_win_Pos.x()+520,current_win_Pos.y()+350);
+            ui->widget_state_machine_function_name->move(current_win_Pos.x()+520,current_win_Pos.y()+350);
         }
         else{
-            ui->widget_main_thread_name->move(current_win_Pos.x()+520,current_win_Pos.y()+350);
+            ui->widget_state_machine_function_name->move(current_win_Pos.x()+520,current_win_Pos.y()+350);
         }
-        ui->widget_main_thread_name->show();
+        ui->widget_state_machine_function_name->show();
 
         return;
     }
+
     else{
 
         if(QMessageBox::information(this,"Confirmation","<font color=black >Generate State Machine?",QMessageBox::Ok,QMessageBox::Cancel)==QMessageBox::Ok){
-            generate_labels_for_state_machine(fileuVision_Path, ui->le_main_thread_name->text());
+            generate_labels_for_state_machine(fileuVision_Path, ui->le_main_thread_name->text(), ui->le_state_machine_function_name->text());
             generate_code_for_state_machine(ui->le_main_thread_name->text());
             ui->widget_options_thread_options->hide();
             QMessageBox::information(this, "NEOWizard","<font color = black >State Machine Generated");
@@ -2385,7 +2409,7 @@ void NFWizard2::generate_definition_for_State_Machine_events(const QString main_
 
 }
 
-int NFWizard2::generate_labels_for_state_machine(const QString path, const QString main_thread_name){
+int NFWizard2::generate_labels_for_state_machine(const QString path, const QString main_thread_name , const QString function_name){
 
     TextFileProcessor main_FileProcessor;
 
@@ -2398,7 +2422,7 @@ int NFWizard2::generate_labels_for_state_machine(const QString path, const QStri
     main_FileProcessor.setFilename(path+QString("/Source/")+main_thread_name+QString(".cpp"));
 
 
-    main_FileProcessor.generate_machine_lines_in_main_thread_cpp(main_thread_name);
+    main_FileProcessor.generate_machine_lines_in_main_thread_cpp(main_thread_name, function_name);
 
 
 
@@ -2434,9 +2458,15 @@ void NFWizard2::generate_code_for_state_machine(const QString main_thread_name){
     ///*********************************************************************************************************************************************************
 
     /*Name of State Machine controller*////*********************************************************************************************************************************************************
+    if(State_Machine_name == "Unknow"){
+
+        State_Machine_name = "controlerHSM";
+    }
 
     toReplace_string = QString("/*Name of State Machine controller*/\n\n")
-            +QString("    eObject::eHierarchicalStateMachine controlerHSM;\n");
+            +QString("    eObject::eHierarchicalStateMachine ")
+            +State_Machine_name
+            +QString(";\n");
 
     if(main_cpp_FileProcessor.check_if_code_exist(toReplace_string, false)==0){
 
@@ -2766,7 +2796,7 @@ void NFWizard2::generate_code_for_state_machine(const QString main_thread_name){
                         main_cpp_FileProcessor.setStartLine("/*Definition of the Inicial State of State Machine*/");       ////inicio del contenido a eliminar
                         main_cpp_FileProcessor.setEndLine("/*Definition of the Inicial State of State Machine*/"); ////fin del contenido a eliminar
                         main_cpp_FileProcessor.setReplacementString(QString("/*Definition of the Inicial State of State Machine*/\n    ")
-                                                                    +QString("eObject::eHierarchicalStateMachine &hsm = controlerHSM;\n    ")
+                                                                    +QString("eObject::eHierarchicalStateMachine &hsm = ")+State_Machine_name+QString(";\n    ")
                                                                     +toReplace_string);
                         main_cpp_FileProcessor.processTextBlock();
                     }
@@ -4414,6 +4444,7 @@ void NFWizard2::on_pb_configure_in_Main_thread_clicked()
     ui->widget_mutex_parameters->hide();
     ui->widget_messQueue_parameters->hide();
     ui->widget_serialPort_parameters->hide();
+    ui->widget_filter_parameters->hide();
 }
 
 void NFWizard2::on_pb_add_Timer_clicked()
@@ -4491,7 +4522,7 @@ void NFWizard2::on_pb_acept_main_thread_name_clicked()
 
             load_state_machine_from_Thread(fileuVision_Path, ui->le_main_thread_name_to_load->text());
 
-             ui->tw_state_machine->headerItem()->setText(0, QString("HSM ")+ State_Machine_name);
+            ui->tw_state_machine->headerItem()->setText(0, QString("HSM ")+ State_Machine_name);
         }
 
         //    ui->widget_wait->hide();
@@ -4502,6 +4533,7 @@ void NFWizard2::on_pb_cancel_main_thrad_name_clicked()
 {
     ui->l_background_blur->move(2048,0);
     ui->widget_main_thread_name->hide();
+    load_from_thread = false;
 }
 
 void NFWizard2::on_le_main_thread_name_to_load_textChanged(const QString &arg1)
@@ -5158,14 +5190,14 @@ void NFWizard2::on_drag_screen(){
                 ui->widget_win_options->hide();
                 return;
             }
-            ui->statusBar->showMessage("RightButton");
+            //ui->statusBar->showMessage("RightButton");
             ui->widget_win_options->show();
             ui->widget_win_options->move(QWidget::mapFromGlobal(QCursor::pos()));
             ui->widget_win_options->raise();
         }
         return;
     }
-    ui->statusBar->showMessage("Moviendo");
+    //ui->statusBar->showMessage("Moviendo");
     if(QApplication::mouseButtons()==Qt::LeftButton){
 
         if(!ui->widget_on_state_options->isHidden()){
@@ -5177,7 +5209,7 @@ void NFWizard2::on_drag_screen(){
         if(!ui->widget_win_options->isHidden()){
             ui->widget_win_options->hide();
         }
-        ui->statusBar->showMessage("start");
+        //ui->statusBar->showMessage("start");
         start_moving_screen.start(10);
         bool first_move = true;
         init_pos_x = (QWidget::mapFromGlobal(QCursor::pos())).x();
@@ -5725,7 +5757,7 @@ void NFWizard2::on_pb_simulate_dispatch_clicked()
             ui->lw_simulated_events->addItems(complete_list);
         }
         else{
-             QMessageBox::information(this, "Simulator",QString("<font color = black >Please add event to dispatch"));
+            QMessageBox::information(this, "Simulator",QString("<font color = black >Please add event to dispatch"));
         }
     }
 }
@@ -5767,14 +5799,14 @@ bool NFWizard2::start_simulating(){
             index++;
             int index_super = get_state_index_with_name(super);
             if(index_super != -1){
-            super = hierarchy_states[index_super]->get_state_parent();
+                super = hierarchy_states[index_super]->get_state_parent();
             }
             else{ super = "No Parent";}
         }while(super != "No Parent" && (index<EHSM_MAX_NEST_STATES));
 
         for(index--; index>0; index--){
-//            path[index]->signalEntered.notify();
-//            path[index]->onEntry();
+            //            path[index]->signalEntered.notify();
+            //            path[index]->onEntry();
             int index_path_index = get_state_index_with_name(path[index]);
             if(index_path_index != -1){
                 QMessageBox::information(this, "Simulator",QString("<font color = black >Executed entry function ")
@@ -5787,8 +5819,8 @@ bool NFWizard2::start_simulating(){
                                                        +hierarchy_states[index_path_index]->get_state_name());
             }
         }
-//        path[0]->signalEntered.notify();
-//        path[0]->onEntry();
+        //        path[0]->signalEntered.notify();
+        //        path[0]->onEntry();
         int index_path_index = get_state_index_with_name(path[0]);
         if(index_path_index != -1){
             QMessageBox::information(this, "Simulator",QString("<font color = black >Executed entry function ")
@@ -5811,8 +5843,8 @@ bool NFWizard2::start_simulating(){
                 currentState_simulated = hierarchy_states[currentState_simulated_index]->get_state_initial();
                 currentState_simulated_index = get_state_index_with_name(currentState_simulated);
 
-//                currentState_->signalEntered.notify();
-//                currentState_->onEntry();
+                //                currentState_->signalEntered.notify();
+                //                currentState_->onEntry();
                 QMessageBox::information(this, "Simulator",QString("<font color = black >Executed entry function ")
                                          +hierarchy_states[currentState_simulated_index]->get_state_on_entry_Action()
                                          +QString("<font color = black > of state ")
@@ -5839,3 +5871,302 @@ bool NFWizard2::start_simulating(){
 
 
 
+
+void NFWizard2::on_pb_acept_sate_machine_function_name_clicked()
+{
+    if(ui->le_main_thread_name_to_load->text().isEmpty()){
+
+        ui->l_background_blur->move(current_win_Pos);
+        ui->l_background_blur->raise();
+
+        if(isFullScreen()){
+            ui->widget_main_thread_name->move(current_win_Pos.x()+520,current_win_Pos.y()+350);
+        }
+        else{
+            ui->widget_main_thread_name->move(current_win_Pos.x()+520,current_win_Pos.y()+350);
+        }
+        ui->widget_main_thread_name->show();
+
+        ui->widget_state_machine_function_name->hide();
+
+        return;
+    }
+}
+
+void NFWizard2::on_pb_cancel_state_machine_function_name_clicked()
+{
+    ui->widget_state_machine_function_name->hide();
+    ui->l_background_blur->move(2048,0);
+}
+
+
+
+void NFWizard2::on_pb_configure_filter_clicked()
+{
+    if(ui->le_main_thread_name->text().isEmpty()){
+
+        ui->l_background_blur->move(current_win_Pos);  ui->l_background_blur->raise();
+        if(isFullScreen()){
+            ui->widget_main_thread_name->move(current_win_Pos.x()+520,current_win_Pos.y()+350);
+        }
+        else{
+            ui->widget_main_thread_name->move(current_win_Pos.x()+520,current_win_Pos.y()+350);
+        }
+        ui->widget_main_thread_name->show();
+
+        return;
+    }
+    ui->widget_configure_in_main_thread->hide();
+    ui->widget_filter_parameters->show();
+    ui->widget_filter_parameters->move(ui->widget_configure_in_main_thread->pos().x()+80, ui->widget_configure_in_main_thread->pos().y());
+}
+
+void NFWizard2::on_pb_add_Filter_clicked()
+{
+    //    if(ui->le_semaphore_name->text().isEmpty()){
+    //        QMessageBox::information(this, "NEOWizard","<font color = black >Insert Semaphore Name");
+    //        return;
+    //    }
+    if(ui->sb_filter_buffer_size->value() <=0){
+        QMessageBox::information(this, "NEOWizard","<font color = black >Insert filter buffer size higher than 0");
+        return;
+    }
+    add_Filter_Configuration(fileuVision_Path, ui->le_main_thread_name->text());
+    QMessageBox::information(this, "NEOWizard","<font color = black >Filter correctly added to project");
+
+    ui->widget_filter_parameters->hide();
+    ui->widget_configure_in_main_thread->show();
+}
+
+void NFWizard2::add_Filter_Configuration(const QString fileuVision_Path, const QString main_thread_name){
+
+    TextFileProcessor main_h_FileProcessor;
+
+    main_h_FileProcessor.setFilename(fileuVision_Path+QString("/Include/")+main_thread_name+QString(".h"));
+
+    if(main_h_FileProcessor.check_if_code_exist(QString("#include \"arm_math.h\""),true)==0){
+        main_h_FileProcessor.setStartLine("#include <eApplicationBase.h>");       ////inicio del contenido a eliminar
+        main_h_FileProcessor.setEndLine("#include <eApplicationBase.h>"); ////fin del contenido a eliminar
+        main_h_FileProcessor.setReplacementString(QString("#include <eApplicationBase.h>\n")+QString("#include \"arm_math.h\""));
+        main_h_FileProcessor.processTextBlock();
+    }
+    if(main_h_FileProcessor.check_if_code_exist(QString("#define NUM_TAPS"), true)==0){
+        main_h_FileProcessor.setStartLine("#include \"arm_math.h\""); ////inicio del contenido a eliminar
+        main_h_FileProcessor.setEndLine("#include \"arm_math.h\""); ////fin del contenido a eliminar
+        main_h_FileProcessor.setReplacementString(QString("#include \"arm_math.h\"")
+                                                  +QString("\n#define NUM_TAPS ")
+                                                  +QString::number(ui->lw_coeficients->count())+QString("   //Order of the filter"));
+        main_h_FileProcessor.processTextBlock();
+    }
+    if(main_h_FileProcessor.check_if_code_exist(QString("#define BLOCK_SIZE")+ui->le_semaphore_name->text(),true)==0){
+        main_h_FileProcessor.setStartLine("#include \"arm_math.h\"");       ////inicio del contenido a eliminar
+        main_h_FileProcessor.setEndLine("#include \"arm_math.h\""); ////fin del contenido a eliminar
+        main_h_FileProcessor.setReplacementString(QString("#include \"arm_math.h\"")
+                                                  +QString("\n#define BLOCK_SIZE ")
+                                                  +QString::number(ui->sb_filter_buffer_size->value())+QString("   //Size of the buffer to filter"));
+        main_h_FileProcessor.processTextBlock();
+    }
+    if(main_h_FileProcessor.check_if_code_exist(QString("low_pass_FIR_filter"),true)==0){
+        main_h_FileProcessor.setStartLine("public:");       ////inicio del contenido a eliminar
+        main_h_FileProcessor.setEndLine("public:"); ////fin del contenido a eliminar
+        main_h_FileProcessor.setReplacementString(QString("public:\n")
+                                                  +QString("\n    void low_pass_FIR_filter(")+ui->cb_buffer_type->currentText()+QString("* input_buffer,")
+                                                  +ui->cb_buffer_type->currentText()+QString("* output_buffer, const uint32_t buffer_size = BLOCK_SIZE")+QString(");"));
+        main_h_FileProcessor.processTextBlock();
+    }
+
+    TextFileProcessor main_cpp_FileProcessor;
+
+    main_cpp_FileProcessor.setFilename(fileuVision_Path+QString("/Source/")+main_thread_name+QString(".cpp"));
+
+    if(main_cpp_FileProcessor.check_if_code_exist(QString("void low_pass_FIR_filter("),false)==0){
+
+        QString coefficients = " ";
+        for(int i=0; i < ui->lw_coeficients->count();i++){
+
+            if(i==ui->lw_coeficients->count()-1){
+                coefficients += ui->lw_coeficients->item(i)->text()+QString("\n};\n");
+            }
+            else{
+                coefficients += ui->lw_coeficients->item(i)->text()+QString(",\n   ");
+            }
+        }
+        main_cpp_FileProcessor.add_code_at_end_of_file(main_thread_name, QString("const float32_t fir_coefficient[NUM_TAPS]={\n  ")+coefficients
+                                                       +QString("\nstatic float32_t  firState_f32[BLOCK_SIZE + NUM_TAPS - 1];\n"));
+    }
+
+    if(main_cpp_FileProcessor.check_if_code_exist(QString("void low_pass_FIR_filter("),false)==0){
+
+        QString before_filter_convertion, after_filter_convertion;
+
+        if(ui->cb_buffer_type->currentText().contains("float")){
+            before_filter_convertion = QString("   std::memcpy(&inputF32[0], &input_buffer[0], sizeof(input_buffer));");
+            after_filter_convertion = QString("   std::memcpy(&output_buffer[0], &outputF32[0], sizeof(outputF32));");
+
+        }else if(ui->cb_buffer_type->currentText().contains("uint32")){
+
+            before_filter_convertion = QString("   arm_q31_to_float((q31_t*)&input_buffer[0], inputF32, buffer_size);");
+            after_filter_convertion = QString("   arm_float_to_q31(&outputF32[0], (q31_t*)&output_buffer[0], buffer_size);");
+
+        }else if(ui->cb_buffer_type->currentText().contains("uint16")){
+
+            before_filter_convertion = QString("   arm_q15_to_float((q15_t*)&input_buffer[0], inputF32, buffer_size);");
+            after_filter_convertion = QString("   arm_float_to_q15(&outputF32[0], (q15_t*)&output_buffer[0], buffer_size);");
+
+        }else if(ui->cb_buffer_type->currentText().contains("uint8")){
+
+            before_filter_convertion = QString("   arm_q7_to_float((q7_t*)&input_buffer[0], inputF32, buffer_size);");
+            after_filter_convertion = QString("   arm_float_to_q7(&outputF32[0], (q7_t*)&output_buffer[0], buffer_size);");
+        }
+
+        main_cpp_FileProcessor.add_code_at_end_of_file(main_thread_name, QString("\nvoid ")+main_thread_name+QString("::low_pass_FIR_filter(")+ui->cb_buffer_type->currentText()+QString("* input_buffer,")
+                                                       +ui->cb_buffer_type->currentText()+QString("* output_buffer, const uint32_t buffer_size")+QString("){")
+                                                       +QString("\n   uint32_t i;\n   arm_fir_instance_f32 S;\n   arm_status status;\n   float32_t  inputF32[BLOCK_SIZE], outputF32[BLOCK_SIZE];\n   arm_fir_init_f32(&S, NUM_TAPS, (float32_t *)&fir_coefficient[0], &firState_f32[0], buffer_size);\n")
+                                                       +QString("\n   for(i=0; i<buffer_size ;++i){\n")+QString("		 input_buffer[i] = input_buffer[i] >> 1;\n	 }\n")
+                                                       +before_filter_convertion
+                                                       +QString("\n   arm_fir_f32(&S, inputF32 , outputF32, buffer_size);\n")
+                                                       +after_filter_convertion
+                                                       +QString("\n   for(i=0; i<buffer_size ;++i){\n")+QString("		   output_buffer[i] = output_buffer[i] << 1;\n	 }\n}\n"));
+    }
+
+}
+
+
+void NFWizard2::on_lw_coeficients_pressed(const QModelIndex &index)
+{
+    if(QApplication::mouseButtons()==Qt::RightButton){
+
+
+        ui->widget_add_delete_coefficient->show();
+        ui->widget_add_delete_coefficient->move(QWidget::mapFromGlobal(QPoint(QCursor::pos().x()-current_win_Pos.x(),QCursor::pos().y()-current_win_Pos.y())));
+    }
+    if(QApplication::mouseButtons()==Qt::LeftButton){
+
+
+    }
+}
+
+void NFWizard2::on_lw_coeficients_doubleClicked(const QModelIndex &index)
+{
+    ui->statusBar->showMessage("DoubleButton");
+    ui->widget_add_coefficient->show();
+    ui->widget_add_coefficient->move(QWidget::mapFromGlobal(QPoint(QCursor::pos().x()-current_win_Pos.x(),QCursor::pos().y()-current_win_Pos.y())));
+    modify_coefficient = true;
+    
+    if(!ui->widget_add_delete_coefficient->isHidden()){
+        ui->widget_add_delete_coefficient->hide();
+    }
+}
+
+
+void NFWizard2::on_pb_add_coefficient_ok_clicked()
+{
+    if(ui->le_coefficient_value->text().isEmpty()){
+
+        QMessageBox::information(this, "NEOWizard","<font color = black >Insert coefficient");
+        return;
+    }
+    if(!modify_coefficient){
+        ui->widget_add_coefficient->hide();
+        ui->lw_coeficients->addItem(ui->le_coefficient_value->text());
+    }
+    else{
+
+        for(int i = 0; i < ui->lw_coeficients->count(); i++){
+            if(ui->lw_coeficients->item(i)->isSelected()){
+                ui->widget_add_coefficient->hide();
+                ui->lw_coeficients->item(i)->setText(ui->le_coefficient_value->text());
+            }
+        }
+    }
+}
+
+
+void NFWizard2::on_pb_cancel_adding_coefficient_clicked()
+{
+    ui->widget_add_delete_coefficient->hide();
+}
+
+void NFWizard2::on_pb_change_coefficient_clicked()
+{
+    ui->widget_add_delete_coefficient->hide();
+    ui->statusBar->showMessage("Change");
+    ui->widget_add_coefficient->show();
+    ui->widget_add_coefficient->move(QWidget::mapFromGlobal(QPoint(QCursor::pos().x()-current_win_Pos.x(),QCursor::pos().y()-current_win_Pos.y())));
+    modify_coefficient = true;
+
+}
+
+void NFWizard2::on_pb_delete_coefficient_clicked()
+{
+    ui->widget_add_delete_coefficient->hide();
+
+    ui->widget_add_coefficient->hide();
+    QStringList coefficients;
+
+    for(int i = 0; i < ui->lw_coeficients->count(); i++){
+        if(!ui->lw_coeficients->item(i)->isSelected()){
+
+            coefficients.append(ui->lw_coeficients->item(i)->text());
+        }
+    }
+
+    ui->lw_coeficients->clear();
+    ui->lw_coeficients->addItems(coefficients);
+}
+
+void NFWizard2::on_pb_add_coefficient_clicked()
+{
+    ui->widget_add_delete_coefficient->hide();
+
+    ui->statusBar->showMessage("DoubleButton");
+    ui->widget_add_coefficient->show();
+    ui->widget_add_coefficient->move(QWidget::mapFromGlobal(QPoint(QCursor::pos().x()-current_win_Pos.x(),QCursor::pos().y()-current_win_Pos.y())));
+    modify_coefficient = false;
+}
+
+
+void NFWizard2::on_pb_load_coefficient_clicked()
+{
+    ui->widget_add_delete_coefficient->hide();
+
+    QString coefficients_file_name = QFileDialog::getOpenFileName(this, tr("Select file with coefficients"),
+                                                                  fileuVision_Path,
+                                                                  tr("Coefficient files (*.fcf *.txt)"));
+    if (QFile::exists(coefficients_file_name)) {
+
+        QFile coefficients_file(coefficients_file_name);
+
+        if (!coefficients_file.open(QFile::ReadOnly | QFile::Text)) { //lo abre como lectura
+            qWarning() << "file: " << coefficients_file_name<< " could not be opened for read!";
+
+            return;
+        }
+
+        QString fileContent = coefficients_file.readAll();
+        coefficients_file.close();
+
+        int pos = fileContent.lastIndexOf("Numerator:");
+
+        fileContent.remove(0,pos);
+        QStringList listCoefficients = fileContent.split("\n",QString::SkipEmptyParts);
+        listCoefficients.removeFirst();
+
+        ui->lw_coeficients->clear();
+
+        for(int i=0; i < listCoefficients.size();i++){
+
+            QString n = (listCoefficients.at(i)).simplified();
+            n.replace(" ", "");
+            if(!n.isEmpty()){
+                ui->lw_coeficients->addItem(n);
+            }
+        }
+        return;
+    }
+}
+
+void NFWizard2::on_pb_add_coefficient_cancel_clicked()
+{
+    ui->widget_add_coefficient->hide();
+}

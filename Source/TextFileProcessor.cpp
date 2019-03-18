@@ -356,7 +356,7 @@ int TextFileProcessor::generate_machine_lines_in_main_thread_h(){
     return 1;
 }
 
-int TextFileProcessor::generate_machine_lines_in_main_thread_cpp(const QString main_thread_name){
+int TextFileProcessor::generate_machine_lines_in_main_thread_cpp(const QString main_thread_name, const QString function_name){
 
 
     QString replacement_line = QString("/* USER CODE BEGIN Includes */")+
@@ -479,12 +479,12 @@ int TextFileProcessor::generate_machine_lines_in_main_thread_cpp(const QString m
             }
         }
         else{
-            return 0;
+            //return 0;
         }
     }
-    if(check_if_code_exist("::userLoop(){", true)==1 && check_if_code_exist(replacement_line_2.section('/',1,1), false)==0){
+    if(check_if_code_exist(QString("::")+function_name+QString("(){"), true)==1 && check_if_code_exist(replacement_line_2.section('/',1,1), false)==0){
 
-        QString toReplace = "::userLoop(){" + replacement_line_2;
+        QString toReplace = QString("::")+function_name+QString("(){") + replacement_line_2;
 
         QFile file(filename());
         if (!file.open(QFile::ReadWrite | QFile::Text)) {
@@ -497,7 +497,7 @@ int TextFileProcessor::generate_machine_lines_in_main_thread_cpp(const QString m
 
         file.close();
 
-        fileContent.replace("::userLoop(){", toReplace);
+        fileContent.replace(QString("::")+function_name+QString("(){") , toReplace);
 
         int retval = write_string_to_document(fileContent);
 
@@ -506,8 +506,8 @@ int TextFileProcessor::generate_machine_lines_in_main_thread_cpp(const QString m
         }
     }
     else{
-        if(check_if_code_exist("::userLoop()\n", true)==1 && check_if_code_exist(replacement_line_2.section('/',1,1), false)==0){
-            QString toReplace = "::userLoop(){" + replacement_line_2;
+        if(check_if_code_exist(QString("::")+function_name+QString("()\n") , true)==1 && check_if_code_exist(replacement_line_2.section('/',1,1), false)==0){
+            QString toReplace = QString("::")+function_name+QString("(){")  + replacement_line_2;
 
             QFile file(filename());
             if (!file.open(QFile::ReadWrite | QFile::Text)) {
@@ -520,7 +520,30 @@ int TextFileProcessor::generate_machine_lines_in_main_thread_cpp(const QString m
 
             file.close();
 
-            fileContent.replace("::userLoop()\n{", toReplace);
+            fileContent.replace(QString("::")+function_name+QString("()\n{") , toReplace);
+
+            int retval = write_string_to_document(fileContent);
+
+            if(retval != 1){
+                return retval;
+            }
+        }
+        else if(check_if_code_exist(QString("::")+function_name+QString("()\n") , true)==0){
+
+            QString toReplace = QString("void ")+main_thread_name+QString("::")+function_name+QString("(){")  + replacement_line_2+QString("\n}");
+
+            QFile file(filename());
+            if (!file.open(QFile::ReadWrite | QFile::Text)) {
+                qWarning() << "File: " << filename() << " could not be opened for read!";
+
+                return -2;
+            }
+
+            QString fileContent = file.readAll();
+
+            file.close();
+
+            fileContent += toReplace;
 
             int retval = write_string_to_document(fileContent);
 
@@ -597,6 +620,25 @@ int TextFileProcessor::generate_code_in_main_thread_cpp(const QString main_threa
         return 0;
 
     }
+    return 1;
+}
+
+int TextFileProcessor::add_code_at_end_of_file(const QString main_thread_name, const QString code_to_add){
+
+    QFile file(filename());
+    if (!file.open(QFile::ReadWrite | QFile::Text)) {
+        qWarning() << "File: " << filename() << " could not be opened for read!";
+
+        return -2;
+    }
+    QString add_line = code_to_add;
+
+    QString fileContent = file.readAll()+add_line;
+    file.close();
+
+    return write_string_to_document(fileContent);
+
+
     return 1;
 }
 

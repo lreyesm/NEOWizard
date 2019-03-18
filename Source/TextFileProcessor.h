@@ -25,12 +25,13 @@ public:
     int generate_code_in_main_thread_h();
     int generate_code_in_main_thread_cpp(const QString main_thread_name);
     int generate_machine_lines_in_main_thread_h();
-    int generate_machine_lines_in_main_thread_cpp(const QString main_thread_name);
+    int generate_machine_lines_in_main_thread_cpp(const QString main_thread_name, const QString function_name);
     void replace_all_lines_code_instances();
     int write_string_to_document(const QString fileContent);
     const QStringList get_text_between();
     void processTextBlock_modified();
     int add_code_to_end_of_file(const QString main_thread_name);
+    int add_code_at_end_of_file(const QString main_thread_name, const QString code_to_add);
 private:
     QString filename_;
     QString startLine_;

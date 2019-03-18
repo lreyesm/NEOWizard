@@ -978,9 +978,9 @@ color: rgb(8, 113, 104);
      <property name="geometry">
       <rect>
        <x>680</x>
-       <y>220</y>
+       <y>170</y>
        <width>671</width>
-       <height>501</height>
+       <height>561</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -1325,6 +1325,49 @@ color: rgb(8, 113, 104);
       </property>
       <property name="text">
        <string>Serial Port   &gt;</string>
+      </property>
+      <property name="flat">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pb_configure_filter">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>490</y>
+        <width>220</width>
+        <height>40</height>
+       </rect>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>150</width>
+        <height>40</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>220</width>
+        <height>50</height>
+       </size>
+      </property>
+      <property name="cursor">
+       <cursorShape>PointingHandCursor</cursorShape>
+      </property>
+      <property name="toolTip">
+       <string>Configure a Main Thread and execute it in main.cpp</string>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-image: url(:/icons/screen8/fondo_transparente.png);
+font: 75 18pt &quot;Segoe UI&quot;;
+color: rgb(8, 113, 104);
+</string>
+      </property>
+      <property name="text">
+       <string>         Filter   &gt;</string>
       </property>
       <property name="flat">
        <bool>true</bool>
@@ -2450,7 +2493,7 @@ color:  rgb(8, 113, 104);</string>
     <widget class="QWidget" name="widget_serialPort_parameters" native="true">
      <property name="geometry">
       <rect>
-       <x>980</x>
+       <x>1090</x>
        <y>10</y>
        <width>283</width>
        <height>271</height>
@@ -2595,6 +2638,203 @@ color:  rgb(8, 113, 104);</string>
      <zorder></zorder>
      <zorder></zorder>
     </widget>
+    <widget class="QWidget" name="widget_filter_parameters" native="true">
+     <property name="geometry">
+      <rect>
+       <x>860</x>
+       <y>0</y>
+       <width>251</width>
+       <height>441</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-image: url(:/icons/screen8/fondo_transparente.png);</string>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_51">
+      <property name="spacing">
+       <number>30</number>
+      </property>
+      <property name="sizeConstraint">
+       <enum>QLayout::SetFixedSize</enum>
+      </property>
+      <item>
+       <layout class="QVBoxLayout" name="verticalLayout_52">
+        <property name="sizeConstraint">
+         <enum>QLayout::SetFixedSize</enum>
+        </property>
+        <item>
+         <widget class="QLabel" name="l_EVENT_24">
+          <property name="styleSheet">
+           <string notr="true">font: 75 18pt &quot;Segoe UI&quot;;
+color: rgb(8, 113, 104);
+</string>
+          </property>
+          <property name="text">
+           <string>Coeficients</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QListWidget" name="lw_coeficients">
+          <property name="styleSheet">
+           <string notr="true">font: 75 12pt &quot;Segoe UI&quot;;</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QVBoxLayout" name="verticalLayout_55">
+        <property name="sizeConstraint">
+         <enum>QLayout::SetFixedSize</enum>
+        </property>
+        <item>
+         <widget class="QLabel" name="l_EVENT_21">
+          <property name="styleSheet">
+           <string notr="true">font: 75 18pt &quot;Segoe UI&quot;;
+color: rgb(8, 113, 104);
+</string>
+          </property>
+          <property name="text">
+           <string>Buffer type</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QComboBox" name="cb_buffer_type">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>31</height>
+           </size>
+          </property>
+          <property name="layoutDirection">
+           <enum>Qt::LeftToRight</enum>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">
+border-image: url(:/icons/screen5/label_2.png);
+font: 75 14pt &quot;Segoe UI&quot;;
+color: rgb(8, 113, 104);
+</string>
+          </property>
+          <item>
+           <property name="text">
+            <string>float32_t</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>uint32_t</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>uint16_t</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>uint8_t</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QVBoxLayout" name="verticalLayout_53">
+        <property name="sizeConstraint">
+         <enum>QLayout::SetFixedSize</enum>
+        </property>
+        <item>
+         <widget class="QLabel" name="l_EVENT_22">
+          <property name="styleSheet">
+           <string notr="true">font: 75 18pt &quot;Segoe UI&quot;;
+color: rgb(8, 113, 104);
+</string>
+          </property>
+          <property name="text">
+           <string>Block Buffer size</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QSpinBox" name="sb_filter_buffer_size">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>25</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">font: 14pt &quot;Segoe UI&quot;;
+border-image: url(:/icons/screen5/label_2.png);
+color: rgb(8, 113, 104);
+</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+          <property name="maximum">
+           <number>100000</number>
+          </property>
+          <property name="singleStep">
+           <number>10</number>
+          </property>
+          <property name="value">
+           <number>100</number>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <widget class="QPushButton" name="pb_add_Filter">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>150</width>
+          <height>40</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>50</height>
+         </size>
+        </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
+        <property name="toolTip">
+         <string>Configure a Main Thread and execute it in main.cpp</string>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">font: 63 18pt &quot;Segoe UI Semibold&quot;;
+color:  rgb(8, 113, 104);</string>
+        </property>
+        <property name="text">
+         <string>Add Filter</string>
+        </property>
+        <property name="flat">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
     <zorder>pb_configure_thread_in_class</zorder>
     <zorder>pb_configure_Main_thread</zorder>
     <zorder>pb_configure_in_Main_thread</zorder>
@@ -2608,6 +2848,7 @@ color:  rgb(8, 113, 104);</string>
     <zorder>widget_configure_in_main_thread</zorder>
     <zorder>widget_messQueue_parameters</zorder>
     <zorder>widget_serialPort_parameters</zorder>
+    <zorder>widget_filter_parameters</zorder>
    </widget>
    <widget class="QWidget" name="widget_state_machine_screen" native="true">
     <property name="geometry">
@@ -4451,7 +4692,7 @@ color:  rgb(21, 172, 112);</string>
     <widget class="QWidget" name="widget_main_thread_name" native="true">
      <property name="geometry">
       <rect>
-       <x>540</x>
+       <x>0</x>
        <y>590</y>
        <width>348</width>
        <height>155</height>
@@ -5145,6 +5386,115 @@ color:  rgb(8, 113, 104);</string>
       </property>
      </widget>
     </widget>
+    <widget class="QWidget" name="widget_state_machine_function_name" native="true">
+     <property name="geometry">
+      <rect>
+       <x>970</x>
+       <y>50</y>
+       <width>348</width>
+       <height>155</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-image: url(:/icons/screen8/rectangulo_central_blanco.png);</string>
+     </property>
+     <widget class="QLabel" name="l_state_machine_name_2">
+      <property name="geometry">
+       <rect>
+        <x>66</x>
+        <y>30</y>
+        <width>231</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font: 14pt &quot;Segoe UI&quot;;
+color: rgb(128, 128, 128);</string>
+      </property>
+      <property name="text">
+       <string>Function of State Machine</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="le_state_machine_function_name">
+      <property name="geometry">
+       <rect>
+        <x>60</x>
+        <y>60</y>
+        <width>232</width>
+        <height>34</height>
+       </rect>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>234</width>
+        <height>16777215</height>
+       </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font: 15pt &quot;Myriad Web&quot;;
+color:  rgb(8, 113, 104);
+border-image: url(:/icons/screen8/label.png);
+</string>
+      </property>
+      <property name="text">
+       <string>userLoop</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pb_acept_sate_machine_function_name">
+      <property name="geometry">
+       <rect>
+        <x>240</x>
+        <y>100</y>
+        <width>54</width>
+        <height>29</height>
+       </rect>
+      </property>
+      <property name="cursor">
+       <cursorShape>PointingHandCursor</cursorShape>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font: 12pt &quot;Segoe UI&quot;;
+background-image: url(:/icons/screen8/acept_botom.png);
+color:  rgb(21, 172, 112);</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="flat">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pb_cancel_state_machine_function_name">
+      <property name="geometry">
+       <rect>
+        <x>60</x>
+        <y>100</y>
+        <width>61</width>
+        <height>29</height>
+       </rect>
+      </property>
+      <property name="cursor">
+       <cursorShape>PointingHandCursor</cursorShape>
+      </property>
+      <property name="toolTip">
+       <string>Cancel the name configured</string>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font: 12pt &quot;Segoe UI&quot;;
+background-image: url(:/icons/screen8/cancel_botom.png);
+color:  rgb(21, 172, 112);</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="flat">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </widget>
    </widget>
    <widget class="QWidget" name="widget_help_screen" native="true">
     <property name="geometry">
@@ -5690,6 +6040,224 @@ color: rgb(8, 113, 104);
      </item>
     </layout>
    </widget>
+   <widget class="QWidget" name="widget_add_delete_coefficient" native="true">
+    <property name="geometry">
+     <rect>
+      <x>1810</x>
+      <y>160</y>
+      <width>181</width>
+      <height>251</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(250, 250, 250);</string>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout_54">
+     <property name="sizeConstraint">
+      <enum>QLayout::SetFixedSize</enum>
+     </property>
+     <item>
+      <widget class="QPushButton" name="pb_change_coefficient">
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="toolTip">
+        <string>Add the event configured</string>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">font: 75 14pt &quot;Segoe UI&quot;;
+color: rgb(8, 113, 104);
+</string>
+       </property>
+       <property name="text">
+        <string>Change Coefficient</string>
+       </property>
+       <property name="flat">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pb_delete_coefficient">
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="toolTip">
+        <string>Add the event configured</string>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">font: 75 14pt &quot;Segoe UI&quot;;
+color: rgb(8, 113, 104);
+</string>
+       </property>
+       <property name="text">
+        <string>Erase Coefficient</string>
+       </property>
+       <property name="flat">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pb_add_coefficient">
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="toolTip">
+        <string>Add the event configured</string>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">font: 75 14pt &quot;Segoe UI&quot;;
+color: rgb(8, 113, 104);
+</string>
+       </property>
+       <property name="text">
+        <string>Add Coefficient</string>
+       </property>
+       <property name="flat">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pb_load_coefficient">
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="toolTip">
+        <string>Add the event configured</string>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">font: 75 14pt &quot;Segoe UI&quot;;
+color: rgb(8, 113, 104);
+</string>
+       </property>
+       <property name="text">
+        <string>Load Coefficients</string>
+       </property>
+       <property name="flat">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pb_cancel_adding_coefficient">
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="toolTip">
+        <string>Cancel the adding of the event</string>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">font: 75 14pt &quot;Segoe UI&quot;;
+color: rgb(8, 113, 104);
+</string>
+       </property>
+       <property name="text">
+        <string>Cancel</string>
+       </property>
+       <property name="flat">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="widget_add_coefficient" native="true">
+    <property name="geometry">
+     <rect>
+      <x>3100</x>
+      <y>600</y>
+      <width>231</width>
+      <height>141</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(250, 250, 250);</string>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout_56">
+     <property name="sizeConstraint">
+      <enum>QLayout::SetFixedSize</enum>
+     </property>
+     <item>
+      <widget class="QLabel" name="l_EVENT_23">
+       <property name="styleSheet">
+        <string notr="true">font: 75 18pt &quot;Segoe UI&quot;;
+color: rgb(8, 113, 104);
+</string>
+       </property>
+       <property name="text">
+        <string>Coefficient</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="le_coefficient_value">
+       <property name="minimumSize">
+        <size>
+         <width>214</width>
+         <height>41</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">border-image: url(:/icons/screen6/label_1.png);
+font: 75 16pt &quot;Segoe UI&quot;;
+color: rgb(8, 113, 104);
+</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_2">
+       <item>
+        <widget class="QPushButton" name="pb_add_coefficient_cancel">
+         <property name="cursor">
+          <cursorShape>PointingHandCursor</cursorShape>
+         </property>
+         <property name="toolTip">
+          <string>Cancel the adding of the event</string>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">font: 75 14pt &quot;Segoe UI&quot;;
+color: rgb(8, 113, 104);
+</string>
+         </property>
+         <property name="text">
+          <string>Cancel</string>
+         </property>
+         <property name="flat">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pb_add_coefficient_ok">
+         <property name="cursor">
+          <cursorShape>PointingHandCursor</cursorShape>
+         </property>
+         <property name="toolTip">
+          <string>Cancel the adding of the event</string>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">font: 75 14pt &quot;Segoe UI&quot;;
+color: rgb(8, 113, 104);
+</string>
+         </property>
+         <property name="text">
+          <string>Ok</string>
+         </property>
+         <property name="flat">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </widget>
    <zorder>widget_help_screen</zorder>
    <zorder>widget_state_machine_screen</zorder>
    <zorder>widget_options_screen_native</zorder>
@@ -5699,6 +6267,10 @@ color: rgb(8, 113, 104);
    <zorder>l_background_blur</zorder>
    <zorder>widget_win_buttons</zorder>
    <zorder>widget_win_options</zorder>
+   <zorder>widget_add_coefficient</zorder>
+   <zorder>widget_add_delete_coefficient</zorder>
+   <zorder>pb_add_coefficient_ok</zorder>
+   <zorder>pb_add_coefficient_cancel</zorder>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionUVision_Configuration">

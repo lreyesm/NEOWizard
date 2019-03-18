@@ -295,6 +295,33 @@ private slots:
 
     void on_lw_simulated_events_itemClicked(QListWidgetItem *item);
 
+    void on_pb_acept_sate_machine_function_name_clicked();
+
+    void on_pb_cancel_state_machine_function_name_clicked();
+
+
+    void on_pb_configure_filter_clicked();
+
+    void on_pb_add_Filter_clicked();
+
+    void on_lw_coeficients_pressed(const QModelIndex &index);
+
+    void on_lw_coeficients_doubleClicked(const QModelIndex &index);
+
+    void on_pb_add_coefficient_ok_clicked();
+
+    void on_pb_cancel_adding_coefficient_clicked();
+
+    void on_pb_change_coefficient_clicked();
+
+    void on_pb_delete_coefficient_clicked();
+
+    void on_pb_add_coefficient_clicked();
+
+    void on_pb_load_coefficient_clicked();
+    
+    void on_pb_add_coefficient_cancel_clicked();
+
 signals:
 
     check_warnings();
@@ -345,7 +372,7 @@ private:
     int check_if_compatible(const QString path, const QString main_thread_name, const QString header_source_quest, const QString line_code);
     int generate_guide_code_Main_Thread_h(const QString path, const QString main_thread_name);
     int generate_guide_code_Main_Thread_cpp(const QString path, const QString main_thread_name);
-    int generate_labels_for_state_machine(const QString path, const QString main_thread_name);
+    int generate_labels_for_state_machine(const QString path, const QString main_thread_name, const QString function_name);
     int load_state_machine_from_Thread(const QString path, const QString main_thread_name);
     void show_update_tree_view(const bool expand = false, const QString item_name_parent = "Empty", const QString item_name = "Empty");
     void highlight_state(const QString state_to_highlight);
@@ -359,6 +386,7 @@ private:
     void add_mutex_Configuration(const QString fileuVision_Path, const QString main_thread_name);
     void add_messageQueue_configuration(const QString fileuVision_Path, const QString main_thread_name);
     void add_SerialPort_Configuration(const QString fileuVision_Path, const QString main_thread_name);
+    void add_Filter_Configuration(const QString fileuVision_Path, const QString main_thread_name);
 
 private:
     enum{Generate_Screen,Options_Screen,State_Machine_Screen,Help_Screen};
@@ -399,6 +427,10 @@ private:
     bool first_move;
 
     QHierarchy_State* simulated_state;
+
+    bool modify_coefficient;
+    bool modify_coefficient_index;
+
 };
 
 #endif // NFWIZARD2_H
