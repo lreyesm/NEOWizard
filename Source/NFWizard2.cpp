@@ -5966,11 +5966,11 @@ void NFWizard2::add_Filter_Configuration(const QString fileuVision_Path, const Q
                                                   +QString::number(ui->sb_filter_buffer_size->value())+QString("   //Size of the buffer to filter"));
         main_h_FileProcessor.processTextBlock();
     }
-    if(main_h_FileProcessor.check_if_code_exist(QString("low_pass_FIR_filter"),true)==0){
+    if(main_h_FileProcessor.check_if_code_exist(QString("FIR_filter"),true)==0){
         main_h_FileProcessor.setStartLine("public:");       ////inicio del contenido a eliminar
         main_h_FileProcessor.setEndLine("public:"); ////fin del contenido a eliminar
         main_h_FileProcessor.setReplacementString(QString("public:\n")
-                                                  +QString("\n    void low_pass_FIR_filter(")+ui->cb_buffer_type->currentText()+QString("* input_buffer,")
+                                                  +QString("\n    void FIR_filter(")+ui->cb_buffer_type->currentText()+QString("* input_buffer,")
                                                   +ui->cb_buffer_type->currentText()+QString("* output_buffer, const uint32_t buffer_size = BLOCK_SIZE")+QString(");"));
         main_h_FileProcessor.processTextBlock();
     }
@@ -5979,7 +5979,7 @@ void NFWizard2::add_Filter_Configuration(const QString fileuVision_Path, const Q
 
     main_cpp_FileProcessor.setFilename(fileuVision_Path+QString("/Source/")+main_thread_name+QString(".cpp"));
 
-    if(main_cpp_FileProcessor.check_if_code_exist(QString("void low_pass_FIR_filter("),false)==0){
+    if(main_cpp_FileProcessor.check_if_code_exist(QString("void FIR_filter("),false)==0){
 
         QString coefficients = " ";
         for(int i=0; i < ui->lw_coeficients->count();i++){
@@ -5995,7 +5995,7 @@ void NFWizard2::add_Filter_Configuration(const QString fileuVision_Path, const Q
                                                        +QString("\nstatic float32_t  firState_f32[BLOCK_SIZE + NUM_TAPS - 1];\n"));
     }
 
-    if(main_cpp_FileProcessor.check_if_code_exist(QString("void low_pass_FIR_filter("),false)==0){
+    if(main_cpp_FileProcessor.check_if_code_exist(QString("void FIR_filter("),false)==0){
 
         QString before_filter_convertion, after_filter_convertion;
 
@@ -6019,7 +6019,7 @@ void NFWizard2::add_Filter_Configuration(const QString fileuVision_Path, const Q
             after_filter_convertion = QString("   arm_float_to_q7(&outputF32[0], (q7_t*)&output_buffer[0], buffer_size);");
         }
 
-        main_cpp_FileProcessor.add_code_at_end_of_file(main_thread_name, QString("\nvoid ")+main_thread_name+QString("::low_pass_FIR_filter(")+ui->cb_buffer_type->currentText()+QString("* input_buffer,")
+        main_cpp_FileProcessor.add_code_at_end_of_file(main_thread_name, QString("\nvoid ")+main_thread_name+QString("::FIR_filter(")+ui->cb_buffer_type->currentText()+QString("* input_buffer,")
                                                        +ui->cb_buffer_type->currentText()+QString("* output_buffer, const uint32_t buffer_size")+QString("){")
                                                        +QString("\n   uint32_t i;\n   arm_fir_instance_f32 S;\n   arm_status status;\n   float32_t  inputF32[BLOCK_SIZE], outputF32[BLOCK_SIZE];\n   arm_fir_init_f32(&S, NUM_TAPS, (float32_t *)&fir_coefficient[0], &firState_f32[0], buffer_size);\n")
                                                        +QString("\n   for(i=0; i<buffer_size ;++i){\n")+QString("		 input_buffer[i] = input_buffer[i] >> 1;\n	 }\n")
