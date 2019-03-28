@@ -277,26 +277,34 @@ void NFWizard2::processInterrupFile()
     QList<FunctionDelimiters> delimiters; // inicio y fin de funciones a eliminar almacenadas en esta lista de estructuras
     FunctionDelimiters systickHandler = {QStringLiteral("void SysTick_Handler(void)"),
                                          QStringLiteral("/* USER CODE END SysTick_IRQn 1 */"),
-                                         QStringLiteral("\n/* Deleted by NEOWizard */\n\n")};
+                                         QStringLiteral("\n/* SysTick_Handler Deleted by NEOWizard */\n\n")};
     delimiters << systickHandler;
 
     FunctionDelimiters svcHandler = {QStringLiteral("void SVC_Handler(void)"),
                                      QStringLiteral("/* USER CODE END SVCall_IRQn 1 */"),
-                                     QStringLiteral("\n/* Deleted by NEOWizard */\n\n")};
+                                     QStringLiteral("\n/* SVC_Handler Deleted by NEOWizard */\n\n")};
     delimiters << svcHandler;
 
     FunctionDelimiters pendsvhandler = {QStringLiteral("void PendSV_Handler(void)"),
                                         QStringLiteral("/* USER CODE END PendSV_IRQn 1 */"),
-                                        QStringLiteral("\n/* Deleted by NEOWizard */\n\n")};
+                                        QStringLiteral("\n/* PendSV_Handler Deleted by NEOWizard */\n\n")};
 
     delimiters << pendsvhandler;
+
+    for(quint8 i=1; i< 7; i++){
+        FunctionDelimiters spi_interrupts_for_SD = {QString("void SPI"+QString::number(i)+"_IRQHandler(void)"),
+                                                    QString("/* USER CODE END SPI"+QString::number(i)+"_IRQn 1 */"),
+                                                    QString("\n/* SPI"+QString::number(i)+"_IRQHandler Deleted by NEOWizard */\n\n")};
+
+        delimiters << spi_interrupts_for_SD;
+    }
 
     QFileInfo fileInfo(fileCube);
     QDir cubeInterrupDir(fileInfo.dir());
     cubeInterrupDir.cd("Src");
     QStringList fileList = cubeInterrupDir.entryList(QStringList("*_it.c"));
     if (!cubeInterrupDir.exists(fileList.first())) { // Should be only one file
-        QMessageBox::warning(this, tr("NFWizard2"),tr("<font color = black >Error STM32CubeMx Src/%1 file not found").arg(fileList.first()));
+        QMessageBox::warning(this, tr("NEOWizard"),tr("<font color = black >Error STM32CubeMx Src/%1 file not found").arg(fileList.first()));
         return;
     }
     QDir::setCurrent(cubeInterrupDir.path());
@@ -1171,6 +1179,9 @@ void NFWizard2::on_pb_add_thread_clicked()
     }
     if(add_thread_state==Main_Thead){
 
+        generate_project_folders= true;
+        generateProjectFileTree();
+        generate_project_folders=false;
         if(generateTemplates_for_Thread(fileInfo.dir().path(), ui->le_main_thread_name->text())>=0){////copia los templates para las carpetas del projecto
 
             process_Main_Thread_Files(ui->le_main_thread_name->text());
@@ -5966,11 +5977,11 @@ void NFWizard2::add_Filter_Configuration(const QString fileuVision_Path, const Q
                                                   +QString::number(ui->sb_filter_buffer_size->value())+QString("   //Size of the buffer to filter"));
         main_h_FileProcessor.processTextBlock();
     }
-    if(main_h_FileProcessor.check_if_code_exist(QString("low_pass_FIR_filter"),true)==0){
+    if(main_h_FileProcessor.check_if_code_exist(QString("FIR_filter"),true)==0){
         main_h_FileProcessor.setStartLine("public:");       ////inicio del contenido a eliminar
         main_h_FileProcessor.setEndLine("public:"); ////fin del contenido a eliminar
         main_h_FileProcessor.setReplacementString(QString("public:\n")
-                                                  +QString("\n    void low_pass_FIR_filter(")+ui->cb_buffer_type->currentText()+QString("* input_buffer,")
+                                                  +QString("\n    void FIR_filter(")+ui->cb_buffer_type->currentText()+QString("* input_buffer,")
                                                   +ui->cb_buffer_type->currentText()+QString("* output_buffer, const uint32_t buffer_size = BLOCK_SIZE")+QString(");"));
         main_h_FileProcessor.processTextBlock();
     }
@@ -5979,7 +5990,7 @@ void NFWizard2::add_Filter_Configuration(const QString fileuVision_Path, const Q
 
     main_cpp_FileProcessor.setFilename(fileuVision_Path+QString("/Source/")+main_thread_name+QString(".cpp"));
 
-    if(main_cpp_FileProcessor.check_if_code_exist(QString("void low_pass_FIR_filter("),false)==0){
+    if(main_cpp_FileProcessor.check_if_code_exist(QString("void FIR_filter("),false)==0){
 
         QString coefficients = " ";
         for(int i=0; i < ui->lw_coeficients->count();i++){
@@ -5995,7 +6006,7 @@ void NFWizard2::add_Filter_Configuration(const QString fileuVision_Path, const Q
                                                        +QString("\nstatic float32_t  firState_f32[BLOCK_SIZE + NUM_TAPS - 1];\n"));
     }
 
-    if(main_cpp_FileProcessor.check_if_code_exist(QString("void low_pass_FIR_filter("),false)==0){
+    if(main_cpp_FileProcessor.check_if_code_exist(QString("void FIR_filter("),false)==0){
 
         QString before_filter_convertion, after_filter_convertion;
 
@@ -6019,7 +6030,7 @@ void NFWizard2::add_Filter_Configuration(const QString fileuVision_Path, const Q
             after_filter_convertion = QString("   arm_float_to_q7(&outputF32[0], (q7_t*)&output_buffer[0], buffer_size);");
         }
 
-        main_cpp_FileProcessor.add_code_at_end_of_file(main_thread_name, QString("\nvoid ")+main_thread_name+QString("::low_pass_FIR_filter(")+ui->cb_buffer_type->currentText()+QString("* input_buffer,")
+        main_cpp_FileProcessor.add_code_at_end_of_file(main_thread_name, QString("\nvoid ")+main_thread_name+QString("::FIR_filter(")+ui->cb_buffer_type->currentText()+QString("* input_buffer,")
                                                        +ui->cb_buffer_type->currentText()+QString("* output_buffer, const uint32_t buffer_size")+QString("){")
                                                        +QString("\n   uint32_t i;\n   arm_fir_instance_f32 S;\n   arm_status status;\n   float32_t  inputF32[BLOCK_SIZE], outputF32[BLOCK_SIZE];\n   arm_fir_init_f32(&S, NUM_TAPS, (float32_t *)&fir_coefficient[0], &firState_f32[0], buffer_size);\n")
                                                        +QString("\n   for(i=0; i<buffer_size ;++i){\n")+QString("		 input_buffer[i] = input_buffer[i] >> 1;\n	 }\n")
